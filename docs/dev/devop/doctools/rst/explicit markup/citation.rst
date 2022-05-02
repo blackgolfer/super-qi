@@ -1,0 +1,14 @@
+Citation
+========
+
+.. code:: reStructuredText
+
+    Here is a citation reference: [CIT2002]_.
+
+    .. [CIT2002] This is the citation.  It's just like a footnote,
+       except the label is textual.
+
+Here is a citation reference: [CIT2002]_.
+
+.. [CIT2002] This is the citation.  It's just like a footnote,
+   except the label is textual.

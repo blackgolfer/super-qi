@@ -127,3 +127,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+docs/books
+docs/_build
+devop/docker/.depends.mk

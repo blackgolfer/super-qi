@@ -1,0 +1,49 @@
+version: '3.9'
+services:
+  timescale:
+    # Name of the image and tag the Dockerfile creates (update this as needed)
+    image: timescale/timescaledb:latest-pg14
+    volumes: 
+      # Main TimescaleDB external volume
+      - type: volume
+        # source: timescale-db # the volume name
+        source: timescale-db-volume
+        # source: project_timescale-db
+        target: /var/lib/postgresql/data # the location in the container where the data are stored
+        read_only: false
+      # Custom postgresql.conf file will be mounted (see command: as well)
+      - type: bind
+        source: ./postgresql_custom.conf
+        target: /postgresql_custom.conf
+        read_only: false
+    env_file: .env
+    command: ["-c", "config_file=/postgresql_custom.conf"]
+    ports: 
+      - 0.0.0.0:5432:5432
+    networks:
+      traefik-public:
+    deploy:
+      # Either global (exactly one container per physical node) or
+      # replicated (a specified number of containers). The default is replicated
+      mode: replicated
+      # For stateless applications using "replicated" mode,
+      # the total number of replicas to create
+      replicas: 1
+      placement:
+        constraints:
+          # Since this is for the stateful database,
+          # only run it on the swarm manager, not on workers
+          - "node.role==manager"
+      restart_policy:
+        condition: on-failure
+
+# Uses a named volume to persist our data
+volumes:
+  timescale-db-volume:
+    external: true
+
+networks:
+  # Use the previously created public network "traefik-public", shared with other
+  # services that need to be publicly available via this Traefik
+  traefik-public:
+    external: true
