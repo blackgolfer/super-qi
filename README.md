@@ -1,6 +1,6 @@
 # super-qi
 
-## Todo List
+## Engineering projects
 
 1. streaming platform: data and events
     - frameworks:
@@ -52,3 +52,30 @@
     - trading system
     - pm system
         - next generation strategy system
+
+## Time series analysis
+### Time frequency analysis
+   1. From Fourier to Wavelet: time frequency localization
+   2. Multiresolution analysis
+   3. Time-frequency visualization: Wigner-Ville distribution
+   4. Adaptivity
+      - sparsity
+      - best basis
+      - matching pursuit
+
+### Classification
+   1. Stock price state model
+   2. Wavelet scattering
+   3. State classification
+      - wavelet scattering
+      - state dependent factor analysis
+
+### Forecasting
+   1. forecasting within 0 state
+   2. forecasting within 1 state
+   3. forecasting wihtin -1 state
+   4. the case of multi-timescale
+
+## Game theory
+### Single asset strategy composition
+### Multi-asset composition
