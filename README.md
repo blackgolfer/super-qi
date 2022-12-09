@@ -79,3 +79,4 @@
 ## Game theory
 ### Single asset strategy composition
 ### Multi-asset composition
+### State dependent factor investing
