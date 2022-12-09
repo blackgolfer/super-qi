@@ -16,10 +16,12 @@
    3. Setting up jupyter notebook
         ```console
         % python -m ipykernel install --user --name python3.10 --display-name "Python (3.10)"
+        % jupyter contrib nbextension install --user
         ```
    4. Running jupyter notebook
         ```console
         % jupyter notebook
         ```
+   5. Showing the numbered headers for markdown: In notebook main page, go to Nbextensions tab, and toggle 'Table of Contents (2)'.
 
 ## Tutorial
