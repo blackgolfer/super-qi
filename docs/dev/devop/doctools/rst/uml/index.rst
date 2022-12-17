@@ -1,5 +1,0 @@
-===
-UML
-===
-
-.. include:: plantuml.rst

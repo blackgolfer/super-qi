@@ -1,8 +1,0 @@
-===
-Git
-===
-
-.. toctree::
-    :numbered:
-    
-    authentication

@@ -40,6 +40,8 @@
             - contexts representation (based on factor db)
             - context identification
         - trading decision and pm (based on contexts identification and strategy db)
+    - visualization
+        - tradingview
 7. trading system
     - oms
     - pms

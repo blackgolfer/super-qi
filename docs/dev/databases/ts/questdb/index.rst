@@ -1,8 +1,0 @@
-=======
-QuestDB
-=======
-
-
-.. toctree::
-    :numbered:
-
