@@ -1,0 +1,13 @@
+sphinxcontrib-tikz
+sphinxcontrib-plantuml
+recommonmark
+nbsphinx
+sphinxcontrib-jupyter
+sphinxcontrib-proof
+sphinx-typo3-theme
+t3fieldlisttable
+sphinxcontrib-slide
+sphinx-a4doc
+sphinx-book-theme
+sphinx-bernard-theme
+groundwork-sphinx-theme
