@@ -2,7 +2,7 @@ sphinxcontrib-tikz
 sphinxcontrib-plantuml
 recommonmark
 nbsphinx
-sphinxcontrib-jupyter
+#sphinxcontrib-jupyter
 sphinxcontrib-proof
 sphinx-typo3-theme
 t3fieldlisttable
@@ -11,3 +11,10 @@ sphinx-a4doc
 sphinx-book-theme
 sphinx-bernard-theme
 groundwork-sphinx-theme
+sphinxcontrib-pseudocode
+ipython
+ipykernel
+myst-nb
+jupytext
+matplotlib
+numpy

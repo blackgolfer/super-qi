@@ -1,10 +1,14 @@
 ARG REGISTRY
-FROM $REGISTRY/doctools:plantuml
+FROM $REGISTRY/doctools:texlive
 
 ARG USER
 ARG GROUP
 ARG GROUPID
 ARG USERID
+
+USER root
+WORKDIR /root
+
 
 ## ----------------------------------------------------------------
 ## Add venv
