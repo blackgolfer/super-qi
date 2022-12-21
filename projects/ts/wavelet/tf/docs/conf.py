@@ -10,7 +10,7 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
-# import os
+import os
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
 
@@ -37,7 +37,7 @@ extensions = ['sphinx.ext.githubpages'
              ,'sphinx.ext.graphviz'
              ,'sphinxcontrib.tikz'
              #,'sphinxcontrib.gnuplot'
-             ,'recommonmark'
+             #,'recommonmark'
              #,'sphinx_rtd_theme'
              ,'sphinxcontrib.plantuml'
              #,'nbsphinx'
@@ -46,7 +46,11 @@ extensions = ['sphinx.ext.githubpages'
              #,'RunNotebook'
              ,'sphinxcontrib.proof'
              ,'sphinx_typo3_theme'
-             ,'sphinx_a4doc'
+             #,'sphinx_a4doc'
+             ,'sphinxcontrib.pseudocode'
+             #,'myst_parser'
+             #,'myst_nb'
+             ,'nbsphinx'
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -96,8 +100,8 @@ html_static_path = ['_static']
     #"style_nav_header_background": "#0b750a"
 #}
 
-html_css_files = { 'css/custom.css'
-                  ,'css/a4doc_railroad_diagram.css'
+html_css_files = {'css/custom.css'
+                 #,'css/a4doc_railroad_diagram.css'
 }
 
 plantuml = 'java -Djava.awt.headless=true -jar /opt/plantuml/plantuml.jar'
@@ -155,3 +159,74 @@ with open('mathsymbols.tex', 'r') as f:
                 mathjax_config['TeX']['Macros'][macro[1]] = "{"+macro[4]+"}"
             else:
                 mathjax_config['TeX']['Macros'][macro[1]] = ["{"+macro[4]+"}", int(macro[3])]
+
+mathjax3_config = {
+'tex': {'tags': 'ams', 'useLabelIds': True},
+}
+
+""" source_suffix = {'.rst': 'restructuredtext'
+                ,'.ipynb': 'myst-nb'
+                ,'.myst': 'myst-nb'
+                ,'.md': 'myst-nb'
+}
+ """
+""" myst_enable_extensions = ["amsmath"
+                         ,"colon_fence"
+                         ,"deflist"
+                         ,"dollarmath"
+                         ,"fieldlist"
+                         ,"html_admonition"
+                         ,"html_image"
+                         #,"linkify"
+                         ,"replacements"
+                         ,"smartquotes"
+                         ,"strikethrough"
+                         ,"substitution"
+                         ,"tasklist"
+                         ]
+ """
+""" nb_custom_formats = {".Rmd": ["jupytext.reads", {"fmt": "Rmd"}]}
+nb_execution_mode = "cache"
+nb_execution_show_tb = "READTHEDOCS" in os.environ
+nb_execution_timeout = 60  # Note: 30 was timing out on RTD
+ """
+
+nbsphinx_kernel_name = 'python3'
+suppress_warnings = [
+    'nbsphinx',
+]
+
+# These projects are also used for the sphinx_codeautolink extension:
+intersphinx_mapping = {
+    'IPython': ('https://ipython.readthedocs.io/en/stable/', None),
+    'matplotlib': ('https://matplotlib.org/', None),
+    'numpy': ('https://docs.scipy.org/doc/numpy/', None),
+    'pandas': ('https://pandas.pydata.org/docs/', None),
+    'python': ('https://docs.python.org/3/', None),
+}
+
+# Don't add .txt suffix to source files:
+html_sourcelink_suffix = ''
+
+# List of arguments to be passed to the kernel that executes the notebooks:
+nbsphinx_execute_arguments = [
+    "--InlineBackend.figure_formats={'svg', 'pdf'}",
+]
+
+# Environment variables to be passed to the kernel:
+os.environ['MY_DUMMY_VARIABLE'] = 'Hello from conf.py!'
+
+nbsphinx_thumbnails = {
+    'gallery/thumbnail-from-conf-py': 'gallery/a-local-file.png',
+    'gallery/*-rst': 'images/notebook_icon.png',
+}
+
+# Support for notebook formats other than .ipynb
+nbsphinx_custom_formats = {
+    '.pct.py': ['jupytext.reads', {'fmt': 'py:percent'}],
+    '.md': ['jupytext.reads', {'fmt': 'Rmd'}],
+}
+
+# Import Matplotlib to avoid this message in notebooks:
+# "Matplotlib is building the font cache; this may take a moment."
+import matplotlib.pyplot

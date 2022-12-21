@@ -1,7 +1,7 @@
 # Time-Frequency Analysis
 ## References
 
-## python
+## Python
    1. pyenv: assuming you are under this directory
         ```console
         % pyenv install 3.10
@@ -24,4 +24,8 @@
         ```
    5. Showing the numbered headers for markdown: In notebook main page, go to Nbextensions tab, and toggle 'Table of Contents (2)'.
 
+## Sphinx
+   1. Doctools
+   2. Pandoc
+   
 ## Tutorial

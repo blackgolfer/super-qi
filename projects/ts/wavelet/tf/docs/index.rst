@@ -6,4 +6,4 @@
 
 .. toctree::
 
-    wavelet/math
+    wavelet/index
