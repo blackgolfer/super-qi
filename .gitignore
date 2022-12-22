@@ -133,3 +133,5 @@ docs/_build
 devop/docker/.depends.mk
 
 _build/
+
+.DS_Store
