@@ -36,21 +36,22 @@ extensions = ['sphinx.ext.githubpages'
              ,'sphinx.ext.autodoc'
              ,'sphinx.ext.graphviz'
              ,'sphinxcontrib.tikz'
+             ,'sphinxcontrib.bibtex'
+             ,'sphinxcontrib.proof'
+             ,'sphinxcontrib.pseudocode'
+             ,'sphinxcontrib.plantuml'
+             #,'sphinxcontrib.jupyter'
              #,'sphinxcontrib.gnuplot'
              #,'recommonmark'
              #,'sphinx_rtd_theme'
-             ,'sphinxcontrib.plantuml'
-             #,'nbsphinx'
+             ,'nbsphinx'
+             ,'sphinx_thebe'
              #,'jupyter_sphinx.execute'
-             #,'sphinxcontrib.jupyter'
              #,'RunNotebook'
-             ,'sphinxcontrib.proof'
              ,'sphinx_typo3_theme'
              #,'sphinx_a4doc'
-             ,'sphinxcontrib.pseudocode'
              #,'myst_parser'
-             #,'myst_nb'
-             ,'nbsphinx'
+             ,'myst_nb'
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -164,13 +165,13 @@ mathjax3_config = {
 'tex': {'tags': 'ams', 'useLabelIds': True},
 }
 
-""" source_suffix = {'.rst': 'restructuredtext'
+source_suffix = {'.rst': 'restructuredtext'
                 ,'.ipynb': 'myst-nb'
                 ,'.myst': 'myst-nb'
                 ,'.md': 'myst-nb'
 }
- """
-""" myst_enable_extensions = ["amsmath"
+
+myst_enable_extensions = ["amsmath"
                          ,"colon_fence"
                          ,"deflist"
                          ,"dollarmath"
@@ -184,16 +185,17 @@ mathjax3_config = {
                          ,"substitution"
                          ,"tasklist"
                          ]
- """
+
 """ nb_custom_formats = {".Rmd": ["jupytext.reads", {"fmt": "Rmd"}]}
 nb_execution_mode = "cache"
 nb_execution_show_tb = "READTHEDOCS" in os.environ
 nb_execution_timeout = 60  # Note: 30 was timing out on RTD
  """
 
-nbsphinx_kernel_name = 'python3'
-suppress_warnings = [
-    'nbsphinx',
+#nbsphinx_kernel_name = 'python3.10'
+math_number_all = True
+suppress_warnings = ['nbsphinx'
+                    ,'myst-nb'
 ]
 
 # These projects are also used for the sphinx_codeautolink extension:
@@ -221,11 +223,14 @@ nbsphinx_thumbnails = {
     'gallery/*-rst': 'images/notebook_icon.png',
 }
 
-# Support for notebook formats other than .ipynb
+""" # Support for notebook formats other than .ipynb
 nbsphinx_custom_formats = {
     '.pct.py': ['jupytext.reads', {'fmt': 'py:percent'}],
     '.md': ['jupytext.reads', {'fmt': 'Rmd'}],
-}
+} """
+
+bibtex_bibfiles = ['refs.bib']
+latex_engine = 'xelatex'
 
 # Import Matplotlib to avoid this message in notebooks:
 # "Matplotlib is building the font cache; this may take a moment."

@@ -16,5 +16,14 @@ ipython
 ipykernel
 myst-nb
 jupytext
+sphinx-thebe
+sphinxcontrib-bibtex
+jupyter
 matplotlib
 numpy
+scipy
+soundfile
+sympy
+statsmodels
+sounddevice
+matching
