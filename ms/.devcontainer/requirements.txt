@@ -1,0 +1,5 @@
+ipython
+ipykernel
+nbconvert
+pandas
+
