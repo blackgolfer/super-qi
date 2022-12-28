@@ -1,0 +1,9 @@
+[submodule "ms/dt/jupyter-book"]
+	path = ms/dt/jupyter-book
+	url = https://github.com/executablebooks/jupyter-book.git
+[submodule "ms/pl/haskell/learn_you_a_haskell"]
+	path = ms/pl/haskell/learn_you_a_haskell
+	url = https://github.com/IHaskell/learn-you-a-haskell-notebook.git
+[submodule "ms/pl/py/quantecon-mini-example"]
+	path = ms/pl/py/quantecon-mini-example
+	url = https://github.com/executablebooks/quantecon-mini-example
