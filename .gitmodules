@@ -4,3 +4,6 @@
 [submodule "ms/dt/jupyter-book"]
 	path = ms/dt/jupyter-book
 	url = https://github.com/executablebooks/jupyter-book.git
+[submodule "ms/pl/haskell/learn-you-a-haskell"]
+	path = ms/pl/haskell/learn-you-a-haskell
+	url = https://github.com/IHaskell/learn-you-a-haskell-notebook
