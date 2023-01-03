@@ -1,0 +1,690 @@
+
+<!DOCTYPE html>
+
+<html lang="zh">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>信号空间</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-examples.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../_static/tabs.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "C": "\\mathbb{C}", "Z": "\\mathbb{Z}", "Q": "\\mathbb{Q}", "L": "\\mathbb{L}", "U": "\\mathbb{U}", "T": "\\mathbb{T}", "R": "\\mathbb{R}", "defeq": "\\mathop:=", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="快速傅里叶变换" href="fft.html" />
+    <link rel="prev" title="分析架构" href="intro.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="zh">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint">⚠️The latest release refactored our HTML, so double-check your custom CSS rules!⚠️</div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  理论篇
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   分析架构
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   信号空间
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="fft.html">
+   快速傅里叶变换
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="convolution.html">
+   卷积
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="wavelet.html">
+   小波分析
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  实践篇
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../nb/intro.html">
+   实践篇
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../nb/thebe.html">
+   Jupyter Notebooks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../nb/signal.html">
+   信号空间
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../nb/fft.html">
+   快速傅里叶变换
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../nb/convolution.html">
+   卷积
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../nb/wavelet.html">
+   小波分析
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/blackgolfer/super-qi"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/blackgolfer/super-qi/issues/new?title=Issue%20on%20page%20%2Ftheory/signal.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/blackgolfer/super-qi/edit/szhq20022/ms/sp/theory/signal.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/theory/signal.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#c-g-g">
+   <span class="math notranslate nohighlight">
+    \(\C[G]\)
+   </span>
+   ，有限群时间域
+   <span class="math notranslate nohighlight">
+    \(G\)
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     基数
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     内积
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     范数
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     基
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id6">
+     特征与对偶群
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#c-z-n-z">
+   周期性信号空间
+   <span class="math notranslate nohighlight">
+    \(\C[\Z/n\Z]\)
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ell-2-z">
+   <span class="math notranslate nohighlight">
+    \(\ell^2(\Z)\)
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#l-2-r">
+   <span class="math notranslate nohighlight">
+    \(\L^2(\R)\)
+   </span>
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>信号空间</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#c-g-g">
+   <span class="math notranslate nohighlight">
+    \(\C[G]\)
+   </span>
+   ，有限群时间域
+   <span class="math notranslate nohighlight">
+    \(G\)
+   </span>
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     基数
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     内积
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     范数
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     基
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id6">
+     特征与对偶群
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#c-z-n-z">
+   周期性信号空间
+   <span class="math notranslate nohighlight">
+    \(\C[\Z/n\Z]\)
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ell-2-z">
+   <span class="math notranslate nohighlight">
+    \(\ell^2(\Z)\)
+   </span>
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#l-2-r">
+   <span class="math notranslate nohighlight">
+    \(\L^2(\R)\)
+   </span>
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>信号空间<a class="headerlink" href="#id1" title="永久链接至标题">#</a></h1>
+<p>这里信号指的是时间序列，我们的目标是界定信号具体的数学模型。</p>
+<p>我们用<span class="math notranslate nohighlight">\(G\)</span>代表时间域, 相应的值域中的一个元素（也就是我们的具体的一个时间序列样本）<span class="math notranslate nohighlight">\(f\)</span>可以看成是从<span class="math notranslate nohighlight">\(G\)</span>到<span class="math notranslate nohighlight">\(\mathbb C\)</span>的一个映射，即<span class="math notranslate nohighlight">\(f:G\longrightarrow\C\)</span>，其中<span class="math notranslate nohighlight">\(\C\)</span>是复数域。我们用符合<span class="math notranslate nohighlight">\(\C(G)\)</span>代表这个信号空间。</p>
+<p>这个空间太过宽泛，为了便于分析，我们需要加一些结构，也就是加些法则和条件。</p>
+<section id="c-g-g">
+<span id="signal-space-finitegroup"></span><h2><span class="math notranslate nohighlight">\(\C[G]\)</span>，有限群时间域<span class="math notranslate nohighlight">\(G\)</span><a class="headerlink" href="#c-g-g" title="永久链接至标题">#</a></h2>
+<p>信号空间模型：<span class="math notranslate nohighlight">\(\mathbb{C}(G)\)</span>，<span class="math notranslate nohighlight">\(G\)</span>为有限群。</p>
+<section id="id2">
+<h3>基数<a class="headerlink" href="#id2" title="永久链接至标题">#</a></h3>
+<p>我们用<span class="math notranslate nohighlight">\(|G|\)</span>代表基数（cardinal），也就是<span class="math notranslate nohighlight">\(G\)</span>中元素的个数。</p>
+</section>
+<section id="id3">
+<h3>内积<a class="headerlink" href="#id3" title="永久链接至标题">#</a></h3>
+<p>内积用符合<span class="math notranslate nohighlight">\(&lt;\cdot,\cdot&gt;\)</span>表示：</p>
+<div class="math notranslate nohighlight">
+\[&lt;x,y&gt;\mathrel{\overset{\scriptstyle\Delta}{=}}\frac{1}{|G|}\sum_{g\in G}x(g)\overline{y(g)}, \quad\forall x,y\in\C[G]\]</div>
+</section>
+<section id="id4">
+<h3>范数<a class="headerlink" href="#id4" title="永久链接至标题">#</a></h3>
+<p>范数<span class="math notranslate nohighlight">\(||\cdot||_2\)</span>则是</p>
+<div class="math notranslate nohighlight">
+\[||x||_2^2\mathrel{\overset{\scriptstyle\Delta}{=}&lt;x,x&gt;}\]</div>
+</section>
+<section id="id5">
+<h3>基<a class="headerlink" href="#id5" title="永久链接至标题">#</a></h3>
+<div class="proof proposition admonition" id="delta_representation">
+<p class="admonition-title"><span class="caption-number">Proposition 1 </span></p>
+<section class="proposition-content" id="proof-content">
+<p><span class="math notranslate nohighlight">\(\C[G]\)</span>的一组基由<span class="math notranslate nohighlight">\(\{\delta_g\}_{g\in G}\)</span>构成：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}\delta_g(h)\mathrel{\overset{\scriptstyle\Delta}{=}\left\{
+    \begin{aligned}
+    1 &amp; \quad\textrm{if}\quad h=g\\
+    0 &amp; \quad\textrm{if}\quad h\neq g
+    \end{aligned}
+\right.}\end{split}\]</div>
+<p>即</p>
+<div class="amsmath math notranslate nohighlight" id="equation-66cc9720-6e1d-4a18-bae5-e6a1001c4028">
+<span class="eqno">(1)<a class="headerlink" href="#equation-66cc9720-6e1d-4a18-bae5-e6a1001c4028" title="公式的永久链接">#</a></span>\[\begin{equation}
+f=\sum_{g\in G}f(g)\delta_g,\quad\forall f\in\C[G]
+\end{equation}\]</div>
+<p>由此，<span class="math notranslate nohighlight">\(\C[G]\)</span>是<span class="math notranslate nohighlight">\(\C\)</span>上的一个向量空间（vector space）并且维度为<span class="math notranslate nohighlight">\(|G|\)</span>。</p>
+</section>
+</div></section>
+<section id="id6">
+<h3>特征与对偶群<a class="headerlink" href="#id6" title="永久链接至标题">#</a></h3>
+<p><a class="reference internal" href="#delta_representation">Proposition 1</a>在理论上意义不大，因为这组基对符号运算有些帮助，但没有揭示群的内在结构。这就使得人们去寻找更有效的表达方式。有效性主要体现在两个方面：</p>
+<ol class="simple">
+<li><p>使用这种表达能够方便推演。</p></li>
+<li><p>这种表达能体现出群的内在结构与性质。</p></li>
+</ol>
+<div class="proof definition admonition" id="definition-1">
+<p class="admonition-title"><span class="caption-number">Definition 1 </span> (特征与对偶群)</p>
+<section class="definition-content" id="proof-content">
+<p><span class="math notranslate nohighlight">\(G\)</span>为一个有限群，特征（character）<span class="math notranslate nohighlight">\(\chi\)</span>是由<span class="math notranslate nohighlight">\(G\)</span>到<span class="math notranslate nohighlight">\((\C,*)\)</span>的态射（morphism），其中<span class="math notranslate nohighlight">\((\C,*)\)</span>是一个由复数域<span class="math notranslate nohighlight">\(\C\)</span>和乘积算子<span class="math notranslate nohighlight">\(*\)</span>构成的群（我们通常用<span class="math notranslate nohighlight">\(\C^*\)</span>表示），也就是说</p>
+<div class="math notranslate nohighlight">
+\[\chi_1\chi_2:g\in G\longmapsto\chi_1(g)\chi_2(g)，\quad\forall\chi_1,\chi_2\in\hat{G}。\]</div>
+<p>我们用符号<span class="math notranslate nohighlight">\(\hat{G}\)</span>代表特征集合，这个集合就叫做<span class="math notranslate nohighlight">\(G\)</span>的对偶。</p>
+</section>
+</div><p>以下命题彰显了对偶群的性质，也是通过代数结构对离散傅里叶变换最好的解释。</p>
+<div class="proof proposition admonition" id="finitegroup_dual">
+<p class="admonition-title"><span class="caption-number">Proposition 2 </span></p>
+<section class="proposition-content" id="proof-content">
+<p>假设<span class="math notranslate nohighlight">\(G\)</span>的基数为<span class="math notranslate nohighlight">\(n\in\N\)</span>，即<span class="math notranslate nohighlight">\(|G|=n\)</span>，那么其对偶群的元素一定是某个单位圆的根：</p>
+<div class="amsmath math notranslate nohighlight" id="equation-6cc5c6f4-b337-42a6-aae2-b853d8cd8c9f">
+<span class="eqno">(2)<a class="headerlink" href="#equation-6cc5c6f4-b337-42a6-aae2-b853d8cd8c9f" title="公式的永久链接">#</a></span>\[\begin{equation}
+\U_n=\left\{\left.\exp\left(\frac{2ik\pi}{n}\right)\right|0\leq k&lt;n\right\}
+\end{equation}\]</div>
+<p>而且，</p>
+<div class="math notranslate nohighlight">
+\[\forall g\in G,\quad|\chi(g)|=1,\quad\chi(g^{-1})=\chi(g)^{-1}=\overline{\chi(g)}\]</div>
+<p>其中<span class="math notranslate nohighlight">\(|\cdot|\)</span>和<span class="math notranslate nohighlight">\(\overline{\cdot}\)</span>分别是复数的模（modulus）和共轭（conjugate）。也就是<span class="math notranslate nohighlight">\(\forall\chi\in\hat{G}, \chi\in\U_n\)</span>。</p>
+</section>
+</div></section>
+</section>
+<section id="c-z-n-z">
+<h2>周期性信号空间<span class="math notranslate nohighlight">\(\C[\Z/n\Z]\)</span><a class="headerlink" href="#c-z-n-z" title="永久链接至标题">#</a></h2>
+<p><span class="math notranslate nohighlight">\(G=\Z/n\Z,\quad|G|=n\)</span>是<a class="reference internal" href="#signal-space-finitegroup"><span class="std std-ref">有限群</span></a>的特例，时间域的一个具体模型。这是周期信号空间的不二之选，它具备所有以上<span class="math notranslate nohighlight">\(\C[G]\)</span>的代数结构和分析工具。</p>
+<p>在有限周期群（finite cyclic group）情况下，我们有</p>
+<div class="proof proposition admonition" id="finite_cyclic_group_dual">
+<p class="admonition-title"><span class="caption-number">Proposition 3 </span></p>
+<section class="proposition-content" id="proof-content">
+<ol class="simple">
+<li><p><span class="math notranslate nohighlight">\(G\simeq\hat{G}\)</span>，即<span class="math notranslate nohighlight">\(G\)</span>与<span class="math notranslate nohighlight">\(\hat{G}\)</span>同构。</p></li>
+<li><p><span class="math notranslate nohighlight">\(\hat{G}\)</span>是<span class="math notranslate nohighlight">\(\C[G]\)</span>的一组归一化正交基（orthonormal basis）。</p></li>
+</ol>
+</section>
+</div><p>由<a class="reference internal" href="#finitegroup_dual">Proposition 2</a>，<span class="math notranslate nohighlight">\(\U_n\)</span>是<span class="math notranslate nohighlight">\(\C[\Z/n\Z]\)</span>的一组归一化正交基。</p>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p><a class="reference internal" href="#finite_cyclic_group_dual">Proposition 3</a>可以推广到有限可互换群（finite abelian group）。</p>
+</div>
+</section>
+<section id="ell-2-z">
+<h2><span class="math notranslate nohighlight">\(\ell^2(\Z)\)</span><a class="headerlink" href="#ell-2-z" title="永久链接至标题">#</a></h2>
+<p>因为<span class="math notranslate nohighlight">\((\Z,+)\)</span>是一个可交换群（abelian group），从有限群的结构我们可以猜想到其对偶群是<span class="math notranslate nohighlight">\(\T\defeq\{z\in\C: |z|=1\}\)</span></p>
+<p>For a locally compact abelian group <span class="math notranslate nohighlight">\(G\)</span>, the <em>Pontryagin</em> dual is the group <span class="math notranslate nohighlight">\(\hat{G}\)</span> of continuous group homomorphisms from <span class="math notranslate nohighlight">\(G\)</span> to the circle group <span class="math notranslate nohighlight">\(\T\)</span>. That is,</p>
+<div class="math notranslate nohighlight">
+\[\hat{G}\defeq \textrm{Hom}(G,\T)\]</div>
+</section>
+<section id="l-2-r">
+<h2><span class="math notranslate nohighlight">\(\L^2(\R)\)</span><a class="headerlink" href="#l-2-r" title="永久链接至标题">#</a></h2>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "blackgolfer/super-qi",
+            ref: "szhq20022",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./theory"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="intro.html" title="上一页 页">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">上一页</p>
+            <p class="prev-next-title">分析架构</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="fft.html" title="下一页 页">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">下一页</p>
+        <p class="prev-next-title">快速傅里叶变换</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By 张志峰<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
