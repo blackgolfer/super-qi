@@ -13,7 +13,8 @@ SHELL ["/bin/bash", "-c"]
 RUN source /tmp/.env && rm /tmp/.env \
     && if getent passwd $USERNAME; then userdel -f $USERNAME; fi \
     && if getent group $GROUPNAME; then groupdel $GROUPNAME; fi \
-    && groupadd -f -g "${USER_GID}" "${GROUPNAME}" \
+    && if getent group $USER_GID; then v=`getent group $USER_GID | awk -F: '{print $1}'`; groupdel $v; fi\
+    && groupadd -g "${USER_GID}" "${GROUPNAME}" \
     && useradd --create-home --no-log-init -u "${USER_UID}" -g "${USER_GID}" "${USERNAME}" \
     && apt-get update \
     && apt-get install -y sudo \
@@ -30,3 +31,5 @@ RUN pip3 install jupyter-book
 
 USER $USERNAME
 WORKDIR /home/$USERNAME
+
+CMD "bash"

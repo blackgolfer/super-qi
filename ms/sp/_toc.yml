@@ -1,0 +1,26 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: intro
+parts:
+- caption: 理论篇
+  chapters:
+  - file: theory/intro
+  - file: theory/signal
+  - file: theory/fft
+  - file: theory/convolution
+  - file: theory/wavelet
+
+- caption: 实验篇
+  chapters:
+  - file: nb/intro
+  - file: nb/signal
+  - file: nb/fft
+  - file: nb/convolution
+  - file: nb/wavelet
+
+- caption: 实现篇
+  chapters:
+  - file: impl/intro
+  - file: impl/signal
