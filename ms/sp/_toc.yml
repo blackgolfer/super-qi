@@ -24,3 +24,4 @@ parts:
   chapters:
   - file: impl/intro
   - file: impl/signal
+  - file: impl/fft
