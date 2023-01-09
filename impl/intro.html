@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Jupyter Notebooks</title>
+    <title>导言</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -57,7 +57,7 @@ const thebe_selector_output = ".output, .cell_output"
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜索" href="../search.html" />
     <link rel="next" title="信号空间" href="signal.html" />
-    <link rel="prev" title="实践篇" href="intro.html" />
+    <link rel="prev" title="小波分析" href="../nb/wavelet.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="zh">
     
@@ -136,18 +136,45 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  实践篇
+  实验篇
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../nb/intro.html">
+   导言
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../nb/signal.html">
+   信号空间
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../nb/fft.html">
+   快速傅里叶变换
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../nb/convolution.html">
+   卷积
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../nb/wavelet.html">
+   小波分析
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  实现篇
  </span>
 </p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="intro.html">
-   实践篇
-  </a>
- </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Jupyter Notebooks
+   导言
   </a>
  </li>
  <li class="toctree-l1">
@@ -157,17 +184,7 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="fft.html">
-   快速傅里叶变换
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="convolution.html">
-   卷积
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="wavelet.html">
-   小波分析
+   离散傅里叶变换
   </a>
  </li>
 </ul>
@@ -221,71 +238,6 @@ title="Toggle navigation"
         
     </div>
     <div class="header-article__right">
-<div class="menu-dropdown menu-dropdown-launch-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Launch interactive content">
-      <i class="fas fa-rocket"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://mybinder.org/v2/gh/blackgolfer/super-qi/szhq20022?urlpath=tree/ms/sp/nb/thebe.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Binder"
->
-  
-
-<span class="headerbtn__icon-container">
-  
-    <img src="../_static/images/logo_binder.svg">
-  </span>
-<span class="headerbtn__text-container">Binder</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://colab.research.google.com/github/blackgolfer/super-qi/blob/szhq20022/ms/sp/nb/thebe.ipynb"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Launch on Colab"
->
-  
-
-<span class="headerbtn__icon-container">
-  
-    <img src="../_static/images/logo_colab.png">
-  </span>
-<span class="headerbtn__text-container">Colab</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="initThebeSBT()"
-  class="headerbtn headerbtn-launch-thebe"
-  data-toggle="tooltip"
-data-placement="left"
-title="Launch Thebe"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-play"></i>
-  </span>
-<span class="headerbtn__text-container">Live Code</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
 <button onclick="toggleFullScreen()"
   class="headerbtn"
   data-toggle="tooltip"
@@ -325,7 +277,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/blackgolfer/super-qi/issues/new?title=Issue%20on%20page%20%2Fnb/thebe.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/blackgolfer/super-qi/issues/new?title=Issue%20on%20page%20%2Fimpl/intro.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -342,7 +294,7 @@ title="Open an issue"
       </li>
       
       <li>
-        <a href="https://github.com/blackgolfer/super-qi/edit/szhq20022/ms/sp/nb/thebe.ipynb"
+        <a href="https://github.com/blackgolfer/super-qi/edit/szhq20022/ms/sp/impl/intro.md"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -370,7 +322,7 @@ title="Edit this page"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../_sources/nb/thebe.ipynb"
+        <a href="../_sources/impl/intro.md"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -381,7 +333,7 @@ title="Download source file"
 <span class="headerbtn__icon-container">
   <i class="fas fa-file"></i>
   </span>
-<span class="headerbtn__text-container">.ipynb</span>
+<span class="headerbtn__text-container">.md</span>
 </a>
 
       </li>
@@ -407,60 +359,23 @@ title="Print to PDF"
     </ul>
   </div>
 </div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
-</label>
 
     </div>
 </div>
 
 <!-- Table of contents -->
 <div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-style">
-   Code style
-  </a>
- </li>
-</ul>
-
-    </nav>
 </div>
     </div>
     <div class="article row">
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Jupyter Notebooks</h1>
+                <h1>导言</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#code-style">
-   Code style
-  </a>
- </li>
-</ul>
-
-                        </nav>
                     </div>
                 </div>
             </div>
@@ -468,55 +383,8 @@ title="Print to PDF"
                 
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="jupyter-notebooks">
-<h1>Jupyter Notebooks<a class="headerlink" href="#jupyter-notebooks" title="永久链接至标题">#</a></h1>
-<p>This page was written for <a class="reference external" href="https://myst-nb.readthedocs.io/">MyST-NB</a>.
-It demonstrates <code class="docutils literal notranslate"><span class="pre">sphinx-thebe</span></code>’s usage with Jupyter Notebooks.</p>
-<p>Activate Thebe by clicking the launch button below.
-You should then be able to run and edit the code cell in the notebook.</p>
-<button title="Launch thebe" class="thebelab-button thebe-launch-button" onclick="initThebe()">Launch thebe</button><p>The outputs should be displayed below, but they will be collected by <code class="docutils literal notranslate"><span class="pre">sphinx-thebe</span></code> when it is activated so that they are cleared when you first run the cell.</p>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span>import numpy as np
-import matplotlib.pyplot as plt
-
-# Create some fake data
-data = np.random.randn(3, 1000)
-
-# Create a figure
-fig, ax = plt.subplots()
-
-# Plot data
-ax.scatter(data[0], data[1], c=np.abs(data[2]), s=np.abs(data[2])*100)
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;matplotlib.collections.PathCollection at 0x112f0e2d0&gt;
-</pre></div>
-</div>
-<img alt="../_images/thebe_1_1.png" src="../_images/thebe_1_1.png" />
-</div>
-</div>
-<section id="code-style">
-<h2>Code style<a class="headerlink" href="#code-style" title="永久链接至标题">#</a></h2>
-<p>Thebe uses CodeMirror in the background, which uses different styles than pygments, which is used for static code syntax highlighting.</p>
-<p>The below code block is <strong>static</strong> and will not be converted with <code class="docutils literal notranslate"><span class="pre">thebe</span></code>.
-We include it in order to compare the active Thebe cell’s syntax highlighting with an inactive cell.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-
-<span class="c1"># Create some fake data</span>
-<span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span>
-
-<span class="c1"># Create a figure</span>
-<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
-
-<span class="c1"># Plot data</span>
-<span class="n">ax</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">c</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">2</span><span class="p">]),</span> <span class="n">s</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span><span class="o">*</span><span class="mi">100</span><span class="p">)</span>
-</pre></div>
-</div>
-</section>
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>导言<a class="headerlink" href="#id1" title="永久链接至标题">#</a></h1>
 </section>
 
     <script type="text/x-thebe-config">
@@ -532,7 +400,7 @@ We include it in order to compare the active Thebe cell’s syntax highlighting 
         },
         kernelOptions: {
             kernelName: "python3",
-            path: "./nb"
+            path: "./impl"
         },
         predefinedOutput: true
     }
@@ -546,11 +414,11 @@ We include it in order to compare the active Thebe cell’s syntax highlighting 
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="intro.html" title="上一页 页">
+    <a class='left-prev' id="prev-link" href="../nb/wavelet.html" title="上一页 页">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">上一页</p>
-            <p class="prev-next-title">实践篇</p>
+            <p class="prev-next-title">小波分析</p>
         </div>
     </a>
     <a class='right-next' id="next-link" href="signal.html" title="下一页 页">

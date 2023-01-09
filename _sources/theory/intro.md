@@ -14,4 +14,5 @@ We derive a signal processing framework, called space signal processing, that pa
     - [Algorithms for Competitive Programming -- Fast Fourier Transform](https://cp-algorithms.com/algebra/fft.html)
 
 ```{bibliography}
+:filter: docname in docnames
 ```

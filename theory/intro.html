@@ -138,18 +138,13 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  实践篇
+  实验篇
  </span>
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../nb/intro.html">
-   实践篇
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../nb/thebe.html">
-   Jupyter Notebooks
+   导言
   </a>
  </li>
  <li class="toctree-l1">
@@ -170,6 +165,28 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="../nb/wavelet.html">
    小波分析
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  实现篇
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../impl/intro.html">
+   导言
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../impl/signal.html">
+   信号空间
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../impl/fft.html">
+   离散傅里叶变换
   </a>
  </li>
 </ul>
@@ -410,13 +427,13 @@ title="Print to PDF"
 <section id="id2">
 <h2>代数结构<a class="headerlink" href="#id2" title="永久链接至标题">#</a></h2>
 <ol class="simple">
-<li><p><span id="id3">[<a class="reference internal" href="#id9" title="Markus Püschel and José M. F. Moura. Algebraic signal processing theory: foundation and 1-D time. IEEE Transactions on Signal Processing, 56(8):3572–3585, 2008.">Püschel and Moura, 2008</a>]</span>:
+<li><p><span id="id3">[<a class="reference internal" href="#id11" title="Markus Püschel and José M. F. Moura. Algebraic signal processing theory: foundation and 1-D time. IEEE Transactions on Signal Processing, 56(8):3572–3585, 2008.">Püschel and Moura, 2008</a>]</span>:
 This paper introduces a general and axiomatic approach to linear signal processing (SP) that we refer to as the algebraic signal processing theory (ASP). Basic to ASP is the linear signal model defined as a triple (A, M, Phi) where familiar concepts like the filter space and the signal space are cast as an algebra A and a module M, respectively. The mapping Phi generalizes the concept of z-transform to bijective linear mappings from a vector space of signal samples into the module~<span class="math notranslate nohighlight">\(\md\)</span>. Common concepts like filtering, spectrum, or Fourier transform have their equivalent counterparts in ASP. Once these concepts and their properties are defined and understood in the context of ASP, they remain true and apply to specific instantiations of the ASP signal model. For example, to develop signal processing theories for infinite and finite discrete time signals, for infinite or finite discrete space signals, or for multidimensional signals, we need only to instantiate the ASP signal model to a signal model that makes sense for that specific class of signals. Filtering, spectrum, Fourier transform, and other notions follow then from the corresponding ASP concepts. Similarly, common assumptions in SP translate into requirements on the ASP signal model. For example, shift-invariance is equivalent to A being commutative. For finite (duration) signals shift invariance then restricts A to polynomial algebras. We explain how to design signal models from the specification of a special filter, the shift. The paper illustrates the general ASP theory with the standard time shift, presenting a unique signal model for infinite time and several signal models for finite time. The latter models illustrate the role played by boundary conditions and recover the discrete Fourier transform~(DFT) and its variants as associated Fourier transforms. Finally, ASP provides a systematic methodology to derive fast algorithms for linear transforms. This topic and the application of ASP to space dependent signals and to multidimensional signals are pursued in companion papers.</p></li>
-<li><p><span id="id4">[<a class="reference internal" href="#id7" title="Jelena Kovacevic and Markus Püschel. Algebraic signal processing theory: sampling for infinite and finite 1-D space. IEEE Transactions on Signal Processing, 58(1):242–257, 2010.">Kovacevic and Püschel, 2010</a>]</span>:
+<li><p><span id="id4">[<a class="reference internal" href="#id9" title="Jelena Kovacevic and Markus Püschel. Algebraic signal processing theory: sampling for infinite and finite 1-D space. IEEE Transactions on Signal Processing, 58(1):242–257, 2010.">Kovacevic and Püschel, 2010</a>]</span>:
 We derive a signal processing framework, called space signal processing, that parallels time signal processing. As such, it comes in four versions (continuous/discrete, infinite/finite), each with its own notion of convolution and Fourier transform. As in time, these versions are connected by sampling theorems that we derive. In contrast to time, however, space signal processing is based on and derived from a different notion of shift, space shift, which operates symmetrically. Our work rigorously connects known and novel concepts into a coherent framework; most importantly, it shows that the sixteen discrete cosine and sine transforms are the space equivalent of the discrete Fourier transform, and hence can be derived by sampling. The platform for our work is the algebraic signal processing theory, an axiomatic approach and generalization of linear signal processing that we recently introduced.</p></li>
 <li><p>快速傅里叶变换</p>
 <ul class="simple">
-<li><p><span id="id5">[<a class="reference internal" href="#id10" title="Yevgen Voronenko and Markus Püschel. Algebraic signal processing theory: Cooley-Tukey type algorithms for real DFTs. IEEE Transactions on Signal Processing, 57(1):205–222, 2009.">Voronenko and Püschel, 2009</a>]</span>:
+<li><p><span id="id5">[<a class="reference internal" href="#id12" title="Yevgen Voronenko and Markus Püschel. Algebraic signal processing theory: Cooley-Tukey type algorithms for real DFTs. IEEE Transactions on Signal Processing, 57(1):205–222, 2009.">Voronenko and Püschel, 2009</a>]</span>:
 In this paper we systematically derive a large class of fast general-radix algorithms for various types of real discrete Fourier transforms (real DFTs) including the discrete Hartley transform (DHT) based on the algebraic signal processing theory. This means that instead of manipulating the transform definition, we derive algorithms by manipulating the polynomial algebras underlying the transforms using one general method. The same method yields the well-known Cooley-Tukey FFT as well as general radix discrete cosine and sine transform algorithms. The algebraic approach makes the derivation concise, unifies and classifies many existing algorithms, yields new variants, enables structural optimization, and naturally produces a human-readable structural algorithm representation based on the Kronecker product formalism.</p></li>
 <li><p><a class="reference external" href="https://cp-algorithms.com/algebra/fft.html">Algorithms for Competitive Programming – Fast Fourier Transform</a></p></li>
 </ul>
@@ -424,13 +441,13 @@ In this paper we systematically derive a large class of fast general-radix algor
 </ol>
 <div class="docutils container" id="id6">
 <dl class="citation">
-<dt class="label" id="id7"><span class="brackets"><a class="fn-backref" href="#id4">KPuschel10</a></span></dt>
+<dt class="label" id="id9"><span class="brackets"><a class="fn-backref" href="#id4">KPuschel10</a></span></dt>
 <dd><p>Jelena Kovacevic and Markus Püschel. Algebraic signal processing theory: sampling for infinite and finite 1-D space. <em>IEEE Transactions on Signal Processing</em>, 58(1):242–257, 2010.</p>
 </dd>
-<dt class="label" id="id9"><span class="brackets"><a class="fn-backref" href="#id3">PuschelM08</a></span></dt>
+<dt class="label" id="id11"><span class="brackets"><a class="fn-backref" href="#id3">PuschelM08</a></span></dt>
 <dd><p>Markus Püschel and José M. F. Moura. Algebraic signal processing theory: foundation and 1-D time. <em>IEEE Transactions on Signal Processing</em>, 56(8):3572–3585, 2008.</p>
 </dd>
-<dt class="label" id="id10"><span class="brackets"><a class="fn-backref" href="#id5">VPuschel09</a></span></dt>
+<dt class="label" id="id12"><span class="brackets"><a class="fn-backref" href="#id5">VPuschel09</a></span></dt>
 <dd><p>Yevgen Voronenko and Markus Püschel. Algebraic signal processing theory: Cooley-Tukey type algorithms for real DFTs. <em>IEEE Transactions on Signal Processing</em>, 57(1):205–222, 2009.</p>
 </dd>
 </dl>

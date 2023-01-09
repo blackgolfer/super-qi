@@ -54,6 +54,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "C": "\\mathbb{C}", "Z": "\\mathbb{Z}", "Q": "\\mathbb{Q}", "L": "\\mathbb{L}", "U": "\\mathbb{U}", "T": "\\mathbb{T}", "R": "\\mathbb{R}", "defeq": "\\mathop:=", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜索" href="../search.html" />
     <link rel="next" title="卷积" href="convolution.html" />
@@ -136,18 +138,13 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  实践篇
+  实验篇
  </span>
 </p>
 <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="intro.html">
-   实践篇
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="thebe.html">
-   Jupyter Notebooks
+   导言
   </a>
  </li>
  <li class="toctree-l1">
@@ -168,6 +165,28 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="wavelet.html">
    小波分析
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  实现篇
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../impl/intro.html">
+   导言
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../impl/signal.html">
+   信号空间
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../impl/fft.html">
+   离散傅里叶变换
   </a>
  </li>
 </ul>
@@ -221,6 +240,71 @@ title="Toggle navigation"
         
     </div>
     <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/blackgolfer/super-qi/szhq20022?urlpath=tree/ms/sp/nb/fft.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://colab.research.google.com/github/blackgolfer/super-qi/blob/szhq20022/ms/sp/nb/fft.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Colab"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="../_static/images/logo_colab.png">
+  </span>
+<span class="headerbtn__text-container">Colab</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="initThebeSBT()"
+  class="headerbtn headerbtn-launch-thebe"
+  data-toggle="tooltip"
+data-placement="left"
+title="Launch Thebe"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-play"></i>
+  </span>
+<span class="headerbtn__text-container">Live Code</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
 <button onclick="toggleFullScreen()"
   class="headerbtn"
   data-toggle="tooltip"
@@ -342,12 +426,279 @@ title="Print to PDF"
     </ul>
   </div>
 </div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
 
     </div>
 </div>
 
 <!-- Table of contents -->
 <div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   快速傅里叶变换
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     频率域的信息
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     低通滤波器
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id4">
+       低通滤波器设计之一：频率域简单的截断函数
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id5">
+       低通滤波器设计之二：截断函数的磨光
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id6">
+   截断函数的磨光技术
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id8">
+     单边磨光
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id9">
+       算法一：迭代正弦函数
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id10">
+       验证恒等式
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id11">
+     折叠算子
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#u">
+       左边磨光用
+       <span class="math notranslate nohighlight">
+        \(U^*\)
+       </span>
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id12">
+       <span class="math notranslate nohighlight">
+        \(U\)
+       </span>
+       作为右边磨光的算子
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id13">
+     双边磨光
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#u-u-id">
+       验证恒等式
+       <span class="math notranslate nohighlight">
+        \(U^*U=Id\)
+       </span>
+       :
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bell">
+     Bell函数
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id14">
+       两相邻区间
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id15">
+       两个相邻区间的合成
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id16">
+     对实轴的分割
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id18">
+   左偶右奇函数的光滑延伸
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dct-iv">
+     dct-iv中的基
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id20">
+       验证关于
+       <span class="math notranslate nohighlight">
+        \(1/2\)
+       </span>
+       偶函数的性质
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#n-1-2">
+       验证关于
+       <span class="math notranslate nohighlight">
+        \(N-1/2\)
+       </span>
+       奇函数的性质
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#alpha-1-alpha-2">
+     逆折叠算子对于区间
+     <span class="math notranslate nohighlight">
+      \([\alpha_1,\alpha_2]\)
+     </span>
+     上左偶右奇函数的光滑延伸
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#i-alpha-1-alpha-2-t">
+       作用于
+       <span class="math notranslate nohighlight">
+        \(I_[\alpha_1,\alpha_2](t)\)
+       </span>
+       的情况
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id21">
+       加上左偶右奇函数的情况
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id22">
+       与bell函数的关系
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id23">
+     内积
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#f-cdot-u-r-a-epsilon-u-r-b-epsilon-i-a-b-cdot-e-nu-cdot">
+       求
+       <span class="math notranslate nohighlight">
+        \(&lt;f(\cdot),U^*(r,a,\epsilon)U^*(r,b,\epsilon)I_{[a,b]}(\cdot)e_\nu(\cdot)&gt;\)
+       </span>
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#u-r-b-epsilon-u-r-a-epsilon-f-cdot-i-a-b-cdot-e-nu-cdot">
+       计算
+       <span class="math notranslate nohighlight">
+        \(&lt;U(r,b,\epsilon)U(r,a,\epsilon)f(\cdot),I_{[a,b]}(\cdot)e_\nu(\cdot)&gt;\)
+       </span>
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id24">
+       比较两种方法的结果
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id25">
+   局部傅里叶变换
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#lct">
+     单区间局部余弦函数变换（LCT）
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id29">
+       算法之一：直接计算内积
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id30">
+       算法之二：对被分析信号继续延伸，然后用快速余弦变换计算内积
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id31">
+     两个相邻区间的局部余弦函数变换
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id32">
+     信号的周期化
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id33">
+     自适应性局部余弦函数变换
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id34">
+     其他三角函数
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </nav>
 </div>
     </div>
     <div class="article row">
@@ -359,6 +710,262 @@ title="Print to PDF"
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   快速傅里叶变换
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     频率域的信息
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     低通滤波器
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id4">
+       低通滤波器设计之一：频率域简单的截断函数
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id5">
+       低通滤波器设计之二：截断函数的磨光
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id6">
+   截断函数的磨光技术
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id8">
+     单边磨光
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id9">
+       算法一：迭代正弦函数
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id10">
+       验证恒等式
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id11">
+     折叠算子
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#u">
+       左边磨光用
+       <span class="math notranslate nohighlight">
+        \(U^*\)
+       </span>
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id12">
+       <span class="math notranslate nohighlight">
+        \(U\)
+       </span>
+       作为右边磨光的算子
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id13">
+     双边磨光
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#u-u-id">
+       验证恒等式
+       <span class="math notranslate nohighlight">
+        \(U^*U=Id\)
+       </span>
+       :
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#bell">
+     Bell函数
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id14">
+       两相邻区间
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id15">
+       两个相邻区间的合成
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id16">
+     对实轴的分割
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id18">
+   左偶右奇函数的光滑延伸
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#dct-iv">
+     dct-iv中的基
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id20">
+       验证关于
+       <span class="math notranslate nohighlight">
+        \(1/2\)
+       </span>
+       偶函数的性质
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#n-1-2">
+       验证关于
+       <span class="math notranslate nohighlight">
+        \(N-1/2\)
+       </span>
+       奇函数的性质
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#alpha-1-alpha-2">
+     逆折叠算子对于区间
+     <span class="math notranslate nohighlight">
+      \([\alpha_1,\alpha_2]\)
+     </span>
+     上左偶右奇函数的光滑延伸
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#i-alpha-1-alpha-2-t">
+       作用于
+       <span class="math notranslate nohighlight">
+        \(I_[\alpha_1,\alpha_2](t)\)
+       </span>
+       的情况
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id21">
+       加上左偶右奇函数的情况
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id22">
+       与bell函数的关系
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id23">
+     内积
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#f-cdot-u-r-a-epsilon-u-r-b-epsilon-i-a-b-cdot-e-nu-cdot">
+       求
+       <span class="math notranslate nohighlight">
+        \(&lt;f(\cdot),U^*(r,a,\epsilon)U^*(r,b,\epsilon)I_{[a,b]}(\cdot)e_\nu(\cdot)&gt;\)
+       </span>
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#u-r-b-epsilon-u-r-a-epsilon-f-cdot-i-a-b-cdot-e-nu-cdot">
+       计算
+       <span class="math notranslate nohighlight">
+        \(&lt;U(r,b,\epsilon)U(r,a,\epsilon)f(\cdot),I_{[a,b]}(\cdot)e_\nu(\cdot)&gt;\)
+       </span>
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id24">
+       比较两种方法的结果
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id25">
+   局部傅里叶变换
+  </a>
+  <ul class="visible nav section-nav flex-column">
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#lct">
+     单区间局部余弦函数变换（LCT）
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id29">
+       算法之一：直接计算内积
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id30">
+       算法之二：对被分析信号继续延伸，然后用快速余弦变换计算内积
+      </a>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id31">
+     两个相邻区间的局部余弦函数变换
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id32">
+     信号的周期化
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id33">
+     自适应性局部余弦函数变换
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id34">
+     其他三角函数
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -368,6 +975,1253 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="id1">
 <h1>快速傅里叶变换<a class="headerlink" href="#id1" title="永久链接至标题">#</a></h1>
+<section id="id2">
+<h2>频率域的信息<a class="headerlink" href="#id2" title="永久链接至标题">#</a></h2>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">scipy</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">([</span><span class="s1">&#39;ggplot&#39;</span><span class="p">,</span><span class="s1">&#39;../../presentation.mplstyle&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>构造带有两个频率的信号</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Number of samplepoints</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">600</span>
+<span class="c1"># sample spacing</span>
+<span class="n">T</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="mf">800.0</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">N</span><span class="o">*</span><span class="n">T</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mf">50.0</span> <span class="o">*</span> <span class="mf">2.0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mf">80.0</span> <span class="o">*</span> <span class="mf">2.0</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>傅里叶变换</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">yf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="n">xf</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="o">/</span><span class="p">(</span><span class="mf">2.0</span><span class="o">*</span><span class="n">T</span><span class="p">),</span> <span class="n">N</span><span class="o">//</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>展示频率域信息，可以清楚地看到两个频率信息。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">xf</span><span class="p">,</span> <span class="mf">2.0</span><span class="o">/</span><span class="n">N</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">yf</span><span class="p">[:</span><span class="n">N</span><span class="o">//</span><span class="mi">2</span><span class="p">]))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">zorder</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">which</span><span class="o">=</span><span class="s1">&#39;major&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">which</span><span class="o">=</span><span class="s1">&#39;minor&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">minorticks_on</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/fft_8_0.png" src="../_images/fft_8_0.png" />
+</div>
+</div>
+</section>
+<section id="id3">
+<h2>低通滤波器<a class="headerlink" href="#id3" title="永久链接至标题">#</a></h2>
+<p><a class="reference external" href="https://mathematical-tours.github.io/daft-sources/DAFT-EN.pdf">The Discrete Algebra
+of the Fourier Transform</a>, chapter 4, exercise 41:</p>
+<ol class="simple">
+<li><p>Builds a vector <span class="math notranslate nohighlight">\(f\)</span>, of size <span class="math notranslate nohighlight">\(N\)</span>, such that the filter <span class="math notranslate nohighlight">\(\Phi^f\)</span> keeps the low
+frequencies <span class="math notranslate nohighlight">\(N/2\)</span>, and removes the <span class="math notranslate nohighlight">\(N/2\)</span> high frequencies.</p></li>
+<li><p>Represent with great precision the continuous Fourier transform of the impulse response <span class="math notranslate nohighlight">\(f\)</span> (in other
+words the frequency response of the filter). What do we see?</p></li>
+<li><p>Considering a less brutal cut in the conserved / rejected frequencies, go back to the previous questions and comment on the results. In particular, imagine a family of filters <span class="math notranslate nohighlight">\(f_\epsilon\)</span>, <span class="math notranslate nohighlight">\(\epsilon\in[0,1]\)</span>, with a sharp cutoff for <span class="math notranslate nohighlight">\(\epsilon=0\)</span> and soft for <span class="math notranslate nohighlight">\(\epsilon=1\)</span>.</p></li>
+</ol>
+<section id="id4">
+<h3>低通滤波器设计之一：频率域简单的截断函数<a class="headerlink" href="#id4" title="永久链接至标题">#</a></h3>
+<p>函数<code class="docutils literal notranslate"><span class="pre">filter_pass_bas(N)</span></code>: <span class="math notranslate nohighlight">\(N\)</span>为信号的长度，在频率域上定义以下的截断函数<span class="math notranslate nohighlight">\(H(v)\)</span>，</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+H(v)=\left\{
+\begin{array}{cc}
+1,&amp; |v|\leq\frac{\pi}{2}\\
+0,&amp; |v|&gt;\frac{\pi}{2}
+\end{array}
+\right.
+\end{split}\]</div>
+<p>如果是用数组的指针，上述<span class="math notranslate nohighlight">\(|v|\leq\pi/2\)</span>相对应于<span class="math notranslate nohighlight">\(v\leq N/4\)</span>和<span class="math notranslate nohighlight">\(v\geq 3N/4\)</span>。</p>
+<p><strong>注意</strong>，在程序中，高频部分是在序列的中间，两头是低频部分。我们在数组的两头取<span class="math notranslate nohighlight">\(1\)</span>, 中间取<span class="math notranslate nohighlight">\(0\)</span>。用python中的list comprehansion实现。然后用傅里叶逆变换获取时间域上的滤波函数。</p>
+</section>
+<section id="id5">
+<h3>低通滤波器设计之二：截断函数的磨光<a class="headerlink" href="#id5" title="永久链接至标题">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">math</span>
+
+<span class="k">def</span> <span class="nf">filter_pass_bas</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+    <span class="n">v</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span> <span class="k">if</span> <span class="p">(</span><span class="n">v</span><span class="o">&lt;=</span><span class="n">N</span><span class="o">/</span><span class="mi">4</span><span class="p">)</span><span class="o">|</span><span class="p">(</span><span class="n">v</span><span class="o">&gt;=</span><span class="mi">3</span><span class="o">*</span><span class="n">N</span><span class="o">/</span><span class="mi">4</span><span class="p">)</span> <span class="k">else</span> <span class="mi">0</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">N</span><span class="p">)]</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">ifft</span><span class="p">(</span><span class="n">v</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">filter_parameterable</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="n">eps</span><span class="p">):</span>
+    <span class="c1">#P1=math.floor(eps*N/4)</span>
+    <span class="n">P1</span><span class="o">=</span><span class="nb">int</span><span class="p">((</span><span class="n">eps</span><span class="o">*</span><span class="n">N</span><span class="p">)</span><span class="o">//</span><span class="mi">4</span><span class="p">)</span>
+    <span class="n">P</span><span class="o">=</span><span class="mi">2</span><span class="o">*</span><span class="n">P1</span><span class="o">+</span><span class="mi">1</span>
+    <span class="n">trans</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">if</span> <span class="n">P</span><span class="o">!=</span><span class="mi">1</span><span class="p">:</span>
+        <span class="c1">#ramp=np.arange(0,P)</span>
+        <span class="c1">#trans=list(map(lambda x: (math.cos(math.pi*x/(P-1))+1)/2,ramp))</span>
+        <span class="n">trans</span><span class="o">=</span><span class="p">[(</span><span class="n">math</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">x</span><span class="o">/</span><span class="p">(</span><span class="n">P</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">P</span><span class="p">)]</span>
+    <span class="n">ones</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">N</span><span class="o">/</span><span class="mi">4</span><span class="o">-</span><span class="n">P1</span><span class="p">))</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">ones</span><span class="o">+</span><span class="n">trans</span><span class="o">+</span><span class="nb">list</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">N</span><span class="o">/</span><span class="mi">2</span><span class="o">-</span><span class="n">P</span><span class="p">))</span>
+    <span class="n">trans</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">+</span><span class="n">trans</span><span class="o">+</span><span class="n">ones</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">ifft</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">plot_function</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;#666666&#39;</span><span class="p">):</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">minorticks_on</span><span class="p">()</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="s1">&#39;--o&#39;</span><span class="p">,</span><span class="n">markevery</span><span class="o">=</span><span class="n">markers_on</span><span class="p">,</span><span class="n">linewidth</span><span class="o">=</span><span class="mf">.5</span><span class="p">,</span><span class="n">markersize</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">zorder</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">which</span><span class="o">=</span><span class="s1">&#39;major&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">.5</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">which</span><span class="o">=</span><span class="s1">&#39;minor&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;white&#39;</span><span class="p">,</span> <span class="n">linestyle</span><span class="o">=</span><span class="s1">&#39;-&#39;</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.25</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;both&#39;</span><span class="p">,</span> <span class="n">which</span><span class="o">=</span><span class="s1">&#39;major&#39;</span><span class="p">,</span> <span class="n">labelsize</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+    <span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="n">title</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;#888888&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">leps</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="mf">.3</span><span class="p">,</span><span class="mf">.7</span><span class="p">]</span>
+<span class="n">N</span><span class="o">=</span><span class="mi">32</span>
+<span class="n">P</span><span class="o">=</span><span class="mi">1024</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">N</span><span class="o">/</span><span class="mi">2</span><span class="p">),</span><span class="n">N</span><span class="p">))</span><span class="o">+</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="nb">int</span><span class="p">(</span><span class="n">N</span><span class="o">/</span><span class="mi">2</span><span class="p">)))</span>
+<span class="n">cc</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">P</span><span class="o">&gt;&gt;</span><span class="mi">1</span><span class="p">,</span><span class="n">P</span><span class="p">))</span><span class="o">+</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">P</span><span class="o">&gt;&gt;</span><span class="mi">1</span><span class="p">))</span>
+<span class="n">t</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="n">N</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="n">N</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">tt</span><span class="o">=</span><span class="p">[</span><span class="n">x</span><span class="o">*</span><span class="n">math</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="p">(</span><span class="n">P</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="o">-</span><span class="n">P</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="n">P</span><span class="o">/</span><span class="mi">2</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span><span class="n">axs</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">leps</span><span class="p">),</span><span class="mi">3</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">leps</span><span class="p">)):</span>
+    <span class="n">markers_on</span> <span class="o">=</span> <span class="n">c</span>
+    <span class="n">y</span><span class="o">=</span><span class="n">filter_parameterable</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="n">leps</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">plot_function</span><span class="p">(</span><span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">0</span><span class="p">],</span><span class="n">t</span><span class="p">,</span><span class="n">y</span><span class="p">[</span><span class="n">c</span><span class="p">])</span>
+    <span class="n">f</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    <span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+    <span class="n">plot_function</span><span class="p">(</span><span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">1</span><span class="p">],</span><span class="n">t</span><span class="p">,</span><span class="n">y</span><span class="p">[</span><span class="n">c</span><span class="p">])</span>
+    <span class="n">yy</span><span class="o">=</span><span class="n">f</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="nb">int</span><span class="p">(</span><span class="n">N</span><span class="o">/</span><span class="mi">2</span><span class="p">)]</span><span class="o">+</span><span class="nb">list</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">P</span><span class="o">-</span><span class="n">N</span><span class="p">))</span><span class="o">+</span><span class="n">f</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">N</span><span class="o">/</span><span class="mi">2</span><span class="p">):</span><span class="n">N</span><span class="p">]</span>
+    <span class="n">yy</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">yy</span><span class="p">))</span>
+    <span class="n">markers_on</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">plot_function</span><span class="p">(</span><span class="n">axs</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">2</span><span class="p">],</span><span class="n">tt</span><span class="p">,</span><span class="n">yy</span><span class="p">[</span><span class="n">cc</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/fft_13_0.png" src="../_images/fft_13_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">markers_on</span> <span class="o">=</span> <span class="n">c</span>
+<span class="n">y</span><span class="o">=</span><span class="n">filter_pass_bas</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+<span class="n">plot_function</span><span class="p">(</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">t</span><span class="p">,</span><span class="n">y</span><span class="p">[</span><span class="n">c</span><span class="p">])</span>
+<span class="n">yy</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">y</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="nb">int</span><span class="p">(</span><span class="n">N</span><span class="o">/</span><span class="mi">2</span><span class="p">)],</span><span class="nb">list</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">P</span><span class="o">-</span><span class="n">N</span><span class="p">)))</span>
+<span class="n">yy</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">yy</span><span class="p">,</span><span class="n">y</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">N</span><span class="o">/</span><span class="mi">2</span><span class="p">):</span><span class="n">N</span><span class="p">])</span>
+<span class="n">y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+<span class="n">plot_function</span><span class="p">(</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">t</span><span class="p">,</span><span class="n">y</span><span class="p">[</span><span class="n">c</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/fft_14_0.png" src="../_images/fft_14_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">yyf</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">yy</span><span class="p">))</span>
+<span class="n">markers_on</span><span class="o">=</span><span class="p">[]</span>
+<span class="n">plot_function</span><span class="p">(</span><span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">tt</span><span class="p">,</span><span class="n">yy</span><span class="p">[</span><span class="n">cc</span><span class="p">])</span>
+<span class="n">plot_function</span><span class="p">(</span><span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">tt</span><span class="p">,</span><span class="n">yyf</span><span class="p">[</span><span class="n">cc</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/fft_15_0.png" src="../_images/fft_15_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">y</span><span class="o">=</span><span class="n">filter_parameterable</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="n">leps</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="c1">#plot_function(ax,t,y[c])</span>
+<span class="n">yf</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">fft</span><span class="p">(</span><span class="n">y</span><span class="p">))</span>
+<span class="n">plot_function</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">yf</span><span class="p">[</span><span class="n">c</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/fft_17_0.png" src="../_images/fft_17_0.png" />
+</div>
+</div>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id6">
+<h1>截断函数的磨光技术<a class="headerlink" href="#id6" title="永久链接至标题">#</a></h1>
+<p>上面用到的磨光技术值得重视，这是短期傅里叶变换（STFT）的关键技术之一。这里的材料主要参考<span id="id7">[<a class="reference internal" href="#id42" title="Mladen V. Wickerhauser. Adapted Wavelet Analysis from Theory to Software. A. K. Peters, 1994. ISBN 1568810415.">Wickerhauser, 1994</a>]</span>第4章。</p>
+<section id="id8">
+<h2>单边磨光<a class="headerlink" href="#id8" title="永久链接至标题">#</a></h2>
+<section id="id9">
+<h3>算法一：迭代正弦函数<a class="headerlink" href="#id9" title="永久链接至标题">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">rcfis</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">N</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">t</span><span class="o">&gt;-</span><span class="mf">1.0</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">t</span><span class="o">&lt;</span><span class="mf">1.0</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">N</span><span class="p">):</span>
+                <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mf">0.5</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">t</span><span class="p">)</span>
+            <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mf">0.25</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="p">(</span><span class="mf">1.0</span><span class="o">+</span><span class="n">t</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">t</span> <span class="o">=</span> <span class="mf">1.0</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="k">return</span> <span class="n">t</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span><span class="o">=</span><span class="mi">4</span>
+<span class="n">t</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">1.25</span><span class="p">,</span><span class="mf">1.25</span><span class="p">,</span><span class="mi">64</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">ns</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]</span>
+<span class="n">m</span><span class="o">=</span><span class="mi">3</span>
+<span class="n">fig</span><span class="p">,</span><span class="n">axs</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ns</span><span class="p">)</span><span class="o">/</span><span class="n">m</span><span class="p">),</span><span class="n">m</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">6</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">ns</span><span class="p">)):</span>
+    <span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="n">rcfis</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">ns</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">t</span><span class="p">]</span>
+    <span class="n">plot_function</span><span class="p">(</span><span class="n">axs</span><span class="p">[</span><span class="n">math</span><span class="o">.</span><span class="n">ceil</span><span class="p">((</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">m</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">i</span><span class="o">%</span><span class="k">m</span>],t,x,title=&#39;N=&#39;+str(ns[i]))
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/fft_23_0.png" src="../_images/fft_23_0.png" />
+</div>
+</div>
+</section>
+<section id="id10">
+<h3>验证恒等式<a class="headerlink" href="#id10" title="永久链接至标题">#</a></h3>
+<p>rising cutoff函数<span class="math notranslate nohighlight">\(r(t)\)</span>的要求是</p>
+<div class="math notranslate nohighlight">
+\[
+|r(t)|^2+|r(-t)|^2=1,\quad\forall t\in\R
+\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">rsum</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">N</span><span class="o">=-</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">r1</span><span class="o">=</span><span class="n">rcfis</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>
+    <span class="n">r2</span><span class="o">=</span><span class="n">rcfis</span><span class="p">(</span><span class="o">-</span><span class="n">t</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">r1</span><span class="o">*</span><span class="n">r1</span><span class="o">+</span><span class="n">r2</span><span class="o">*</span><span class="n">r2</span>
+<span class="n">N</span><span class="o">=</span><span class="mi">1</span>
+<span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="n">rsum</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">N</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">t</span><span class="p">]</span>
+<span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">plot_function</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/fft_25_0.png" src="../_images/fft_25_0.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="id11">
+<h2>折叠算子<a class="headerlink" href="#id11" title="永久链接至标题">#</a></h2>
+<p>折叠算子（folding operator）<span class="math notranslate nohighlight">\(U\)</span>的定义：</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+U(r)f(t)=
+\left\{
+\begin{array}{cc}
+r(t)f(t)+r(-t)f(-t),&amp;t&gt;0\\
+\bar{r}(-t)f(t)-\bar{r}(t)f(-t),&amp;t&lt;0
+\end{array}
+\right.
+\end{split}\]</div>
+<p>逆折叠算子（unfolding operator）<span class="math notranslate nohighlight">\(U^*\)</span>:
+$<span class="math notranslate nohighlight">\(
+U^*(r)f(t)=
+\left\{
+\begin{array}{cc}
+\bar{r}(t)f(t)-r(-t)f(-t),&amp;t&gt;0\\
+r(-t)f(t)+\bar{r}(t)f(-t),&amp;t&lt;0
+\end{array}
+\right.
+\)</span>$</p>
+<p>我们可以看到，当<span class="math notranslate nohighlight">\(t\geq 1\)</span>或者<span class="math notranslate nohighlight">\(t\leq -1\)</span>时，<span class="math notranslate nohighlight">\(U(r)f(t)=f(t)\)</span>和<span class="math notranslate nohighlight">\(U^*(r)f(t)=f(t)\)</span>。而且，<span class="math notranslate nohighlight">\(U(r)U^*(r)f(t)=U^*(r)U(r)f(t)=(|r(t)|^2+|r(-t)|^2)f(t)=f(t),\quad\forall t\neq0\)</span>。</p>
+<p>这个算子对给定的函数<span class="math notranslate nohighlight">\(f(t)\)</span>，其作用区间为<span class="math notranslate nohighlight">\((-1,1)\)</span>。为了实现能够对任意区间进行作用，我们引入一下两个算子；</p>
+<ol class="simple">
+<li><p>平移（translation）算子<span class="math notranslate nohighlight">\(\tau_\alpha\)</span></p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[
+\tau_\alpha f(t)=f(t-\alpha);\quad \tau^*_\alpha f(t)=f(t+\alpha)
+\]</div>
+<ol class="simple">
+<li><p>伸缩（dilation）算子<span class="math notranslate nohighlight">\(\sigma_\epsilon\)</span></p></li>
+</ol>
+<div class="math notranslate nohighlight">
+\[
+\sigma_\epsilon f(t)=\epsilon^{-1/2}f(t/\epsilon);\quad \sigma^*_\epsilon f(t)=\epsilon^{1/2}f(\epsilon t)
+\]</div>
+<p>使用rising cutoff函数<span class="math notranslate nohighlight">\(r\)</span>，作用于区间<span class="math notranslate nohighlight">\((\alpha-\epsilon,\alpha+\epsilon)\)</span>的折叠算子<span class="math notranslate nohighlight">\(U(r,\alpha,\epsilon)\)</span>为：</p>
+<div class="math notranslate nohighlight">
+\[
+U(r,\alpha,\epsilon)=\tau_\alpha\sigma_\epsilon U(r)\sigma^*_\epsilon\tau^*_\alpha
+\]</div>
+<p>相应的逆折叠算子<span class="math notranslate nohighlight">\(U^*(r,\alpha,\epsilon)\)</span>为</p>
+<div class="math notranslate nohighlight">
+\[
+U^*(r,\alpha,\epsilon)=\tau_\alpha\sigma_\epsilon U^*(r)\sigma^*_\epsilon\tau^*_\alpha
+\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fold_on_one</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span><span class="n">eps</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">N</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">t1</span><span class="o">=</span><span class="p">(</span><span class="n">t</span><span class="o">-</span><span class="n">alpha</span><span class="p">)</span><span class="o">/</span><span class="n">eps</span>
+    <span class="k">if</span> <span class="n">t</span><span class="o">&gt;</span><span class="n">alpha</span> <span class="ow">and</span> <span class="n">t</span><span class="o">&lt;</span><span class="n">alpha</span><span class="o">+</span><span class="n">eps</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">rcfis</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span><span class="n">N</span><span class="p">)</span><span class="o">+</span><span class="n">rcfis</span><span class="p">(</span><span class="o">-</span><span class="n">t1</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">t</span><span class="o">&gt;</span><span class="n">alpha</span><span class="o">-</span><span class="n">eps</span> <span class="ow">and</span> <span class="n">t</span><span class="o">&lt;</span><span class="n">alpha</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">rcfis</span><span class="p">(</span><span class="o">-</span><span class="n">t1</span><span class="p">,</span><span class="n">N</span><span class="p">)</span><span class="o">-</span><span class="n">rcfis</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mf">1.0</span>
+<span class="k">def</span> <span class="nf">unfold_on_one</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span><span class="n">eps</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">N</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">t1</span><span class="o">=</span><span class="p">(</span><span class="n">t</span><span class="o">-</span><span class="n">alpha</span><span class="p">)</span><span class="o">/</span><span class="n">eps</span>
+    <span class="k">if</span> <span class="n">t</span><span class="o">&gt;</span><span class="n">alpha</span> <span class="ow">and</span> <span class="n">t</span><span class="o">&lt;</span><span class="n">alpha</span><span class="o">+</span><span class="n">eps</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">rcfis</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span><span class="n">N</span><span class="p">)</span><span class="o">-</span><span class="n">rcfis</span><span class="p">(</span><span class="o">-</span><span class="n">t1</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">t</span><span class="o">&gt;</span><span class="n">alpha</span><span class="o">-</span><span class="n">eps</span> <span class="ow">and</span> <span class="n">t</span><span class="o">&lt;</span><span class="n">alpha</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">rcfis</span><span class="p">(</span><span class="o">-</span><span class="n">t1</span><span class="p">,</span><span class="n">N</span><span class="p">)</span><span class="o">+</span><span class="n">rcfis</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mf">1.0</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">alphas</span><span class="o">=</span><span class="p">[</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">]</span>
+<span class="n">leps</span><span class="o">=</span><span class="p">[</span><span class="mf">.25</span><span class="p">,</span><span class="mf">.25</span><span class="p">]</span>
+<span class="n">t</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">64</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span><span class="n">axes</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span><span class="n">eps</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">alphas</span><span class="p">)),</span><span class="n">alphas</span><span class="p">,</span><span class="n">leps</span><span class="p">):</span>
+    <span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="n">fold_on_one</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span><span class="n">eps</span><span class="p">,</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">t</span><span class="p">]</span>
+    <span class="n">plot_function</span><span class="p">(</span><span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">t</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/fft_28_0.png" src="../_images/fft_28_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span><span class="n">axes</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">alpha</span><span class="p">,</span><span class="n">eps</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">alphas</span><span class="p">)),</span><span class="n">alphas</span><span class="p">,</span><span class="n">leps</span><span class="p">):</span>
+    <span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="n">unfold_on_one</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span><span class="n">eps</span><span class="p">,</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">t</span><span class="p">]</span>
+    <span class="n">plot_function</span><span class="p">(</span><span class="n">axes</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">t</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/fft_29_0.png" src="../_images/fft_29_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">unfold_unit</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">N</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">t</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">rcfis</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">N</span><span class="p">)</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">-</span><span class="n">rcfis</span><span class="p">(</span><span class="o">-</span><span class="n">t</span><span class="p">,</span><span class="n">N</span><span class="p">)</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="o">-</span><span class="n">t</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">t</span><span class="o">&lt;</span><span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">rcfis</span><span class="p">(</span><span class="o">-</span><span class="n">t</span><span class="p">,</span><span class="n">N</span><span class="p">)</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">+</span><span class="n">rcfis</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">N</span><span class="p">)</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="o">-</span><span class="n">t</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">.5</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fold</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">alpha</span><span class="p">,</span><span class="n">eps</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">N</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">t1</span><span class="o">=</span><span class="p">(</span><span class="n">t</span><span class="o">-</span><span class="n">alpha</span><span class="p">)</span><span class="o">/</span><span class="n">eps</span>
+    <span class="k">if</span> <span class="n">t</span><span class="o">&gt;</span><span class="n">alpha</span> <span class="ow">and</span> <span class="n">t</span><span class="o">&lt;</span><span class="n">alpha</span><span class="o">+</span><span class="n">eps</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">rcfis</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span><span class="n">N</span><span class="p">)</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">+</span><span class="n">rcfis</span><span class="p">(</span><span class="o">-</span><span class="n">t1</span><span class="p">,</span><span class="n">N</span><span class="p">)</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">alpha</span><span class="o">-</span><span class="n">t</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">t</span><span class="o">&gt;</span><span class="n">alpha</span><span class="o">-</span><span class="n">eps</span> <span class="ow">and</span> <span class="n">t</span><span class="o">&lt;</span><span class="n">alpha</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">rcfis</span><span class="p">(</span><span class="o">-</span><span class="n">t1</span><span class="p">,</span><span class="n">N</span><span class="p">)</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">-</span><span class="n">rcfis</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span><span class="n">N</span><span class="p">)</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">alpha</span><span class="o">-</span><span class="n">t</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">t</span><span class="o">==</span><span class="n">alpha</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">.5</span><span class="p">)</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="c1"># 也可以用r(0,N)*f(t)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">unfold</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">alpha</span><span class="p">,</span><span class="n">eps</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">N</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="n">t1</span><span class="o">=</span><span class="p">(</span><span class="n">t</span><span class="o">-</span><span class="n">alpha</span><span class="p">)</span><span class="o">/</span><span class="n">eps</span>
+    <span class="k">if</span> <span class="n">t</span><span class="o">&gt;</span><span class="n">alpha</span> <span class="ow">and</span> <span class="n">t</span><span class="o">&lt;</span><span class="n">alpha</span><span class="o">+</span><span class="n">eps</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">rcfis</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span><span class="n">N</span><span class="p">)</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">-</span><span class="n">rcfis</span><span class="p">(</span><span class="o">-</span><span class="n">t1</span><span class="p">,</span><span class="n">N</span><span class="p">)</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">alpha</span><span class="o">-</span><span class="n">t</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">t</span><span class="o">&gt;</span><span class="n">alpha</span><span class="o">-</span><span class="n">eps</span> <span class="ow">and</span> <span class="n">t</span><span class="o">&lt;</span><span class="n">alpha</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">rcfis</span><span class="p">(</span><span class="o">-</span><span class="n">t1</span><span class="p">,</span><span class="n">N</span><span class="p">)</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">+</span><span class="n">rcfis</span><span class="p">(</span><span class="n">t1</span><span class="p">,</span><span class="n">N</span><span class="p">)</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">alpha</span><span class="o">-</span><span class="n">t</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">t</span><span class="o">==</span><span class="n">alpha</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">.5</span><span class="p">)</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="c1"># 也可以用r(0,N)*f(t)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">unit_one</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">t</span><span class="o">&lt;</span><span class="mf">0.0</span> <span class="ow">or</span> <span class="n">t</span><span class="o">&gt;</span><span class="mf">1.0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mf">0.0</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mf">1.0</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="n">unit_one</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">t</span><span class="p">]</span>
+<span class="n">plot_function</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/fft_33_0.png" src="../_images/fft_33_0.png" />
+</div>
+</div>
+<section id="u">
+<h3>左边磨光用<span class="math notranslate nohighlight">\(U^*\)</span><a class="headerlink" href="#u" title="永久链接至标题">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="n">unfold_unit</span><span class="p">(</span><span class="n">unit_one</span><span class="p">,</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">t</span><span class="p">]</span>
+<span class="n">plot_function</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/fft_35_0.png" src="../_images/fft_35_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="n">unfold</span><span class="p">(</span><span class="n">unit_one</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">t</span><span class="p">]</span>
+<span class="n">plot_function</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/fft_36_0.png" src="../_images/fft_36_0.png" />
+</div>
+</div>
+</section>
+<section id="id12">
+<h3><span class="math notranslate nohighlight">\(U\)</span>作为右边磨光的算子<a class="headerlink" href="#id12" title="永久链接至标题">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="n">fold</span><span class="p">(</span><span class="n">unit_one</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">t</span><span class="p">]</span>
+<span class="n">plot_function</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/fft_38_0.png" src="../_images/fft_38_0.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="id13">
+<h2>双边磨光<a class="headerlink" href="#id13" title="永久链接至标题">#</a></h2>
+<p>这个实验是对对区间<span class="math notranslate nohighlight">\([0,1]\)</span>进行双边磨光。根据以上的分析，左边用算子<span class="math notranslate nohighlight">\(U^*\)</span>，右边用算子<span class="math notranslate nohighlight">\(U\)</span>。因为是复合运算，这里我们采用了partial函数的概念来定义右边的磨光。</p>
+<p>另外一种算法就是利用左边和右边的操作是独立的，运算可以独立进行，但这需要对数组进行操作。而这里我们是对函数进行操作，故而采取了partial函数的概念。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">partial</span>
+<span class="k">def</span> <span class="nf">right</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">alpha</span><span class="p">,</span><span class="n">eps</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">N</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">fold</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">alpha</span><span class="p">,</span><span class="n">eps</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>
+<span class="n">f</span><span class="o">=</span><span class="n">partial</span><span class="p">(</span><span class="n">right</span><span class="p">,</span><span class="n">unit_one</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="n">unfold</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">t</span><span class="p">]</span>
+<span class="n">plot_function</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/fft_40_0.png" src="../_images/fft_40_0.png" />
+</div>
+</div>
+<section id="u-u-id">
+<h3>验证恒等式<span class="math notranslate nohighlight">\(U^*U=Id\)</span>:<a class="headerlink" href="#u-u-id" title="永久链接至标题">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="n">unfold</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">t</span><span class="p">]</span>
+<span class="n">plot_function</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/fft_42_0.png" src="../_images/fft_42_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">f</span><span class="o">=</span><span class="n">partial</span><span class="p">(</span><span class="n">right</span><span class="p">,</span><span class="n">unit_one</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="n">unfold</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">t</span><span class="p">]</span>
+<span class="n">plot_function</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/fft_43_0.png" src="../_images/fft_43_0.png" />
+</div>
+</div>
+</section>
+</section>
+<section id="bell">
+<h2>Bell函数<a class="headerlink" href="#bell" title="永久链接至标题">#</a></h2>
+<p>todo:这里需要阐述<span class="math notranslate nohighlight">\(U^*(r,\alpha_1,\epsilon_1)U^*(r,\alpha_2,\epsilon_2)I_{[\alpha_1,\alpha_2]}f(t)=r\left(\frac{t-\alpha_k}{\epsilon_k}\right)r\left(\frac{\alpha_{k+1}-t}{\epsilon_{k+1}}\right)f(t)\)</span>依赖于<span class="math notranslate nohighlight">\(f(t)\)</span>是关于<span class="math notranslate nohighlight">\(\alpha_1\)</span>的偶函数，并且是关于<span class="math notranslate nohighlight">\(\alpha_2\)</span>的奇函数。这点非常重要，这是局部的dct-iv（工程上叫modified dct，或MDCT）关键的工作原理。</p>
+<p>上面的磨光技术是对区间<span class="math notranslate nohighlight">\([\alpha_1,\alpha_2]\)</span>在端点<span class="math notranslate nohighlight">\(\alpha_1\)</span>和<span class="math notranslate nohighlight">\(\alpha_2\)</span>分别用算子<span class="math notranslate nohighlight">\(U^*\)</span>（左端点）和<span class="math notranslate nohighlight">\(U\)</span>（右端点）对给定的函数进行磨光。其中的假设是函数在这个区间外值为零，而其中的原理是在左端以<span class="math notranslate nohighlight">\(\alpha_1\)</span>为中心向左做偶函数的延伸，利用函数在<span class="math notranslate nohighlight">\(\alpha_1\)</span>右边的值来决定<span class="math notranslate nohighlight">\(\alpha_1\)</span>左边的值，具体的做法就是乘上相应点上rising cutoff函数的值。类似的，右端点则是对函数在<span class="math notranslate nohighlight">\(\alpha_2\)</span>右边进行奇延伸（以<span class="math notranslate nohighlight">\(\alpha_2\)</span>为原点）。所以，在区间外函数值为零的条件下，算子<span class="math notranslate nohighlight">\(U^*\)</span>是对左端点的向左的偶延伸，算子<span class="math notranslate nohighlight">\(U\)</span>则是对右端点向右的奇延伸。</p>
+<p>可以验证，在这种情况下，</p>
+<div class="amsmath math notranslate nohighlight" id="equation-8e7eb8ea-8ba4-40be-bdda-6b74383e44da">
+<span class="eqno">(8)<a class="headerlink" href="#equation-8e7eb8ea-8ba4-40be-bdda-6b74383e44da" title="公式的永久链接">#</a></span>\[\begin{equation}
+U^*(r,\alpha_1,\epsilon_1)U(r,\alpha_2,\epsilon_2)f(t)=r\left(\frac{t-\alpha_1}{\epsilon_1}\right)
+r\left(\frac{\alpha_2-t}{\epsilon_2}\right)f(t)
+\end{equation}\]</div>
+<p>令<span class="math notranslate nohighlight">\(B_\epsilon(\alpha)=[\alpha-\epsilon,\alpha+\epsilon]\)</span>，即<span class="math notranslate nohighlight">\(B_\epsilon(\alpha)\)</span>代表以<span class="math notranslate nohighlight">\(\alpha\)</span>为中心，半径为<span class="math notranslate nohighlight">\(\epsilon\)</span>的区间。我们要求<span class="math notranslate nohighlight">\(B_{\epsilon_1}(\alpha_1)\cap B_{\epsilon_2}(\alpha_2)=\emptyset\)</span>，也就是说，<span class="math notranslate nohighlight">\(B_{\epsilon_1}(\alpha_1)\)</span>与<span class="math notranslate nohighlight">\(B_{\epsilon_2}(\alpha_2)\)</span>不相交。</p>
+<p>我们定义区间<span class="math notranslate nohighlight">\(I_k=[\alpha_k,\alpha_{k+1}]\)</span>上的bell函数为：</p>
+<div class="amsmath math notranslate nohighlight" id="equation-458342be-1652-40b7-8282-5b856a9def77">
+<span class="eqno">(9)<a class="headerlink" href="#equation-458342be-1652-40b7-8282-5b856a9def77" title="公式的永久链接">#</a></span>\[\begin{equation}
+b_k(t)=r\left(\frac{t-\alpha_k}{\epsilon_k}\right)
+r\left(\frac{\alpha_{k+1}-t}{\epsilon_{k+1}}\right)
+\end{equation}\]</div>
+<p>对于函数<span class="math notranslate nohighlight">\(f(t)\)</span>，<span class="math notranslate nohighlight">\(b_k(t)f(t)\)</span>就是对<span class="math notranslate nohighlight">\(f(t)\)</span>在区间<span class="math notranslate nohighlight">\(I_k\)</span>上的光滑截取。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># smooth bell_cutoff function</span>
+<span class="c1"># param structure:</span>
+<span class="c1">#   - param[0]: alpha</span>
+<span class="c1">#   - param[1]: epsilon</span>
+<span class="c1">#.  - param[2]: N (the number of iteration for the rising function)</span>
+<span class="c1"># lparam: parameter for the left edge</span>
+<span class="c1"># rparam: parameter for the right edge</span>
+<span class="c1"># t: function is evaluated at t</span>
+<span class="k">def</span> <span class="nf">bell_cutoff</span><span class="p">(</span><span class="n">lparam</span><span class="p">,</span><span class="n">rparam</span><span class="p">,</span><span class="n">t</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">rcfis</span><span class="p">((</span><span class="n">t</span><span class="o">-</span><span class="n">lparam</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">/</span><span class="n">lparam</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">lparam</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span><span class="o">*</span><span class="n">rcfis</span><span class="p">((</span><span class="n">rparam</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">-</span><span class="n">t</span><span class="p">)</span><span class="o">/</span><span class="n">rparam</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">rparam</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id14">
+<h3>两相邻区间<a class="headerlink" href="#id14" title="永久链接至标题">#</a></h3>
+<p>对函数进行局部分析，关键就是对函数的局部截取，以上技术是对单一区间的一种系统性的光滑截取。现在我们来看看，相邻区间的情况。</p>
+<p>相邻的情况可以推广到对整个数轴的破分。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">param</span><span class="o">=</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">]]</span>
+<span class="c1"># bell function on [-1/3,1+1/3]</span>
+<span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="n">bell_cutoff</span><span class="p">(</span><span class="n">param</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">param</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">t</span><span class="p">]</span>
+<span class="n">plot_function</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+<span class="c1"># bell function on [1-1/3,2+1/3]</span>
+<span class="n">x1</span><span class="o">=</span><span class="p">[</span><span class="n">bell_cutoff</span><span class="p">(</span><span class="n">param</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">param</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">t</span><span class="p">]</span>
+<span class="n">plot_function</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">x1</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-1.0, 3.0)
+</pre></div>
+</div>
+<img alt="../_images/fft_47_1.png" src="../_images/fft_47_1.png" />
+</div>
+</div>
+</section>
+<section id="id15">
+<h3>两个相邻区间的合成<a class="headerlink" href="#id15" title="永久链接至标题">#</a></h3>
+<p>有了破分，我们来看看合成的情况，<span class="math notranslate nohighlight">\(I_3=I_1+I_2\)</span>，<span class="math notranslate nohighlight">\(I_1=[\alpha_1,\alpha_2]\)</span>，<span class="math notranslate nohighlight">\(I_2=[\alpha_2,\alpha_3]\)</span>, <span class="math notranslate nohighlight">\(I_3=[\alpha_1,\alpha_3]\)</span>，其中<span class="math notranslate nohighlight">\(\alpha_1&lt;\alpha_2&lt;\alpha_3\)</span>。</p>
+<p>相应的bell函数我们分别用<span class="math notranslate nohighlight">\(b_k,\ k=1,2,3\)</span>来表示。他们之间的关系：</p>
+<div class="math notranslate nohighlight">
+\[
+b_3^2(t)=b_1^2(t)+b_2^2(t)
+\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">param</span><span class="o">=</span><span class="p">[[</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">]]</span>
+<span class="c1"># bell function on [-1/3,1+1/3]</span>
+<span class="n">b1</span><span class="o">=</span><span class="p">[</span><span class="n">bell_cutoff</span><span class="p">(</span><span class="n">param</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">param</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">t</span><span class="p">]</span>
+<span class="n">plot_function</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">b1</span><span class="p">)</span>
+<span class="c1"># bell function on [1-1/3,2+1/3]</span>
+<span class="n">b2</span><span class="o">=</span><span class="p">[</span><span class="n">bell_cutoff</span><span class="p">(</span><span class="n">param</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">param</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">t</span><span class="p">]</span>
+<span class="n">plot_function</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">b2</span><span class="p">)</span>
+<span class="c1"># bell function on [-1/3,2+1/3]</span>
+<span class="n">b3</span><span class="o">=</span><span class="p">[</span><span class="n">bell_cutoff</span><span class="p">(</span><span class="n">param</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">param</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">t</span><span class="p">]</span>
+<span class="n">plot_function</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">b3</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(-1.0, 3.0)
+</pre></div>
+</div>
+<img alt="../_images/fft_49_1.png" src="../_images/fft_49_1.png" />
+</div>
+</div>
+<p>验证恒等式：<span class="math notranslate nohighlight">\(b_3^2(t)=b_1^2(t)+b_2^2(t)\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">flag</span><span class="o">=</span><span class="kc">False</span>
+<span class="k">for</span> <span class="n">bb3</span><span class="p">,</span> <span class="n">bb2</span><span class="p">,</span> <span class="n">bb1</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">b3</span><span class="p">,</span><span class="n">b2</span><span class="p">,</span><span class="n">b1</span><span class="p">):</span>
+    <span class="n">flag</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">isclose</span><span class="p">(</span><span class="n">bb3</span><span class="o">*</span><span class="n">bb3</span><span class="p">,</span><span class="n">bb2</span><span class="o">*</span><span class="n">bb2</span><span class="o">+</span><span class="n">bb1</span><span class="o">*</span><span class="n">bb1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">flag</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="id16">
+<h2>对实轴的分割<a class="headerlink" href="#id16" title="永久链接至标题">#</a></h2>
+<p>有了分割和合并的机制，我们就可以对实轴进行有系统的分割。第一层的分割为：</p>
+<div class="math notranslate nohighlight">
+\[
+\R = \bigcup_{k\in\Z}[k,k+1)\defeq\bigcup_{k\in\Z}I_{0,k}
+\]</div>
+<p>第二层，</p>
+<div class="math notranslate nohighlight">
+\[
+I_{1,k}\defeq\left[\frac{k}{2},\frac{k+1}{2}\right];\quad\R=\bigcup_{k\in\Z}I_{1,k}
+\]</div>
+<p>按这个逻辑一直可以分割到第<span class="math notranslate nohighlight">\(j\)</span>层：</p>
+<div class="math notranslate nohighlight">
+\[
+I_{j,k}\defeq\left[\frac{k}{2^j},\frac{k+1}{2^j}\right];\quad\R=\bigcup_{k\in\Z}I_{j,k}
+\]</div>
+<p>并且，</p>
+<div class="math notranslate nohighlight">
+\[
+I_{j,k}=I_{j+1,2k}\bigcup I_{j+1,2k+1}
+\]</div>
+<p>尤其是对第一层的中间区间<span class="math notranslate nohighlight">\(I{0,0}\)</span>，经过<span class="math notranslate nohighlight">\(L\)</span>层分割后，我们有</p>
+<div class="math notranslate nohighlight">
+\[
+I_{0,0}=\bigcup_{k=0}^{2^L-1}I_{L,k}
+\]</div>
+<p>令<span class="math notranslate nohighlight">\(b_{j,k}(t)\)</span>为<span class="math notranslate nohighlight">\(I_{j,k}\)</span>的bell函数，我们有恒等式，</p>
+<div class="math notranslate nohighlight">
+\[
+\left|b_{j,k}(t)\right|^2=\left|b_{j+1,2k}(t)\right|^2+\left|b_{j+1,2k+1}(t)\right|^2,\quad\forall t\in\R
+\]</div>
+<p>关于<span class="math notranslate nohighlight">\(\epsilon_j\)</span>的选取：一种方案是取<span class="math notranslate nohighlight">\(\epsilon=2^{-j-1}\)</span>，这就保证磨光区域不会重叠。<span id="id17">[<a class="reference internal" href="#id36" title="Marie Farge, Eric Goirand, Yves Meyer, Frédéric Pascal, and Mladen Victor Wickerhauser. Improved predictability of two-dimensional turbulent flows using wavelet packet compression. Fluid Dynamics Research, 10(4):229-250, 1992. URL: https://www.sciencedirect.com/science/article/pii/016959839290024Q, doi:https://doi.org/10.1016/0169-5983(92)90024-Q.">Farge <em>et al.</em>, 1992</a>]</span>有关于这个问题的讨论。</p>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id18">
+<h1>左偶右奇函数的光滑延伸<a class="headerlink" href="#id18" title="永久链接至标题">#</a></h1>
+<p>这里的材料主要参考<span id="id19">[<a class="reference internal" href="#id42" title="Mladen V. Wickerhauser. Adapted Wavelet Analysis from Theory to Software. A. K. Peters, 1994. ISBN 1568810415.">Wickerhauser, 1994</a>]</span>第4章。</p>
+<section id="dct-iv">
+<h2>dct-iv中的基<a class="headerlink" href="#dct-iv" title="永久链接至标题">#</a></h2>
+<p><em>dct-iv</em>中的第<span class="math notranslate nohighlight">\(\nu\)</span>个基为：</p>
+<div class="math notranslate nohighlight">
+\[
+e_\nu(t)=\sqrt{\frac{2}{N}}\cos\frac{\pi}{N}\left(\nu+\frac{1}{2}\right)\left(t+\frac{1}{2}\right),\quad
+t=0,1,2,\cdots,N-1
+\]</div>
+<p>这里<span class="math notranslate nohighlight">\(\nu\in[0,1,2,\cdots,N-1]\)</span>为频率域信息。<em>dct-iv</em>的特征为，在左边界，即<span class="math notranslate nohighlight">\(t=0\)</span>处，<span class="math notranslate nohighlight">\(e_\nu(t)\)</span>是关于<span class="math notranslate nohighlight">\(-1/2\)</span>的偶函数，而在右边界，也就是<span class="math notranslate nohighlight">\(t=N-1\)</span>处，<span class="math notranslate nohighlight">\(e_\nu(t)\)</span>是关于<span class="math notranslate nohighlight">\(N-1/2\)</span>的奇函数。</p>
+<p>相对应的<span class="math notranslate nohighlight">\(\L^2[a,b]\)</span>上的一组基为</p>
+<div class="math notranslate nohighlight">
+\[
+e_\nu(t)=\sqrt{\frac{2}{b-a}}\cos\pi\left(\nu+\frac{1}{2}\right)\frac{t-a}{b-a},\quad\nu\in\Z
+\]</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">dctiv</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">N</span><span class="p">):</span>
+    <span class="n">t</span><span class="o">=</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="p">(</span><span class="n">t</span><span class="o">+</span><span class="mf">0.5</span><span class="p">)</span><span class="o">/</span><span class="n">N</span> <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">)]</span>
+    <span class="n">w</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">2.0</span><span class="o">/</span><span class="n">N</span><span class="p">)</span>
+    <span class="n">sig</span> <span class="o">=</span> <span class="p">[</span><span class="n">w</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">((</span><span class="n">v</span><span class="o">+</span><span class="mf">.5</span><span class="p">)</span><span class="o">*</span><span class="n">u</span><span class="p">)</span> <span class="k">for</span> <span class="n">u</span> <span class="ow">in</span> <span class="n">t</span><span class="p">]</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">t</span><span class="p">,</span><span class="n">sig</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">dctiv_fct</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">t</span><span class="p">):</span>
+    <span class="n">w</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">2.0</span><span class="o">/</span><span class="n">N</span><span class="p">)</span>
+    <span class="n">u</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="p">(</span><span class="n">v</span><span class="o">+</span><span class="mf">0.5</span><span class="p">)</span><span class="o">/</span><span class="n">N</span>
+    <span class="k">return</span> <span class="n">w</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">u</span><span class="o">*</span><span class="p">(</span><span class="n">t</span><span class="o">+</span><span class="mf">0.5</span><span class="p">))</span>
+
+<span class="c1"># continuous version for L^2[a_1,a_2]</span>
+<span class="k">def</span> <span class="nf">dct_fct</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">a1</span><span class="p">,</span><span class="n">a2</span><span class="p">,</span><span class="n">t</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">a1</span><span class="o">&gt;=</span><span class="n">a2</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s1">&#39;a1&gt;=a2&#39;</span><span class="p">)</span>
+    <span class="n">w</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="o">/</span><span class="p">(</span><span class="n">a2</span><span class="o">-</span><span class="n">a1</span><span class="p">))</span>
+    <span class="n">nu</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="p">(</span><span class="n">v</span><span class="o">+</span><span class="mf">0.5</span><span class="p">)</span>
+    <span class="n">u</span><span class="o">=</span><span class="p">(</span><span class="n">t</span><span class="o">-</span><span class="n">a1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">a2</span><span class="o">-</span><span class="n">a1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">w</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">nu</span><span class="o">*</span><span class="n">u</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">N</span><span class="o">=</span><span class="mi">128</span>
+<span class="n">t</span><span class="p">,</span><span class="n">sig</span><span class="o">=</span><span class="n">dctiv</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>
+<span class="n">e</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="n">N</span><span class="p">),</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">N</span><span class="p">):</span>
+    <span class="n">delta</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>
+    <span class="n">delta</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="o">=</span><span class="mi">1</span>
+    <span class="n">e</span><span class="p">[</span><span class="n">v</span><span class="p">]</span><span class="o">=</span><span class="n">scipy</span><span class="o">.</span><span class="n">fft</span><span class="o">.</span><span class="n">idct</span><span class="p">(</span><span class="n">delta</span><span class="p">,</span><span class="nb">type</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span><span class="n">norm</span><span class="o">=</span><span class="s2">&quot;ortho&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span><span class="n">axes</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">12</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span>
+<span class="n">plot_function</span><span class="p">(</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">t</span><span class="p">,</span><span class="n">e</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span>
+<span class="n">plot_function</span><span class="p">(</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">t</span><span class="p">,</span><span class="n">e</span><span class="p">[</span><span class="mi">10</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/fft_57_0.png" src="../_images/fft_57_0.png" />
+</div>
+</div>
+<section id="id20">
+<h3>验证关于<span class="math notranslate nohighlight">\(1/2\)</span>偶函数的性质<a class="headerlink" href="#id20" title="永久链接至标题">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">35</span><span class="p">,</span><span class="mi">5</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;N=&#39;</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="s1">&#39;v=&#39;</span><span class="p">,</span><span class="n">v</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;dctiv(&#39;</span><span class="p">,</span><span class="o">-</span><span class="n">i</span><span class="p">,</span><span class="s1">&#39;)=&#39;</span><span class="p">,</span><span class="n">dctiv_fct</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="o">-</span><span class="n">i</span><span class="p">),</span><span class="s1">&#39;,   dctiv(&#39;</span><span class="p">,</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;)=&#39;</span><span class="p">,</span><span class="n">dctiv_fct</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>N= 128 v= 10
+dctiv( -1 )= 0.12396371920863744 ,   dctiv( 0 )= 0.12396371920863744
+dctiv( -2 )= 0.11577628026728892 ,   dctiv( 1 )= 0.11577628026728892
+dctiv( -3 )= 0.09994215863848813 ,   dctiv( 2 )= 0.09994215863848813
+dctiv( -4 )= 0.07750715147041115 ,   dctiv( 3 )= 0.07750715147041115
+N= 128 v= 15
+dctiv( -1 )= 0.1227454836386944 ,   dctiv( 0 )= 0.1227454836386944
+dctiv( -2 )= 0.1051943721796123 ,   dctiv( 1 )= 0.1051943721796123
+dctiv( -3 )= 0.07260174476197058 ,   dctiv( 2 )= 0.07260174476197058
+dctiv( -4 )= 0.029627950749295917 ,   dctiv( 3 )= 0.029627950749295917
+N= 128 v= 20
+dctiv( -1 )= 0.12106526178430216 ,   dctiv( 0 )= 0.12106526178430216
+dctiv( -2 )= 0.09105804880602816 ,   dctiv( 1 )= 0.09105804880602816
+dctiv( -3 )= 0.03848120500519187 ,   dctiv( 2 )= 0.03848120500519187
+dctiv( -4 )= -0.023633583018725743 ,   dctiv( 3 )= -0.023633583018725743
+N= 128 v= 25
+dctiv( -1 )= 0.11892937762112604 ,   dctiv( 0 )= 0.11892937762112604
+dctiv( -2 )= 0.0738449627323593 ,   dctiv( 1 )= 0.0738449627323593
+dctiv( -3 )= 0.0007669855811443145 ,   dctiv( 2 )= 0.0007669855811443145
+dctiv( -4 )= -0.07260174476197054 ,   dctiv( 3 )= -0.07260174476197054
+N= 128 v= 30
+dctiv( -1 )= 0.11634587013487296 ,   dctiv( 0 )= 0.11634587013487296
+dctiv( -2 )= 0.054136727356644 ,   dctiv( 1 )= 0.054136727356644
+dctiv( -3 )= -0.03701886103045298 ,   dctiv( 2 )= -0.03701886103045298
+dctiv( -4 )= -0.10838078068946158 ,   dctiv( 3 )= -0.10838078068946158
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a1</span><span class="o">=</span><span class="mf">0.0</span>
+<span class="n">a2</span><span class="o">=</span><span class="mf">1.0</span>
+<span class="n">dt</span><span class="o">=</span><span class="mf">.01</span>
+<span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">35</span><span class="p">,</span><span class="mi">5</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;v=&#39;</span><span class="p">,</span><span class="n">v</span><span class="p">,</span><span class="s1">&#39;a1=&#39;</span><span class="p">,</span><span class="n">a1</span><span class="p">,</span><span class="s1">&#39;a2=&#39;</span><span class="p">,</span><span class="n">a2</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;dct(&#39;</span><span class="p">,</span><span class="n">a1</span><span class="o">-</span><span class="n">n</span><span class="o">*</span><span class="n">dt</span><span class="p">,</span><span class="s1">&#39;)=&#39;</span><span class="p">,</span><span class="n">dct_fct</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">a1</span><span class="p">,</span><span class="n">a2</span><span class="p">,</span><span class="n">a1</span><span class="o">-</span><span class="n">n</span><span class="o">*</span><span class="n">dt</span><span class="p">),</span><span class="s1">&#39;,  dct(&#39;</span><span class="p">,</span><span class="n">a1</span><span class="o">+</span><span class="n">n</span><span class="o">*</span><span class="n">dt</span><span class="p">,</span><span class="s1">&#39;)=&#39;</span><span class="p">,</span><span class="n">dct_fct</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">a1</span><span class="p">,</span><span class="n">a2</span><span class="p">,</span><span class="n">a1</span><span class="o">+</span><span class="n">n</span><span class="o">*</span><span class="n">dt</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>v= 10 a1= 0.0 a2= 1.0
+dct( -0.01 )= 1.3379667456165307 ,  dct( 0.01 )= 1.3379667456165307
+dct( -0.02 )= 1.1174479348787822 ,  dct( 0.02 )= 1.1174479348787822
+dct( -0.03 )= 0.7764355152652535 ,  dct( 0.03 )= 0.7764355152652535
+dct( -0.04 )= 0.35170061125357227 ,  dct( 0.04 )= 0.35170061125357227
+v= 15 a1= 0.0 a2= 1.0
+dct( -0.01 )= 1.2498333400306343 ,  dct( 0.01 )= 1.2498333400306343
+dct( -0.02 )= 0.7949059361429642 ,  dct( 0.02 )= 0.7949059361429642
+dct( -0.03 )= 0.15518775100262472 ,  dct( 0.03 )= 0.15518775100262472
+dct( -0.04 )= -0.5206067350492003 ,  dct( 0.04 )= -0.5206067350492003
+v= 20 a1= 0.0 a2= 1.0
+dct( -0.01 )= 1.1309248896541404 ,  dct( 0.01 )= 1.1309248896541404
+dct( -0.02 )= 0.3945530059421486 ,  dct( 0.02 )= 0.3945530059421486
+dct( -0.03 )= -0.4998889180303361 ,  dct( 0.03 )= -0.4998889180303361
+dct( -0.04 )= -1.1940600033352897 ,  dct( 0.04 )= -1.1940600033352897
+v= 25 a1= 0.0 a2= 1.0
+dct( -0.01 )= 0.9841693151698401 ,  dct( 0.01 )= 0.9841693151698401
+dct( -0.02 )= -0.04442152149272283 ,  dct( 0.02 )= -0.04442152149272283
+dct( -0.03 )= -1.0459963256716123 ,  dct( 0.03 )= -1.0459963256716123
+dct( -0.04 )= -1.4114229349541114 ,  dct( 0.04 )= -1.4114229349541114
+v= 30 a1= 0.0 a2= 1.0
+dct( -0.01 )= 0.8131802258753644 ,  dct( 0.01 )= 0.8131802258753644
+dct( -0.02 )= -0.4790477609009469 ,  dct( 0.02 )= -0.4790477609009469
+dct( -0.03 )= -1.3640901828705987 ,  dct( 0.03 )= -1.3640901828705987
+dct( -0.04 )= -1.0896702779215945 ,  dct( 0.04 )= -1.0896702779215945
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="n-1-2">
+<h3>验证关于<span class="math notranslate nohighlight">\(N-1/2\)</span>奇函数的性质<a class="headerlink" href="#n-1-2" title="永久链接至标题">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">35</span><span class="p">,</span><span class="mi">5</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;N=&#39;</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="s1">&#39;v=&#39;</span><span class="p">,</span><span class="n">v</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;dctiv(&#39;</span><span class="p">,</span><span class="n">N</span><span class="o">-</span><span class="n">i</span><span class="p">,</span><span class="s1">&#39;)=&#39;</span><span class="p">,</span><span class="n">dctiv_fct</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">N</span><span class="o">-</span><span class="n">i</span><span class="p">),</span><span class="s1">&#39;,   dctiv(&#39;</span><span class="p">,</span><span class="n">N</span><span class="o">+</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="s1">&#39;)=&#39;</span><span class="p">,</span><span class="n">dctiv_fct</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">N</span><span class="o">+</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>N= 128 v= 10
+dctiv( 127 )= 0.016062263849224444 ,   dctiv( 128 )= -0.016062263849224566
+dctiv( 126 )= 0.04712592627705241 ,   dctiv( 129 )= -0.04712592627705252
+dctiv( 125 )= 0.0750770599229836 ,   dctiv( 130 )= -0.07507705992298368
+dctiv( 124 )= 0.09806957464444678 ,   dctiv( 131 )= -0.09806957464444686
+N= 128 v= 15
+dctiv( 127 )= -0.0236335830187265 ,   dctiv( 128 )= 0.0236335830187256
+dctiv( 126 )= -0.06752143409123695 ,   dctiv( 129 )= 0.06752143409123618
+dctiv( 125 )= -0.1017545412132436 ,   dctiv( 130 )= 0.10175454121324305
+dctiv( 124 )= -0.12143798637328163 ,   dctiv( 131 )= 0.1214379863732814
+N= 128 v= 20
+dctiv( 127 )= 0.03111595071821616 ,   dctiv( 128 )= -0.031115950718214266
+dctiv( 126 )= 0.08563545847158804 ,   dctiv( 129 )= -0.08563545847158727
+dctiv( 125 )= 0.11892937762112638 ,   dctiv( 130 )= -0.1189293776211255
+dctiv( 124 )= 0.1227454836386943 ,   dctiv( 131 )= -0.12274548363869467
+N= 128 v= 25
+dctiv( 127 )= -0.03848120500519255 ,   dctiv( 128 )= 0.03848120500519139
+dctiv( 126 )= -0.10085594419297547 ,   dctiv( 129 )= 0.10085594419297475
+dctiv( 125 )= -0.12499764691032515 ,   dctiv( 130 )= 0.12499764691032514
+dctiv( 124 )= -0.10175454121324272 ,   dctiv( 131 )= 0.10175454121324343
+N= 128 v= 30
+dctiv( 127 )= 0.04570162472559699 ,   dctiv( 128 )= -0.04570162472559654
+dctiv( 126 )= 0.1126686058807529 ,   dctiv( 129 )= -0.1126686058807527
+dctiv( 125 )= 0.11939264603822122 ,   dctiv( 130 )= -0.11939264603822136
+dctiv( 124 )= 0.06227845837159731 ,   dctiv( 131 )= -0.06227845837159774
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a1</span><span class="o">=</span><span class="mf">0.0</span>
+<span class="n">a2</span><span class="o">=</span><span class="mf">1.0</span>
+<span class="n">dt</span><span class="o">=</span><span class="mf">.01</span>
+<span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">35</span><span class="p">,</span><span class="mi">5</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;关于a2为奇函数的验证： v=&#39;</span><span class="p">,</span><span class="n">v</span><span class="p">,</span><span class="s1">&#39;, a1=&#39;</span><span class="p">,</span><span class="n">a1</span><span class="p">,</span><span class="s1">&#39;, a2=&#39;</span><span class="p">,</span><span class="n">a2</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">5</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;dct(&#39;</span><span class="p">,</span><span class="n">a2</span><span class="o">-</span><span class="n">n</span><span class="o">*</span><span class="n">dt</span><span class="p">,</span><span class="s1">&#39;)=&#39;</span><span class="p">,</span><span class="n">dct_fct</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">a1</span><span class="p">,</span><span class="n">a2</span><span class="p">,</span><span class="n">a2</span><span class="o">-</span><span class="n">n</span><span class="o">*</span><span class="n">dt</span><span class="p">),</span><span class="s1">&#39;,  dct(&#39;</span><span class="p">,</span><span class="n">a2</span><span class="o">+</span><span class="n">n</span><span class="o">*</span><span class="n">dt</span><span class="p">,</span><span class="s1">&#39;)=&#39;</span><span class="p">,</span><span class="n">dct_fct</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">a1</span><span class="p">,</span><span class="n">a2</span><span class="p">,</span><span class="n">a2</span><span class="o">+</span><span class="n">n</span><span class="o">*</span><span class="n">dt</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>关于a2为奇函数的验证： v= 10 , a1= 0.0 , a2= 1.0
+dct( 0.99 )= 0.45808840590470323 ,  dct( 1.01 )= -0.45808840590470457
+dct( 0.98 )= 0.866781467750171 ,  dct( 1.02 )= -0.866781467750172
+dct( 0.97 )= 1.1820101059782784 ,  dct( 1.03 )= -1.182010105978279
+dct( 0.96 )= 1.3697834427543147 ,  dct( 1.04 )= -1.3697834427543163
+关于a2为奇函数的验证： v= 15 , a1= 0.0 , a2= 1.0
+dct( 0.99 )= -0.6617526895660351 ,  dct( 1.01 )= 0.661752689566026
+dct( 0.98 )= -1.169668565314416 ,  dct( 1.02 )= 1.1696685653144103
+dct( 0.97 )= -1.4056730636740362 ,  dct( 1.03 )= 1.4056730636740349
+dct( 0.96 )= -1.3149025163187602 ,  dct( 1.04 )= 1.314902516318764
+关于a2为奇函数的验证： v= 20 , a1= 0.0 , a2= 1.0
+dct( 0.99 )= 0.8491224257789807 ,  dct( 1.01 )= -0.849122425778963
+dct( 0.98 )= 1.3580603541455827 ,  dct( 1.02 )= -1.3580603541455736
+dct( 0.97 )= 1.322917635240551 ,  dct( 1.03 )= -1.3229176352405552
+dct( 0.96 )= 0.7577735205421917 ,  dct( 1.04 )= -0.7577735205422106
+关于a2为奇函数的验证： v= 25 , a1= 0.0 , a2= 1.0
+dct( 0.99 )= -1.0155839497934913 ,  dct( 1.01 )= 1.0155839497934815
+dct( 0.98 )= -1.4135157333501003 ,  dct( 1.02 )= 1.4135157333501007
+dct( 0.97 )= -0.9517834242523208 ,  dct( 1.03 )= 0.951783424252331
+dct( 0.96 )= 0.08879920430682393 ,  dct( 1.04 )= -0.0887992043068101
+关于a2为奇函数的验证： v= 30 , a1= 0.0 , a2= 1.0
+dct( 0.99 )= 1.1570384264341842 ,  dct( 1.01 )= -1.157038426434181
+dct( 0.98 )= 1.3306063440310922 ,  dct( 1.02 )= -1.3306063440310942
+dct( 0.97 )= 0.37317284600578526 ,  dct( 1.03 )= -0.37317284600579054
+dct( 0.96 )= -0.901453651284579 ,  dct( 1.04 )= 0.9014536512845746
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="alpha-1-alpha-2">
+<h2>逆折叠算子对于区间<span class="math notranslate nohighlight">\([\alpha_1,\alpha_2]\)</span>上左偶右奇函数的光滑延伸<a class="headerlink" href="#alpha-1-alpha-2" title="永久链接至标题">#</a></h2>
+<p>令对区间<span class="math notranslate nohighlight">\([\alpha_1,\alpha_2]\)</span>的截断函数为<span class="math notranslate nohighlight">\(I_{[\alpha_1,\alpha_2]}\)</span>，即</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+I_{[\alpha_1,\alpha_2]}(t)=\left\{
+\begin{array}{cl}
+1,&amp;\textrm{if}\quad t\in[\alpha_1,\alpha_2]\\
+0,&amp;\textrm{其他}
+\end{array}
+\right.
+\end{split}\]</div>
+<p>我们考虑当函数<span class="math notranslate nohighlight">\(f(t)\)</span>关于<span class="math notranslate nohighlight">\(\alpha_1\)</span>为偶函数，而关于<span class="math notranslate nohighlight">\(\alpha_2\)</span>为奇函数的情况。当<span class="math notranslate nohighlight">\(\alpha_1&lt;t&lt;\alpha+\epsilon\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{ccl}
+U^*(r,\alpha_1,\epsilon_1)I_{[\alpha_1,\alpha_2]}(t)f(t)
+&amp;=&amp;
+\bar{r}\left(\frac{t-\alpha_1}{\epsilon_1}\right)I_{[\alpha_1,\alpha_2]}(t)f(t)
+-r\left(\frac{\alpha_1-t}{\epsilon_1}\right)I_{[\alpha_1,\alpha_2]}(2\alpha_1-t)f(2\alpha_1-t)\\
+&amp;=&amp;
+\bar{r}\left(\frac{t-\alpha_1}{\epsilon_1}\right)f(t-\alpha_1)
+\end{array}
+\end{split}\]</div>
+<p>这是因为，对于<span class="math notranslate nohighlight">\(\alpha_1&lt;t&lt;\alpha_1+\epsilon\)</span>，<span class="math notranslate nohighlight">\(I_{[\alpha_1,\alpha_2]}(t)=1\)</span>和<span class="math notranslate nohighlight">\(I_{[\alpha_1,\alpha_2]}(2\alpha_1-t)=0\)</span>，而且因为<span class="math notranslate nohighlight">\(f(t)\)</span>是关于<span class="math notranslate nohighlight">\(\alpha_1\)</span>的偶函数，<span class="math notranslate nohighlight">\(f(2\alpha_1-t)=f(\alpha_1+(\alpha_1-t))=f(-(\alpha_1-t))=f(t-\alpha_1)\)</span>。</p>
+<p>类似地，对于<span class="math notranslate nohighlight">\(\alpha_1-\epsilon_1&lt;t&lt;\alpha_1\)</span>,</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{ccl}
+U^*(r,\alpha_1,\epsilon_1)I_{[\alpha_1,\alpha_2]}(t)f(t)
+&amp;=&amp;
+r\left(\frac{\alpha_1-t}{\epsilon_1}\right)I_{[\alpha_1,\alpha_2]}(t)f(t)
++\bar{r}\left(\frac{t-\alpha_1}{\epsilon_1}\right)I_{[\alpha_1,\alpha_2]}(2\alpha_1-t)f(2\alpha_1-t)\\
+&amp;=&amp;
+\bar{r}\left(\frac{t-\alpha_1}{\epsilon_1}\right)f(\alpha_1+(\alpha_1-t))\\
+&amp;=&amp;
+\bar{r}\left(\frac{t-\alpha_1}{\epsilon_1}\right)f(t-\alpha_1)
+\end{array}
+\end{split}\]</div>
+<p>所以，</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+U^*(r,\alpha_1,\epsilon_1)I_{[\alpha_1,\alpha_2]}(t)f(t)=
+\left\{
+\begin{array}{cl}
+\bar{r}\left(\frac{t-\alpha_1}{\epsilon_1}\right)f(t-\alpha_1),&amp;\textrm{if}\quad\alpha_1&lt;t&lt;\alpha_1+\epsilon_1\\
+\bar{r}\left(\frac{t-\alpha_1}{\epsilon_1}\right)f(-(t-\alpha_1)),&amp;\textrm{if}\quad\alpha_1-\epsilon_1&lt;t&lt;\alpha_1\\
+f(t),&amp;\textrm{其他}
+\end{array}
+\right.
+\end{split}\]</div>
+<p>利用<span class="math notranslate nohighlight">\(f(t)\)</span>关于<span class="math notranslate nohighlight">\(\alpha_2\)</span>为奇函数的特点，同样的演算，我们可以得到，</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+U^*(r,\alpha_2,\epsilon_2)I_{[\alpha_1,\alpha_2]}(t)f(t)=
+\left\{
+\begin{array}{cl}
+-r\left(-\frac{t-\alpha_2}{\epsilon_2}\right)f(-(t-\alpha_2)),&amp;\textrm{if}\quad\alpha_2&lt;t&lt;\alpha_2+\epsilon_2\\
+r\left(-\frac{t-\alpha_2}{\epsilon_2}\right)f(t-\alpha_2),&amp;\textrm{if}\quad\alpha_2-\epsilon_2&lt;t&lt;\alpha_2\\
+f(t),&amp;\textrm{其他}
+\end{array}
+\right.
+\end{split}\]</div>
+<section id="i-alpha-1-alpha-2-t">
+<h3>作用于<span class="math notranslate nohighlight">\(I_[\alpha_1,\alpha_2](t)\)</span>的情况<a class="headerlink" href="#i-alpha-1-alpha-2-t" title="永久链接至标题">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">cutoff</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span><span class="n">a2</span><span class="p">,</span><span class="n">t</span><span class="p">):</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">a1</span><span class="o">&gt;</span><span class="n">a2</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">Exception</span><span class="p">(</span><span class="s2">&quot;a1&gt;a2&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">t</span><span class="o">&lt;</span><span class="n">a1</span> <span class="ow">or</span> <span class="n">t</span><span class="o">&gt;</span><span class="n">a2</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mf">0.0</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mf">1.0</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">N</span><span class="o">=</span><span class="mi">128</span>
+<span class="n">t</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="o">+</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span><span class="n">N</span><span class="p">)</span>
+<span class="n">f</span><span class="o">=</span><span class="n">partial</span><span class="p">(</span><span class="n">cutoff</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">)</span>
+<span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="n">unfold</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="mf">1.0</span><span class="p">,</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">t</span><span class="p">]</span>
+<span class="n">plot_function</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/fft_67_0.png" src="../_images/fft_67_0.png" />
+</div>
+</div>
+</section>
+<section id="id21">
+<h3>加上左偶右奇函数的情况<a class="headerlink" href="#id21" title="永久链接至标题">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># define a cutoff function extending the function defined on [a1,a2], outside [a1,a2] to be zero</span>
+<span class="k">def</span> <span class="nf">cutoff_fct</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">v</span><span class="p">,</span><span class="n">a1</span><span class="p">,</span><span class="n">a2</span><span class="p">,</span><span class="n">nf</span><span class="p">,</span><span class="n">t</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">nf</span><span class="o">*</span><span class="n">cutoff</span><span class="p">(</span><span class="n">a1</span><span class="p">,</span><span class="n">a2</span><span class="p">,</span><span class="n">t</span><span class="p">)</span><span class="o">*</span><span class="n">f</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">a1</span><span class="p">,</span><span class="n">a2</span><span class="p">,</span><span class="n">t</span><span class="p">)</span>
+<span class="n">N</span><span class="o">=</span><span class="mi">128</span>
+<span class="n">t</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span><span class="mf">0.5</span><span class="o">+</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+<span class="n">nf</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">f</span><span class="o">=</span><span class="n">partial</span><span class="p">(</span><span class="n">cutoff_fct</span><span class="p">,</span><span class="n">dct_fct</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">.5</span><span class="p">,</span><span class="n">nf</span><span class="p">)</span> <span class="c1"># extending dct defined on [0,0.5] to be zero outside [0,0.5] </span>
+<span class="n">unfold_right</span><span class="o">=</span><span class="n">partial</span><span class="p">(</span><span class="n">unfold</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="mf">0.5</span><span class="p">,</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span> <span class="c1"># unfold right at .5</span>
+<span class="n">x</span><span class="o">=</span><span class="p">[</span><span class="n">unfold</span><span class="p">(</span><span class="n">unfold_right</span><span class="p">,</span><span class="mf">0.0</span><span class="p">,</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span><span class="p">,</span><span class="n">v</span><span class="p">)</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">t</span><span class="p">]</span> <span class="c1"># unfold left at 0.0</span>
+<span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
+<span class="n">plot_function</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/fft_69_0.png" src="../_images/fft_69_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0000000000188851
+</pre></div>
+</div>
+</div>
+</div>
+<p>voila! 这就是在区间<span class="math notranslate nohighlight">\([0,0.5]\)</span>上左偶右奇函数通过两个逆折叠算子的光滑延伸。这个技术奠定了<code class="docutils literal notranslate"><span class="pre">lct</span></code>的理论基础。</p>
+</section>
+<section id="id22">
+<h3>与bell函数的关系<a class="headerlink" href="#id22" title="永久链接至标题">#</a></h3>
+<p>这里我们看到，只要<span class="math notranslate nohighlight">\(f(t)\)</span>是关于<span class="math notranslate nohighlight">\(\alpha_1\)</span>为偶函数，同时关于<span class="math notranslate nohighlight">\(\alpha_2\)</span>为奇函数，我们就有</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{array}{ccl}
+U^*(r,\alpha_1,\epsilon_1)U^*(r,\alpha_2,\epsilon_2)I_{[\alpha_1,\alpha_2]}(t)f(t)&amp;=&amp;b_{\alpha_1,\alpha_2}(t)f(t)\\
+&amp;=&amp;r\left(\frac{t-\alpha_1}{\epsilon_1}\right)r\left(\frac{\alpha_2-t}{\epsilon_2}\right)f(t)
+\end{array}
+\end{split}\]</div>
+</section>
+</section>
+<section id="id23">
+<h2>内积<a class="headerlink" href="#id23" title="永久链接至标题">#</a></h2>
+<p>令<span class="math notranslate nohighlight">\(\{e_\nu(t)\}_{\nu\in\Z}\)</span>为<span class="math notranslate nohighlight">\(L^2[a,b]\)</span>的一组基，其中每个<span class="math notranslate nohighlight">\(e_\nu(t)\)</span>具备关于左端点为偶函数，右端点为奇函数的特征。</p>
+<p>有人可能会问，既然对于<span class="math notranslate nohighlight">\(e_\nu(t)\)</span>在区间<span class="math notranslate nohighlight">\([a,b]\)</span>的光滑延伸能够通过bell函数来实现：</p>
+<div class="math notranslate nohighlight">
+\[
+U^*(r,a,\epsilon)U^*(r,b,\epsilon)I_{[a,b]}(t)e_\nu(t)=r\left(\frac{t-a}{\epsilon}\right)r\left(\frac{b-t}{\epsilon}\right)e_\nu(t)
+\]</div>
+<p>我们不就可以不用折叠和逆折叠算子，直接用bell函数就行了。以下的恒等式回答了这个问题，也是问题的关键所在：我们求一个函数<span class="math notranslate nohighlight">\(f(t)\)</span>在<span class="math notranslate nohighlight">\(e_\nu(t)\)</span>上的表达，就是求其内积<span class="math notranslate nohighlight">\(&lt;f,e_\nu&gt;\)</span>，那么对于光滑延伸后的基，<span class="math notranslate nohighlight">\(U^*(r,a,\epsilon)U^*(r,b,\epsilon)I_{[a,b]}(t)e_\nu(t)\)</span>，我们需要求<span class="math notranslate nohighlight">\(&lt;f,U^*(r,a,\epsilon)U^*(r,b,\epsilon)I_{[a,b]}(t)e_\nu(t)&gt;\)</span>，不难验证</p>
+<div class="amsmath math notranslate nohighlight" id="equation-9c48306d-9625-4381-8792-d5bcc89bf09e">
+<span class="eqno">(10)<a class="headerlink" href="#equation-9c48306d-9625-4381-8792-d5bcc89bf09e" title="公式的永久链接">#</a></span>\[\begin{equation}
+&lt;f(\cdot),U^*(r,a,\epsilon)U^*(r,b,\epsilon)I_{[a,b]}(\cdot)e_\nu(\cdot)&gt;=&lt;U(r,b,\epsilon)U(r,a,\epsilon)f(\cdot),I_{[a,b]}(\cdot)e_\nu(\cdot)&gt;
+\end{equation}\]</div>
+<p>这个公式意义重大，与其对基函数<span class="math notranslate nohighlight">\(I_{[a,b]}e_\nu(t)\)</span>进行光滑延伸，我们对被分析函数<span class="math notranslate nohighlight">\(f(t)\)</span>进行折叠，由于被分析函数并不满足奇函数和偶函数的假定，这就需要我们采纳折叠算子。</p>
+<p>首先我们来定义两个函数，<code class="docutils literal notranslate"><span class="pre">UsUs(f,a,b,eps,t)</span></code>和<code class="docutils literal notranslate"><span class="pre">UU(f,a,b,eps,t)</span></code>分别对应于<span class="math notranslate nohighlight">\(U^*(r,a,\epsilon)U^*(r,b,\epsilon)f(t)\)</span>和<span class="math notranslate nohighlight">\(U(r,a,\epsilon)U(r,b,\epsilon)f(t)\)</span>，rcf函数隐含在<code class="docutils literal notranslate"><span class="pre">unfold</span></code>和<code class="docutils literal notranslate"><span class="pre">fold</span></code>（这个设计不太合理，后续会作相应的修改），其他的符合意义与公式符合，当然，<code class="docutils literal notranslate"><span class="pre">eps</span></code>指的是<span class="math notranslate nohighlight">\(\epsilon\)</span>，<code class="docutils literal notranslate"><span class="pre">f</span></code>是被作用的函数，在python中，函数可以作为函数中的输入变量。这里的<code class="docutils literal notranslate"><span class="pre">f</span></code>如果要求其他变量作为输入，那么我们会采用<code class="docutils literal notranslate"><span class="pre">partial</span></code>函数来处理，这个处理方法可以参考下面的例子。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">UsUs</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">eps</span><span class="p">,</span><span class="n">t</span><span class="p">):</span>
+    <span class="n">right</span><span class="o">=</span><span class="n">partial</span><span class="p">(</span><span class="n">unfold</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">eps</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">unfold</span><span class="p">(</span><span class="n">right</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">eps</span><span class="p">,</span><span class="n">t</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">UU</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">eps</span><span class="p">,</span><span class="n">t</span><span class="p">):</span>
+    <span class="n">left</span><span class="o">=</span><span class="n">partial</span><span class="p">(</span><span class="n">fold</span><span class="p">,</span><span class="n">f</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">eps</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">fold</span><span class="p">(</span><span class="n">left</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">eps</span><span class="p">,</span><span class="n">t</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<section id="f-cdot-u-r-a-epsilon-u-r-b-epsilon-i-a-b-cdot-e-nu-cdot">
+<h3>求<span class="math notranslate nohighlight">\(&lt;f(\cdot),U^*(r,a,\epsilon)U^*(r,b,\epsilon)I_{[a,b]}(\cdot)e_\nu(\cdot)&gt;\)</span><a class="headerlink" href="#f-cdot-u-r-a-epsilon-u-r-b-epsilon-i-a-b-cdot-e-nu-cdot" title="永久链接至标题">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="o">=</span><span class="mf">0.0</span>
+<span class="n">b</span><span class="o">=</span><span class="mf">1.0</span>
+<span class="n">eps</span><span class="o">=</span><span class="mi">1</span><span class="o">/</span><span class="mi">3</span>
+<span class="n">N</span><span class="o">=</span><span class="mi">128</span>
+<span class="n">v</span><span class="o">=</span><span class="mi">10</span>
+<span class="n">t</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="n">eps</span><span class="p">,</span><span class="mi">1</span><span class="o">+</span><span class="n">eps</span><span class="p">,</span><span class="n">N</span><span class="p">,</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+<span class="n">nf</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="n">f</span><span class="o">=</span><span class="n">partial</span><span class="p">(</span><span class="n">cutoff_fct</span><span class="p">,</span><span class="n">dct_fct</span><span class="p">,</span><span class="n">v</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">nf</span><span class="p">)</span>
+<span class="n">ev</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">UsUs</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">eps</span><span class="p">,</span><span class="n">u</span><span class="p">)</span> <span class="k">for</span> <span class="n">u</span> <span class="ow">in</span> <span class="n">t</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+<span class="c1">#ev=ev/np.linalg.norm(ev)</span>
+<span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">cutoff</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">u</span><span class="p">)</span> <span class="k">for</span> <span class="n">u</span> <span class="ow">in</span> <span class="n">t</span><span class="p">],</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+<span class="c1">#x=x/np.linalg.norm(x)</span>
+<span class="n">fig</span><span class="p">,</span><span class="n">axes</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">12</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span>
+<span class="n">plot_function</span><span class="p">(</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">t</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+<span class="n">plot_function</span><span class="p">(</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">t</span><span class="p">,</span><span class="n">ev</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/fft_76_0.png" src="../_images/fft_76_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">ev</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8.717797887081348 1.000000000140259
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">rinner</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">ev</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="u-r-b-epsilon-u-r-a-epsilon-f-cdot-i-a-b-cdot-e-nu-cdot">
+<h3>计算<span class="math notranslate nohighlight">\(&lt;U(r,b,\epsilon)U(r,a,\epsilon)f(\cdot),I_{[a,b]}(\cdot)e_\nu(\cdot)&gt;\)</span><a class="headerlink" href="#u-r-b-epsilon-u-r-a-epsilon-f-cdot-i-a-b-cdot-e-nu-cdot" title="永久链接至标题">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">evp</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">cutoff_fct</span><span class="p">(</span><span class="n">dct_fct</span><span class="p">,</span><span class="n">v</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">nf</span><span class="p">,</span><span class="n">u</span><span class="p">)</span> <span class="k">for</span> <span class="n">u</span> <span class="ow">in</span> <span class="n">t</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+<span class="c1">#evp=evp/np.linalg.norm(evp)</span>
+<span class="n">f</span><span class="o">=</span><span class="n">partial</span><span class="p">(</span><span class="n">cutoff</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+<span class="n">xp</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">UU</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">eps</span><span class="p">,</span><span class="n">u</span><span class="p">)</span> <span class="k">for</span> <span class="n">u</span> <span class="ow">in</span> <span class="n">t</span><span class="p">],</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+<span class="c1">#xp=xp/np.linalg.norm(xp)</span>
+<span class="n">fig</span><span class="p">,</span><span class="n">axes</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">figsize</span><span class="o">=</span><span class="p">[</span><span class="mi">12</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span>
+<span class="n">plot_function</span><span class="p">(</span><span class="n">axes</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">t</span><span class="p">,</span><span class="n">xp</span><span class="p">)</span>
+<span class="n">plot_function</span><span class="p">(</span><span class="n">axes</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">t</span><span class="p">,</span><span class="n">evp</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<img alt="../_images/fft_80_0.png" src="../_images/fft_80_0.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">linner</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">xp</span><span class="p">,</span><span class="n">evp</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id24">
+<h3>比较两种方法的结果<a class="headerlink" href="#id24" title="永久链接至标题">#</a></h3>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>如果我们对所有的序列都进行范数的归一化，结果会更好。</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">rinner</span><span class="o">-</span><span class="n">linner</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>-2.220446049250313e-16
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">xp</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">evp</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">ev</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>8.72926113834243 0.9986868017972356 8.717797887081348 1.000000000140259
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="id25">
+<h1>局部傅里叶变换<a class="headerlink" href="#id25" title="永久链接至标题">#</a></h1>
+<p>参考资料：</p>
+<ol class="simple">
+<li><p><span id="id26">[<a class="reference internal" href="#id42" title="Mladen V. Wickerhauser. Adapted Wavelet Analysis from Theory to Software. A. K. Peters, 1994. ISBN 1568810415.">Wickerhauser, 1994</a>]</span>第四章，比较有系统地对LCT技术进行梳理，也对算法进行了详细的介绍。</p></li>
+<li><p><span id="id27">[<a class="reference internal" href="#id39" title="Stphane Mallat. A Wavelet Tour of Signal Processing, Third Edition: The Sparse Way. Academic Press, Inc., USA, 3rd edition, 2008. ISBN 0123743702.">Mallat, 2008</a>]</span><span class="math notranslate nohighlight">\(\S\)</span>8.3,<span class="math notranslate nohighlight">\(\S\)</span>8.4,<span class="math notranslate nohighlight">\(\S\)</span>8.5: 理论上比较系统地介绍。</p></li>
+<li><p><span id="id28">[<a class="reference internal" href="#id37" title="Bjorn Jawerth and Wim Sweldens. Biorthogonal smooth local trigonometric bases. Journal of Fourier Analysis and Applications, 2(2):109–133, 1995. URL: https://doi.org/10.1007/s00041-001-4024-5, doi:10.1007/s00041-001-4024-5.">Jawerth and Sweldens, 1995</a>]</span>: 早期这方面有代表性的论文。</p></li>
+</ol>
+<section id="lct">
+<h2>单区间局部余弦函数变换（LCT）<a class="headerlink" href="#lct" title="永久链接至标题">#</a></h2>
+<p>在概念上，我们考虑信号空间<span class="math notranslate nohighlight">\(\L^2[0,1]\)</span>，给定一个区间<span class="math notranslate nohighlight">\([a,b]\subset[0,1]\)</span>，如何计算区间<span class="math notranslate nohighlight">\([a,b]\)</span>上的</p>
+<section id="id29">
+<h3>算法之一：直接计算内积<a class="headerlink" href="#id29" title="永久链接至标题">#</a></h3>
+<ol class="simple">
+<li><p>计算<span class="math notranslate nohighlight">\(\{U^*(r,a,\epsilon)U^*(r,b,\epsilon)I_{[a,b]}(t)e_\nu(t)\}\)</span></p></li>
+</ol>
+</section>
+<section id="id30">
+<h3>算法之二：对被分析信号继续延伸，然后用快速余弦变换计算内积<a class="headerlink" href="#id30" title="永久链接至标题">#</a></h3>
+</section>
+</section>
+<section id="id31">
+<h2>两个相邻区间的局部余弦函数变换<a class="headerlink" href="#id31" title="永久链接至标题">#</a></h2>
+</section>
+<section id="id32">
+<h2>信号的周期化<a class="headerlink" href="#id32" title="永久链接至标题">#</a></h2>
+</section>
+<section id="id33">
+<h2>自适应性局部余弦函数变换<a class="headerlink" href="#id33" title="永久链接至标题">#</a></h2>
+</section>
+<section id="id34">
+<h2>其他三角函数<a class="headerlink" href="#id34" title="永久链接至标题">#</a></h2>
+<div class="docutils container" id="id35">
+<dl class="citation">
+<dt class="label" id="id36"><span class="brackets"><a class="fn-backref" href="#id17">FGM+92</a></span></dt>
+<dd><p>Marie Farge, Eric Goirand, Yves Meyer, Frédéric Pascal, and Mladen Victor Wickerhauser. Improved predictability of two-dimensional turbulent flows using wavelet packet compression. <em>Fluid Dynamics Research</em>, 10(4):229–250, 1992. URL: <a class="reference external" href="https://www.sciencedirect.com/science/article/pii/016959839290024Q">https://www.sciencedirect.com/science/article/pii/016959839290024Q</a>, <a class="reference external" href="https://doi.org/https://doi.org/10.1016/0169-5983(92)90024-Q">doi:https://doi.org/10.1016/0169-5983(92)90024-Q</a>.</p>
+</dd>
+<dt class="label" id="id37"><span class="brackets"><a class="fn-backref" href="#id28">JS95</a></span></dt>
+<dd><p>Bjorn Jawerth and Wim Sweldens. Biorthogonal smooth local trigonometric bases. <em>Journal of Fourier Analysis and Applications</em>, 2(2):109–133, 1995. URL: <a class="reference external" href="https://doi.org/10.1007/s00041-001-4024-5">https://doi.org/10.1007/s00041-001-4024-5</a>, <a class="reference external" href="https://doi.org/10.1007/s00041-001-4024-5">doi:10.1007/s00041-001-4024-5</a>.</p>
+</dd>
+<dt class="label" id="id39"><span class="brackets"><a class="fn-backref" href="#id27">Mal08</a></span></dt>
+<dd><p>Stphane Mallat. <em>A Wavelet Tour of Signal Processing, Third Edition: The Sparse Way</em>. Academic Press, Inc., USA, 3rd edition, 2008. ISBN 0123743702.</p>
+</dd>
+<dt class="label" id="id42"><span class="brackets">Wic94</span><span class="fn-backref">(<a href="#id7">1</a>,<a href="#id19">2</a>,<a href="#id26">3</a>)</span></dt>
+<dd><p>Mladen V. Wickerhauser. <em>Adapted Wavelet Analysis from Theory to Software</em>. A. K. Peters, 1994. ISBN 1568810415.</p>
+</dd>
+</dl>
+</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">

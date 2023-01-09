@@ -138,18 +138,13 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  实践篇
+  实验篇
  </span>
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../nb/intro.html">
-   实践篇
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../nb/thebe.html">
-   Jupyter Notebooks
+   导言
   </a>
  </li>
  <li class="toctree-l1">
@@ -170,6 +165,28 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="../nb/wavelet.html">
    小波分析
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  实现篇
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../impl/intro.html">
+   导言
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../impl/signal.html">
+   信号空间
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../impl/fft.html">
+   离散傅里叶变换
   </a>
  </li>
 </ul>
@@ -518,11 +535,11 @@ title="Print to PDF"
   <section class="tex2jax_ignore mathjax_ignore" id="id1">
 <h1>信号空间<a class="headerlink" href="#id1" title="永久链接至标题">#</a></h1>
 <p>这里信号指的是时间序列，我们的目标是界定信号具体的数学模型。</p>
-<p>我们用<span class="math notranslate nohighlight">\(G\)</span>代表时间域, 相应的值域中的一个元素（也就是我们的具体的一个时间序列样本）<span class="math notranslate nohighlight">\(f\)</span>可以看成是从<span class="math notranslate nohighlight">\(G\)</span>到<span class="math notranslate nohighlight">\(\mathbb C\)</span>的一个映射，即<span class="math notranslate nohighlight">\(f:G\longrightarrow\C\)</span>，其中<span class="math notranslate nohighlight">\(\C\)</span>是复数域。我们用符合<span class="math notranslate nohighlight">\(\C(G)\)</span>代表这个信号空间。</p>
+<p>我们用<span class="math notranslate nohighlight">\(G\)</span>代表时间域, 相应的值域中的一个元素（也就是我们的具体的一个时间序列样本）<span class="math notranslate nohighlight">\(f\)</span>可以看成是从<span class="math notranslate nohighlight">\(G\)</span>到<span class="math notranslate nohighlight">\(\mathbb C\)</span>的一个映射，即<span class="math notranslate nohighlight">\(f:G\longrightarrow\C\)</span>，其中<span class="math notranslate nohighlight">\(\C\)</span>是复数域。我们用符合<span class="math notranslate nohighlight">\(\C[G]\)</span>代表这个信号空间。</p>
 <p>这个空间太过宽泛，为了便于分析，我们需要加一些结构，也就是加些法则和条件。</p>
 <section id="c-g-g">
 <span id="signal-space-finitegroup"></span><h2><span class="math notranslate nohighlight">\(\C[G]\)</span>，有限群时间域<span class="math notranslate nohighlight">\(G\)</span><a class="headerlink" href="#c-g-g" title="永久链接至标题">#</a></h2>
-<p>信号空间模型：<span class="math notranslate nohighlight">\(\mathbb{C}(G)\)</span>，<span class="math notranslate nohighlight">\(G\)</span>为有限群。</p>
+<p>信号空间模型：<span class="math notranslate nohighlight">\(\C[G]\)</span>，<span class="math notranslate nohighlight">\(G\)</span>为有限群。</p>
 <section id="id2">
 <h3>基数<a class="headerlink" href="#id2" title="永久链接至标题">#</a></h3>
 <p>我们用<span class="math notranslate nohighlight">\(|G|\)</span>代表基数（cardinal），也就是<span class="math notranslate nohighlight">\(G\)</span>中元素的个数。</p>
@@ -553,8 +570,8 @@ title="Print to PDF"
     \end{aligned}
 \right.}\end{split}\]</div>
 <p>即</p>
-<div class="amsmath math notranslate nohighlight" id="equation-66cc9720-6e1d-4a18-bae5-e6a1001c4028">
-<span class="eqno">(1)<a class="headerlink" href="#equation-66cc9720-6e1d-4a18-bae5-e6a1001c4028" title="公式的永久链接">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ea688976-c4ad-41e8-86a1-643f5295d48d">
+<span class="eqno">(1)<a class="headerlink" href="#equation-ea688976-c4ad-41e8-86a1-643f5295d48d" title="公式的永久链接">#</a></span>\[\begin{equation}
 f=\sum_{g\in G}f(g)\delta_g,\quad\forall f\in\C[G]
 \end{equation}\]</div>
 <p>由此，<span class="math notranslate nohighlight">\(\C[G]\)</span>是<span class="math notranslate nohighlight">\(\C\)</span>上的一个向量空间（vector space）并且维度为<span class="math notranslate nohighlight">\(|G|\)</span>。</p>
@@ -573,15 +590,15 @@ f=\sum_{g\in G}f(g)\delta_g,\quad\forall f\in\C[G]
 <p><span class="math notranslate nohighlight">\(G\)</span>为一个有限群，特征（character）<span class="math notranslate nohighlight">\(\chi\)</span>是由<span class="math notranslate nohighlight">\(G\)</span>到<span class="math notranslate nohighlight">\((\C,*)\)</span>的态射（morphism），其中<span class="math notranslate nohighlight">\((\C,*)\)</span>是一个由复数域<span class="math notranslate nohighlight">\(\C\)</span>和乘积算子<span class="math notranslate nohighlight">\(*\)</span>构成的群（我们通常用<span class="math notranslate nohighlight">\(\C^*\)</span>表示），也就是说</p>
 <div class="math notranslate nohighlight">
 \[\chi_1\chi_2:g\in G\longmapsto\chi_1(g)\chi_2(g)，\quad\forall\chi_1,\chi_2\in\hat{G}。\]</div>
-<p>我们用符号<span class="math notranslate nohighlight">\(\hat{G}\)</span>代表特征集合，这个集合就叫做<span class="math notranslate nohighlight">\(G\)</span>的对偶。</p>
+<p>我们用符号<span class="math notranslate nohighlight">\(\hat{G}\)</span>代表特征集合，这个集合就叫做<span class="math notranslate nohighlight">\(G\)</span>的对偶（dual）。</p>
 </section>
 </div><p>以下命题彰显了对偶群的性质，也是通过代数结构对离散傅里叶变换最好的解释。</p>
 <div class="proof proposition admonition" id="finitegroup_dual">
 <p class="admonition-title"><span class="caption-number">Proposition 2 </span></p>
 <section class="proposition-content" id="proof-content">
 <p>假设<span class="math notranslate nohighlight">\(G\)</span>的基数为<span class="math notranslate nohighlight">\(n\in\N\)</span>，即<span class="math notranslate nohighlight">\(|G|=n\)</span>，那么其对偶群的元素一定是某个单位圆的根：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-6cc5c6f4-b337-42a6-aae2-b853d8cd8c9f">
-<span class="eqno">(2)<a class="headerlink" href="#equation-6cc5c6f4-b337-42a6-aae2-b853d8cd8c9f" title="公式的永久链接">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-178fd5b4-6c7b-4285-9f0d-94aea6eefa59">
+<span class="eqno">(2)<a class="headerlink" href="#equation-178fd5b4-6c7b-4285-9f0d-94aea6eefa59" title="公式的永久链接">#</a></span>\[\begin{equation}
 \U_n=\left\{\left.\exp\left(\frac{2ik\pi}{n}\right)\right|0\leq k&lt;n\right\}
 \end{equation}\]</div>
 <p>而且，</p>

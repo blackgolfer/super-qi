@@ -1,0 +1,50 @@
+Traceback (most recent call last):
+  File "/Volumes/m2.wd.black.sn850.1/dev/pyenv/versions/3.11/envs/python3.11/lib/python3.11/site-packages/jupyter_cache/executors/utils.py", line 51, in single_nb_execution
+    executenb(
+  File "/Volumes/m2.wd.black.sn850.1/dev/pyenv/versions/3.11/envs/python3.11/lib/python3.11/site-packages/nbclient/client.py", line 1204, in execute
+    return NotebookClient(nb=nb, resources=resources, km=km, **kwargs).execute()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Volumes/m2.wd.black.sn850.1/dev/pyenv/versions/3.11/envs/python3.11/lib/python3.11/site-packages/nbclient/util.py", line 84, in wrapped
+    return just_run(coro(*args, **kwargs))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Volumes/m2.wd.black.sn850.1/dev/pyenv/versions/3.11/envs/python3.11/lib/python3.11/site-packages/nbclient/util.py", line 62, in just_run
+    return loop.run_until_complete(coro)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Volumes/m2.wd.black.sn850.1/dev/pyenv/versions/3.11.0/lib/python3.11/asyncio/base_events.py", line 650, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/Volumes/m2.wd.black.sn850.1/dev/pyenv/versions/3.11.0/lib/python3.11/contextlib.py", line 222, in __aexit__
+    await self.gen.athrow(typ, value, traceback)
+  File "/Volumes/m2.wd.black.sn850.1/dev/pyenv/versions/3.11/envs/python3.11/lib/python3.11/site-packages/nbclient/client.py", line 608, in async_setup_kernel
+    yield
+  File "/Volumes/m2.wd.black.sn850.1/dev/pyenv/versions/3.11/envs/python3.11/lib/python3.11/site-packages/nbclient/client.py", line 663, in async_execute
+    await self.async_execute_cell(
+  File "/Volumes/m2.wd.black.sn850.1/dev/pyenv/versions/3.11/envs/python3.11/lib/python3.11/site-packages/nbclient/client.py", line 965, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/Volumes/m2.wd.black.sn850.1/dev/pyenv/versions/3.11/envs/python3.11/lib/python3.11/site-packages/nbclient/client.py", line 862, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+v=-10
+sig = [w*np.cos((v+.5)*u) for u in t]
+fig,ax=plt.subplots()
+plot_function(ax,t,sig)
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mNameError[0m                                 Traceback (most recent call last)
+Cell [0;32mIn[40], line 2[0m
+[1;32m      1[0m v[38;5;241m=[39m[38;5;241m-[39m[38;5;241m10[39m
+[0;32m----> 2[0m sig [38;5;241m=[39m [43m[[49m[43mw[49m[38;5;241;43m*[39;49m[43mnp[49m[38;5;241;43m.[39;49m[43mcos[49m[43m([49m[43m([49m[43mv[49m[38;5;241;43m+[39;49m[38;5;241;43m.5[39;49m[43m)[49m[38;5;241;43m*[39;49m[43mu[49m[43m)[49m[43m [49m[38;5;28;43;01mfor[39;49;00m[43m [49m[43mu[49m[43m [49m[38;5;129;43;01min[39;49;00m[43m [49m[43mt[49m[43m][49m
+[1;32m      3[0m fig,ax[38;5;241m=[39mplt[38;5;241m.[39msubplots()
+[1;32m      4[0m plot_function(ax,t,sig)
+
+Cell [0;32mIn[40], line 2[0m, in [0;36m<listcomp>[0;34m(.0)[0m
+[1;32m      1[0m v[38;5;241m=[39m[38;5;241m-[39m[38;5;241m10[39m
+[0;32m----> 2[0m sig [38;5;241m=[39m [[43mw[49m[38;5;241m*[39mnp[38;5;241m.[39mcos((v[38;5;241m+[39m[38;5;241m.5[39m)[38;5;241m*[39mu) [38;5;28;01mfor[39;00m u [38;5;129;01min[39;00m t]
+[1;32m      3[0m fig,ax[38;5;241m=[39mplt[38;5;241m.[39msubplots()
+[1;32m      4[0m plot_function(ax,t,sig)
+
+[0;31mNameError[0m: name 'w' is not defined
+NameError: name 'w' is not defined
+

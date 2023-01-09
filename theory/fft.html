@@ -54,6 +54,8 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "C": "\\mathbb{C}", "Z": "\\mathbb{Z}", "Q": "\\mathbb{Q}", "L": "\\mathbb{L}", "U": "\\mathbb{U}", "T": "\\mathbb{T}", "R": "\\mathbb{R}", "defeq": "\\mathop:=", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜索" href="../search.html" />
     <link rel="next" title="卷积" href="convolution.html" />
@@ -136,18 +138,13 @@ const thebe_selector_output = ".output, .cell_output"
 </ul>
 <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  实践篇
+  实验篇
  </span>
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="../nb/intro.html">
-   实践篇
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../nb/thebe.html">
-   Jupyter Notebooks
+   导言
   </a>
  </li>
  <li class="toctree-l1">
@@ -168,6 +165,28 @@ const thebe_selector_output = ".output, .cell_output"
  <li class="toctree-l1">
   <a class="reference internal" href="../nb/wavelet.html">
    小波分析
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  实现篇
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../impl/intro.html">
+   导言
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../impl/signal.html">
+   信号空间
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../impl/fft.html">
+   离散傅里叶变换
   </a>
  </li>
 </ul>
@@ -342,12 +361,57 @@ title="Print to PDF"
     </ul>
   </div>
 </div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
 
     </div>
 </div>
 
 <!-- Table of contents -->
 <div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#c-g-g">
+   <span class="math notranslate nohighlight">
+    \(\C[G]\)
+   </span>
+   ，
+   <span class="math notranslate nohighlight">
+    \(G\)
+   </span>
+   为有限群
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#l-2-r">
+   函数空间
+   <span class="math notranslate nohighlight">
+    \(\L^2(\R)\)
+   </span>
+   的傅里叶变换
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   连续与离散傅里叶变换的关系
+  </a>
+ </li>
+</ul>
+
+    </nav>
 </div>
     </div>
     <div class="article row">
@@ -359,6 +423,40 @@ title="Print to PDF"
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#c-g-g">
+   <span class="math notranslate nohighlight">
+    \(\C[G]\)
+   </span>
+   ，
+   <span class="math notranslate nohighlight">
+    \(G\)
+   </span>
+   为有限群
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#l-2-r">
+   函数空间
+   <span class="math notranslate nohighlight">
+    \(\L^2(\R)\)
+   </span>
+   的傅里叶变换
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id2">
+   连续与离散傅里叶变换的关系
+  </a>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -368,6 +466,79 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="id1">
 <h1>快速傅里叶变换<a class="headerlink" href="#id1" title="永久链接至标题">#</a></h1>
+<section id="c-g-g">
+<h2><span class="math notranslate nohighlight">\(\C[G]\)</span>，<span class="math notranslate nohighlight">\(G\)</span>为有限群<a class="headerlink" href="#c-g-g" title="永久链接至标题">#</a></h2>
+<div class="proof definition admonition" id="def_finite_group_ftc">
+<p class="admonition-title"><span class="caption-number">Definition 2 </span></p>
+<section class="definition-content" id="proof-content">
+<p>对于<span class="math notranslate nohighlight">\(f\in\C[G]\)</span>，我们定义其傅里叶系数为</p>
+<div class="amsmath math notranslate nohighlight" id="equation-2e8de70d-8e9f-429c-8e6c-80a223fb4571">
+<span class="eqno">(3)<a class="headerlink" href="#equation-2e8de70d-8e9f-429c-8e6c-80a223fb4571" title="公式的永久链接">#</a></span>\[\begin{equation}
+c_f(\chi)\defeq&lt;f,\chi&gt;,\quad\forall\chi\in\hat{G}
+\end{equation}\]</div>
+<p>由此我们定义了以下的一个映射，<span class="math notranslate nohighlight">\(c\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+c:\left\{
+    \begin{array}{ccc}
+    \C[G]&amp;\longrightarrow&amp;\C[\hat{G}]\\
+    f&amp;\longmapsto&amp;c_f
+    \end{array}
+\right.
+\end{split}\]</div>
+</section>
+</div><p>通常，我们更习惯傅里叶变换而不仅仅是系数，其术语作相应的调整：</p>
+<div class="proof definition admonition" id="def_finite_group_ft">
+<p class="admonition-title"><span class="caption-number">Definition 3 </span> (傅里叶变换)</p>
+<section class="definition-content" id="proof-content">
+<p>傅里叶变换<span class="math notranslate nohighlight">\(\mathcal{F}\)</span>定义为：</p>
+<div class="amsmath math notranslate nohighlight" id="equation-5b54fea8-50a0-46bc-a421-6d53db3980d4">
+<span class="eqno">(4)<a class="headerlink" href="#equation-5b54fea8-50a0-46bc-a421-6d53db3980d4" title="公式的永久链接">#</a></span>\[\begin{equation}
+\mathcal F:\left\{
+    \begin{array}{ccc}
+    \C[G]&amp;\longrightarrow&amp;\C[\hat{G}]\\
+    f&amp;\longmapsto&amp;\hat{f}
+    \end{array}
+\right.
+\end{equation}\]</div>
+<p>其中<span class="math notranslate nohighlight">\(\hat{f}\)</span>为<span class="math notranslate nohighlight">\(\hat{G}\)</span>的一个函数，即<span class="math notranslate nohighlight">\(\hat{f}\in\C[\hat{G}]\)</span>:</p>
+<div class="amsmath math notranslate nohighlight" id="equation-2dd8a0e0-af3b-402d-b487-02b777f17e9e">
+<span class="eqno">(5)<a class="headerlink" href="#equation-2dd8a0e0-af3b-402d-b487-02b777f17e9e" title="公式的永久链接">#</a></span>\[\begin{equation}
+\hat{f}(\chi)\defeq|G|c_f(\bar{\chi})=\sum_{x\in G}f(x)\chi(x)
+\end{equation}\]</div>
+</section>
+</div><p>态射<span class="math notranslate nohighlight">\(c\)</span>和<span class="math notranslate nohighlight">\(\mathcal{F}\)</span>明显是线性的，事实上，他们是从线性空间<span class="math notranslate nohighlight">\(\C[G]\)</span>到<span class="math notranslate nohighlight">\(\C[\hat{G}]\)</span>的一个同构态射：</p>
+<div class="proof proposition admonition" id="proposition-2">
+<p class="admonition-title"><span class="caption-number">Proposition 4 </span> (傅里叶逆变换)</p>
+<section class="proposition-content" id="proof-content">
+<p>对于<span class="math notranslate nohighlight">\(f\in\C[G]\)</span>，我们有以下的逆变换：</p>
+<div class="amsmath math notranslate nohighlight" id="equation-605edd7e-3aa5-43f4-b941-508003d6df35">
+<span class="eqno">(6)<a class="headerlink" href="#equation-605edd7e-3aa5-43f4-b941-508003d6df35" title="公式的永久链接">#</a></span>\[\begin{equation}
+f=\sum_{\chi\in\hat{G}}c_f(\chi)\chi=\frac{1}{|G|}\sum_{\chi\in\hat{G}}\hat{f}(\chi)\chi^{-1}
+\end{equation}\]</div>
+</section>
+</div><div class="proof proposition admonition" id="proposition-3">
+<p class="admonition-title"><span class="caption-number">Proposition 5 </span> (帕塞瓦尔恒等式)</p>
+<section class="proposition-content" id="proof-content">
+<p>对于<span class="math notranslate nohighlight">\(f, g\in\C[G]\)</span>，我们有以下恒等式：</p>
+<div class="amsmath math notranslate nohighlight" id="equation-309de5a1-8e9d-4d2e-bc8e-d303d17de733">
+<span class="eqno">(7)<a class="headerlink" href="#equation-309de5a1-8e9d-4d2e-bc8e-d303d17de733" title="公式的永久链接">#</a></span>\[\begin{equation}
+&lt;f,g&gt;=|G|&lt;c_f,c_g&gt;=\frac{1}{|G|}&lt;\hat{f},\hat{g}&gt;
+\end{equation}\]</div>
+</section>
+</div></section>
+<section id="l-2-r">
+<h2>函数空间<span class="math notranslate nohighlight">\(\L^2(\R)\)</span>的傅里叶变换<a class="headerlink" href="#l-2-r" title="永久链接至标题">#</a></h2>
+</section>
+<section id="id2">
+<h2>连续与离散傅里叶变换的关系<a class="headerlink" href="#id2" title="永久链接至标题">#</a></h2>
+<p>There are two basic techniques for influencing how one can calculate, using the discrete transform, different values of the continuous transform.</p>
+<ul class="simple">
+<li><p>We can sample the signal with more or less precision. We have seen that the more precise the sampling is (that is to say the more points we take to represent the analyzed function), the wider the spectrum of the transform. Thus, if one wishes to cover a spectrum twice as large, it suffices to divide the interpolation interval by two. Of course, this also extends the time needed to do the math.</p></li>
+<li><p>You can add zeros at the end of the vector. If we are satisfied with the spectrum on which we calculate the transform (more precisely the maximum and minimum frequencies that we can calculate), we may then want to calculate the transform with more precision, for example if we want to draw a curve to graphically represent the transform. In this case, the procedure is simple: it suffices to add zeros at the end of the vector, to add as many calculated intermediate frequencies.</p></li>
+</ul>
+<p>By playing on these two parameters (interpolation precision and addition of zeros), we can calculate “custom” discrete transforms, to have a certain fixed vector size (this can be used to create filters, see Section 4.2), but also for the representation of the transform. The figure 4.1 shows the different results that can be obtained by adjusting both the number of sampling points and the addition of zeros. The functions represented are the modules of the DFT of the indicator function of [0.5, 1], sampled on [0, 1] at regular intervals. Each row uses the same number of sample points, but with more or less zeros added. The exercise 41 is instructive in this regard, since it reinvests all of this in order to create and test a low-pass filter.</p>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
