@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>离散傅里叶变换</title>
+    <title>整数域上的折叠实现</title>
     
   <!-- Loaded before other Sphinx assets -->
   <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
@@ -29,6 +29,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
     <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-examples.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -54,11 +55,11 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "C": "\\mathbb{C}", "Z": "\\mathbb{Z}", "Q": "\\mathbb{Q}", "L": "\\mathbb{L}", "U": "\\mathbb{U}", "T": "\\mathbb{T}", "R": "\\mathbb{R}", "defeq": "\\mathop:=", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script>window.MathJax = {"HTML-CSS": {"matchFontHeight": true, "scale": 80}, "tex": {"macros": {"N": "\\mathbb{N}", "C": "\\mathbb{C}", "Z": "\\mathbb{Z}", "Q": "\\mathbb{Q}", "L": "\\mathbb{L}", "U": "\\mathbb{U}", "T": "\\mathbb{T}", "R": "\\mathbb{R}", "defeq": "\\mathop:=", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜索" href="../search.html" />
-    <link rel="prev" title="信号空间" href="signal.html" />
+    <link rel="prev" title="信号空间的数据结构" href="signal.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="zh">
     
@@ -180,12 +181,12 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="signal.html">
-   信号空间
+   信号空间的数据结构
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   离散傅里叶变换
+   整数域上的折叠实现
   </a>
  </li>
 </ul>
@@ -279,24 +280,6 @@ title="Launch on Colab"
   </span>
 <span class="headerbtn__text-container">Colab</span>
 </a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="initThebeSBT()"
-  class="headerbtn headerbtn-launch-thebe"
-  data-toggle="tooltip"
-data-placement="left"
-title="Launch Thebe"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-play"></i>
-  </span>
-<span class="headerbtn__text-container">Live Code</span>
-</button>
 
       </li>
       
@@ -448,100 +431,86 @@ title="Print to PDF"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#lct-lst">
-   LCT 和 LST
+  <a class="reference internal nav-link" href="#rising-cutoff-functioin">
+   磨光技术：rising cutoff functioin
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#uu">
+   折叠算子
+   <span class="math notranslate nohighlight">
+    \(U\)
+   </span>
+   和逆折叠算子
+   <span class="math notranslate nohighlight">
+    \(U^*\)
+   </span>
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#rising-cutoff-functioin">
-     磨光技术：rising cutoff functioin
+    <a class="reference internal nav-link" href="#u-u-uu">
+     验证恒等式
+     <span class="math notranslate nohighlight">
+      \(U^*U=UU^*\)
+     </span>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#uu">
-     折叠算子
-     <span class="math notranslate nohighlight">
-      \(U\)
-     </span>
-     和逆折叠算子
-     <span class="math notranslate nohighlight">
-      \(U^*\)
-     </span>
+    <a class="reference internal nav-link" href="#id2">
+     单边磨光
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id2">
-       对数组的操作
+      <a class="reference internal nav-link" href="#id3">
+       信号的预备
       </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h5 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#u-u-uu">
-         验证恒等式
-         <span class="math notranslate nohighlight">
-          \(U^*U=UU^*\)
-         </span>
-        </a>
-       </li>
-       <li class="toc-h5 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#id3">
-         单边磨光
-        </a>
-        <ul class="nav section-nav flex-column">
-         <li class="toc-h6 nav-item toc-entry">
-          <a class="reference internal nav-link" href="#id4">
-           信号的预备
-          </a>
-         </li>
-         <li class="toc-h6 nav-item toc-entry">
-          <a class="reference internal nav-link" href="#fipcuips">
-           右边磨光用
-           <code class="docutils literal notranslate">
-            <span class="pre">
-             fipc
-            </span>
-           </code>
-           或
-           <code class="docutils literal notranslate">
-            <span class="pre">
-             uips
-            </span>
-           </code>
-          </a>
-         </li>
-         <li class="toc-h6 nav-item toc-entry">
-          <a class="reference internal nav-link" href="#fipsuipc">
-           左边磨光用
-           <code class="docutils literal notranslate">
-            <span class="pre">
-             fips
-            </span>
-           </code>
-           或
-           <code class="docutils literal notranslate">
-            <span class="pre">
-             uipc
-            </span>
-           </code>
-          </a>
-         </li>
-        </ul>
-       </li>
-       <li class="toc-h5 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#id5">
-         双边磨光
-        </a>
-       </li>
-      </ul>
      </li>
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id6">
-       对函数的操作
+      <a class="reference internal nav-link" href="#fipcuips">
+       右边磨光用
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         fipc
+        </span>
+       </code>
+       或
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         uips
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#fipsuipc">
+       左边磨光用
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         fips
+        </span>
+       </code>
+       或
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         uipc
+        </span>
+       </code>
       </a>
      </li>
     </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id7">
+    <a class="reference internal nav-link" href="#id4">
+     双边磨光
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     对函数的操作
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id6">
      内积
     </a>
    </li>
@@ -556,7 +525,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>离散傅里叶变换</h1>
+                <h1>整数域上的折叠实现</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -567,100 +536,86 @@ title="Print to PDF"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#lct-lst">
-   LCT 和 LST
+  <a class="reference internal nav-link" href="#rising-cutoff-functioin">
+   磨光技术：rising cutoff functioin
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#uu">
+   折叠算子
+   <span class="math notranslate nohighlight">
+    \(U\)
+   </span>
+   和逆折叠算子
+   <span class="math notranslate nohighlight">
+    \(U^*\)
+   </span>
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#rising-cutoff-functioin">
-     磨光技术：rising cutoff functioin
+    <a class="reference internal nav-link" href="#u-u-uu">
+     验证恒等式
+     <span class="math notranslate nohighlight">
+      \(U^*U=UU^*\)
+     </span>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#uu">
-     折叠算子
-     <span class="math notranslate nohighlight">
-      \(U\)
-     </span>
-     和逆折叠算子
-     <span class="math notranslate nohighlight">
-      \(U^*\)
-     </span>
+    <a class="reference internal nav-link" href="#id2">
+     单边磨光
     </a>
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id2">
-       对数组的操作
+      <a class="reference internal nav-link" href="#id3">
+       信号的预备
       </a>
-      <ul class="nav section-nav flex-column">
-       <li class="toc-h5 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#u-u-uu">
-         验证恒等式
-         <span class="math notranslate nohighlight">
-          \(U^*U=UU^*\)
-         </span>
-        </a>
-       </li>
-       <li class="toc-h5 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#id3">
-         单边磨光
-        </a>
-        <ul class="nav section-nav flex-column">
-         <li class="toc-h6 nav-item toc-entry">
-          <a class="reference internal nav-link" href="#id4">
-           信号的预备
-          </a>
-         </li>
-         <li class="toc-h6 nav-item toc-entry">
-          <a class="reference internal nav-link" href="#fipcuips">
-           右边磨光用
-           <code class="docutils literal notranslate">
-            <span class="pre">
-             fipc
-            </span>
-           </code>
-           或
-           <code class="docutils literal notranslate">
-            <span class="pre">
-             uips
-            </span>
-           </code>
-          </a>
-         </li>
-         <li class="toc-h6 nav-item toc-entry">
-          <a class="reference internal nav-link" href="#fipsuipc">
-           左边磨光用
-           <code class="docutils literal notranslate">
-            <span class="pre">
-             fips
-            </span>
-           </code>
-           或
-           <code class="docutils literal notranslate">
-            <span class="pre">
-             uipc
-            </span>
-           </code>
-          </a>
-         </li>
-        </ul>
-       </li>
-       <li class="toc-h5 nav-item toc-entry">
-        <a class="reference internal nav-link" href="#id5">
-         双边磨光
-        </a>
-       </li>
-      </ul>
      </li>
      <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#id6">
-       对函数的操作
+      <a class="reference internal nav-link" href="#fipcuips">
+       右边磨光用
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         fipc
+        </span>
+       </code>
+       或
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         uips
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#fipsuipc">
+       左边磨光用
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         fips
+        </span>
+       </code>
+       或
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         uipc
+        </span>
+       </code>
       </a>
      </li>
     </ul>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#id7">
+    <a class="reference internal nav-link" href="#id4">
+     双边磨光
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     对函数的操作
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id6">
      内积
     </a>
    </li>
@@ -677,93 +632,40 @@ title="Print to PDF"
               <div>
                 
   <section class="tex2jax_ignore mathjax_ignore" id="id1">
-<h1>离散傅里叶变换<a class="headerlink" href="#id1" title="永久链接至标题">#</a></h1>
-<section id="lct-lst">
-<h2>LCT 和 LST<a class="headerlink" href="#lct-lst" title="永久链接至标题">#</a></h2>
+<h1>整数域上的折叠实现<a class="headerlink" href="#id1" title="永久链接至标题">#</a></h1>
 <section id="rising-cutoff-functioin">
-<h3>磨光技术：rising cutoff functioin<a class="headerlink" href="#rising-cutoff-functioin" title="永久链接至标题">#</a></h3>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<h2>磨光技术：rising cutoff functioin<a class="headerlink" href="#rising-cutoff-functioin" title="永久链接至标题">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">abc</span> <span class="kn">import</span> <span class="n">ABCMeta</span><span class="p">,</span> <span class="n">abstractmethod</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
-<span class="c1">#-------------------------------------------------------</span>
-<span class="c1"># Precomputed rising cutoff function (rcf) for grid</span>
-<span class="c1"># point and mid point foldings</span>
-<span class="c1"># </span>
-<span class="c1"># Inputs:</span>
-<span class="c1"># E - number of sampling points on the interval (0,1]</span>
-<span class="c1"># num - rcf parameter, for sine iteration, this is the</span>
-<span class="c1">#       number of iteration</span>
-<span class="c1">#</span>
-<span class="c1"># Internal variables:</span>
-<span class="c1"># _grid: store the precomputed rcf for sampled at grid</span>
-<span class="c1">#        point</span>
-<span class="c1">#        _grid[i]*_grid[i]+_grid[-i]*_grid[-i]=1</span>
-<span class="c1"># _mid: store the precomputed rcf for mid point sampled</span>
-<span class="c1">#       _mid[i]*_mid[i]+_mid[-i-1]*_mid[-i-1]=1</span>
-<span class="c1">#------------------------------------------------------</span>
-<span class="k">class</span> <span class="nc">rcf</span><span class="p">:</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">E</span><span class="p">,</span><span class="n">num</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+<span class="k">class</span> <span class="nc">rcf</span><span class="p">(</span><span class="nb">object</span><span class="p">,</span> <span class="n">metaclass</span><span class="o">=</span><span class="n">ABCMeta</span><span class="p">):</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">E</span><span class="p">,</span><span class="nb">type</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_E</span><span class="o">=</span><span class="n">E</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_num_itr</span><span class="o">=</span><span class="n">num</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_type</span><span class="o">=</span><span class="s1">&#39;mid&#39;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_grid</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">_E</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_mid</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">_E</span><span class="p">,</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">__rcfgrid</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">__rcfmid</span><span class="p">()</span>
-
-    <span class="k">def</span> <span class="nf">settype</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="nb">type</span><span class="p">):</span>
         <span class="k">if</span> <span class="nb">type</span><span class="o">==</span><span class="s1">&#39;grid&#39;</span> <span class="ow">or</span> <span class="nb">type</span><span class="o">==</span><span class="s1">&#39;mid&#39;</span><span class="p">:</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_type</span><span class="o">=</span><span class="nb">type</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">NameError</span><span class="p">(</span><span class="s2">&quot;invalid type&quot;</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">type</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_type</span>
-
-    <span class="k">def</span> <span class="nf">final</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_E</span><span class="o">-</span><span class="mi">1</span>
-
-    <span class="k">def</span> <span class="nf">least</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_type</span> <span class="o">==</span> <span class="s1">&#39;grid&#39;</span><span class="p">:</span>
-            <span class="k">return</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">_E</span><span class="o">+</span><span class="mi">1</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">_E</span>
-        
-    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">position</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_type</span><span class="o">==</span><span class="s1">&#39;grid&#39;</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_grid</span><span class="p">[</span><span class="n">position</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">_E</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__rcfgrid</span><span class="p">()</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mid</span><span class="p">[</span><span class="n">position</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">_E</span><span class="p">,</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">__rcfmid</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">position</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="n">position</span><span class="p">]</span>
 
     <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_type</span><span class="o">==</span><span class="s1">&#39;grid&#39;</span><span class="p">:</span>
-            <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_grid</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_mid</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">)</span>
 
-    <span class="c1"># for now we just use the iterative sine</span>
-    <span class="c1"># we will deal with multiple rcf later</span>
-    <span class="k">def</span> <span class="nf">rcfis</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">N</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">t</span><span class="o">&gt;-</span><span class="mf">1.0</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">t</span><span class="o">&lt;</span><span class="mf">1.0</span><span class="p">:</span>
-                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">N</span><span class="p">):</span>
-                    <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mf">0.5</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">t</span><span class="p">)</span>
-                <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mf">0.25</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="p">(</span><span class="mf">1.0</span><span class="o">+</span><span class="n">t</span><span class="p">))</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">t</span> <span class="o">=</span> <span class="mf">1.0</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">t</span> <span class="o">=</span> <span class="mf">0.0</span>
-        <span class="k">return</span> <span class="n">t</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">rcf_fct</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">t</span><span class="p">):</span>
+        <span class="k">pass</span>
 
-    <span class="k">def</span> <span class="nf">order_indexes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_type</span><span class="o">==</span><span class="s1">&#39;grid&#39;</span><span class="p">):</span>
-            <span class="n">oi</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">_E</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
-            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="n">oi</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">_E</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">oi</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">_E</span><span class="p">))</span>
-            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="n">oi</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">_E</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">num_itr</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_num_itr</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">param</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span>
 
     <span class="c1"># rcf sampled at grid point</span>
     <span class="c1"># declare rcfgrid as private method</span>
@@ -773,11 +675,11 @@ title="Print to PDF"
     <span class="k">def</span> <span class="nf">__rcfgrid</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">t</span><span class="o">=</span><span class="mf">0.0</span>
         <span class="n">dt</span><span class="o">=</span><span class="mf">1.0</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">_E</span> <span class="c1"># 1/(final+1)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">_grid</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
         <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">_E</span><span class="p">):</span>
             <span class="n">t</span><span class="o">=</span><span class="n">t</span><span class="o">+</span><span class="n">dt</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_grid</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rcfis</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">_num_itr</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_grid</span><span class="p">[</span><span class="o">-</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rcfis</span><span class="p">(</span><span class="o">-</span><span class="n">t</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">_num_itr</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rcf_fct</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="o">-</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rcf_fct</span><span class="p">(</span><span class="o">-</span><span class="n">t</span><span class="p">)</span>
 
     <span class="c1"># rcf sampled at mid point</span>
     <span class="c1"># declare rcfmid as private method</span>
@@ -788,9 +690,60 @@ title="Print to PDF"
         <span class="n">t</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">_E</span>
         <span class="n">dt</span> <span class="o">=</span> <span class="mf">1.0</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">_E</span>
         <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">_E</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_mid</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">rcfis</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">_num_itr</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">_mid</span><span class="p">[</span><span class="o">-</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">rcfis</span><span class="p">(</span><span class="o">-</span><span class="n">t</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">_num_itr</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">rcf_fct</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="o">-</span><span class="n">j</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">rcf_fct</span><span class="p">(</span><span class="o">-</span><span class="n">t</span><span class="p">)</span>
             <span class="n">t</span> <span class="o">=</span> <span class="n">t</span><span class="o">+</span><span class="n">dt</span>
+
+    <span class="k">def</span> <span class="nf">order_indexes</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_type</span><span class="o">==</span><span class="s1">&#39;grid&#39;</span><span class="p">):</span>
+            <span class="n">oi</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">_E</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="n">oi</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">_E</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">oi</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">_E</span><span class="p">))</span>
+            <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">roll</span><span class="p">(</span><span class="n">oi</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">_E</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">final</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_E</span><span class="o">-</span><span class="mi">1</span>
+
+    <span class="k">def</span> <span class="nf">least</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_type</span> <span class="o">==</span> <span class="s1">&#39;grid&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">_E</span><span class="o">+</span><span class="mi">1</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">_E</span>
+
+    <span class="k">def</span> <span class="nf">type</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_type</span>
+
+<span class="k">class</span> <span class="nc">rcfis</span><span class="p">(</span><span class="n">rcf</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">E</span><span class="p">,</span><span class="nb">type</span><span class="p">,</span><span class="n">ni</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_num_itr</span><span class="o">=</span><span class="n">ni</span>
+        <span class="n">rcf</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">E</span><span class="p">,</span><span class="nb">type</span><span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">grid</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span><span class="n">E</span><span class="p">,</span><span class="n">ni</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">E</span><span class="p">,</span><span class="s1">&#39;grid&#39;</span><span class="p">,</span><span class="n">ni</span><span class="p">)</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span> <span class="nf">mid</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span><span class="n">E</span><span class="p">,</span><span class="n">ni</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="n">E</span><span class="p">,</span><span class="s1">&#39;mid&#39;</span><span class="p">,</span><span class="n">ni</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">rcf_fct</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">t</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">t</span><span class="o">&gt;-</span><span class="mf">1.0</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">t</span><span class="o">&lt;</span><span class="mf">1.0</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">_num_itr</span><span class="p">):</span>
+                    <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mf">0.5</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">t</span><span class="p">)</span>
+                <span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="mf">0.25</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="p">(</span><span class="mf">1.0</span><span class="o">+</span><span class="n">t</span><span class="p">))</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">t</span> <span class="o">=</span> <span class="mf">1.0</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">t</span> <span class="o">=</span> <span class="mf">0.0</span>
+        <span class="k">return</span> <span class="n">t</span>
+
+    <span class="k">def</span> <span class="nf">param</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_num_itr</span>
+
+<span class="k">class</span> <span class="nc">rcfth</span><span class="p">(</span><span class="n">rcf</span><span class="p">):</span>
+    <span class="k">pass</span>
 </pre></div>
 </div>
 <div class="cell docutils container">
@@ -798,15 +751,14 @@ title="Print to PDF"
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">import</span> <span class="nn">scipy</span>
-<span class="kn">import</span> <span class="nn">sys</span>  
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">&#39;../../../src/python/lft&#39;</span><span class="p">)</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;../../../src/python/signal&#39;</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">sys</span>
 
-<span class="kn">from</span> <span class="nn">rcf</span> <span class="kn">import</span> <span class="n">rcf</span>
+<span class="kn">from</span> <span class="nn">rcf</span> <span class="kn">import</span> <span class="n">rcfis</span>
 <span class="kn">import</span> <span class="nn">fold</span>
 <span class="kn">from</span> <span class="nn">qiplot</span> <span class="kn">import</span> <span class="n">plot_ts</span>
 <span class="kn">import</span> <span class="nn">qisignal</span>
-<span class="kn">from</span> <span class="nn">qisignal</span> <span class="kn">import</span> <span class="n">signal</span>
+<span class="kn">from</span> <span class="nn">qisignal</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">utils</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">([</span><span class="s1">&#39;ggplot&#39;</span><span class="p">,</span><span class="s1">&#39;../../presentation.mplstyle&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
@@ -814,7 +766,7 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r</span><span class="o">=</span><span class="n">rcf</span><span class="p">(</span><span class="mi">32</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r</span><span class="o">=</span><span class="n">rcfis</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -826,26 +778,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;mid&#39;
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>64
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r</span><span class="o">.</span><span class="n">settype</span><span class="p">(</span><span class="s1">&#39;grid&#39;</span><span class="p">)</span>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&#39;grid&#39;
 </pre></div>
 </div>
 </div>
@@ -871,24 +804,24 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/fft_10_0.png" src="../_images/fft_10_0.png" />
+<img alt="../_images/fft_7_0.png" src="../_images/fft_7_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">oi</span><span class="o">=</span><span class="n">r</span><span class="o">.</span><span class="n">order_indexes</span><span class="p">()</span>
 <span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
-<span class="n">plot_ts</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">r</span><span class="p">[</span><span class="n">oi</span><span class="p">],</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;rcf for &#39;</span><span class="o">+</span> <span class="n">r</span><span class="o">.</span><span class="n">type</span><span class="p">()</span><span class="o">+</span><span class="s1">&#39; sampled, N=&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">num_itr</span><span class="p">()))</span>
+<span class="n">plot_ts</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">r</span><span class="p">[</span><span class="n">oi</span><span class="p">],</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;rcf for &#39;</span><span class="o">+</span> <span class="n">r</span><span class="o">.</span><span class="n">type</span><span class="p">()</span><span class="o">+</span><span class="s1">&#39; sampled, N=&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">param</span><span class="p">()))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/fft_11_0.png" src="../_images/fft_11_0.png" />
+<img alt="../_images/fft_8_0.png" src="../_images/fft_8_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r</span><span class="o">.</span><span class="n">settype</span><span class="p">(</span><span class="s1">&#39;mid&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r</span><span class="o">=</span><span class="n">rcfis</span><span class="o">.</span><span class="n">mid</span><span class="p">(</span><span class="mi">32</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -898,12 +831,12 @@ title="Print to PDF"
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">r</span><span class="p">))</span>
 <span class="n">oi</span><span class="o">=</span><span class="n">r</span><span class="o">.</span><span class="n">order_indexes</span><span class="p">()</span>
 <span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
-<span class="n">plot_ts</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">r</span><span class="p">[</span><span class="n">oi</span><span class="p">],</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;rcf for &#39;</span><span class="o">+</span> <span class="n">r</span><span class="o">.</span><span class="n">type</span><span class="p">()</span><span class="o">+</span><span class="s1">&#39; sampled, N=&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">num_itr</span><span class="p">()))</span>
+<span class="n">plot_ts</span><span class="p">(</span><span class="n">ax</span><span class="p">,</span><span class="n">t</span><span class="p">,</span><span class="n">r</span><span class="p">[</span><span class="n">oi</span><span class="p">],</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;rcf for &#39;</span><span class="o">+</span> <span class="n">r</span><span class="o">.</span><span class="n">type</span><span class="p">()</span><span class="o">+</span><span class="s1">&#39; sampled, N=&#39;</span><span class="o">+</span><span class="nb">str</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">param</span><span class="p">()))</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/fft_13_0.png" src="../_images/fft_13_0.png" />
+<img alt="../_images/fft_10_0.png" src="../_images/fft_10_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -936,7 +869,7 @@ title="Print to PDF"
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r</span><span class="o">.</span><span class="n">settype</span><span class="p">(</span><span class="s1">&#39;grid&#39;</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r</span><span class="o">=</span><span class="n">rcfis</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="mi">32</span><span class="p">)</span>
 <span class="n">test_rcf_identity</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -949,13 +882,15 @@ title="Print to PDF"
 </div>
 </section>
 <section id="uu">
-<h3>折叠算子<span class="math notranslate nohighlight">\(U\)</span>和逆折叠算子<span class="math notranslate nohighlight">\(U^*\)</span><a class="headerlink" href="#uu" title="永久链接至标题">#</a></h3>
+<h2>折叠算子<span class="math notranslate nohighlight">\(U\)</span>和逆折叠算子<span class="math notranslate nohighlight">\(U^*\)</span><a class="headerlink" href="#uu" title="永久链接至标题">#</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">rcf</span>
 
 <span class="c1"># $U$ operator</span>
+<span class="c1"># r must be mid sampled</span>
 <span class="k">def</span> <span class="nf">fipc</span><span class="p">(</span><span class="n">sig</span><span class="p">,</span><span class="n">r</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">type</span><span class="p">()</span><span class="o">!=</span><span class="s1">&#39;mid&#39;</span><span class="p">:</span>
-        <span class="n">r</span><span class="o">.</span><span class="n">settype</span><span class="p">(</span><span class="s1">&#39;mid&#39;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span>
     <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">final</span><span class="p">()</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
         <span class="c1"># r(t)f(t)+r(-t)f(-t)</span>
         <span class="n">tmp</span> <span class="o">=</span> <span class="n">r</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">*</span><span class="n">sig</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">+</span><span class="n">r</span><span class="p">[</span><span class="o">-</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">sig</span><span class="p">[</span><span class="o">-</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
@@ -964,9 +899,10 @@ title="Print to PDF"
         <span class="n">sig</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">=</span><span class="n">tmp</span>
 
 <span class="c1"># $U^*$ operator</span>
+<span class="c1"># r must be mid sampled</span>
 <span class="k">def</span> <span class="nf">fips</span><span class="p">(</span><span class="n">sig</span><span class="p">,</span><span class="n">r</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">r</span><span class="o">.</span><span class="n">type</span><span class="p">()</span><span class="o">!=</span><span class="s1">&#39;mid&#39;</span><span class="p">:</span>
-        <span class="n">r</span><span class="o">.</span><span class="n">settype</span><span class="p">(</span><span class="s1">&#39;mid&#39;</span><span class="p">)</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span>
     <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">final</span><span class="p">()</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
         <span class="c1"># r(t)f(t)-r(-t)f(-t)</span>
         <span class="n">tmp</span> <span class="o">=</span> <span class="n">r</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">*</span><span class="n">sig</span><span class="p">[</span><span class="n">k</span><span class="p">]</span><span class="o">-</span><span class="n">r</span><span class="p">[</span><span class="o">-</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">sig</span><span class="p">[</span><span class="o">-</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
@@ -978,13 +914,12 @@ title="Print to PDF"
 <span class="n">uips</span><span class="o">=</span><span class="n">fipc</span>
 </pre></div>
 </div>
-<section id="id2">
-<h4>对数组的操作<a class="headerlink" href="#id2" title="永久链接至标题">#</a></h4>
 <p><code class="docutils literal notranslate"><span class="pre">fipc</span></code>，<code class="docutils literal notranslate"><span class="pre">uips</span></code>：</p>
 <p><code class="docutils literal notranslate"><span class="pre">fips</span></code>，<code class="docutils literal notranslate"><span class="pre">uipc</span></code>:</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">r</span><span class="p">))</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">r</span><span class="o">=</span><span class="n">rcfis</span><span class="o">.</span><span class="n">mid</span><span class="p">(</span><span class="mi">32</span><span class="p">)</span>
+<span class="n">t</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">r</span><span class="p">))</span>
 <span class="n">one</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
 <span class="n">fold</span><span class="o">.</span><span class="n">fipc</span><span class="p">(</span><span class="n">one</span><span class="p">,</span><span class="n">r</span><span class="p">)</span>
 <span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
@@ -994,7 +929,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/fft_18_0.png" src="../_images/fft_18_0.png" />
+<img alt="../_images/fft_15_0.png" src="../_images/fft_15_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1008,11 +943,11 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/fft_19_0.png" src="../_images/fft_19_0.png" />
+<img alt="../_images/fft_16_0.png" src="../_images/fft_16_0.png" />
 </div>
 </div>
 <section id="u-u-uu">
-<h5>验证恒等式 <span class="math notranslate nohighlight">\(U^*U=UU^*\)</span><a class="headerlink" href="#u-u-uu" title="永久链接至标题">#</a></h5>
+<h3>验证恒等式 <span class="math notranslate nohighlight">\(U^*U=UU^*\)</span><a class="headerlink" href="#u-u-uu" title="永久链接至标题">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">one</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
@@ -1024,7 +959,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/fft_21_0.png" src="../_images/fft_21_0.png" />
+<img alt="../_images/fft_18_0.png" src="../_images/fft_18_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1038,14 +973,14 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/fft_22_0.png" src="../_images/fft_22_0.png" />
+<img alt="../_images/fft_19_0.png" src="../_images/fft_19_0.png" />
 </div>
 </div>
 </section>
+<section id="id2">
+<h3>单边磨光<a class="headerlink" href="#id2" title="永久链接至标题">#</a></h3>
 <section id="id3">
-<h5>单边磨光<a class="headerlink" href="#id3" title="永久链接至标题">#</a></h5>
-<section id="id4">
-<h6>信号的预备<a class="headerlink" href="#id4" title="永久链接至标题">#</a></h6>
+<h4>信号的预备<a class="headerlink" href="#id3" title="永久链接至标题">#</a></h4>
 <p>我们所构造的信号<span class="math notranslate nohighlight">\(x(t)\)</span>由数组表达，通常数组的顺序是按<span class="math notranslate nohighlight">\(t\)</span>从小到大的排序，如下图所示：</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -1056,15 +991,13 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/fft_25_0.png" src="../_images/fft_25_0.png" />
+<img alt="../_images/fft_22_0.png" src="../_images/fft_22_0.png" />
 </div>
 </div>
-<p>如果我们用下标表示<span class="math notranslate nohighlight">\(t\)</span>的正负序列，<span class="math notranslate nohighlight">\(t_{-E},t_{-E+1},\cdots,t_{-1},t_0,t_1,\cdots,t_E\)</span> (样本点个数为奇数的情况，也就是说grid point sampling），以上的序列就是<span class="math notranslate nohighlight">\([x(t_{-E}),x(t_{-E+1}),\cdots,x(t_{-1}),x(t_0),x(t_1)\cdots,x(t_E)]\)</span>。</p>
-<p>在<code class="docutils literal notranslate"><span class="pre">python</span></code>，我们的算法通常要求数组的排列为<span class="math notranslate nohighlight">\([x(t_0),x(t_1)\cdots,x(t_E),x(t_{-E}),x(t_{-E+1}),\cdots,x(t_{-1})]\)</span>。对于上面的<span class="math notranslate nohighlight">\(x(t)\)</span>，我们可以对原来的数组做一些调整：</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">oi</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)))</span>
-<span class="n">qisignal</span><span class="o">.</span><span class="n">left_rotate</span><span class="p">(</span><span class="n">oi</span><span class="p">,</span><span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span>
+<span class="n">left_rotate</span><span class="p">(</span><span class="n">oi</span><span class="p">,</span><span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span>
 </pre></div>
 </div>
 </div>
@@ -1085,25 +1018,25 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/fft_30_0.png" src="../_images/fft_30_0.png" />
+<img alt="../_images/fft_27_0.png" src="../_images/fft_27_0.png" />
 </div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">signal</span></code>这个类就是方便这种数据的预处理：数组是按算法的要求将原来的顺序变成<span class="math notranslate nohighlight">\([x(t_0),x(t_1)\cdots,x(t_E),x(t_{-E}),x(t_{-E+1}),\cdots,x(t_{-1})]\)</span>来存储，但是类中的<code class="docutils literal notranslate"><span class="pre">plot</span></code>函数是按原来的顺序显示。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x1</span><span class="o">=</span><span class="n">signal</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x1</span><span class="o">=</span><span class="n">signal_p</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
 <span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 <span class="n">x1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/fft_32_0.png" src="../_images/fft_32_0.png" />
+<img alt="../_images/fft_29_0.png" src="../_images/fft_29_0.png" />
 </div>
 </div>
 </section>
 <section id="fipcuips">
-<h6>右边磨光用<code class="docutils literal notranslate"><span class="pre">fipc</span></code>或<code class="docutils literal notranslate"><span class="pre">uips</span></code><a class="headerlink" href="#fipcuips" title="永久链接至标题">#</a></h6>
+<h4>右边磨光用<code class="docutils literal notranslate"><span class="pre">fipc</span></code>或<code class="docutils literal notranslate"><span class="pre">uips</span></code><a class="headerlink" href="#fipcuips" title="永久链接至标题">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fold</span><span class="o">.</span><span class="n">fipc</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span><span class="n">r</span><span class="p">)</span>
@@ -1113,23 +1046,23 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/fft_34_0.png" src="../_images/fft_34_0.png" />
+<img alt="../_images/fft_31_0.png" src="../_images/fft_31_0.png" />
 </div>
 </div>
 </section>
 <section id="fipsuipc">
-<h6>左边磨光用<code class="docutils literal notranslate"><span class="pre">fips</span></code>或<code class="docutils literal notranslate"><span class="pre">uipc</span></code><a class="headerlink" href="#fipsuipc" title="永久链接至标题">#</a></h6>
+<h4>左边磨光用<code class="docutils literal notranslate"><span class="pre">fips</span></code>或<code class="docutils literal notranslate"><span class="pre">uipc</span></code><a class="headerlink" href="#fipsuipc" title="永久链接至标题">#</a></h4>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">x</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span> <span class="k">if</span> <span class="n">v</span><span class="o">&lt;</span><span class="mi">0</span> <span class="k">else</span> <span class="mi">1</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">t</span><span class="p">],</span><span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;float&#39;</span><span class="p">)</span>
-<span class="n">x1</span><span class="o">=</span><span class="n">signal</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
+<span class="n">x1</span><span class="o">=</span><span class="n">signal_p</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">x</span><span class="p">)</span>
 <span class="n">fig</span><span class="p">,</span><span class="n">ax</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
 <span class="n">x1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">ax</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/fft_36_0.png" src="../_images/fft_36_0.png" />
+<img alt="../_images/fft_33_0.png" src="../_images/fft_33_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1141,21 +1074,19 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/fft_37_0.png" src="../_images/fft_37_0.png" />
+<img alt="../_images/fft_34_0.png" src="../_images/fft_34_0.png" />
 </div>
 </div>
 </section>
+</section>
+<section id="id4">
+<h3>双边磨光<a class="headerlink" href="#id4" title="永久链接至标题">#</a></h3>
 </section>
 <section id="id5">
-<h5>双边磨光<a class="headerlink" href="#id5" title="永久链接至标题">#</a></h5>
-</section>
+<h3>对函数的操作<a class="headerlink" href="#id5" title="永久链接至标题">#</a></h3>
 </section>
 <section id="id6">
-<h4>对函数的操作<a class="headerlink" href="#id6" title="永久链接至标题">#</a></h4>
-</section>
-</section>
-<section id="id7">
-<h3>内积<a class="headerlink" href="#id7" title="永久链接至标题">#</a></h3>
+<h3>内积<a class="headerlink" href="#id6" title="永久链接至标题">#</a></h3>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">t</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">r</span><span class="p">))</span>
@@ -1182,7 +1113,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/fft_42_0.png" src="../_images/fft_42_0.png" />
+<img alt="../_images/fft_39_0.png" src="../_images/fft_39_0.png" />
 </div>
 </div>
 </section>
@@ -1193,8 +1124,8 @@ title="Print to PDF"
     {
         requestKernel: true,
         binderOptions: {
-            repo: "blackgolfer/super-qi",
-            ref: "szhq20022",
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
         },
         codeMirrorConfig: {
             theme: "abcdef",
@@ -1220,7 +1151,7 @@ title="Print to PDF"
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">上一页</p>
-            <p class="prev-next-title">信号空间</p>
+            <p class="prev-next-title">信号空间的数据结构</p>
         </div>
     </a>
 </div>

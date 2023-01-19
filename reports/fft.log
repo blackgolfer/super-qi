@@ -25,26 +25,29 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-v=-10
-sig = [w*np.cos((v+.5)*u) for u in t]
-fig,ax=plt.subplots()
-plot_function(ax,t,sig)
+import numpy as np
+import matplotlib.pyplot as plt
+import scipy
+import sys  
+sys.path.insert(0, '../../../src/python/lft')
+sys.path.insert(1, '../../../src/python/signal')
+
+from rcf import rcfis
+import fold
+from qiplot import plot_ts
+import qisignal
+from qisignal import signal
+plt.style.use(['ggplot','../../presentation.mplstyle'])
 ------------------
 
 [0;31m---------------------------------------------------------------------------[0m
-[0;31mNameError[0m                                 Traceback (most recent call last)
-Cell [0;32mIn[40], line 2[0m
-[1;32m      1[0m v[38;5;241m=[39m[38;5;241m-[39m[38;5;241m10[39m
-[0;32m----> 2[0m sig [38;5;241m=[39m [43m[[49m[43mw[49m[38;5;241;43m*[39;49m[43mnp[49m[38;5;241;43m.[39;49m[43mcos[49m[43m([49m[43m([49m[43mv[49m[38;5;241;43m+[39;49m[38;5;241;43m.5[39;49m[43m)[49m[38;5;241;43m*[39;49m[43mu[49m[43m)[49m[43m [49m[38;5;28;43;01mfor[39;49;00m[43m [49m[43mu[49m[43m [49m[38;5;129;43;01min[39;49;00m[43m [49m[43mt[49m[43m][49m
-[1;32m      3[0m fig,ax[38;5;241m=[39mplt[38;5;241m.[39msubplots()
-[1;32m      4[0m plot_function(ax,t,sig)
+[0;31mImportError[0m                               Traceback (most recent call last)
+Cell [0;32mIn[1], line 12[0m
+[1;32m     10[0m [38;5;28;01mfrom[39;00m [38;5;21;01mqiplot[39;00m [38;5;28;01mimport[39;00m plot_ts
+[1;32m     11[0m [38;5;28;01mimport[39;00m [38;5;21;01mqisignal[39;00m
+[0;32m---> 12[0m [38;5;28;01mfrom[39;00m [38;5;21;01mqisignal[39;00m [38;5;28;01mimport[39;00m signal
+[1;32m     13[0m plt[38;5;241m.[39mstyle[38;5;241m.[39muse([[38;5;124m'[39m[38;5;124mggplot[39m[38;5;124m'[39m,[38;5;124m'[39m[38;5;124m../../presentation.mplstyle[39m[38;5;124m'[39m])
 
-Cell [0;32mIn[40], line 2[0m, in [0;36m<listcomp>[0;34m(.0)[0m
-[1;32m      1[0m v[38;5;241m=[39m[38;5;241m-[39m[38;5;241m10[39m
-[0;32m----> 2[0m sig [38;5;241m=[39m [[43mw[49m[38;5;241m*[39mnp[38;5;241m.[39mcos((v[38;5;241m+[39m[38;5;241m.5[39m)[38;5;241m*[39mu) [38;5;28;01mfor[39;00m u [38;5;129;01min[39;00m t]
-[1;32m      3[0m fig,ax[38;5;241m=[39mplt[38;5;241m.[39msubplots()
-[1;32m      4[0m plot_function(ax,t,sig)
-
-[0;31mNameError[0m: name 'w' is not defined
-NameError: name 'w' is not defined
+[0;31mImportError[0m: cannot import name 'signal' from 'qisignal' (/Volumes/m2.wd.black.sn850.1/dev/qi/super-qi/src/python/qisignal/qisignal.py)
+ImportError: cannot import name 'signal' from 'qisignal' (/Volumes/m2.wd.black.sn850.1/dev/qi/super-qi/src/python/qisignal/qisignal.py)
 

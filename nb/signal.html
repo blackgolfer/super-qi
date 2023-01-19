@@ -29,6 +29,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
     <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-examples.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -54,7 +55,7 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "C": "\\mathbb{C}", "Z": "\\mathbb{Z}", "Q": "\\mathbb{Q}", "L": "\\mathbb{L}", "U": "\\mathbb{U}", "T": "\\mathbb{T}", "R": "\\mathbb{R}", "defeq": "\\mathop:=", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script>window.MathJax = {"HTML-CSS": {"matchFontHeight": true, "scale": 80}, "tex": {"macros": {"N": "\\mathbb{N}", "C": "\\mathbb{C}", "Z": "\\mathbb{Z}", "Q": "\\mathbb{Q}", "L": "\\mathbb{L}", "U": "\\mathbb{U}", "T": "\\mathbb{T}", "R": "\\mathbb{R}", "defeq": "\\mathop:=", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜索" href="../search.html" />
@@ -181,12 +182,12 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../impl/signal.html">
-   信号空间
+   信号空间的数据结构
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../impl/fft.html">
-   离散傅里叶变换
+   整数域上的折叠实现
   </a>
  </li>
 </ul>
@@ -280,24 +281,6 @@ title="Launch on Colab"
   </span>
 <span class="headerbtn__text-container">Colab</span>
 </a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="initThebeSBT()"
-  class="headerbtn headerbtn-launch-thebe"
-  data-toggle="tooltip"
-data-placement="left"
-title="Launch Thebe"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-play"></i>
-  </span>
-<span class="headerbtn__text-container">Live Code</span>
-</button>
 
       </li>
       
@@ -491,7 +474,7 @@ title="Print to PDF"
 <h1>信号空间<a class="headerlink" href="#id1" title="永久链接至标题">#</a></h1>
 <section id="generator-of-a-cyclic-group">
 <h2>Generator of a cyclic group<a class="headerlink" href="#generator-of-a-cyclic-group" title="永久链接至标题">#</a></h2>
-<p>The following is the from the article <a class="reference external" href="https://www.geeksforgeeks.org/generators-finite-cyclic-group-addition/">Number Theory | Generators of finite cyclic group under addition</a>.</p>
+<p>The following is from the article <a class="reference external" href="https://www.geeksforgeeks.org/generators-finite-cyclic-group-addition/">Number Theory | Generators of finite cyclic group under addition</a>.</p>
 <p>Given a number <span class="math notranslate nohighlight">\(n\)</span>, find all generators of cyclic additive group under modulo <span class="math notranslate nohighlight">\(n\)</span>. Generator of a set <span class="math notranslate nohighlight">\(\{0, 1, … n-1\}\)</span> is an element <span class="math notranslate nohighlight">\(x\)</span> such that <span class="math notranslate nohighlight">\(x\)</span> is smaller than <span class="math notranslate nohighlight">\(n\)</span>, and using <span class="math notranslate nohighlight">\(x\)</span> (and addition operation), we can generate all elements of the set.</p>
 <p>A <em>simple solution</em> is to run a loop from <span class="math notranslate nohighlight">\(1\)</span> to <span class="math notranslate nohighlight">\(n-1\)</span> and for every element check if it is generator. To check generator, we keep adding element and we check if we can generate all numbers until remainder starts repeating.</p>
 <p>An <em>efficient solution</em> is based on the fact that a number <span class="math notranslate nohighlight">\(x\)</span> is generator if <span class="math notranslate nohighlight">\(x\)</span> is relatively prime to <span class="math notranslate nohighlight">\(n\)</span>, i.e., <span class="math notranslate nohighlight">\(gcd(n, x) =1\)</span>.</p>
@@ -594,8 +577,8 @@ title="Print to PDF"
     {
         requestKernel: true,
         binderOptions: {
-            repo: "blackgolfer/super-qi",
-            ref: "szhq20022",
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
         },
         codeMirrorConfig: {
             theme: "abcdef",

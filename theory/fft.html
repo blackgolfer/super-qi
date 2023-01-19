@@ -29,6 +29,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
     <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-examples.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -54,7 +55,7 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "C": "\\mathbb{C}", "Z": "\\mathbb{Z}", "Q": "\\mathbb{Q}", "L": "\\mathbb{L}", "U": "\\mathbb{U}", "T": "\\mathbb{T}", "R": "\\mathbb{R}", "defeq": "\\mathop:=", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script>window.MathJax = {"HTML-CSS": {"matchFontHeight": true, "scale": 80}, "tex": {"macros": {"N": "\\mathbb{N}", "C": "\\mathbb{C}", "Z": "\\mathbb{Z}", "Q": "\\mathbb{Q}", "L": "\\mathbb{L}", "U": "\\mathbb{U}", "T": "\\mathbb{T}", "R": "\\mathbb{R}", "defeq": "\\mathop:=", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜索" href="../search.html" />
@@ -181,12 +182,12 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../impl/signal.html">
-   信号空间
+   信号空间的数据结构
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../impl/fft.html">
-   离散傅里叶变换
+   整数域上的折叠实现
   </a>
  </li>
 </ul>
@@ -472,8 +473,8 @@ title="Print to PDF"
 <p class="admonition-title"><span class="caption-number">Definition 2 </span></p>
 <section class="definition-content" id="proof-content">
 <p>对于<span class="math notranslate nohighlight">\(f\in\C[G]\)</span>，我们定义其傅里叶系数为</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2e8de70d-8e9f-429c-8e6c-80a223fb4571">
-<span class="eqno">(3)<a class="headerlink" href="#equation-2e8de70d-8e9f-429c-8e6c-80a223fb4571" title="公式的永久链接">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-bf99c011-ef3f-43f3-b80c-47caeee64be7">
+<span class="eqno">(3)<a class="headerlink" href="#equation-bf99c011-ef3f-43f3-b80c-47caeee64be7" title="公式的永久链接">#</a></span>\[\begin{equation}
 c_f(\chi)\defeq&lt;f,\chi&gt;,\quad\forall\chi\in\hat{G}
 \end{equation}\]</div>
 <p>由此我们定义了以下的一个映射，<span class="math notranslate nohighlight">\(c\)</span>:</p>
@@ -492,8 +493,8 @@ c:\left\{
 <p class="admonition-title"><span class="caption-number">Definition 3 </span> (傅里叶变换)</p>
 <section class="definition-content" id="proof-content">
 <p>傅里叶变换<span class="math notranslate nohighlight">\(\mathcal{F}\)</span>定义为：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-5b54fea8-50a0-46bc-a421-6d53db3980d4">
-<span class="eqno">(4)<a class="headerlink" href="#equation-5b54fea8-50a0-46bc-a421-6d53db3980d4" title="公式的永久链接">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-ea712313-ac79-4413-937a-d63159f3a459">
+<span class="eqno">(4)<a class="headerlink" href="#equation-ea712313-ac79-4413-937a-d63159f3a459" title="公式的永久链接">#</a></span>\[\begin{equation}
 \mathcal F:\left\{
     \begin{array}{ccc}
     \C[G]&amp;\longrightarrow&amp;\C[\hat{G}]\\
@@ -502,8 +503,8 @@ c:\left\{
 \right.
 \end{equation}\]</div>
 <p>其中<span class="math notranslate nohighlight">\(\hat{f}\)</span>为<span class="math notranslate nohighlight">\(\hat{G}\)</span>的一个函数，即<span class="math notranslate nohighlight">\(\hat{f}\in\C[\hat{G}]\)</span>:</p>
-<div class="amsmath math notranslate nohighlight" id="equation-2dd8a0e0-af3b-402d-b487-02b777f17e9e">
-<span class="eqno">(5)<a class="headerlink" href="#equation-2dd8a0e0-af3b-402d-b487-02b777f17e9e" title="公式的永久链接">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-1431c8e6-a8be-4075-a3eb-5abe889e39a9">
+<span class="eqno">(5)<a class="headerlink" href="#equation-1431c8e6-a8be-4075-a3eb-5abe889e39a9" title="公式的永久链接">#</a></span>\[\begin{equation}
 \hat{f}(\chi)\defeq|G|c_f(\bar{\chi})=\sum_{x\in G}f(x)\chi(x)
 \end{equation}\]</div>
 </section>
@@ -512,8 +513,8 @@ c:\left\{
 <p class="admonition-title"><span class="caption-number">Proposition 4 </span> (傅里叶逆变换)</p>
 <section class="proposition-content" id="proof-content">
 <p>对于<span class="math notranslate nohighlight">\(f\in\C[G]\)</span>，我们有以下的逆变换：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-605edd7e-3aa5-43f4-b941-508003d6df35">
-<span class="eqno">(6)<a class="headerlink" href="#equation-605edd7e-3aa5-43f4-b941-508003d6df35" title="公式的永久链接">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-9d1fc3f4-0a6d-4b18-b339-6e34839348ed">
+<span class="eqno">(6)<a class="headerlink" href="#equation-9d1fc3f4-0a6d-4b18-b339-6e34839348ed" title="公式的永久链接">#</a></span>\[\begin{equation}
 f=\sum_{\chi\in\hat{G}}c_f(\chi)\chi=\frac{1}{|G|}\sum_{\chi\in\hat{G}}\hat{f}(\chi)\chi^{-1}
 \end{equation}\]</div>
 </section>
@@ -521,8 +522,8 @@ f=\sum_{\chi\in\hat{G}}c_f(\chi)\chi=\frac{1}{|G|}\sum_{\chi\in\hat{G}}\hat{f}(\
 <p class="admonition-title"><span class="caption-number">Proposition 5 </span> (帕塞瓦尔恒等式)</p>
 <section class="proposition-content" id="proof-content">
 <p>对于<span class="math notranslate nohighlight">\(f, g\in\C[G]\)</span>，我们有以下恒等式：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-309de5a1-8e9d-4d2e-bc8e-d303d17de733">
-<span class="eqno">(7)<a class="headerlink" href="#equation-309de5a1-8e9d-4d2e-bc8e-d303d17de733" title="公式的永久链接">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-45f83216-41cb-4a30-bbfc-20355faf678e">
+<span class="eqno">(7)<a class="headerlink" href="#equation-45f83216-41cb-4a30-bbfc-20355faf678e" title="公式的永久链接">#</a></span>\[\begin{equation}
 &lt;f,g&gt;=|G|&lt;c_f,c_g&gt;=\frac{1}{|G|}&lt;\hat{f},\hat{g}&gt;
 \end{equation}\]</div>
 </section>
@@ -545,8 +546,8 @@ f=\sum_{\chi\in\hat{G}}c_f(\chi)\chi=\frac{1}{|G|}\sum_{\chi\in\hat{G}}\hat{f}(\
     {
         requestKernel: true,
         binderOptions: {
-            repo: "blackgolfer/super-qi",
-            ref: "szhq20022",
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
         },
         codeMirrorConfig: {
             theme: "abcdef",

@@ -29,6 +29,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
     <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-examples.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -54,7 +55,7 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "C": "\\mathbb{C}", "Z": "\\mathbb{Z}", "Q": "\\mathbb{Q}", "L": "\\mathbb{L}", "U": "\\mathbb{U}", "T": "\\mathbb{T}", "R": "\\mathbb{R}", "defeq": "\\mathop:=", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script>window.MathJax = {"HTML-CSS": {"matchFontHeight": true, "scale": 80}, "tex": {"macros": {"N": "\\mathbb{N}", "C": "\\mathbb{C}", "Z": "\\mathbb{Z}", "Q": "\\mathbb{Q}", "L": "\\mathbb{L}", "U": "\\mathbb{U}", "T": "\\mathbb{T}", "R": "\\mathbb{R}", "defeq": "\\mathop:=", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜索" href="../search.html" />
@@ -181,12 +182,12 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../impl/signal.html">
-   信号空间
+   信号空间的数据结构
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../impl/fft.html">
-   离散傅里叶变换
+   整数域上的折叠实现
   </a>
  </li>
 </ul>
@@ -433,7 +434,7 @@ This paper introduces a general and axiomatic approach to linear signal processi
 We derive a signal processing framework, called space signal processing, that parallels time signal processing. As such, it comes in four versions (continuous/discrete, infinite/finite), each with its own notion of convolution and Fourier transform. As in time, these versions are connected by sampling theorems that we derive. In contrast to time, however, space signal processing is based on and derived from a different notion of shift, space shift, which operates symmetrically. Our work rigorously connects known and novel concepts into a coherent framework; most importantly, it shows that the sixteen discrete cosine and sine transforms are the space equivalent of the discrete Fourier transform, and hence can be derived by sampling. The platform for our work is the algebraic signal processing theory, an axiomatic approach and generalization of linear signal processing that we recently introduced.</p></li>
 <li><p>快速傅里叶变换</p>
 <ul class="simple">
-<li><p><span id="id5">[<a class="reference internal" href="#id12" title="Yevgen Voronenko and Markus Püschel. Algebraic signal processing theory: Cooley-Tukey type algorithms for real DFTs. IEEE Transactions on Signal Processing, 57(1):205–222, 2009.">Voronenko and Püschel, 2009</a>]</span>:
+<li><p><span id="id5">[<a class="reference internal" href="#id13" title="Yevgen Voronenko and Markus Püschel. Algebraic signal processing theory: Cooley-Tukey type algorithms for real DFTs. IEEE Transactions on Signal Processing, 57(1):205–222, 2009.">Voronenko and Püschel, 2009</a>]</span>:
 In this paper we systematically derive a large class of fast general-radix algorithms for various types of real discrete Fourier transforms (real DFTs) including the discrete Hartley transform (DHT) based on the algebraic signal processing theory. This means that instead of manipulating the transform definition, we derive algorithms by manipulating the polynomial algebras underlying the transforms using one general method. The same method yields the well-known Cooley-Tukey FFT as well as general radix discrete cosine and sine transform algorithms. The algebraic approach makes the derivation concise, unifies and classifies many existing algorithms, yields new variants, enables structural optimization, and naturally produces a human-readable structural algorithm representation based on the Kronecker product formalism.</p></li>
 <li><p><a class="reference external" href="https://cp-algorithms.com/algebra/fft.html">Algorithms for Competitive Programming – Fast Fourier Transform</a></p></li>
 </ul>
@@ -447,7 +448,7 @@ In this paper we systematically derive a large class of fast general-radix algor
 <dt class="label" id="id11"><span class="brackets"><a class="fn-backref" href="#id3">PuschelM08</a></span></dt>
 <dd><p>Markus Püschel and José M. F. Moura. Algebraic signal processing theory: foundation and 1-D time. <em>IEEE Transactions on Signal Processing</em>, 56(8):3572–3585, 2008.</p>
 </dd>
-<dt class="label" id="id12"><span class="brackets"><a class="fn-backref" href="#id5">VPuschel09</a></span></dt>
+<dt class="label" id="id13"><span class="brackets"><a class="fn-backref" href="#id5">VPuschel09</a></span></dt>
 <dd><p>Yevgen Voronenko and Markus Püschel. Algebraic signal processing theory: Cooley-Tukey type algorithms for real DFTs. <em>IEEE Transactions on Signal Processing</em>, 57(1):205–222, 2009.</p>
 </dd>
 </dl>
@@ -459,8 +460,8 @@ In this paper we systematically derive a large class of fast general-radix algor
     {
         requestKernel: true,
         binderOptions: {
-            repo: "blackgolfer/super-qi",
-            ref: "szhq20022",
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
         },
         codeMirrorConfig: {
             theme: "abcdef",

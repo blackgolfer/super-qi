@@ -1,0 +1,1057 @@
+
+<!DOCTYPE html>
+
+<html lang="zh">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>导言</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-examples.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../_static/tabs.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="zh">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint">⚠️The latest release refactored our HTML, so double-check your custom CSS rules!⚠️</div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+      
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  理论篇
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../theory/intro.html">
+   分析架构
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../theory/signal.html">
+   信号空间
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../theory/fft.html">
+   快速傅里叶变换
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../theory/convolution.html">
+   卷积
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../theory/wavelet.html">
+   小波分析
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  实验篇
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../nb/intro.html">
+   导言
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../nb/signal.html">
+   信号空间
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../nb/fft.html">
+   快速傅里叶变换
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../nb/convolution.html">
+   卷积
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../nb/wavelet.html">
+   小波分析
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  实现篇
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="intro.html">
+   导言
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="signal.html">
+   信号空间的数据结构
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="fft.html">
+   整数域上的折叠实现
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/blackgolfer/super-qi"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/blackgolfer/super-qi/issues/new?title=Issue%20on%20page%20%2Fimpl/old_intro.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/blackgolfer/super-qi/edit/szhq20022/ms/sp/impl/old_intro.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../_sources/impl/old_intro.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#python-collections-data-model">
+   Python collections 与 data model
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#collections">
+     collections
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-model">
+   data model
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#len">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       __len__
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#getitem">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       __getitem__
+      </span>
+     </code>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#list">
+       类
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         list
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#iterable">
+       <em>
+        iterable
+       </em>
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#traitsmixin">
+   traits和mixin的案例
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#immutable">
+   不可变更（immutable）类
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     类的隐私参数
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     如何实现类的不可变更性
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#monad">
+   Monad案例
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id5">
+   常用的技巧
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#itertools">
+     itertools
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id6">
+   常用的数据结构
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>导言</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#python-collections-data-model">
+   Python collections 与 data model
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#collections">
+     collections
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#data-model">
+   data model
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#len">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       __len__
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#getitem">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       __getitem__
+      </span>
+     </code>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#list">
+       类
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         list
+        </span>
+       </code>
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#iterable">
+       <em>
+        iterable
+       </em>
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#traitsmixin">
+   traits和mixin的案例
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#immutable">
+   不可变更（immutable）类
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     类的隐私参数
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     如何实现类的不可变更性
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#monad">
+   Monad案例
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id5">
+   常用的技巧
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#itertools">
+     itertools
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id6">
+   常用的数据结构
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>导言<a class="headerlink" href="#id1" title="永久链接至标题">#</a></h1>
+<p>这一部分是关于信号处理技术的工程实现。</p>
+<p>工程实现依赖于有效的单元操作。单元操作分两大类：其一是算法的单元操作；其二是编程技巧的单元操作。</p>
+<p>算法的单元操作也分两类，第一类是基本常见的单元操作，比如<code class="docutils literal notranslate"><span class="pre">shift</span></code>，<code class="docutils literal notranslate"><span class="pre">decimatioin</span></code>；另外一类是算法本身的单元操作，比如<code class="docutils literal notranslate"><span class="pre">lct</span></code>中的折叠算子。从某种意义上说，一个算法就是一个单元操作的集合与串通这些单元操作的逻辑。所以，算法上对单元操作的思考和掌控一般都比较严密，也因此比较到位。</p>
+<p>编程技巧上对单元操作的梳理也是比较丰富的，遗憾的是由于只要动手，一般都会比较快地得到结果，因此在单元操作的设计比较容易被忽视，这是我们在工作中需要重视的。</p>
+<p>在大的框架上的编程技巧有以下几类：</p>
+<ol class="simple">
+<li><p>Python data model</p></li>
+<li><p>Object oriented programming (oop)</p>
+<ul class="simple">
+<li><p>抽象类（abstract class）与具体类（concrete class）</p></li>
+<li><p>traits和mixin</p></li>
+</ul>
+</li>
+<li><p>对象的可变更性（mutable）与不可变更性（immutable）</p></li>
+<li><p>函数式（functional programming）</p>
+<ul class="simple">
+<li><p>容器（container）：对特定对象的一个封装。用信号的作为例子，信号是数组的一个容器，</p></li>
+<li><p>functor：一种特殊的容器，其中定义了<code class="docutils literal notranslate"><span class="pre">fmap</span></code>函数，其作用是应用外部定义的函数<code class="docutils literal notranslate"><span class="pre">f</span></code>（也就是<code class="docutils literal notranslate"><span class="pre">fmap</span></code>的输入参数）作用于被封装的类，并且将作用的结果用同样的容器封装起来作为<code class="docutils literal notranslate"><span class="pre">fmap</span></code>的输出。假设被封装的对象是类型<code class="docutils literal notranslate"><span class="pre">A</span></code>，<code class="docutils literal notranslate"><span class="pre">f</span></code>作用于对象的结果类型是<code class="docutils literal notranslate"><span class="pre">B</span></code>，即，<code class="docutils literal notranslate"><span class="pre">f:</span> <span class="pre">A-&gt;B</span></code>，那么<code class="docutils literal notranslate"><span class="pre">fmap:</span> <span class="pre">f-&gt;F[B]</span></code>，<code class="docutils literal notranslate"><span class="pre">F</span></code>为functor类型，<code class="docutils literal notranslate"><span class="pre">F[B]</span></code>指的是含有类型<code class="docutils literal notranslate"><span class="pre">B</span></code>的<code class="docutils literal notranslate"><span class="pre">F</span></code>functor。</p></li>
+<li><p>monad：在functor的基础上加上<code class="docutils literal notranslate"><span class="pre">bind</span></code>函数。用<code class="docutils literal notranslate"><span class="pre">M</span></code>代表一个monad的类型，跟<code class="docutils literal notranslate"><span class="pre">fmap</span></code>不同在于，<code class="docutils literal notranslate"><span class="pre">bind</span></code>要求输入参数<code class="docutils literal notranslate"><span class="pre">f</span></code>为<code class="docutils literal notranslate"><span class="pre">A-&gt;M[B]</span></code>的函数，<code class="docutils literal notranslate"><span class="pre">bind</span></code>的返回值为<code class="docutils literal notranslate"><span class="pre">M[B]</span></code>类型，而且是直接返回<code class="docutils literal notranslate"><span class="pre">f</span></code>的返回值。</p></li>
+</ul>
+</li>
+</ol>
+<p>更底层的技巧依赖于数据结构的经验，常用的有二叉树等。</p>
+<section id="python-collections-data-model">
+<h2>Python collections 与 data model<a class="headerlink" href="#python-collections-data-model" title="永久链接至标题">#</a></h2>
+<p>这段资料取自于<span id="id2">[<a class="reference internal" href="intro.html#id14" title="L. Ramalho. Fluent Python: Clear, Concise, and Effective Programming. O'Reilly Media, 2015. ISBN 9781491946251. URL: https://books.google.co.in/books?id=bIZHCgAAQBAJ.">Ramalho, 2015</a>]</span>的第一章。这里简单介绍<code class="docutils literal notranslate"><span class="pre">collections</span></code>和data model，是我们常用的工具。</p>
+<section id="collections">
+<h3>collections<a class="headerlink" href="#collections" title="永久链接至标题">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">collections</span>
+
+<span class="n">Card</span><span class="o">=</span><span class="n">collections</span><span class="o">.</span><span class="n">namedtuple</span><span class="p">(</span><span class="s1">&#39;Card&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;rank&#39;</span><span class="p">,</span> <span class="s1">&#39;suit&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Card</span><span class="p">(</span><span class="s1">&#39;2&#39;</span><span class="p">,</span><span class="s1">&#39;spades&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="data-model">
+<h2>data model<a class="headerlink" href="#data-model" title="永久链接至标题">#</a></h2>
+<p>我们用一个模拟扑克牌的案例来说明data model的用法，定义一个类叫<code class="docutils literal notranslate"><span class="pre">FrenchDeck</span></code>：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">FrenchDeck</span><span class="p">:</span>
+    <span class="n">ranks</span> <span class="o">=</span> <span class="p">[</span><span class="nb">str</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">11</span><span class="p">)]</span><span class="o">+</span><span class="nb">list</span><span class="p">(</span><span class="s1">&#39;JQKA&#39;</span><span class="p">)</span>
+    <span class="n">suits</span> <span class="o">=</span> <span class="s1">&#39;spades diamonds clubs hearts&#39;</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_cards</span><span class="o">=</span><span class="p">[</span><span class="n">Card</span><span class="p">(</span><span class="n">rank</span><span class="p">,</span><span class="n">suit</span><span class="p">)</span> <span class="k">for</span> <span class="n">suit</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">suits</span>
+                                    <span class="k">for</span> <span class="n">rank</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">ranks</span><span class="p">]</span>
+        
+    <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_cards</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">position</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_cards</span><span class="p">[</span><span class="n">position</span><span class="p">]</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">FrenchDeck</span></code>比较简单，但功能强大。这是因为用了特殊函数<code class="docutils literal notranslate"><span class="pre">__len__</span></code>和<code class="docutils literal notranslate"><span class="pre">__getitem__</span></code>。下面来说明其主要功能。</p>
+<section id="len">
+<h3><code class="docutils literal notranslate"><span class="pre">__len__</span></code><a class="headerlink" href="#len" title="永久链接至标题">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">__len__</span></code>的功能是返回纸牌的个数。</p>
+<p><code class="docutils literal notranslate"><span class="pre">FrenchDeck</span></code>中，唯一一个成员就是<code class="docutils literal notranslate"><span class="pre">_cards</span></code>，用<code class="docutils literal notranslate"><span class="pre">list</span> <span class="pre">comprehension</span></code>的方法（以上程序第6行）生成，因此是collection中的一个类。<code class="docutils literal notranslate"><span class="pre">__len__</span></code>是应用<code class="docutils literal notranslate"><span class="pre">len</span></code>函数于这个成员，算出成员里面元素的个数，也就是纸牌的个数。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">deck</span><span class="o">=</span><span class="n">FrenchDeck</span><span class="p">()</span>
+<span class="nb">len</span><span class="p">(</span><span class="n">deck</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>当函数<code class="docutils literal notranslate"><span class="pre">len</span></code>作用于<code class="docutils literal notranslate"><span class="pre">deck</span></code>，系统中是委托<code class="docutils literal notranslate"><span class="pre">FrenchDeck</span></code>中的特殊函数<code class="docutils literal notranslate"><span class="pre">__len__</span></code>来实现。</p>
+</section>
+<section id="getitem">
+<h3><code class="docutils literal notranslate"><span class="pre">__getitem__</span></code><a class="headerlink" href="#getitem" title="永久链接至标题">#</a></h3>
+<p>定义这个特殊类方法使得<code class="docutils literal notranslate"><span class="pre">FrenchDeck</span></code>具备以下功能：</p>
+<ol class="simple">
+<li><p>支持slicing：这是因为我们在<code class="docutils literal notranslate"><span class="pre">__getitem__</span></code>中委托算子<code class="docutils literal notranslate"><span class="pre">[]</span></code>进行对类成员<code class="docutils literal notranslate"><span class="pre">_cards</span></code>的指针操作。因为<code class="docutils literal notranslate"><span class="pre">_cards</span></code>的类型是<code class="docutils literal notranslate"><span class="pre">list</span></code>，这种简练的委托，使得<code class="docutils literal notranslate"><span class="pre">FrenchDeck</span></code>变成了像<code class="docutils literal notranslate"><span class="pre">list</span></code>数据结构。</p></li>
+<li><p>使得<code class="docutils literal notranslate"><span class="pre">FrenchDeck</span></code>成为<em>iterable</em>，这样许多python中适用于<em>iterable</em>的程序库能被应用于<code class="docutils literal notranslate"><span class="pre">FrenchDeck</span></code>。</p></li>
+</ol>
+<p>值得强调的是，<code class="docutils literal notranslate"><span class="pre">FrenchDeck</span></code>的实现不是通过继承的方式，更多的是一种组合的方式来实现。这是<em>data model</em>非常重要的特征。</p>
+<section id="list">
+<h4>类<code class="docutils literal notranslate"><span class="pre">list</span></code><a class="headerlink" href="#list" title="永久链接至标题">#</a></h4>
+<p>抽取第<code class="docutils literal notranslate"><span class="pre">n</span></code>张纸牌，<code class="docutils literal notranslate"><span class="pre">n</span></code>的方式与<code class="docutils literal notranslate"><span class="pre">list</span></code>一样，如下<code class="docutils literal notranslate"><span class="pre">deck[0]</span></code>为第一张纸牌，<code class="docutils literal notranslate"><span class="pre">deck[-1]</span></code>为最后一张纸牌：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">deck</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">deck</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>通过调用<code class="docutils literal notranslate"><span class="pre">random.choice</span></code>，使得<code class="docutils literal notranslate"><span class="pre">FrenchDeck</span></code>支持随机抽取纸牌的功能：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">random</span> <span class="kn">import</span> <span class="n">choice</span>
+
+<span class="n">choice</span><span class="p">(</span><span class="n">deck</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>支持<em>slicing</em>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">deck</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">deck</span><span class="p">[</span><span class="mi">12</span><span class="p">::</span><span class="mi">13</span><span class="p">]</span>
+</pre></div>
+</div>
+</section>
+<section id="iterable">
+<h4><em>iterable</em><a class="headerlink" href="#iterable" title="永久链接至标题">#</a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">deck</span><span class="p">)),</span><span class="n">deck</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">i</span><span class="o">&gt;</span><span class="mi">4</span><span class="p">:</span>
+        <span class="k">break</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">j</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">j</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">deck</span><span class="p">)),</span><span class="nb">reversed</span><span class="p">(</span><span class="n">deck</span><span class="p">)):</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">i</span><span class="o">&lt;</span><span class="mi">4</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">j</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">break</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Card</span><span class="p">(</span><span class="s1">&#39;Q&#39;</span><span class="p">,</span> <span class="s1">&#39;hearts&#39;</span><span class="p">)</span> <span class="ow">in</span> <span class="n">deck</span>
+</pre></div>
+</div>
+<p>我们来看看排序功能：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">suit_values</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">spades</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">hearts</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">diamonds</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">clubs</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">spades_high</span><span class="p">(</span><span class="n">card</span><span class="p">):</span>
+    <span class="n">rank_value</span> <span class="o">=</span> <span class="n">FrenchDeck</span><span class="o">.</span><span class="n">ranks</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">card</span><span class="o">.</span><span class="n">rank</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">rank_value</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">suit_values</span><span class="p">)</span> <span class="o">+</span> <span class="n">suit_values</span><span class="p">[</span><span class="n">card</span><span class="o">.</span><span class="n">suit</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">card</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">deck</span><span class="p">)),</span><span class="nb">sorted</span><span class="p">(</span><span class="n">deck</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">spades_high</span><span class="p">)):</span>
+    <span class="k">if</span> <span class="n">i</span><span class="o">&lt;</span><span class="mi">6</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">card</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">break</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="traitsmixin">
+<h2>traits和mixin的案例<a class="headerlink" href="#traitsmixin" title="永久链接至标题">#</a></h2>
+<p>这个案例来自于文章<a class="reference external" href="https://web.archive.org/web/20161009062141/http://stupid-python-tricks.blogspot.com/2015/04/computed-properties-and-higher-order.html">Higher-Order Mixin Classes, or “Traits, but not quite!”</a>，所用到的技巧非常漂亮。</p>
+<p>对于颜色，定义一个trait，通过函数的形式来生成trait类。用到匿名类<code class="docutils literal notranslate"><span class="pre">Inner</span></code>，配合<code class="docutils literal notranslate"><span class="pre">setattr</span></code>以及<code class="docutils literal notranslate"><span class="pre">property</span></code>两个函数的使用来设定匿名类的参数。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">HasColor</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">doc</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return an anonymous class that has a color property</span>
+<span class="sd">    named `name`, with a default value of `default` and</span>
+<span class="sd">    a docstring of `doc`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">propname</span> <span class="o">=</span> <span class="s2">&quot;__color_</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+    <span class="n">colors</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;black&quot;</span><span class="p">:</span> <span class="mh">0x00000000</span><span class="p">,</span>
+        <span class="s2">&quot;white&quot;</span><span class="p">:</span> <span class="mh">0x00ffffff</span><span class="p">,</span>
+        <span class="s2">&quot;red&quot;</span><span class="p">:</span>   <span class="mh">0x00ff0000</span><span class="p">,</span>
+        <span class="s2">&quot;green&quot;</span><span class="p">:</span> <span class="mh">0x0000ff00</span><span class="p">,</span>
+        <span class="s2">&quot;blue&quot;</span><span class="p">:</span>  <span class="mh">0x000000ff</span>
+    <span class="p">}</span>
+
+    <span class="k">def</span> <span class="nf">getter</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">propname</span><span class="p">,</span> <span class="n">default</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">setter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">bool</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;integer colors must be ints&quot;</span><span class="p">)</span>
+
+            <span class="k">if</span> <span class="n">value</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">value</span> <span class="o">&gt;</span> <span class="mh">0x00ffffff</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;integer colors must be 24-bit&quot;</span><span class="p">)</span>
+
+            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">propname</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">value</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">colors</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;unknown color &#39;</span><span class="si">{}</span><span class="s2">&#39;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>
+
+            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">propname</span><span class="p">,</span> <span class="n">colors</span><span class="p">[</span><span class="n">value</span><span class="p">])</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;color specifications must be ints or strs&quot;</span><span class="p">)</span>
+
+
+    <span class="k">class</span> <span class="nc">Inner</span><span class="p">:</span>
+        <span class="k">pass</span>
+
+    <span class="nb">setattr</span><span class="p">(</span><span class="n">Inner</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="nb">property</span><span class="p">(</span><span class="n">getter</span><span class="p">,</span> <span class="n">setter</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">doc</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">Inner</span>
+</pre></div>
+</div>
+<p>使用trait来组装下面的<code class="docutils literal notranslate"><span class="pre">Canvas</span></code>和<code class="docutils literal notranslate"><span class="pre">Button</span></code>，这样的组装方式显得非常灵活，合理，这就是mixin的概念：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">GraphicsObject</span><span class="p">:</span> <span class="c1"># The base class of our hierarchy.</span>
+    <span class="k">pass</span>
+
+<span class="k">class</span> <span class="nc">Canvas</span><span class="p">(</span><span class="n">GraphicsObject</span><span class="p">,</span>
+            <span class="n">HasColor</span><span class="p">(</span><span class="s2">&quot;foreground&quot;</span><span class="p">),</span>
+            <span class="n">HasColor</span><span class="p">(</span><span class="s2">&quot;background&quot;</span><span class="p">)):</span>
+    <span class="k">pass</span>
+
+<span class="k">class</span> <span class="nc">Button</span><span class="p">(</span><span class="n">Canvas</span><span class="p">,</span> <span class="c1"># Inherit Canvas&#39;s foreground and background.</span>
+             <span class="n">HasColor</span><span class="p">(</span><span class="s2">&quot;border&quot;</span><span class="p">),</span>
+             <span class="n">HasColor</span><span class="p">(</span><span class="s2">&quot;text&quot;</span><span class="p">)):</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="n">Canvas</span><span class="p">()</span>
+<span class="n">c</span><span class="o">.</span><span class="n">foreground</span> <span class="o">=</span> <span class="s1">&#39;red&#39;</span>
+
+<span class="n">b</span> <span class="o">=</span> <span class="n">Button</span><span class="p">()</span>
+<span class="n">b</span><span class="o">.</span><span class="n">foreground</span> <span class="o">=</span> <span class="s1">&#39;black&#39;</span>
+<span class="n">b</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="s1">&#39;green&#39;</span>
+
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;canvas foreground:&quot;</span><span class="p">,</span><span class="nb">hex</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">foreground</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;button foreground:&quot;</span><span class="p">,</span><span class="nb">hex</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">foreground</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;button text:&quot;</span><span class="p">,</span><span class="nb">hex</span><span class="p">(</span><span class="n">b</span><span class="o">.</span><span class="n">text</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+<section id="immutable">
+<h2>不可变更（immutable）类<a class="headerlink" href="#immutable" title="永久链接至标题">#</a></h2>
+<section id="id3">
+<h3>类的隐私参数<a class="headerlink" href="#id3" title="永久链接至标题">#</a></h3>
+<p>类的隐私参数通过在参数名加前缀<code class="docutils literal notranslate"><span class="pre">__</span></code>来实现：</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">foo</span><span class="p">:</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">v</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__v</span><span class="o">=</span><span class="n">v</span>
+
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__v</span><span class="p">)</span>
+<span class="n">f1</span><span class="o">=</span><span class="n">foo</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#print(f1.__v)会产生错误：AttributeError: &#39;foo&#39; object has no attribute &#39;__v&#39;</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">f1</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id4">
+<h3>如何实现类的不可变更性<a class="headerlink" href="#id4" title="永久链接至标题">#</a></h3>
+<p>通过屏蔽掉类的<code class="docutils literal notranslate"><span class="pre">__setattr__</span></code>和<code class="docutils literal notranslate"><span class="pre">__delattr__</span></code>特殊函数，我们可以达到准不可变更类。下面的案例分析，从中可以看到我们为什么用”准“这个词。</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">inspect</span>
+
+<span class="k">class</span> <span class="nc">Immutable</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Inherit this class to make the child class immutable&quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">inspect</span><span class="o">.</span><span class="n">stack</span><span class="p">()[</span><span class="mi">1</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;__init__&#39;</span><span class="p">:</span>
+            <span class="nb">object</span><span class="o">.</span><span class="fm">__setattr__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;Cannot modify Immutable instance&#39;</span><span class="p">)</span>
+
+    <span class="fm">__delattr__</span><span class="o">=</span><span class="fm">__setattr__</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">foo</span><span class="p">(</span><span class="n">Immutable</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">data</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__data</span><span class="o">=</span><span class="n">data</span>
+    
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="nb">id</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">__data</span><span class="p">))</span>
+    
+    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">p</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">__data</span><span class="p">[</span><span class="n">p</span><span class="p">]</span>
+    
+    <span class="k">def</span> <span class="fm">__setitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">p</span><span class="p">,</span><span class="n">v</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__data</span><span class="p">[</span><span class="n">p</span><span class="p">]</span><span class="o">=</span><span class="n">v</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">foo1</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">foo2</span><span class="o">=</span><span class="n">foo</span><span class="p">(</span><span class="n">foo1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">foo2</span><span class="p">,</span><span class="nb">id</span><span class="p">(</span><span class="n">foo1</span><span class="p">))</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">foo2</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">=</span><span class="s1">&#39;s&#39;</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">foo2</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">foo1</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>这里我们看到以下非常重要的几点：</p>
+<ol class="simple">
+<li><p>数组作为类构造函数的输入参数是按pass by reference来进行，这里的foo1就是被pass by reference，因为foo1的<code class="docutils literal notranslate"><span class="pre">id</span></code>值跟<code class="docutils literal notranslate"><span class="pre">foo</span></code>里面<code class="docutils literal notranslate"><span class="pre">__data</span></code>的<code class="docutils literal notranslate"><span class="pre">id</span></code>值是一样的；同时我们也看到<code class="docutils literal notranslate"><span class="pre">foo2</span></code>中<code class="docutils literal notranslate"><span class="pre">__data[1]</span></code>改成字符<code class="docutils literal notranslate"><span class="pre">s</span></code>后，<code class="docutils literal notranslate"><span class="pre">foo1[1]</span></code>也相应改成了<code class="docutils literal notranslate"><span class="pre">s</span></code>。</p></li>
+<li><p>虽然类<code class="docutils literal notranslate"><span class="pre">foo</span></code>继承了<code class="docutils literal notranslate"><span class="pre">Immutable</span></code>，屏蔽了对类参数的更改，这只是限制了对<code class="docutils literal notranslate"><span class="pre">__data</span></code>的更改，并不能限制<code class="docutils literal notranslate"><span class="pre">__data</span></code>内容的更改，也就是对参数的更改与对参数内容的更改是两个不同的概念。</p></li>
+<li><p>真正能够让一个继承<code class="docutils literal notranslate"><span class="pre">Immutable</span></code>类成为绝对不可更改，必须要求类参数本身也是不可更改的类。</p></li>
+<li><p>在没有声称<code class="docutils literal notranslate"><span class="pre">__setitem__</span></code>的情况下，作为<code class="docutils literal notranslate"><span class="pre">Immutable</span></code>的子类，外部对<code class="docutils literal notranslate"><span class="pre">foo</span></code>确实是没有更改的途径。对<code class="docutils literal notranslate"><span class="pre">foo</span></code>内部参数<code class="docutils literal notranslate"><span class="pre">__data</span></code>内容的更改只能在<code class="docutils literal notranslate"><span class="pre">foo</span></code>内部进行，这在一定程度上实现了不可更改性。</p></li>
+</ol>
+</section>
+</section>
+<section id="monad">
+<h2>Monad案例<a class="headerlink" href="#monad" title="永久链接至标题">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Generic</span><span class="p">,</span> <span class="n">TypeVar</span><span class="p">,</span> <span class="n">Callable</span>
+<span class="c1">#from immutable import Immutable</span>
+
+<span class="n">A</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;A&quot;</span><span class="p">)</span>
+<span class="n">B</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;B&quot;</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">Maybe</span><span class="p">(</span><span class="n">Generic</span><span class="p">[</span><span class="n">A</span><span class="p">]):</span>
+    <span class="k">pass</span>
+
+<span class="k">class</span> <span class="nc">Just</span><span class="p">(</span><span class="n">Maybe</span><span class="p">[</span><span class="n">A</span><span class="p">],</span><span class="n">Immutable</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">val</span><span class="p">:</span> <span class="n">A</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">val</span> <span class="o">=</span> <span class="n">val</span>
+
+    <span class="k">def</span> <span class="nf">fmap</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">A</span><span class="p">],</span> <span class="n">B</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Maybe</span><span class="p">[</span><span class="n">B</span><span class="p">]:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">new_val</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">val</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">Just</span><span class="p">(</span><span class="n">new_val</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">Nothing</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">bind</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">A</span><span class="p">],</span> <span class="n">Maybe</span><span class="p">[</span><span class="n">B</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="n">Maybe</span><span class="p">[</span><span class="n">B</span><span class="p">]:</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">new_val</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">val</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">new_val</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">Nothing</span><span class="p">()</span>
+    
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">val</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">Nothing</span><span class="p">(</span><span class="n">Maybe</span><span class="p">[</span><span class="n">A</span><span class="p">]):</span>
+
+    <span class="k">def</span> <span class="nf">fmap</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">A</span><span class="p">],</span> <span class="n">B</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">Maybe</span><span class="p">[</span><span class="n">B</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="bp">self</span>
+    
+    <span class="k">def</span> <span class="nf">bind</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">func</span><span class="p">:</span> <span class="n">Callable</span><span class="p">[[</span><span class="n">A</span><span class="p">],</span> <span class="n">Maybe</span><span class="p">[</span><span class="n">B</span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="n">Maybe</span><span class="p">[</span><span class="n">B</span><span class="p">]:</span>
+        <span class="k">return</span> <span class="bp">self</span>
+    
+    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s2">&quot;Nothing....&quot;</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Just</span><span class="p">(</span><span class="s2">&quot;123&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">fmap</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Just</span><span class="p">(</span><span class="s2">&quot;123a&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">fmap</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Just</span><span class="p">(</span><span class="s2">&quot; -10 &quot;</span><span class="p">)</span><span class="o">.</span><span class="n">fmap</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span><span class="o">.</span><span class="n">fmap</span><span class="p">(</span><span class="nb">abs</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#Just(None)\</span>
+<span class="c1">#    .fmap(lambda _: int(input(&quot;Insert number a: &quot;))) \</span>
+<span class="c1">#    .fmap(lambda x: x / int(input(&quot;Insert number b: &quot;))) \</span>
+<span class="c1">#    .fmap(lambda x: print(x))</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">decrease</span><span class="p">(</span><span class="n">num</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Maybe</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+   <span class="k">if</span> <span class="n">num</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
+       <span class="k">return</span> <span class="n">Just</span><span class="p">(</span><span class="n">num</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+   <span class="k">else</span><span class="p">:</span>
+       <span class="k">return</span> <span class="n">Nothing</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Just</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="n">decrease</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Just</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="n">decrease</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id5">
+<h2>常用的技巧<a class="headerlink" href="#id5" title="永久链接至标题">#</a></h2>
+<ol class="simple">
+<li><p>map</p></li>
+<li><p>itertools</p></li>
+<li><p>lambda</p></li>
+<li><p>exception</p></li>
+<li><p>decorator</p></li>
+<li><p>generator</p></li>
+<li><p>threading</p></li>
+<li><p>regular expression</p></li>
+</ol>
+<section id="itertools">
+<h3>itertools<a class="headerlink" href="#itertools" title="永久链接至标题">#</a></h3>
+<p>我们来看看<code class="docutils literal notranslate"><span class="pre">itertools</span></code>的功能，这个程序包功能强大，对编程的方式影响深远。这里的材料主要来源于
+<a class="reference external" href="https://stackoverflow.com/questions/38087427/what-are-the-uses-of-itercallable-sentinel">What are the uses of iter(callable, sentinel)?</a>。</p>
+</section>
+</section>
+<section id="id6">
+<h2>常用的数据结构<a class="headerlink" href="#id6" title="永久链接至标题">#</a></h2>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>
+</pre></div>
+</div>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./impl"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By 张志峰<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

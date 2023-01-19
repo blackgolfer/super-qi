@@ -29,6 +29,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
     <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-examples.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
     <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
   <!-- Pre-loaded scripts that we'll load fully later -->
@@ -54,7 +55,7 @@ const thebe_selector_input = "pre"
 const thebe_selector_output = ".output, .cell_output"
 </script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
-    <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "C": "\\mathbb{C}", "Z": "\\mathbb{Z}", "Q": "\\mathbb{Q}", "L": "\\mathbb{L}", "U": "\\mathbb{U}", "T": "\\mathbb{T}", "R": "\\mathbb{R}", "defeq": "\\mathop:=", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script>window.MathJax = {"HTML-CSS": {"matchFontHeight": true, "scale": 80}, "tex": {"macros": {"N": "\\mathbb{N}", "C": "\\mathbb{C}", "Z": "\\mathbb{Z}", "Q": "\\mathbb{Q}", "L": "\\mathbb{L}", "U": "\\mathbb{U}", "T": "\\mathbb{T}", "R": "\\mathbb{R}", "defeq": "\\mathop:=", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜索" href="../search.html" />
@@ -181,12 +182,12 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../impl/signal.html">
-   信号空间
+   信号空间的数据结构
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../impl/fft.html">
-   离散傅里叶变换
+   整数域上的折叠实现
   </a>
  </li>
 </ul>
@@ -570,8 +571,8 @@ title="Print to PDF"
     \end{aligned}
 \right.}\end{split}\]</div>
 <p>即</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ea688976-c4ad-41e8-86a1-643f5295d48d">
-<span class="eqno">(1)<a class="headerlink" href="#equation-ea688976-c4ad-41e8-86a1-643f5295d48d" title="公式的永久链接">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-eee60bc1-2297-4be5-9141-334eb0dd57bb">
+<span class="eqno">(1)<a class="headerlink" href="#equation-eee60bc1-2297-4be5-9141-334eb0dd57bb" title="公式的永久链接">#</a></span>\[\begin{equation}
 f=\sum_{g\in G}f(g)\delta_g,\quad\forall f\in\C[G]
 \end{equation}\]</div>
 <p>由此，<span class="math notranslate nohighlight">\(\C[G]\)</span>是<span class="math notranslate nohighlight">\(\C\)</span>上的一个向量空间（vector space）并且维度为<span class="math notranslate nohighlight">\(|G|\)</span>。</p>
@@ -597,8 +598,8 @@ f=\sum_{g\in G}f(g)\delta_g,\quad\forall f\in\C[G]
 <p class="admonition-title"><span class="caption-number">Proposition 2 </span></p>
 <section class="proposition-content" id="proof-content">
 <p>假设<span class="math notranslate nohighlight">\(G\)</span>的基数为<span class="math notranslate nohighlight">\(n\in\N\)</span>，即<span class="math notranslate nohighlight">\(|G|=n\)</span>，那么其对偶群的元素一定是某个单位圆的根：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-178fd5b4-6c7b-4285-9f0d-94aea6eefa59">
-<span class="eqno">(2)<a class="headerlink" href="#equation-178fd5b4-6c7b-4285-9f0d-94aea6eefa59" title="公式的永久链接">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-4479efae-bbe2-498e-b052-a181e0164059">
+<span class="eqno">(2)<a class="headerlink" href="#equation-4479efae-bbe2-498e-b052-a181e0164059" title="公式的永久链接">#</a></span>\[\begin{equation}
 \U_n=\left\{\left.\exp\left(\frac{2ik\pi}{n}\right)\right|0\leq k&lt;n\right\}
 \end{equation}\]</div>
 <p>而且，</p>
@@ -642,8 +643,8 @@ f=\sum_{g\in G}f(g)\delta_g,\quad\forall f\in\C[G]
     {
         requestKernel: true,
         binderOptions: {
-            repo: "blackgolfer/super-qi",
-            ref: "szhq20022",
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
         },
         codeMirrorConfig: {
             theme: "abcdef",

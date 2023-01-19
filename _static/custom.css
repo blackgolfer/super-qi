@@ -1,0 +1,49 @@
+h1 {
+    font-size: 20px;
+    font-weight: bold;
+}
+  
+h2 {
+    font-size: 18px;
+    font-weight: bold;
+}
+  
+h3 {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+h4 {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+h5 {
+  font-size: 13px;
+  font-weight: bold;
+}
+
+h6 {
+  font-size: 13px;
+  font-style: italic;
+}
+
+p {
+    font-size: 12px;
+}
+
+.cell_output.docutils.container {
+    font-size: 12px;
+}
+
+.cell_input.docutils.container {
+    font-size: 12px;
+}
+
+.math.notranslate.nohighlight {
+    font-size: 11px;
+}
+
+.highlight {
+    font-size: 12px;
+}
