@@ -1,0 +1,1 @@
+export SUPER_QI=${PWD}

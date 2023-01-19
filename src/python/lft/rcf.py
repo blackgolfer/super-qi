@@ -1,85 +1,34 @@
+from abc import ABCMeta, abstractmethod
 import numpy as np
 
-#-------------------------------------------------------
-# Precomputed rising cutoff function (rcf) for grid
-# point and mid point foldings
-# 
-# Inputs:
-# E - number of sampling points on the interval (0,1]
-# num - rcf parameter, for sine iteration, this is the
-#       number of iteration
-#
-# Internal variables:
-# _grid: store the precomputed rcf for sampled at grid
-#        point
-#        _grid[i]*_grid[i]+_grid[-i]*_grid[-i]=1
-# _mid: store the precomputed rcf for mid point sampled
-#       _mid[i]*_mid[i]+_mid[-i-1]*_mid[-i-1]=1
-#------------------------------------------------------
-class rcf:
-    def __init__(self,E,num=1):
+class rcf(object, metaclass=ABCMeta):
+    @abstractmethod
+    def __init__(self,E,type):
         self._E=E
-        self._num_itr=num
-        self._type='mid'
-        self._grid=np.empty(2*self._E-1,dtype=float)
-        self._mid=np.empty(2*self._E,dtype=float)
-        self.__rcfgrid()
-        self.__rcfmid()
-
-    def settype(self,type):
         if type=='grid' or type=='mid':
             self._type=type
         else:
-            raise NameError("invalid type")
-
-    def type(self):
-        return self._type
-
-    def final(self):
-        return self._E-1
-
-    def least(self):
-        if self._type == 'grid':
-            return -self._E+1
-        else:
-            return -self._E
-        
-    def __getitem__(self,position):
+            raise ValueError
         if self._type=='grid':
-            return self._grid[position]
+            self._data=np.empty(2*self._E-1,dtype=float)
+            self.__rcfgrid()
         else:
-            return self._mid[position]
+            self._data=np.empty(2*self._E,dtype=float)
+            self.__rcfmid()
+
+    def __getitem__(self,position):
+        return self._data[position]
 
     def __len__(self):
-        if self._type=='grid':
-            return len(self._grid)
-        else:
-            return len(self._mid)
+        return len(self._data)
 
-    # for now we just use the iterative sine
-    # we will deal with multiple rcf later
-    def rcfis(self,t,N=1):
-        if t>-1.0:
-            if t<1.0:
-                for i in range(0,N):
-                    t = np.sin(0.5*np.pi*t)
-                t = np.sin(0.25*np.pi*(1.0+t))
-            else:
-                t = 1.0
-        else:
-            t = 0.0
-        return t
+    @abstractmethod
+    def rcf_fct(self,t):
+        pass
 
-    def order_indexes(self):
-        if (self._type=='grid'):
-            oi = list(range(2*self._E-1))
-            return np.roll(oi,self._E-1)
-        else:
-            oi = list(range(2*self._E))
-            return np.roll(oi,self._E)
-
-    def num_itr(self):
-        return self._num_itr
+    @abstractmethod
+    def param(self):
+        pass
 
     # rcf sampled at grid point
     # declare rcfgrid as private method
@@ -89,11 +38,11 @@ class rcf:
     def __rcfgrid(self):
         t=0.0
         dt=1.0/self._E # 1/(final+1)
-        self._grid[0]=np.sqrt(0.5)
+        self._data[0]=np.sqrt(0.5)
         for j in range(1,self._E):
             t=t+dt
-            self._grid[j] = self.rcfis(t,self._num_itr)
-            self._grid[-j] = self.rcfis(-t,self._num_itr)
+            self._data[j] = self.rcf_fct(t)
+            self._data[-j] = self.rcf_fct(-t)
 
     # rcf sampled at mid point
     # declare rcfmid as private method
@@ -104,6 +53,57 @@ class rcf:
         t = 0.5/self._E
         dt = 1.0/self._E
         for j in range(0,self._E):
-            self._mid[j]=self.rcfis(t,self._num_itr)
-            self._mid[-j-1]=self.rcfis(-t,self._num_itr)
+            self._data[j]=self.rcf_fct(t)
+            self._data[-j-1]=self.rcf_fct(-t)
             t = t+dt
+
+    def order_indexes(self):
+        if (self._type=='grid'):
+            oi = list(range(2*self._E-1))
+            return np.roll(oi,self._E-1)
+        else:
+            oi = list(range(2*self._E))
+            return np.roll(oi,self._E)
+
+    def final(self):
+        return self._E-1
+
+    def least(self):
+        if self._type == 'grid':
+            return -self._E+1
+        else:
+            return -self._E
+
+    def type(self):
+        return self._type
+
+class rcfis(rcf):
+    def __init__(self,E,type,ni=1):
+        self._num_itr=ni
+        rcf.__init__(self,E,type)
+
+    @classmethod
+    def grid(cls,E,ni=1):
+        return cls(E,'grid',ni)
+
+    @classmethod
+    def mid(cls,E,ni=1):
+        return cls(E,'mid',ni)
+
+    def rcf_fct(self,t):
+        if t>-1.0:
+            if t<1.0:
+                for i in range(0,self._num_itr):
+                    t = np.sin(0.5*np.pi*t)
+                t = np.sin(0.25*np.pi*(1.0+t))
+            else:
+                t = 1.0
+        else:
+            t = 0.0
+        return t
+
+    def param(self):
+        return self._num_itr
+
+class rcfth(rcf):
+    pass

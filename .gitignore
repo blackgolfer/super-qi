@@ -135,3 +135,10 @@ devop/docker/.depends.mk
 _build/
 
 .DS_Store
+
+**/learn_*
+**/bin
+**/bin/*
+.vscode
+src/go/pkg
+src/go/src

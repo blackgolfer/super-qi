@@ -35,9 +35,10 @@ launch_buttons:
   notebook_interface: "classic" # The interface interactive links will activate ["classic", "jupyterlab"]
   binderhub_url: "https://mybinder.org"
   colab_url: "https://colab.research.google.com"
-  thebe: true
+  thebe: false
 
 parse:
+  nb_number_source_lines: true
   myst_substitutions:
       sub3: My _global_ value!
   myst_enable_extensions:  # default extensions to enable in the myst parser. See https://myst-parser.readthedocs.io/en/latest/using/syntax-optional.html
@@ -104,6 +105,10 @@ sphinx:
     # mathjax_path: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
     # However, it is incompatible with the mathjax config below for macros
     mathjax3_config:
+      "HTML-CSS": {
+        matchFontHeight: true,
+        scale: 80
+      }
       tex:
         macros:
           "N": "\\mathbb{N}"
@@ -131,7 +136,6 @@ sphinx:
     #  content-types/jupytext.md: file-types/jupytext.Rmd
     #  content-types/restructuredtext.md: file-types/restructuredtext.md
     #  customize/toc.md: structure/toc.md
-
   extra_extensions:
     - sphinx_click.ext
     - sphinx_inline_tabs
