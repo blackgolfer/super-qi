@@ -44,13 +44,30 @@
          ```
          Following the example above, assign the python3.7 environment to project projects/ts/wavelet/tf:
          ```console
-         % cd projects/ts/wavelet/tf
+         % cd projects/ts/wavelet/tf:wq
+         
          % python local python3.7
          ```
          In this way, different projects can use different python versions.
+
 ### Setting up project environment
-   1. Installing jupyterlab
+   1. Installing jupyter notebook
    2. Installing required packages
+      ```bash
+      pip install -r requirements.txt
+      ```
+
+### Running jupyter notebook
+```bash
+./runjnb.sh
+```
+
+## vscode
+### Terminal
+How to set up terminal using zsh: bring up command pallete, find "Terminal Default Profile", choose zsh.
+
+### devcontainer
+
 ## Git
 ### Window 11
    - https://www.windows11.pro/5639.html

@@ -1,4 +1,3 @@
-source setenv.sh
-source setpypath.sh
+source ./setenv.sh
 
 jupyter notebook
