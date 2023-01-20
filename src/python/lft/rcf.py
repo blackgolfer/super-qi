@@ -30,12 +30,14 @@ class rcf(object, metaclass=ABCMeta):
     def param(self):
         pass
 
-    # rcf sampled at grid point
-    # declare rcfgrid as private method
-    # the array is arranged as:
-    #   _grid[1]..._grid[E] for rcf at t=1/E,2/E,...,1
-    #   _grid[:-1]..._grid[:-E] for rcf at t=-1/E,-2/E,...,-1
+ 
     def __rcfgrid(self):
+        """
+        rcf sampled at grid point
+        the array is arranged as:
+            _grid[1]..._grid[E] for rcf at t=1/E,2/E,...,1
+            _grid[:-1]..._grid[:-E] for rcf at t=-1/E,-2/E,...,-1
+        """
         t=0.0
         dt=1.0/self._E # 1/(final+1)
         self._data[0]=np.sqrt(0.5)
@@ -44,12 +46,14 @@ class rcf(object, metaclass=ABCMeta):
             self._data[j] = self.rcf_fct(t)
             self._data[-j] = self.rcf_fct(-t)
 
-    # rcf sampled at mid point
-    # declare rcfmid as private method
-    # the array is arranged as:
-    # _grid[1]..._grid[E]: for rcf at (0+1/2)/E,(1+1/2)/E,...,1-1/(2E)
-    # _grid[-1]..._grid[:-E+1]: for rcf at -(0+1/2)/E,-(1+1/2)/E,...,-1+1/(2E)
     def __rcfmid(self):
+        """
+        rcf sampled at mid point
+
+        the array is arranged as:
+            _grid[1]..._grid[E]: for rcf at (0+1/2)/E,(1+1/2)/E,...,1-1/(2E)
+            _grid[-1]..._grid[:-E+1]: for rcf at -(0+1/2)/E,-(1+1/2)/E,...,-1+1/(2E)
+        """
         t = 0.5/self._E
         dt = 1.0/self._E
         for j in range(0,self._E):
