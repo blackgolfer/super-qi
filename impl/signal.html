@@ -59,7 +59,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="索引" href="../genindex.html" />
     <link rel="search" title="搜索" href="../search.html" />
-    <link rel="next" title="整数域上的折叠实现" href="fft.html" />
+    <link rel="next" title="整数域上的折叠实现" href="fold.html" />
     <link rel="prev" title="导言" href="intro.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="zh">
@@ -186,7 +186,7 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="fft.html">
+  <a class="reference internal" href="fold.html">
    整数域上的折叠实现
   </a>
  </li>
@@ -495,7 +495,93 @@ title="Print to PDF"
      局部性
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id13">
+     光滑切割
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#traitsmixin">
+       traits与mixin
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id14">
+       扩充算法实现
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#padding-trait">
+       padding trait
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id15">
+       有交集的切割
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#oblocks">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         oblocks
+        </span>
+       </code>
+       的构造函数
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#oblocksfmap">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         oblocks
+        </span>
+       </code>
+       的
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         fmap
+        </span>
+       </code>
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#attribute">
+         函数
+         <code class="docutils literal notranslate">
+          <span class="pre">
+           attribute
+          </span>
+         </code>
+         的用法
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id16">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         oblocks
+        </span>
+       </code>
+       中
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         fmap
+        </span>
+       </code>
+       与外部函数交互的接口
+      </a>
+     </li>
+    </ul>
+   </li>
   </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#level-manager">
+   Level Manager
+  </a>
  </li>
 </ul>
 
@@ -580,7 +666,93 @@ title="Print to PDF"
      局部性
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id13">
+     光滑切割
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#traitsmixin">
+       traits与mixin
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id14">
+       扩充算法实现
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#padding-trait">
+       padding trait
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id15">
+       有交集的切割
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#oblocks">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         oblocks
+        </span>
+       </code>
+       的构造函数
+      </a>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#oblocksfmap">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         oblocks
+        </span>
+       </code>
+       的
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         fmap
+        </span>
+       </code>
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#attribute">
+         函数
+         <code class="docutils literal notranslate">
+          <span class="pre">
+           attribute
+          </span>
+         </code>
+         的用法
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id16">
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         oblocks
+        </span>
+       </code>
+       中
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         fmap
+        </span>
+       </code>
+       与外部函数交互的接口
+      </a>
+     </li>
+    </ul>
+   </li>
   </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#level-manager">
+   Level Manager
+  </a>
  </li>
 </ul>
 
@@ -1280,7 +1452,7 @@ x[0],x[1],\cdots,x[m],x[-n], x[-n+1],\cdots,x[-1]
 <ol class="simple">
 <li><p>局部性（localizatioin）</p></li>
 <li><p>位移（translation）</p></li>
-<li><p>伸缩（decimation）</p></li>
+<li><p>伸缩或抽样（decimation）</p></li>
 <li><p>函数式，能够让外部函数作用于内部数据。</p></li>
 </ol>
 </section>
@@ -1328,10 +1500,9 @@ x[0],x[1],\cdots,x[m],x[-n], x[-n+1],\cdots,x[-1]
 </section>
 <section id="id12">
 <h3>局部性<a class="headerlink" href="#id12" title="永久链接至标题">#</a></h3>
-<p><code class="docutils literal notranslate"><span class="pre">blocks</span></code>是一个类，对信号进行等分分割并且进行分析。分析性是通过赋予<code class="docutils literal notranslate"><span class="pre">functor</span></code>的功能来实现。切割函数<code class="docutils literal notranslate"><span class="pre">chunked</span></code>来自于<code class="docutils literal notranslate"><span class="pre">more_itertools</span></code>，这个算法在导言详细进行了分析。</p>
-<p>对于多层分割而言，这个类可yong</p>
-<div class="literal-block-wrapper docutils container" id="qisignal-blocks">
-<div class="code-block-caption"><span class="caption-number">列表 7 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">qisignal.blocks</span></code>的源代码</span><a class="headerlink" href="#qisignal-blocks" title="永久链接至代码">#</a></div>
+<p><code class="docutils literal notranslate"><span class="pre">blocks</span></code>是一个类，对信号进行等分分割并且进行分析。分析能力是通过赋予<code class="docutils literal notranslate"><span class="pre">functor</span></code>的功能来实现。切割函数<code class="docutils literal notranslate"><span class="pre">chunked</span></code>来自于<code class="docutils literal notranslate"><span class="pre">more_itertools</span></code>，跟导言所分析的<code class="docutils literal notranslate"><span class="pre">grouper</span></code>功能是一样的。</p>
+<div class="literal-block-wrapper docutils container" id="blocks">
+<div class="code-block-caption"><span class="caption-number">列表 7 </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">blocks</span></code>的源代码</span><a class="headerlink" href="#blocks" title="永久链接至代码">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">class</span> <span class="nc">blocks</span><span class="p">(</span><span class="n">functor</span><span class="o">.</span><span class="n">Tuple</span><span class="p">):</span>
 <span class="linenos">2</span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">sig</span><span class="p">:</span><span class="nb">tuple</span><span class="p">,</span><span class="n">B</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
 <span class="linenos">3</span>        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">sig</span><span class="p">,</span><span class="n">Iterable</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">B</span><span class="p">,</span><span class="nb">int</span><span class="p">):</span>
@@ -1365,6 +1536,7 @@ x[0],x[1],\cdots,x[m],x[-n], x[-n+1],\cdots,x[-1]
 </div>
 </div>
 </div>
+<p><code class="docutils literal notranslate"><span class="pre">decimation</span></code>是对数组抽样，每隔一个数抽取一个，下面做了两次这样的抽样，每个数组的个数从<span class="math notranslate nohighlight">\(N\)</span>变成<span class="math notranslate nohighlight">\(N/4\)</span>。最后应用<code class="docutils literal notranslate"><span class="pre">print</span></code>将每一组数打印出来。这种组合式的做法简洁明了。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qif</span><span class="o">.</span><span class="n">fmap</span><span class="p">(</span><span class="n">decimation</span><span class="p">)</span><span class="o">.</span><span class="n">fmap</span><span class="p">(</span><span class="n">decimation</span><span class="p">)</span><span class="o">.</span><span class="n">fmap</span><span class="p">(</span><span class="nb">print</span><span class="p">)</span>
@@ -1378,11 +1550,12 @@ x[0],x[1],\cdots,x[m],x[-n], x[-n+1],\cdots,x[-1]
 (48, 52, 56, 60)
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;functor.Tuple at 0x11378e5d0&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;functor.Tuple at 0x7fe3a21b0190&gt;
 </pre></div>
 </div>
 </div>
 </div>
+<p>上面所用到的函数<code class="docutils literal notranslate"><span class="pre">decimation</span></code>和<code class="docutils literal notranslate"><span class="pre">print</span></code>叫做应用函数，也就是能够作为<code class="docutils literal notranslate"><span class="pre">fmap</span></code>输入参数的函数。严格来说，对应用函数的要求是能够将<code class="docutils literal notranslate"><span class="pre">blocks</span></code>容器的元素映射到<code class="docutils literal notranslate"><span class="pre">Iterable</span></code>数据类，这个<code class="docutils literal notranslate"><span class="pre">Iterable</span></code>的元素类可以跟原来的类不同。<code class="docutils literal notranslate"><span class="pre">functor.Tuple</span></code>对映像的<code class="docutils literal notranslate"><span class="pre">Iterable</span></code>的要求放宽了一点，也接受空映像和单个数据的情况。这就是为什么<code class="docutils literal notranslate"><span class="pre">print</span></code>可以是一个应用函数。函数<code class="docutils literal notranslate"><span class="pre">sum</span></code>将数组映射成一个数值，同样是<code class="docutils literal notranslate"><span class="pre">functor.Tuple</span></code>的应用函数。</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qif</span><span class="o">.</span><span class="n">fmap</span><span class="p">(</span><span class="nb">sum</span><span class="p">)</span><span class="o">.</span><span class="n">fmap</span><span class="p">(</span><span class="nb">print</span><span class="p">)</span>
@@ -1390,17 +1563,19 @@ x[0],x[1],\cdots,x[m],x[-n], x[-n+1],\cdots,x[-1]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(120,)
-(376,)
-(632,)
-(888,)
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>120
+376
+632
+888
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;functor.Tuple at 0x1135ebf10&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;functor.Tuple at 0x7fe3a21dfd50&gt;
 </pre></div>
 </div>
 </div>
 </div>
+<p>python的类系统不清晰，也比较松散，有不少隐规则。这是这个语言最大的缺点，当然也有人说是最大的优点。对设计<code class="docutils literal notranslate"><span class="pre">functo.Tuple</span></code>而言，这样的不清晰的类系统挑战很大。我们对应用函数的范围还需要不断摸索。</p>
+<p>无论是<code class="docutils literal notranslate"><span class="pre">decimation</span></code>还是<code class="docutils literal notranslate"><span class="pre">sum</span></code>，多次重复应用都会到达一个不变点。我们来看看<code class="docutils literal notranslate"><span class="pre">blocks</span></code>经过大量的重复应用后会怎么样：</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">tmp</span><span class="o">=</span><span class="n">qif</span><span class="o">.</span><span class="n">fmap</span><span class="p">(</span><span class="n">decimation</span><span class="p">)</span>
@@ -1423,7 +1598,7 @@ x[0],x[1],\cdots,x[m],x[-n], x[-n+1],\cdots,x[-1]
 (48,)
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;functor.Tuple at 0x1135ff510&gt;
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;functor.Tuple at 0x7fe3a21df490&gt;
 </pre></div>
 </div>
 </div>
@@ -1438,18 +1613,1042 @@ x[0],x[1],\cdots,x[m],x[-n], x[-n+1],\cdots,x[-1]
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(120,)
-(376,)
-(632,)
-(888,)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Empty....
 </pre></div>
 </div>
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;functor.Tuple at 0x113781850&gt;
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qif</span><span class="o">.</span><span class="n">fmap</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span><span class="o">.</span><span class="n">fmap</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Empty....
 </pre></div>
 </div>
 </div>
 </div>
 </section>
+<section id="id13">
+<h3>光滑切割<a class="headerlink" href="#id13" title="永久链接至标题">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">blocks</span></code>满足了block transform的要求。为了能够运用于lct，lst这样的局部分析，我们还需要加功能以满足折叠与扩充（padding）的需求。扩充是在两个端点将数组扩大的方法。新的需求体现在下面两点：</p>
+<ol class="simple">
+<li><p>上面的分组，相邻的组没有交集，而折叠算子要求相邻的组有一定的交集。</p></li>
+<li><p>新的算法由两类算法组成，这两种算法分别是block transform和磨光、延伸。block transform作用于核心区域（也就是原来不做延伸的区域），磨光与延伸作用于延伸区域和一部分核心区域。</p></li>
+</ol>
+<p>从程序设计的角度看，就是要在基础类上加功能。非常适合用traits和组合（mixin）的方法。</p>
+<section id="traitsmixin">
+<h4>traits与mixin<a class="headerlink" href="#traitsmixin" title="永久链接至标题">#</a></h4>
+<p>扩充目前有三个方法：加零扩充，周期扩充和对称扩充。加零扩充就是用零去设置扩充的区域。严格来说，周期扩展是把数组看成是首尾相接的循环序列，周期为信号的长度，不需要扩充数组的长度。但是通常人们是利用这个概念设置扩充区域的值。对称扩充是以端点为对称点的扩充。完整的对称扩充如下：用符合<span class="math notranslate nohighlight">\(x\)</span>记信号的值，即<span class="math notranslate nohighlight">\(x[0],x[1],\cdots,x[N-1]\)</span>为被扩充的数组。对于<span class="math notranslate nohighlight">\(0\)</span>点进行对称扩充后所得到的数组为<span class="math notranslate nohighlight">\(x[N-1],x[N-2],\cdots,x[1],x[0],x[0],x[1],x[2],\cdots,x[N-1]\)</span>，也就是得到了长度为<span class="math notranslate nohighlight">\(2N\)</span>的数组，把这个新的数组看成周期数组，也就是首尾相接的数组，这个数组在端点具备连续性，这就是对称扩充的好处。如果不是做完整的扩充，只是继续<span class="math notranslate nohighlight">\(M\)</span>个元素的扩充（<span class="math notranslate nohighlight">\(M&lt;N\)</span>），那么我们只是对端点进行对称操作。</p>
+<p>这是三种不同的算法，我们分别用三个函数来实现，用<code class="docutils literal notranslate"><span class="pre">traits</span></code>的方式把这个三种算法封装起来，通过<code class="docutils literal notranslate"><span class="pre">mixin</span></code>，我们可以灵活地赋予一个类具备padding的功能。下面是这个设计思路的实验：</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">padding_zero</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;this is padding with zero&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">padding_period</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;this is periodic padding&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">padding_symetric</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;this is symetrical padding&quot;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">has_padding</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">doc</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return an anonymous class that has a padding property</span>
+<span class="sd">    named `name`, with a default value of `default` and</span>
+<span class="sd">    a docstring of `doc`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">propname</span> <span class="o">=</span> <span class="s2">&quot;__padding_method_</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+    <span class="n">padding_method</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;zero&quot;</span><span class="p">:</span> <span class="n">padding_zero</span><span class="p">,</span>
+        <span class="s2">&quot;period&quot;</span><span class="p">:</span> <span class="n">padding_period</span><span class="p">,</span>
+        <span class="s2">&quot;symetric&quot;</span><span class="p">:</span> <span class="n">padding_symetric</span>
+    <span class="p">}</span>
+
+    <span class="k">def</span> <span class="nf">getter</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">propname</span><span class="p">,</span> <span class="n">default</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">setter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">value</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">padding_method</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;unknown padding method &#39;</span><span class="si">{}</span><span class="s2">&#39;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">propname</span><span class="p">,</span> <span class="nb">staticmethod</span><span class="p">(</span><span class="n">padding_method</span><span class="p">[</span><span class="n">value</span><span class="p">]))</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;padding method specifications must be strs&quot;</span><span class="p">)</span>
+
+
+    <span class="k">class</span> <span class="nc">Inner</span><span class="p">:</span>
+        <span class="k">pass</span>
+
+    <span class="nb">setattr</span><span class="p">(</span><span class="n">Inner</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="nb">property</span><span class="p">(</span><span class="n">getter</span><span class="p">,</span> <span class="n">setter</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">doc</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">Inner</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Preprocessor</span><span class="p">:</span>
+    <span class="k">pass</span>
+
+<span class="k">class</span> <span class="nc">test</span><span class="p">(</span><span class="n">Preprocessor</span><span class="p">,</span>
+           <span class="n">has_padding</span><span class="p">(</span><span class="s2">&quot;left&quot;</span><span class="p">),</span>
+           <span class="n">has_padding</span><span class="p">(</span><span class="s2">&quot;right&quot;</span><span class="p">)):</span>
+           <span class="k">pass</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c</span><span class="o">=</span><span class="n">test</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c</span><span class="o">.</span><span class="n">left</span><span class="o">=</span><span class="s1">&#39;zero&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">left</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>staticmethod
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c</span><span class="o">.</span><span class="n">left</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>this is padding with zero
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c</span><span class="o">.</span><span class="n">right</span><span class="o">=</span><span class="s1">&#39;symetric&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c</span><span class="o">.</span><span class="n">right</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>this is symetrical padding
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c</span><span class="o">.</span><span class="n">left</span><span class="o">=</span><span class="s1">&#39;period&#39;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c</span><span class="o">.</span><span class="n">left</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>this is periodic padding
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c</span><span class="o">.</span><span class="n">left</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;staticmethod(&lt;function padding_period at 0x7fe3a21e9e40&gt;)&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<p>基本达到我们的设计要求，但是扩充除了算法外，还有一个关于端点的参数。下面是算法函数的实现，我们基本上只考虑三类数组类型（而且假设是一维数组，这里对类的把握还不是太严密，以后会不断加强）。</p>
+</section>
+<section id="id14">
+<h4>扩充算法实现<a class="headerlink" href="#id14" title="永久链接至标题">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">partial</span>
+
+<span class="k">def</span> <span class="nf">padding_zero</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">size</span><span class="p">,</span><span class="n">iterable</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">iterable</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">size</span><span class="p">,</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">iterable</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">[</span><span class="mi">0</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span><span class="p">)]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="mf">0.0</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">size</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">padding_periodic</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">size</span><span class="p">,</span><span class="n">iterable</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">n</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">iterable</span><span class="p">[</span><span class="o">-</span><span class="n">size</span><span class="p">:]</span>
+    <span class="k">elif</span> <span class="n">n</span><span class="o">==-</span><span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">iterable</span><span class="p">[:</span><span class="n">size</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;unhandled index&quot;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">padding_symetric</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">size</span><span class="p">,</span><span class="n">iterable</span><span class="p">):</span>
+    <span class="c1"># not sure how to convert a reversed iterator for np.ndarray</span>
+    <span class="c1"># so use slice ::-1</span>
+    <span class="k">if</span> <span class="n">n</span><span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+        <span class="n">tmp</span><span class="o">=</span><span class="p">(</span><span class="n">iterable</span><span class="p">[:</span><span class="n">size</span><span class="p">])[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">elif</span> <span class="n">n</span><span class="o">==-</span><span class="mi">1</span><span class="p">:</span>
+        <span class="n">tmp</span><span class="o">=</span><span class="p">(</span><span class="n">iterable</span><span class="p">[</span><span class="o">-</span><span class="n">size</span><span class="p">:])[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;unhandled index&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">iterable</span><span class="p">,</span><span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">tmp</span><span class="p">,</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">iterable</span><span class="p">,</span><span class="nb">list</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">tmp</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">tmp</span><span class="p">)</span>
+
+<span class="n">left_zero</span><span class="o">=</span><span class="n">partial</span><span class="p">(</span><span class="n">padding_zero</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">right_zero</span><span class="o">=</span><span class="n">partial</span><span class="p">(</span><span class="n">padding_zero</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">left_periodic</span><span class="o">=</span><span class="n">partial</span><span class="p">(</span><span class="n">padding_periodic</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">right_periodic</span><span class="o">=</span><span class="n">partial</span><span class="p">(</span><span class="n">padding_periodic</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">left_symetric</span><span class="o">=</span><span class="n">partial</span><span class="p">(</span><span class="n">padding_symetric</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">right_symetric</span><span class="o">=</span><span class="n">partial</span><span class="p">(</span><span class="n">padding_symetric</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
+
+<span class="n">Padding</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s2">&quot;Padding&quot;</span><span class="p">,[</span><span class="s2">&quot;method&quot;</span><span class="p">,</span><span class="s2">&quot;at&quot;</span><span class="p">])</span>
+<span class="n">methods</span><span class="o">=</span> <span class="s1">&#39;zero periodic symetric&#39;</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>
+<span class="n">endpoints</span> <span class="o">=</span> <span class="s1">&#39;left right&#39;</span><span class="o">.</span><span class="n">split</span><span class="p">()</span> 
+<span class="n">paddings</span><span class="o">=</span><span class="p">[</span><span class="n">Padding</span><span class="p">(</span><span class="n">method</span><span class="p">,</span><span class="n">at</span><span class="p">)</span> <span class="k">for</span> <span class="n">method</span> <span class="ow">in</span> <span class="n">methods</span> <span class="k">for</span> <span class="n">at</span> <span class="ow">in</span> <span class="n">endpoints</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">print_padding_result</span><span class="p">(</span><span class="n">size</span><span class="p">,</span><span class="n">iterable</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">paddings</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">i</span><span class="o">.</span><span class="n">at</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">i</span><span class="o">.</span><span class="n">method</span><span class="si">}</span><span class="s2">=</span><span class="si">{</span><span class="nb">eval</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">at</span><span class="o">+</span><span class="s1">&#39;_&#39;</span><span class="o">+</span><span class="n">i</span><span class="o">.</span><span class="n">method</span><span class="p">)(</span><span class="n">size</span><span class="p">,</span><span class="n">iterable</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">foo</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">32</span><span class="p">))</span>
+<span class="n">print_padding_result</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="n">foo</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>left zero=[0, 0, 0, 0, 0, 0, 0, 0]
+right zero=[0, 0, 0, 0, 0, 0, 0, 0]
+left periodic=[24, 25, 26, 27, 28, 29, 30, 31]
+right periodic=[0, 1, 2, 3, 4, 5, 6, 7]
+left symetric=[7, 6, 5, 4, 3, 2, 1, 0]
+right symetric=[31, 30, 29, 28, 27, 26, 25, 24]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">foo</span><span class="o">=</span><span class="nb">tuple</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">32</span><span class="p">))</span>
+<span class="n">print_padding_result</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="n">foo</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>left zero=(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+right zero=(0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+left periodic=(24, 25, 26, 27, 28, 29, 30, 31)
+right periodic=(0, 1, 2, 3, 4, 5, 6, 7)
+left symetric=(7, 6, 5, 4, 3, 2, 1, 0)
+right symetric=(31, 30, 29, 28, 27, 26, 25, 24)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">foo</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">foo</span><span class="p">,</span><span class="n">dtype</span><span class="o">=</span><span class="nb">float</span><span class="p">)</span>
+<span class="n">print_padding_result</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="n">foo</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>left zero=[0. 0. 0. 0. 0. 0. 0. 0.]
+right zero=[0. 0. 0. 0. 0. 0. 0. 0.]
+left periodic=[24. 25. 26. 27. 28. 29. 30. 31.]
+right periodic=[0. 1. 2. 3. 4. 5. 6. 7.]
+left symetric=[7. 6. 5. 4. 3. 2. 1. 0.]
+right symetric=[31. 30. 29. 28. 27. 26. 25. 24.]
+</pre></div>
+</div>
+</div>
+</div>
+<p>有了扩充算法函数，我们对<code class="docutils literal notranslate"><span class="pre">traits</span></code>做相应的修改，主要是限制<code class="docutils literal notranslate"><span class="pre">name</span></code>只能是<code class="docutils literal notranslate"><span class="pre">left</span></code>或者<code class="docutils literal notranslate"><span class="pre">right</span></code>。</p>
+</section>
+<section id="padding-trait">
+<h4>padding trait<a class="headerlink" href="#padding-trait" title="永久链接至标题">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">use_padding_at</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">doc</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Return an anonymous class that has a padding property</span>
+<span class="sd">    named `name`, with a default value of `default` and</span>
+<span class="sd">    a docstring of `doc`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">name</span><span class="o">!=</span><span class="s1">&#39;left&#39;</span> <span class="ow">and</span> <span class="n">name</span><span class="o">!=</span><span class="s1">&#39;right&#39;</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;name is either &#39;left&#39; or &#39;right&#39;&quot;</span><span class="p">)</span>
+    <span class="n">propname</span> <span class="o">=</span> <span class="s2">&quot;__padding_method_</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+    <span class="n">padding_methods</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;left zero&quot;</span><span class="p">:</span> <span class="n">left_zero</span><span class="p">,</span>
+        <span class="s2">&quot;left periodic&quot;</span><span class="p">:</span> <span class="n">left_periodic</span><span class="p">,</span>
+        <span class="s2">&quot;left symetric&quot;</span><span class="p">:</span> <span class="n">left_symetric</span><span class="p">,</span>
+        <span class="s2">&quot;right zero&quot;</span><span class="p">:</span> <span class="n">right_zero</span><span class="p">,</span>
+        <span class="s2">&quot;right periodic&quot;</span><span class="p">:</span> <span class="n">right_periodic</span><span class="p">,</span>
+        <span class="s2">&quot;right symetric&quot;</span><span class="p">:</span> <span class="n">right_symetric</span>
+    <span class="p">}</span>
+
+    <span class="k">def</span> <span class="nf">getter</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">propname</span><span class="p">,</span> <span class="n">default</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">setter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="n">value</span><span class="o">=</span><span class="n">name</span><span class="o">+</span><span class="s1">&#39; &#39;</span><span class="o">+</span><span class="n">value</span>
+            <span class="k">if</span> <span class="n">value</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">padding_methods</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;unknown padding method &#39;</span><span class="si">{}</span><span class="s2">&#39;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">value</span><span class="p">))</span>
+            <span class="nb">setattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">propname</span><span class="p">,</span> <span class="nb">staticmethod</span><span class="p">(</span><span class="n">padding_methods</span><span class="p">[</span><span class="n">value</span><span class="p">]))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;padding method specifications must be strs&quot;</span><span class="p">)</span>
+
+    <span class="k">class</span> <span class="nc">Inner</span><span class="p">:</span>
+        <span class="k">pass</span>
+
+    <span class="nb">setattr</span><span class="p">(</span><span class="n">Inner</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="nb">property</span><span class="p">(</span><span class="n">getter</span><span class="p">,</span> <span class="n">setter</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">doc</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">Inner</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id15">
+<h4>有交集的切割<a class="headerlink" href="#id15" title="永久链接至标题">#</a></h4>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">oblocks</span><span class="p">(</span><span class="n">blocks</span><span class="p">,</span><span class="n">use_padding_at</span><span class="p">(</span><span class="s2">&quot;left&quot;</span><span class="p">),</span><span class="n">use_padding_at</span><span class="p">(</span><span class="s2">&quot;right&quot;</span><span class="p">)):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    overlapping blocks</span>
+<span class="sd">    </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">sig</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="n">ps</span><span class="p">,</span><span class="n">pm</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;periodic&#39;</span><span class="p">,</span><span class="s1">&#39;periodic&#39;</span><span class="p">]):</span>
+        <span class="n">blocks</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">sig</span><span class="p">,</span><span class="n">B</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">left</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">right</span><span class="o">=</span><span class="n">pm</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">leftsize</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">rightsize</span><span class="o">=</span><span class="n">ps</span>
+        
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">foo</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">32</span><span class="p">)))</span>
+<span class="n">c</span><span class="o">=</span><span class="n">oblocks</span><span class="p">(</span><span class="n">foo</span><span class="p">,</span><span class="mi">16</span><span class="p">,[</span><span class="mi">8</span><span class="p">,</span><span class="mi">8</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">left</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">c</span><span class="o">.</span><span class="n">right</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;staticmethod(functools.partial(&lt;function padding_periodic at 0x7fe3a21e9580&gt;, 0))&gt;
+&lt;staticmethod(functools.partial(&lt;function padding_periodic at 0x7fe3a21e9580&gt;, -1))&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c</span><span class="o">.</span><span class="n">fmap</span><span class="p">(</span><span class="n">decimation</span><span class="p">)</span><span class="o">.</span><span class="n">fmap</span><span class="p">(</span><span class="nb">print</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(0, 2, 4, 6, 8, 10, 12, 14)
+(16, 18, 20, 22, 24, 26, 28, 30)
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;functor.Tuple at 0x7fe3a22e6290&gt;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="oblocks">
+<h4><code class="docutils literal notranslate"><span class="pre">oblocks</span></code>的构造函数<a class="headerlink" href="#oblocks" title="永久链接至标题">#</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">blocks</span></code>将长度为<span class="math notranslate nohighlight">\(N\)</span>的输入信号切割成长度为<span class="math notranslate nohighlight">\(B\)</span>的<span class="math notranslate nohighlight">\(N/B\)</span>个子序列（我们将会对<span class="math notranslate nohighlight">\(N\)</span>和<span class="math notranslate nohighlight">\(B\)</span>进行限制：<span class="math notranslate nohighlight">\(N=2^L\)</span>，<span class="math notranslate nohighlight">\(B=2^l\)</span>, <span class="math notranslate nohighlight">\(l&lt;L\)</span>）。<code class="docutils literal notranslate"><span class="pre">oblocks</span></code>在这个基础上，</p>
+<ol class="simple">
+<li><p>对每个子序列两端进行扩充，扩充的范围由输入参数<code class="docutils literal notranslate"><span class="pre">ps</span></code>（padding size）决定；</p></li>
+<li><p>子序列的扩充分三种情况：</p>
+<ul class="simple">
+<li><p>第一个子序列：左端点按输入参数<code class="docutils literal notranslate"><span class="pre">pm</span></code>（padding method）中的第一个参数决定扩充方法，右端点外的扩充区域由相邻的第二个子序列的决定（交集部分）。</p></li>
+<li><p>最后一个序列：右端点按输入参数<code class="docutils literal notranslate"><span class="pre">pm</span></code> 中的第二个参数决定扩充方法，左端点外的扩充区域由倒数第二个子序列决定（交集部分）。</p></li>
+<li><p>其他子序列的扩充两端都由相邻的子序列决定。</p></li>
+</ul>
+</li>
+<li><p>保持<code class="docutils literal notranslate"><span class="pre">blocks</span></code>的子序列，并称之为核心子序列，创建两个新的子序列，分别为左扩充区域子序列和右扩充区域子序列。</p></li>
+</ol>
+<p>以上这些都是在<code class="docutils literal notranslate"><span class="pre">oblock</span></code>构造的时候实施。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
+<span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span>  <span class="n">Iterable</span>
+<span class="kn">import</span> <span class="nn">typing</span>
+<span class="kn">from</span> <span class="nn">contextlib</span> <span class="kn">import</span> <span class="n">contextmanager</span>
+<span class="kn">from</span> <span class="nn">more_itertools</span> <span class="kn">import</span> <span class="n">windowed</span>
+
+<span class="n">PaddingParam</span> <span class="o">=</span> <span class="n">typing</span><span class="o">.</span><span class="n">NamedTuple</span><span class="p">(</span><span class="s2">&quot;PaddingParam&quot;</span><span class="p">,</span><span class="n">method</span><span class="o">=</span><span class="nb">str</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+<span class="n">Edge</span> <span class="o">=</span> <span class="n">typing</span><span class="o">.</span><span class="n">NamedTuple</span><span class="p">(</span><span class="s2">&quot;Edge&quot;</span><span class="p">,</span><span class="n">left</span><span class="o">=</span><span class="n">PaddingParam</span><span class="p">,</span><span class="n">right</span><span class="o">=</span><span class="n">PaddingParam</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">getedge</span><span class="p">(</span><span class="n">lm</span><span class="p">,</span><span class="n">ls</span><span class="p">,</span><span class="n">rm</span><span class="p">,</span><span class="n">rs</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">Edge</span><span class="p">(</span><span class="n">left</span><span class="o">=</span><span class="n">PaddingParam</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="n">lm</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="n">ls</span><span class="p">),</span><span class="n">right</span><span class="o">=</span><span class="n">PaddingParam</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="n">rm</span><span class="p">,</span><span class="n">size</span><span class="o">=</span><span class="n">rs</span><span class="p">))</span>
+
+<span class="k">class</span> <span class="nc">EdgeIndexBuilder</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">N</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">nob</span><span class="o">=</span><span class="n">N</span> <span class="c1"># number of blocks</span>
+
+    <span class="nd">@contextmanager</span>
+    <span class="k">def</span> <span class="nf">whole_group</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="n">windowed</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">nob</span><span class="p">),</span><span class="mi">3</span><span class="p">)</span> <span class="c1"># internal overlapping blocks indeces</span>
+        <span class="k">finally</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">()</span>
+
+<span class="k">class</span> <span class="nc">oblocks</span><span class="p">(</span><span class="n">blocks</span><span class="p">,</span><span class="n">use_padding_at</span><span class="p">(</span><span class="s1">&#39;left&#39;</span><span class="p">),</span><span class="n">use_padding_at</span><span class="p">(</span><span class="s1">&#39;right&#39;</span><span class="p">)):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    overlapping blocks</span>
+<span class="sd">    </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">sig</span><span class="p">:</span><span class="n">Iterable</span><span class="p">,</span><span class="n">B</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span><span class="n">edge</span><span class="p">:</span><span class="n">Edge</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__input_validation</span><span class="p">(</span><span class="n">sig</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="n">edge</span><span class="p">)</span>
+        <span class="n">blocks</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">sig</span><span class="p">,</span><span class="n">B</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">edge</span> <span class="o">=</span> <span class="n">edge</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__set_padding</span><span class="p">(</span><span class="n">edge</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__edge_extensions</span><span class="p">(</span><span class="n">sig</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__set_padding</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">edge</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">left</span><span class="o">=</span><span class="n">edge</span><span class="o">.</span><span class="n">left</span><span class="o">.</span><span class="n">method</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">right</span><span class="o">=</span><span class="n">edge</span><span class="o">.</span><span class="n">right</span><span class="o">.</span><span class="n">method</span>
+
+    <span class="k">def</span> <span class="nf">__input_validation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">sig</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="n">edge</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">utils</span><span class="o">.</span><span class="n">ispower2</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sig</span><span class="p">)):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The length of sig must be power of 2&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">utils</span><span class="o">.</span><span class="n">ispower2</span><span class="p">(</span><span class="n">B</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;B must be power of 2&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">B</span><span class="o">&gt;</span><span class="nb">len</span><span class="p">(</span><span class="n">sig</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;B can not be bigger than len(sig)&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">pass</span>
+
+    <span class="k">def</span> <span class="nf">__edge_extensions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">sig</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        create left and right extension</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">left_ext</span><span class="o">=</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">edge</span><span class="o">.</span><span class="n">left</span><span class="o">.</span><span class="n">size</span><span class="p">,</span><span class="n">sig</span><span class="p">)),)</span> <span class="c1"># the first left extension</span>
+        <span class="n">lre</span><span class="o">=</span><span class="nb">tuple</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">edge</span><span class="o">.</span><span class="n">right</span><span class="o">.</span><span class="n">size</span><span class="p">,</span><span class="n">sig</span><span class="p">))</span> <span class="c1"># the last right extension</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">signal</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">right_ext</span><span class="o">=</span><span class="p">(</span><span class="nb">tuple</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">signal</span><span class="p">[</span><span class="mi">1</span><span class="p">])[:</span><span class="bp">self</span><span class="o">.</span><span class="n">edge</span><span class="o">.</span><span class="n">right</span><span class="o">.</span><span class="n">size</span><span class="p">]),)</span> <span class="c1"># the right extenstion for the first block</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">right_ext</span><span class="o">=</span><span class="p">()</span>
+        <span class="n">eb</span><span class="o">=</span><span class="n">EdgeIndexBuilder</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">signal</span><span class="p">))</span>
+        <span class="k">with</span> <span class="n">eb</span><span class="o">.</span><span class="n">whole_group</span><span class="p">()</span> <span class="k">as</span> <span class="n">iobis</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">iobis</span><span class="p">:</span>
+                <span class="n">lb</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">signal</span><span class="p">[</span><span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="c1"># left block</span>
+                <span class="n">cb</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">signal</span><span class="p">[</span><span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span> <span class="c1"># center block (this primary block)</span>
+                <span class="n">rb</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">signal</span><span class="p">[</span><span class="n">i</span><span class="p">[</span><span class="mi">2</span><span class="p">]]</span> <span class="c1"># right block</span>
+                <span class="n">thisLE</span><span class="o">=</span><span class="n">lb</span><span class="p">[</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">edge</span><span class="o">.</span><span class="n">left</span><span class="o">.</span><span class="n">size</span><span class="p">:]</span>
+                <span class="n">thisRE</span><span class="o">=</span><span class="n">rb</span><span class="p">[:</span><span class="bp">self</span><span class="o">.</span><span class="n">edge</span><span class="o">.</span><span class="n">right</span><span class="o">.</span><span class="n">size</span><span class="p">]</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">right_ext</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">right_ext</span><span class="o">+</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="n">thisRE</span><span class="p">),)</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">left_ext</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">left_ext</span><span class="o">+</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="n">thisLE</span><span class="p">),)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">left_ext</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">left_ext</span><span class="o">+</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">signal</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">][</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">edge</span><span class="o">.</span><span class="n">left</span><span class="o">.</span><span class="n">size</span><span class="p">:]),)</span> <span class="c1"># the left extension for the last block</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">right_ext</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">right_ext</span><span class="o">+</span><span class="p">(</span><span class="n">lre</span><span class="p">,)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">foo</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">128</span><span class="p">))</span>
+<span class="n">c</span><span class="o">=</span><span class="n">oblocks</span><span class="p">(</span><span class="n">foo</span><span class="p">,</span><span class="mi">16</span><span class="p">,</span><span class="n">getedge</span><span class="p">(</span><span class="s1">&#39;periodic&#39;</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="s1">&#39;periodic&#39;</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">c</span><span class="o">.</span><span class="n">left_ext</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(120, 121, 122, 123, 124, 125, 126, 127)
+(8, 9, 10, 11, 12, 13, 14, 15)
+(24, 25, 26, 27, 28, 29, 30, 31)
+(40, 41, 42, 43, 44, 45, 46, 47)
+(56, 57, 58, 59, 60, 61, 62, 63)
+(72, 73, 74, 75, 76, 77, 78, 79)
+(88, 89, 90, 91, 92, 93, 94, 95)
+(104, 105, 106, 107, 108, 109, 110, 111)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">c</span><span class="o">.</span><span class="n">right_ext</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(16, 17, 18, 19, 20, 21, 22, 23)
+(32, 33, 34, 35, 36, 37, 38, 39)
+(48, 49, 50, 51, 52, 53, 54, 55)
+(64, 65, 66, 67, 68, 69, 70, 71)
+(80, 81, 82, 83, 84, 85, 86, 87)
+(96, 97, 98, 99, 100, 101, 102, 103)
+(112, 113, 114, 115, 116, 117, 118, 119)
+(0, 1, 2, 3, 4, 5, 6, 7)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="oblocksfmap">
+<h4><code class="docutils literal notranslate"><span class="pre">oblocks</span></code>的<code class="docutils literal notranslate"><span class="pre">fmap</span></code><a class="headerlink" href="#oblocksfmap" title="永久链接至标题">#</a></h4>
+<p>对<code class="docutils literal notranslate"><span class="pre">oblocks</span></code>而言，通过<code class="docutils literal notranslate"><span class="pre">fmap</span></code>作用到子序列上的函数有两类：第一类函数不需要扩充信息，这类函数作用于核心子序列上；第二类是需要扩充区域信息的函数，但是我们需要定义<code class="docutils literal notranslate"><span class="pre">oblock</span></code>与这类函数的接口：</p>
+<ol class="simple">
+<li><p>函数的输入方式，三个参数，核心子序列的元素与扩充区域（左和右）子序列的元素。</p></li>
+<li><p>这类函数必须定义一个能够被<code class="docutils literal notranslate"><span class="pre">oblocks</span></code>识别的<code class="docutils literal notranslate"><span class="pre">attribute</span></code>。</p></li>
+</ol>
+<section id="attribute">
+<h5>函数<code class="docutils literal notranslate"><span class="pre">attribute</span></code>的用法<a class="headerlink" href="#attribute" title="永久链接至标题">#</a></h5>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">dir</span><span class="p">(</span><span class="n">decimation</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;__annotations__&#39;,
+ &#39;__builtins__&#39;,
+ &#39;__call__&#39;,
+ &#39;__class__&#39;,
+ &#39;__closure__&#39;,
+ &#39;__code__&#39;,
+ &#39;__defaults__&#39;,
+ &#39;__delattr__&#39;,
+ &#39;__dict__&#39;,
+ &#39;__dir__&#39;,
+ &#39;__doc__&#39;,
+ &#39;__eq__&#39;,
+ &#39;__format__&#39;,
+ &#39;__ge__&#39;,
+ &#39;__get__&#39;,
+ &#39;__getattribute__&#39;,
+ &#39;__getstate__&#39;,
+ &#39;__globals__&#39;,
+ &#39;__gt__&#39;,
+ &#39;__hash__&#39;,
+ &#39;__init__&#39;,
+ &#39;__init_subclass__&#39;,
+ &#39;__kwdefaults__&#39;,
+ &#39;__le__&#39;,
+ &#39;__lt__&#39;,
+ &#39;__module__&#39;,
+ &#39;__name__&#39;,
+ &#39;__ne__&#39;,
+ &#39;__new__&#39;,
+ &#39;__qualname__&#39;,
+ &#39;__reduce__&#39;,
+ &#39;__reduce_ex__&#39;,
+ &#39;__repr__&#39;,
+ &#39;__setattr__&#39;,
+ &#39;__sizeof__&#39;,
+ &#39;__str__&#39;,
+ &#39;__subclasshook__&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">decimation</span><span class="o">.</span><span class="n">oblock</span><span class="o">=</span><span class="kc">True</span>
+<span class="nb">getattr</span><span class="p">(</span><span class="n">decimation</span><span class="p">,</span><span class="s1">&#39;oblock&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>True
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">decimation</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[1, 3]
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">dir</span><span class="p">(</span><span class="n">decimation</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&#39;__annotations__&#39;,
+ &#39;__builtins__&#39;,
+ &#39;__call__&#39;,
+ &#39;__class__&#39;,
+ &#39;__closure__&#39;,
+ &#39;__code__&#39;,
+ &#39;__defaults__&#39;,
+ &#39;__delattr__&#39;,
+ &#39;__dict__&#39;,
+ &#39;__dir__&#39;,
+ &#39;__doc__&#39;,
+ &#39;__eq__&#39;,
+ &#39;__format__&#39;,
+ &#39;__ge__&#39;,
+ &#39;__get__&#39;,
+ &#39;__getattribute__&#39;,
+ &#39;__getstate__&#39;,
+ &#39;__globals__&#39;,
+ &#39;__gt__&#39;,
+ &#39;__hash__&#39;,
+ &#39;__init__&#39;,
+ &#39;__init_subclass__&#39;,
+ &#39;__kwdefaults__&#39;,
+ &#39;__le__&#39;,
+ &#39;__lt__&#39;,
+ &#39;__module__&#39;,
+ &#39;__name__&#39;,
+ &#39;__ne__&#39;,
+ &#39;__new__&#39;,
+ &#39;__qualname__&#39;,
+ &#39;__reduce__&#39;,
+ &#39;__reduce_ex__&#39;,
+ &#39;__repr__&#39;,
+ &#39;__setattr__&#39;,
+ &#39;__sizeof__&#39;,
+ &#39;__str__&#39;,
+ &#39;__subclasshook__&#39;,
+ &#39;oblock&#39;]
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="id16">
+<h4><code class="docutils literal notranslate"><span class="pre">oblocks</span></code>中<code class="docutils literal notranslate"><span class="pre">fmap</span></code>与外部函数交互的接口<a class="headerlink" href="#id16" title="永久链接至标题">#</a></h4>
+<p>有了函数<code class="docutils literal notranslate"><span class="pre">attribute</span></code>的功能后，我们可以界定<code class="docutils literal notranslate"><span class="pre">oblocks</span></code>中<code class="docutils literal notranslate"><span class="pre">fmap</span></code>的接口：</p>
+<ol class="simple">
+<li><p>输入函数没有名字为<code class="docutils literal notranslate"><span class="pre">oblocks</span></code>的<code class="docutils literal notranslate"><span class="pre">attribute</span></code>为第一类函数，<code class="docutils literal notranslate"><span class="pre">oblocks</span></code>的<code class="docutils literal notranslate"><span class="pre">fmap</span></code>将核心序列的元素作为函数的唯一输入参数传送给这类输入函数。</p></li>
+<li><p>输入函数具有名字为<code class="docutils literal notranslate"><span class="pre">oblocks</span></code>的<code class="docutils literal notranslate"><span class="pre">attribute</span></code>, 而且设置为<code class="docutils literal notranslate"><span class="pre">True</span></code>，<code class="docutils literal notranslate"><span class="pre">fmap</span></code>将核心子序列元素，左扩充区域序列元素，右扩充区域序列元素作为输入参数。如果<code class="docutils literal notranslate"><span class="pre">oblocks</span></code>的<code class="docutils literal notranslate"><span class="pre">attribute</span></code>为<code class="docutils literal notranslate"><span class="pre">False</span></code>，那么按第一类函数处理。</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>接口2的约定比较实用，但是不严密。另外一种思路就是用环境管理器和<code class="docutils literal notranslate"><span class="pre">decorator</span></code>去赋予外部函数的类别，但是因为外部函数的不可控性，这种方法不太实用。还有一种思路就是<code class="docutils literal notranslate"><span class="pre">oblocks</span></code>不兼容<code class="docutils literal notranslate"><span class="pre">blocks</span></code>的函数，但这样就 限制来联带操作(chain operation)只能应用第二类函数，这明显不可取。</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>用<code class="docutils literal notranslate"><span class="pre">type</span> <span class="pre">class</span></code>对输入函数归类，这个应该是最合理的方案，以后对这种方法会进行探讨。</p>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">functor</span> <span class="kn">import</span> <span class="n">EmptyTuple</span><span class="p">,</span> <span class="n">Tuple</span>
+
+<span class="k">class</span> <span class="nc">oblocks</span><span class="p">(</span><span class="n">blocks</span><span class="p">,</span><span class="n">use_padding_at</span><span class="p">(</span><span class="s1">&#39;left&#39;</span><span class="p">),</span><span class="n">use_padding_at</span><span class="p">(</span><span class="s1">&#39;right&#39;</span><span class="p">)):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    overlapping blocks</span>
+<span class="sd">    </span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">sig</span><span class="p">:</span><span class="n">Iterable</span><span class="p">,</span><span class="n">B</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span><span class="n">edge</span><span class="p">:</span><span class="n">Edge</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__input_validation</span><span class="p">(</span><span class="n">sig</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="n">edge</span><span class="p">)</span>
+        <span class="n">blocks</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">sig</span><span class="p">,</span><span class="n">B</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">edge</span> <span class="o">=</span> <span class="n">edge</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__set_padding</span><span class="p">(</span><span class="n">edge</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__edge_extensions</span><span class="p">(</span><span class="n">sig</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__set_padding</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">edge</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">left</span><span class="o">=</span><span class="n">edge</span><span class="o">.</span><span class="n">left</span><span class="o">.</span><span class="n">method</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">right</span><span class="o">=</span><span class="n">edge</span><span class="o">.</span><span class="n">right</span><span class="o">.</span><span class="n">method</span>
+
+    <span class="k">def</span> <span class="nf">__input_validation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">sig</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="n">edge</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">utils</span><span class="o">.</span><span class="n">ispower2</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sig</span><span class="p">)):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The length of sig must be power of 2&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">utils</span><span class="o">.</span><span class="n">ispower2</span><span class="p">(</span><span class="n">B</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;B must be power of 2&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">B</span><span class="o">&gt;</span><span class="nb">len</span><span class="p">(</span><span class="n">sig</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;B can not be bigger than len(sig)&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">pass</span>
+
+    <span class="k">def</span> <span class="nf">__edge_extensions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">sig</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        create left and right extension</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">left_ext</span><span class="o">=</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">edge</span><span class="o">.</span><span class="n">left</span><span class="o">.</span><span class="n">size</span><span class="p">,</span><span class="n">sig</span><span class="p">)),)</span> <span class="c1"># the first left extension</span>
+        <span class="n">lre</span><span class="o">=</span><span class="nb">tuple</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">edge</span><span class="o">.</span><span class="n">right</span><span class="o">.</span><span class="n">size</span><span class="p">,</span><span class="n">sig</span><span class="p">))</span> <span class="c1"># the last right extension</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">signal</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">right_ext</span><span class="o">=</span><span class="p">(</span><span class="nb">tuple</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">signal</span><span class="p">[</span><span class="mi">1</span><span class="p">])[:</span><span class="bp">self</span><span class="o">.</span><span class="n">edge</span><span class="o">.</span><span class="n">right</span><span class="o">.</span><span class="n">size</span><span class="p">]),)</span> <span class="c1"># the right extenstion for the first block</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">right_ext</span><span class="o">=</span><span class="p">()</span>
+        <span class="n">iobis</span> <span class="o">=</span> <span class="n">windowed</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">signal</span><span class="p">)),</span><span class="mi">3</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">iobis</span><span class="p">:</span>
+            <span class="n">lb</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">signal</span><span class="p">[</span><span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="c1"># left block</span>
+            <span class="n">cb</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">signal</span><span class="p">[</span><span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span> <span class="c1"># center block (this primary block)</span>
+            <span class="n">rb</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">signal</span><span class="p">[</span><span class="n">i</span><span class="p">[</span><span class="mi">2</span><span class="p">]]</span> <span class="c1"># right block</span>
+            <span class="n">thisLE</span><span class="o">=</span><span class="n">lb</span><span class="p">[</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">edge</span><span class="o">.</span><span class="n">left</span><span class="o">.</span><span class="n">size</span><span class="p">:]</span>
+            <span class="n">thisRE</span><span class="o">=</span><span class="n">rb</span><span class="p">[:</span><span class="bp">self</span><span class="o">.</span><span class="n">edge</span><span class="o">.</span><span class="n">right</span><span class="o">.</span><span class="n">size</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">right_ext</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">right_ext</span><span class="o">+</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="n">thisRE</span><span class="p">),)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">left_ext</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">left_ext</span><span class="o">+</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="n">thisLE</span><span class="p">),)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">left_ext</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">left_ext</span><span class="o">+</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">signal</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">][</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">edge</span><span class="o">.</span><span class="n">left</span><span class="o">.</span><span class="n">size</span><span class="p">:]),)</span> <span class="c1"># the left extension for the last block</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">right_ext</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">right_ext</span><span class="o">+</span><span class="p">(</span><span class="n">lre</span><span class="p">,)</span>
+
+    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">p</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">left_ext</span><span class="p">[</span><span class="n">p</span><span class="p">],</span><span class="nb">tuple</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">signal</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span><span class="bp">self</span><span class="o">.</span><span class="n">right_ext</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+    <span class="k">def</span> <span class="nf">fmap</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">func</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">rs</span><span class="o">=</span><span class="p">[]</span>
+            <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">l</span><span class="p">,</span><span class="n">r</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">signal</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">left_ext</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">right_ext</span><span class="p">):</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="k">if</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="s1">&#39;oblocks&#39;</span><span class="p">):</span>
+                        <span class="n">tmp</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">l</span><span class="p">,</span><span class="n">r</span><span class="p">)</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">tmp</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+                <span class="k">except</span> <span class="ne">AttributeError</span><span class="p">:</span>
+                    <span class="k">pass</span>
+                <span class="k">finally</span><span class="p">:</span>
+                    <span class="n">tmp</span><span class="o">=</span><span class="n">func</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+                <span class="k">if</span> <span class="n">tmp</span><span class="o">==</span><span class="kc">None</span><span class="p">:</span>
+                    <span class="k">continue</span>
+                <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">tmp</span><span class="p">,</span><span class="n">Iterable</span><span class="p">):</span>
+                    <span class="n">rs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">tmp</span><span class="p">)</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">rs</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">tmp</span><span class="p">,))</span>
+            <span class="k">return</span> <span class="n">oblocks</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="n">rs</span><span class="p">))</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">EmptyTuple</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">left_ext</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
+    <span class="n">lb</span><span class="p">,</span><span class="n">cb</span><span class="p">,</span><span class="n">rb</span><span class="o">=</span><span class="n">e</span>
+    
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">foo</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">128</span><span class="p">))</span>
+<span class="n">c</span><span class="o">=</span><span class="n">oblocks</span><span class="p">(</span><span class="n">foo</span><span class="p">,</span><span class="mi">16</span><span class="p">,</span><span class="n">getedge</span><span class="p">(</span><span class="s1">&#39;periodic&#39;</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="s1">&#39;periodic&#39;</span><span class="p">,</span><span class="mi">8</span><span class="p">))</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">c</span><span class="p">)):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>((120, 121, 122, 123, 124, 125, 126, 127), (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15), (16, 17, 18, 19, 20, 21, 22, 23))
+((8, 9, 10, 11, 12, 13, 14, 15), (16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31), (32, 33, 34, 35, 36, 37, 38, 39))
+((24, 25, 26, 27, 28, 29, 30, 31), (32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47), (48, 49, 50, 51, 52, 53, 54, 55))
+((40, 41, 42, 43, 44, 45, 46, 47), (48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63), (64, 65, 66, 67, 68, 69, 70, 71))
+((56, 57, 58, 59, 60, 61, 62, 63), (64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79), (80, 81, 82, 83, 84, 85, 86, 87))
+((72, 73, 74, 75, 76, 77, 78, 79), (80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95), (96, 97, 98, 99, 100, 101, 102, 103))
+((88, 89, 90, 91, 92, 93, 94, 95), (96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111), (112, 113, 114, 115, 116, 117, 118, 119))
+((104, 105, 106, 107, 108, 109, 110, 111), (112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127), (0, 1, 2, 3, 4, 5, 6, 7))
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c</span><span class="o">.</span><span class="n">fmap</span><span class="p">(</span><span class="n">decimation</span><span class="p">)</span><span class="o">.</span><span class="n">fmap</span><span class="p">(</span><span class="nb">print</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Empty....
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">odecimation</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
+    <span class="n">sig</span><span class="p">,</span><span class="n">l</span><span class="p">,</span><span class="n">r</span><span class="o">=</span><span class="n">e</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">decimation</span><span class="p">(</span><span class="n">sig</span><span class="p">),</span><span class="n">decimation</span><span class="p">(</span><span class="n">l</span><span class="p">),</span><span class="n">decimation</span><span class="p">(</span><span class="n">r</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c</span><span class="o">.</span><span class="n">fmap</span><span class="p">(</span><span class="n">odecimation</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Empty....
+</pre></div>
+</div>
+</div>
+</div>
+<p>到了这里我们做不下去了，因为结构上出问题了。</p>
+<p><code class="docutils literal notranslate"><span class="pre">blocks</span></code>将容器<code class="docutils literal notranslate"><span class="pre">functor.Tuple</span></code>的元素变成<code class="docutils literal notranslate"><span class="pre">tuple[A]</span></code>，其中<code class="docutils literal notranslate"><span class="pre">A</span></code>为<code class="docutils literal notranslate"><span class="pre">float</span></code>，<code class="docutils literal notranslate"><span class="pre">int</span></code>这类型的数据。对于<code class="docutils literal notranslate"><span class="pre">oblocks</span></code>，我们企图加辅助性的<code class="docutils literal notranslate"><span class="pre">tuple[A]</span></code>数组。因为是辅助数组，我们不得不去重新定义<code class="docutils literal notranslate"><span class="pre">fmap</span></code>。这样的结构是错误的。正确的做法是将辅助数组放到<code class="docutils literal notranslate"><span class="pre">functor</span></code>的结构中，也就是<code class="docutils literal notranslate"><span class="pre">oblock</span></code>的元素应该是<code class="docutils literal notranslate"><span class="pre">(tuple[A],tuple[A],tuple[A])</span></code>，而且应该直接继承<code class="docutils literal notranslate"><span class="pre">functor.Tuple</span></code>。<code class="docutils literal notranslate"><span class="pre">functor.Tuple</span></code>提供<code class="docutils literal notranslate"><span class="pre">fmap</span></code>的功能，<code class="docutils literal notranslate"><span class="pre">oblocks</span></code>就像<code class="docutils literal notranslate"><span class="pre">blocks</span></code>一样，主要就是定义好元素的结构。<code class="docutils literal notranslate"><span class="pre">blocks</span></code>与<code class="docutils literal notranslate"><span class="pre">oblocks</span></code>通过定义<code class="docutils literal notranslate"><span class="pre">functor</span></code>元素的结构提供了本身与<code class="docutils literal notranslate"><span class="pre">fmap</span></code>函数的接口，只有能够接受这种接口的函数才能被应用在所定义的特定的<code class="docutils literal notranslate"><span class="pre">functor</span></code>空间上。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">more_itertools</span> <span class="kn">import</span> <span class="n">windowed</span>
+<span class="kn">import</span> <span class="nn">functor</span>
+<span class="k">class</span> <span class="nc">oblocks</span><span class="p">(</span><span class="n">functor</span><span class="o">.</span><span class="n">Tuple</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">sig</span><span class="p">,</span><span class="n">B</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">sig</span><span class="p">,</span><span class="n">Iterable</span><span class="p">)</span> <span class="ow">or</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">B</span><span class="p">,</span><span class="nb">int</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;sig must be tuple, B must be int&quot;</span><span class="p">)</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">chunked</span><span class="p">(</span><span class="n">sig</span><span class="p">,</span><span class="n">B</span><span class="p">))</span>
+        <span class="n">iobis</span> <span class="o">=</span> <span class="n">windowed</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sig</span><span class="p">)</span><span class="o">/</span><span class="n">B</span><span class="p">)),</span><span class="mi">3</span><span class="p">)</span>
+        <span class="n">e</span><span class="o">=</span><span class="p">((</span><span class="n">s</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">s</span><span class="p">[</span><span class="mi">1</span><span class="p">]),)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">iobis</span><span class="p">:</span>
+            <span class="n">e</span> <span class="o">=</span> <span class="n">e</span><span class="o">+</span><span class="p">((</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">]],</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">[</span><span class="mi">2</span><span class="p">]]),)</span>
+        <span class="n">e</span> <span class="o">=</span> <span class="n">e</span><span class="o">+</span><span class="p">((</span><span class="n">s</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">],</span><span class="n">s</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]),)</span>
+        <span class="n">functor</span><span class="o">.</span><span class="n">Tuple</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">e</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">foo</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">64</span><span class="p">))</span>
+<span class="n">c</span><span class="o">=</span><span class="n">oblocks</span><span class="p">(</span><span class="n">foo</span><span class="p">,</span><span class="mi">8</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">c</span><span class="p">)):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span><span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span><span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">2</span><span class="p">])</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>(56, 57, 58, 59, 60, 61, 62, 63) (0, 1, 2, 3, 4, 5, 6, 7) (8, 9, 10, 11, 12, 13, 14, 15)
+(0, 1, 2, 3, 4, 5, 6, 7) (8, 9, 10, 11, 12, 13, 14, 15) (16, 17, 18, 19, 20, 21, 22, 23)
+(8, 9, 10, 11, 12, 13, 14, 15) (16, 17, 18, 19, 20, 21, 22, 23) (24, 25, 26, 27, 28, 29, 30, 31)
+(16, 17, 18, 19, 20, 21, 22, 23) (24, 25, 26, 27, 28, 29, 30, 31) (32, 33, 34, 35, 36, 37, 38, 39)
+(24, 25, 26, 27, 28, 29, 30, 31) (32, 33, 34, 35, 36, 37, 38, 39) (40, 41, 42, 43, 44, 45, 46, 47)
+(32, 33, 34, 35, 36, 37, 38, 39) (40, 41, 42, 43, 44, 45, 46, 47) (48, 49, 50, 51, 52, 53, 54, 55)
+(40, 41, 42, 43, 44, 45, 46, 47) (48, 49, 50, 51, 52, 53, 54, 55) (56, 57, 58, 59, 60, 61, 62, 63)
+(48, 49, 50, 51, 52, 53, 54, 55) (56, 57, 58, 59, 60, 61, 62, 63) (0, 1, 2, 3, 4, 5, 6, 7)
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c</span><span class="o">.</span><span class="n">fmap</span><span class="p">(</span><span class="nb">print</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>((56, 57, 58, 59, 60, 61, 62, 63), (0, 1, 2, 3, 4, 5, 6, 7), (8, 9, 10, 11, 12, 13, 14, 15))
+((0, 1, 2, 3, 4, 5, 6, 7), (8, 9, 10, 11, 12, 13, 14, 15), (16, 17, 18, 19, 20, 21, 22, 23))
+((8, 9, 10, 11, 12, 13, 14, 15), (16, 17, 18, 19, 20, 21, 22, 23), (24, 25, 26, 27, 28, 29, 30, 31))
+((16, 17, 18, 19, 20, 21, 22, 23), (24, 25, 26, 27, 28, 29, 30, 31), (32, 33, 34, 35, 36, 37, 38, 39))
+((24, 25, 26, 27, 28, 29, 30, 31), (32, 33, 34, 35, 36, 37, 38, 39), (40, 41, 42, 43, 44, 45, 46, 47))
+((32, 33, 34, 35, 36, 37, 38, 39), (40, 41, 42, 43, 44, 45, 46, 47), (48, 49, 50, 51, 52, 53, 54, 55))
+((40, 41, 42, 43, 44, 45, 46, 47), (48, 49, 50, 51, 52, 53, 54, 55), (56, 57, 58, 59, 60, 61, 62, 63))
+((48, 49, 50, 51, 52, 53, 54, 55), (56, 57, 58, 59, 60, 61, 62, 63), (0, 1, 2, 3, 4, 5, 6, 7))
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;functor.Tuple at 0x7fe3a218f450&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c</span><span class="o">.</span><span class="n">fmap</span><span class="p">(</span><span class="n">odecimation</span><span class="p">)</span><span class="o">.</span><span class="n">fmap</span><span class="p">(</span><span class="n">odecimation</span><span class="p">)</span><span class="o">.</span><span class="n">fmap</span><span class="p">(</span><span class="nb">print</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>((56, 60), (0, 4), (8, 12))
+((0, 4), (8, 12), (16, 20))
+((8, 12), (16, 20), (24, 28))
+((16, 20), (24, 28), (32, 36))
+((24, 28), (32, 36), (40, 44))
+((32, 36), (40, 44), (48, 52))
+((40, 44), (48, 52), (56, 60))
+((48, 52), (56, 60), (0, 4))
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;functor.Tuple at 0x7fe3a21fa050&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">take_signal</span><span class="p">(</span><span class="n">e</span><span class="p">):</span>
+    <span class="n">l</span><span class="p">,</span><span class="n">sig</span><span class="p">,</span><span class="n">r</span><span class="o">=</span><span class="n">e</span>
+    <span class="k">return</span> <span class="n">sig</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>结构调整好了，把扩充区域的功能放回去。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">more_itertools</span> <span class="kn">import</span> <span class="n">windowed</span>
+<span class="kn">import</span> <span class="nn">functor</span>
+<span class="k">class</span> <span class="nc">oblocks</span><span class="p">(</span><span class="n">functor</span><span class="o">.</span><span class="n">Tuple</span><span class="p">,</span><span class="n">use_padding_at</span><span class="p">(</span><span class="s1">&#39;left&#39;</span><span class="p">),</span><span class="n">use_padding_at</span><span class="p">(</span><span class="s1">&#39;right&#39;</span><span class="p">)):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">sig</span><span class="p">:</span><span class="n">Iterable</span><span class="p">,</span><span class="n">B</span><span class="p">:</span><span class="nb">int</span><span class="p">,</span><span class="n">edge</span><span class="p">:</span><span class="n">Edge</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__input_validation</span><span class="p">(</span><span class="n">sig</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="n">edge</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">edge</span> <span class="o">=</span> <span class="n">edge</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">__set_padding</span><span class="p">(</span><span class="n">edge</span><span class="p">)</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">chunked</span><span class="p">(</span><span class="n">sig</span><span class="p">,</span><span class="n">B</span><span class="p">))</span>
+        <span class="n">left_ext</span><span class="p">,</span><span class="n">right_ext</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">__edge_extensions</span><span class="p">(</span><span class="n">sig</span><span class="p">,</span><span class="n">s</span><span class="p">)</span>
+        <span class="n">e</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">((</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">)</span> <span class="k">for</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">,</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">left_ext</span><span class="p">,</span><span class="n">s</span><span class="p">,</span><span class="n">right_ext</span><span class="p">))</span>
+        <span class="n">functor</span><span class="o">.</span><span class="n">Tuple</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">e</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__set_padding</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">edge</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">left</span><span class="o">=</span><span class="n">edge</span><span class="o">.</span><span class="n">left</span><span class="o">.</span><span class="n">method</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">right</span><span class="o">=</span><span class="n">edge</span><span class="o">.</span><span class="n">right</span><span class="o">.</span><span class="n">method</span>
+
+    <span class="k">def</span> <span class="nf">__input_validation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">sig</span><span class="p">,</span><span class="n">B</span><span class="p">,</span><span class="n">edge</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">utils</span><span class="o">.</span><span class="n">ispower2</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sig</span><span class="p">)):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The length of sig must be power of 2&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="ow">not</span> <span class="n">utils</span><span class="o">.</span><span class="n">ispower2</span><span class="p">(</span><span class="n">B</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;B must be power of 2&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">B</span><span class="o">&gt;</span><span class="nb">len</span><span class="p">(</span><span class="n">sig</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;B can not be bigger than len(sig)&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">pass</span>
+
+    <span class="k">def</span> <span class="nf">__edge_extensions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">sig</span><span class="p">,</span><span class="n">s</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        create left and right extension</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">left_ext</span><span class="o">=</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">left</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">edge</span><span class="o">.</span><span class="n">left</span><span class="o">.</span><span class="n">size</span><span class="p">,</span><span class="n">sig</span><span class="p">)),)</span> <span class="c1"># the first left extension</span>
+        <span class="n">lre</span><span class="o">=</span><span class="nb">tuple</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">right</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">edge</span><span class="o">.</span><span class="n">right</span><span class="o">.</span><span class="n">size</span><span class="p">,</span><span class="n">sig</span><span class="p">))</span> <span class="c1"># the last right extension</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">:</span>
+            <span class="n">right_ext</span><span class="o">=</span><span class="p">(</span><span class="nb">tuple</span><span class="p">((</span><span class="n">s</span><span class="p">[</span><span class="mi">1</span><span class="p">])[:</span><span class="bp">self</span><span class="o">.</span><span class="n">edge</span><span class="o">.</span><span class="n">right</span><span class="o">.</span><span class="n">size</span><span class="p">]),)</span> <span class="c1"># the right extenstion for the first block</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">right_ext</span><span class="o">=</span><span class="p">()</span>
+        <span class="n">iobis</span> <span class="o">=</span> <span class="n">windowed</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)),</span><span class="mi">3</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">iobis</span><span class="p">:</span>
+            <span class="n">lb</span><span class="o">=</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="c1"># left block</span>
+            <span class="n">cb</span><span class="o">=</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span> <span class="c1"># center block (this primary block)</span>
+            <span class="n">rb</span><span class="o">=</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">[</span><span class="mi">2</span><span class="p">]]</span> <span class="c1"># right block</span>
+            <span class="n">thisLE</span><span class="o">=</span><span class="n">lb</span><span class="p">[</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">edge</span><span class="o">.</span><span class="n">left</span><span class="o">.</span><span class="n">size</span><span class="p">:]</span>
+            <span class="n">thisRE</span><span class="o">=</span><span class="n">rb</span><span class="p">[:</span><span class="bp">self</span><span class="o">.</span><span class="n">edge</span><span class="o">.</span><span class="n">right</span><span class="o">.</span><span class="n">size</span><span class="p">]</span>
+            <span class="n">right_ext</span><span class="o">=</span><span class="n">right_ext</span><span class="o">+</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="n">thisRE</span><span class="p">),)</span>
+            <span class="n">left_ext</span><span class="o">=</span><span class="n">left_ext</span><span class="o">+</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="n">thisLE</span><span class="p">),)</span>
+        <span class="n">left_ext</span><span class="o">=</span><span class="n">left_ext</span><span class="o">+</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">][</span><span class="o">-</span><span class="bp">self</span><span class="o">.</span><span class="n">edge</span><span class="o">.</span><span class="n">left</span><span class="o">.</span><span class="n">size</span><span class="p">:]),)</span> <span class="c1"># the left extension for the last block</span>
+        <span class="n">right_ext</span><span class="o">=</span><span class="n">right_ext</span><span class="o">+</span><span class="p">(</span><span class="n">lre</span><span class="p">,)</span>
+        <span class="k">return</span> <span class="p">(</span><span class="n">left_ext</span><span class="p">,</span><span class="n">right_ext</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">foo</span><span class="o">=</span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">64</span><span class="p">))</span>
+<span class="n">c</span><span class="o">=</span><span class="n">oblocks</span><span class="p">(</span><span class="n">foo</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="n">getedge</span><span class="p">(</span><span class="s1">&#39;periodic&#39;</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="s1">&#39;periodic&#39;</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">c</span><span class="o">.</span><span class="n">fmap</span><span class="p">(</span><span class="nb">print</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>((60, 61, 62, 63), (0, 1, 2, 3, 4, 5, 6, 7), (8, 9, 10, 11))
+((4, 5, 6, 7), (8, 9, 10, 11, 12, 13, 14, 15), (16, 17, 18, 19))
+((12, 13, 14, 15), (16, 17, 18, 19, 20, 21, 22, 23), (24, 25, 26, 27))
+((20, 21, 22, 23), (24, 25, 26, 27, 28, 29, 30, 31), (32, 33, 34, 35))
+((28, 29, 30, 31), (32, 33, 34, 35, 36, 37, 38, 39), (40, 41, 42, 43))
+((36, 37, 38, 39), (40, 41, 42, 43, 44, 45, 46, 47), (48, 49, 50, 51))
+((44, 45, 46, 47), (48, 49, 50, 51, 52, 53, 54, 55), (56, 57, 58, 59))
+((52, 53, 54, 55), (56, 57, 58, 59, 60, 61, 62, 63), (0, 1, 2, 3))
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;functor.Tuple at 0x7fe3a21c6f90&gt;
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">c</span><span class="o">.</span><span class="n">fmap</span><span class="p">(</span><span class="n">odecimation</span><span class="p">)</span><span class="o">.</span><span class="n">fmap</span><span class="p">(</span><span class="n">take_signal</span><span class="p">)</span><span class="o">.</span><span class="n">fmap</span><span class="p">(</span><span class="nb">sum</span><span class="p">)</span><span class="o">.</span><span class="n">fmap</span><span class="p">(</span><span class="nb">print</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>12
+44
+76
+108
+140
+172
+204
+236
+</pre></div>
+</div>
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>&lt;functor.Tuple at 0x7fe3a2af2ad0&gt;
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="level-manager">
+<h2>Level Manager<a class="headerlink" href="#level-manager" title="永久链接至标题">#</a></h2>
+<p>从多层局部分割的角度看，<code class="docutils literal notranslate"><span class="pre">oblocks</span></code>对应于一层的分割。</p>
 </section>
 </section>
 
@@ -1487,7 +2686,7 @@ x[0],x[1],\cdots,x[m],x[-n], x[-n+1],\cdots,x[-1]
             <p class="prev-next-title">导言</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="fft.html" title="下一页 页">
+    <a class='right-next' id="next-link" href="fold.html" title="下一页 页">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">下一页</p>
         <p class="prev-next-title">整数域上的折叠实现</p>

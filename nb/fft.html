@@ -186,7 +186,7 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../impl/fft.html">
+  <a class="reference internal" href="../impl/fold.html">
    整数域上的折叠实现
   </a>
  </li>
@@ -1034,7 +1034,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/fft_8_01.png" src="../_images/fft_8_01.png" />
+<img alt="../_images/fft_8_0.png" src="../_images/fft_8_0.png" />
 </div>
 </div>
 </section>
@@ -1170,7 +1170,7 @@ H(v)=\left\{
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/fft_15_01.png" src="../_images/fft_15_01.png" />
+<img alt="../_images/fft_15_0.png" src="../_images/fft_15_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1367,7 +1367,7 @@ U^*(r,\alpha,\epsilon)=\tau_\alpha\sigma_\epsilon U^*(r)\sigma^*_\epsilon\tau^*_
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/fft_29_01.png" src="../_images/fft_29_01.png" />
+<img alt="../_images/fft_29_0.png" src="../_images/fft_29_0.png" />
 </div>
 </div>
 <p>todo: 重新整理这部分材料</p>
@@ -1431,7 +1431,7 @@ U^*(r,\alpha,\epsilon)=\tau_\alpha\sigma_\epsilon U^*(r)\sigma^*_\epsilon\tau^*_
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/fft_34_01.png" src="../_images/fft_34_01.png" />
+<img alt="../_images/fft_34_0.png" src="../_images/fft_34_0.png" />
 </div>
 </div>
 </section>
@@ -1541,15 +1541,15 @@ U^*(r,\alpha,\epsilon)=\tau_\alpha\sigma_\epsilon U^*(r)\sigma^*_\epsilon\tau^*_
 <h2>Bell函数<a class="headerlink" href="#bell" title="永久链接至标题">#</a></h2>
 <p>上面的磨光技术是对区间<span class="math notranslate nohighlight">\([\alpha_1,\alpha_2]\)</span>在端点<span class="math notranslate nohighlight">\(\alpha_1\)</span>和<span class="math notranslate nohighlight">\(\alpha_2\)</span>分别用算子<span class="math notranslate nohighlight">\(U^*\)</span>（左端点）和<span class="math notranslate nohighlight">\(U\)</span>（右端点）对给定的函数进行磨光。其中的假设是函数在这个区间外值为零，而其中的原理是在左端以<span class="math notranslate nohighlight">\(\alpha_1\)</span>为中心向左做偶函数的延伸，利用函数在<span class="math notranslate nohighlight">\(\alpha_1\)</span>右边的值来决定<span class="math notranslate nohighlight">\(\alpha_1\)</span>左边的值，具体的做法就是乘上相应点上rising cutoff函数的值。类似的，右端点则是对函数在<span class="math notranslate nohighlight">\(\alpha_2\)</span>右边进行奇延伸（以<span class="math notranslate nohighlight">\(\alpha_2\)</span>为原点）。所以，在区间外函数值为零的条件下，算子<span class="math notranslate nohighlight">\(U^*\)</span>是对左端点的向左的偶延伸，算子<span class="math notranslate nohighlight">\(U\)</span>则是对右端点向右的奇延伸。</p>
 <p>可以验证，在这种情况下，</p>
-<div class="amsmath math notranslate nohighlight" id="equation-65f8b377-c77b-490a-90d5-a55dbb454b38">
-<span class="eqno">(8)<a class="headerlink" href="#equation-65f8b377-c77b-490a-90d5-a55dbb454b38" title="公式的永久链接">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-babc5653-cc0d-4298-bf3d-a2eae972027d">
+<span class="eqno">(8)<a class="headerlink" href="#equation-babc5653-cc0d-4298-bf3d-a2eae972027d" title="公式的永久链接">#</a></span>\[\begin{equation}
 U^*(r,\alpha_1,\epsilon_1)U(r,\alpha_2,\epsilon_2)f(t)=r\left(\frac{t-\alpha_1}{\epsilon_1}\right)
 r\left(\frac{\alpha_2-t}{\epsilon_2}\right)f(t)
 \end{equation}\]</div>
 <p>令<span class="math notranslate nohighlight">\(B_\epsilon(\alpha)=[\alpha-\epsilon,\alpha+\epsilon]\)</span>，即<span class="math notranslate nohighlight">\(B_\epsilon(\alpha)\)</span>代表以<span class="math notranslate nohighlight">\(\alpha\)</span>为中心，半径为<span class="math notranslate nohighlight">\(\epsilon\)</span>的区间。我们要求<span class="math notranslate nohighlight">\(B_{\epsilon_1}(\alpha_1)\cap B_{\epsilon_2}(\alpha_2)=\emptyset\)</span>，也就是说，<span class="math notranslate nohighlight">\(B_{\epsilon_1}(\alpha_1)\)</span>与<span class="math notranslate nohighlight">\(B_{\epsilon_2}(\alpha_2)\)</span>不相交。</p>
 <p>我们定义区间<span class="math notranslate nohighlight">\(I_k=[\alpha_k,\alpha_{k+1}]\)</span>上的bell函数为：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-ee237215-7561-499e-adad-6e2f9efdaa2c">
-<span class="eqno">(9)<a class="headerlink" href="#equation-ee237215-7561-499e-adad-6e2f9efdaa2c" title="公式的永久链接">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-72eaf2fd-4c70-4245-af43-6a54ba84e4ea">
+<span class="eqno">(9)<a class="headerlink" href="#equation-72eaf2fd-4c70-4245-af43-6a54ba84e4ea" title="公式的永久链接">#</a></span>\[\begin{equation}
 b_k(t)=r\left(\frac{t-\alpha_k}{\epsilon_k}\right)
 r\left(\frac{\alpha_{k+1}-t}{\epsilon_{k+1}}\right)
 \end{equation}\]</div>
@@ -1792,23 +1792,23 @@ dctiv( -4 )= 0.07750715147041115 ,   dctiv( 3 )= 0.07750715147041115
 N= 128 v= 15
 dctiv( -1 )= 0.1227454836386944 ,   dctiv( 0 )= 0.1227454836386944
 dctiv( -2 )= 0.1051943721796123 ,   dctiv( 1 )= 0.1051943721796123
-dctiv( -3 )= 0.07260174476197058 ,   dctiv( 2 )= 0.07260174476197058
+dctiv( -3 )= 0.07260174476197057 ,   dctiv( 2 )= 0.07260174476197057
 dctiv( -4 )= 0.029627950749295917 ,   dctiv( 3 )= 0.029627950749295917
 N= 128 v= 20
-dctiv( -1 )= 0.12106526178430216 ,   dctiv( 0 )= 0.12106526178430216
+dctiv( -1 )= 0.12106526178430217 ,   dctiv( 0 )= 0.12106526178430217
 dctiv( -2 )= 0.09105804880602816 ,   dctiv( 1 )= 0.09105804880602816
 dctiv( -3 )= 0.03848120500519187 ,   dctiv( 2 )= 0.03848120500519187
 dctiv( -4 )= -0.023633583018725743 ,   dctiv( 3 )= -0.023633583018725743
 N= 128 v= 25
 dctiv( -1 )= 0.11892937762112604 ,   dctiv( 0 )= 0.11892937762112604
-dctiv( -2 )= 0.0738449627323593 ,   dctiv( 1 )= 0.0738449627323593
-dctiv( -3 )= 0.0007669855811443145 ,   dctiv( 2 )= 0.0007669855811443145
-dctiv( -4 )= -0.07260174476197054 ,   dctiv( 3 )= -0.07260174476197054
+dctiv( -2 )= 0.07384496273235928 ,   dctiv( 1 )= 0.07384496273235928
+dctiv( -3 )= 0.0007669855811443144 ,   dctiv( 2 )= 0.0007669855811443144
+dctiv( -4 )= -0.07260174476197055 ,   dctiv( 3 )= -0.07260174476197055
 N= 128 v= 30
 dctiv( -1 )= 0.11634587013487296 ,   dctiv( 0 )= 0.11634587013487296
 dctiv( -2 )= 0.054136727356644 ,   dctiv( 1 )= 0.054136727356644
 dctiv( -3 )= -0.03701886103045298 ,   dctiv( 2 )= -0.03701886103045298
-dctiv( -4 )= -0.10838078068946158 ,   dctiv( 3 )= -0.10838078068946158
+dctiv( -4 )= -0.1083807806894616 ,   dctiv( 3 )= -0.1083807806894616
 </pre></div>
 </div>
 </div>
@@ -1828,8 +1828,8 @@ dctiv( -4 )= -0.10838078068946158 ,   dctiv( 3 )= -0.10838078068946158
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>v= 10 a1= 0.0 a2= 1.0
 dct( -0.01 )= 1.3379667456165307 ,  dct( 0.01 )= 1.3379667456165307
-dct( -0.02 )= 1.1174479348787822 ,  dct( 0.02 )= 1.1174479348787822
-dct( -0.03 )= 0.7764355152652535 ,  dct( 0.03 )= 0.7764355152652535
+dct( -0.02 )= 1.117447934878782 ,  dct( 0.02 )= 1.117447934878782
+dct( -0.03 )= 0.7764355152652532 ,  dct( 0.03 )= 0.7764355152652532
 dct( -0.04 )= 0.35170061125357227 ,  dct( 0.04 )= 0.35170061125357227
 v= 15 a1= 0.0 a2= 1.0
 dct( -0.01 )= 1.2498333400306343 ,  dct( 0.01 )= 1.2498333400306343
@@ -1838,11 +1838,11 @@ dct( -0.03 )= 0.15518775100262472 ,  dct( 0.03 )= 0.15518775100262472
 dct( -0.04 )= -0.5206067350492003 ,  dct( 0.04 )= -0.5206067350492003
 v= 20 a1= 0.0 a2= 1.0
 dct( -0.01 )= 1.1309248896541404 ,  dct( 0.01 )= 1.1309248896541404
-dct( -0.02 )= 0.3945530059421486 ,  dct( 0.02 )= 0.3945530059421486
+dct( -0.02 )= 0.3945530059421487 ,  dct( 0.02 )= 0.3945530059421487
 dct( -0.03 )= -0.4998889180303361 ,  dct( 0.03 )= -0.4998889180303361
 dct( -0.04 )= -1.1940600033352897 ,  dct( 0.04 )= -1.1940600033352897
 v= 25 a1= 0.0 a2= 1.0
-dct( -0.01 )= 0.9841693151698401 ,  dct( 0.01 )= 0.9841693151698401
+dct( -0.01 )= 0.98416931516984 ,  dct( 0.01 )= 0.98416931516984
 dct( -0.02 )= -0.04442152149272283 ,  dct( 0.02 )= -0.04442152149272283
 dct( -0.03 )= -1.0459963256716123 ,  dct( 0.03 )= -1.0459963256716123
 dct( -0.04 )= -1.4114229349541114 ,  dct( 0.04 )= -1.4114229349541114
@@ -1871,28 +1871,28 @@ dct( -0.04 )= -1.0896702779215945 ,  dct( 0.04 )= -1.0896702779215945
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>N= 128 v= 10
 dctiv( 127 )= 0.016062263849224444 ,   dctiv( 128 )= -0.016062263849224566
 dctiv( 126 )= 0.04712592627705241 ,   dctiv( 129 )= -0.04712592627705252
-dctiv( 125 )= 0.0750770599229836 ,   dctiv( 130 )= -0.07507705992298368
+dctiv( 125 )= 0.0750770599229836 ,   dctiv( 130 )= -0.07507705992298369
 dctiv( 124 )= 0.09806957464444678 ,   dctiv( 131 )= -0.09806957464444686
 N= 128 v= 15
-dctiv( 127 )= -0.0236335830187265 ,   dctiv( 128 )= 0.0236335830187256
+dctiv( 127 )= -0.023633583018726503 ,   dctiv( 128 )= 0.0236335830187256
 dctiv( 126 )= -0.06752143409123695 ,   dctiv( 129 )= 0.06752143409123618
 dctiv( 125 )= -0.1017545412132436 ,   dctiv( 130 )= 0.10175454121324305
 dctiv( 124 )= -0.12143798637328163 ,   dctiv( 131 )= 0.1214379863732814
 N= 128 v= 20
-dctiv( 127 )= 0.03111595071821616 ,   dctiv( 128 )= -0.031115950718214266
+dctiv( 127 )= 0.03111595071821616 ,   dctiv( 128 )= -0.031115950718214262
 dctiv( 126 )= 0.08563545847158804 ,   dctiv( 129 )= -0.08563545847158727
 dctiv( 125 )= 0.11892937762112638 ,   dctiv( 130 )= -0.1189293776211255
 dctiv( 124 )= 0.1227454836386943 ,   dctiv( 131 )= -0.12274548363869467
 N= 128 v= 25
-dctiv( 127 )= -0.03848120500519255 ,   dctiv( 128 )= 0.03848120500519139
+dctiv( 127 )= -0.03848120500519255 ,   dctiv( 128 )= 0.038481205005191386
 dctiv( 126 )= -0.10085594419297547 ,   dctiv( 129 )= 0.10085594419297475
 dctiv( 125 )= -0.12499764691032515 ,   dctiv( 130 )= 0.12499764691032514
 dctiv( 124 )= -0.10175454121324272 ,   dctiv( 131 )= 0.10175454121324343
 N= 128 v= 30
-dctiv( 127 )= 0.04570162472559699 ,   dctiv( 128 )= -0.04570162472559654
-dctiv( 126 )= 0.1126686058807529 ,   dctiv( 129 )= -0.1126686058807527
+dctiv( 127 )= 0.045701624725596995 ,   dctiv( 128 )= -0.04570162472559654
+dctiv( 126 )= 0.1126686058807529 ,   dctiv( 129 )= -0.11266860588075268
 dctiv( 125 )= 0.11939264603822122 ,   dctiv( 130 )= -0.11939264603822136
-dctiv( 124 )= 0.06227845837159731 ,   dctiv( 131 )= -0.06227845837159774
+dctiv( 124 )= 0.06227845837159732 ,   dctiv( 131 )= -0.06227845837159774
 </pre></div>
 </div>
 </div>
@@ -1911,8 +1911,8 @@ dctiv( 124 )= 0.06227845837159731 ,   dctiv( 131 )= -0.06227845837159774
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>关于a2为奇函数的验证： v= 10 , a1= 0.0 , a2= 1.0
-dct( 0.99 )= 0.45808840590470323 ,  dct( 1.01 )= -0.45808840590470457
-dct( 0.98 )= 0.866781467750171 ,  dct( 1.02 )= -0.866781467750172
+dct( 0.99 )= 0.45808840590470334 ,  dct( 1.01 )= -0.45808840590470457
+dct( 0.98 )= 0.8667814677501708 ,  dct( 1.02 )= -0.866781467750172
 dct( 0.97 )= 1.1820101059782784 ,  dct( 1.03 )= -1.182010105978279
 dct( 0.96 )= 1.3697834427543147 ,  dct( 1.04 )= -1.3697834427543163
 关于a2为奇函数的验证： v= 15 , a1= 0.0 , a2= 1.0
@@ -1923,7 +1923,7 @@ dct( 0.96 )= -1.3149025163187602 ,  dct( 1.04 )= 1.314902516318764
 关于a2为奇函数的验证： v= 20 , a1= 0.0 , a2= 1.0
 dct( 0.99 )= 0.8491224257789807 ,  dct( 1.01 )= -0.849122425778963
 dct( 0.98 )= 1.3580603541455827 ,  dct( 1.02 )= -1.3580603541455736
-dct( 0.97 )= 1.322917635240551 ,  dct( 1.03 )= -1.3229176352405552
+dct( 0.97 )= 1.3229176352405507 ,  dct( 1.03 )= -1.3229176352405552
 dct( 0.96 )= 0.7577735205421917 ,  dct( 1.04 )= -0.7577735205422106
 关于a2为奇函数的验证： v= 25 , a1= 0.0 , a2= 1.0
 dct( 0.99 )= -1.0155839497934913 ,  dct( 1.01 )= 1.0155839497934815
@@ -1933,8 +1933,8 @@ dct( 0.96 )= 0.08879920430682393 ,  dct( 1.04 )= -0.0887992043068101
 关于a2为奇函数的验证： v= 30 , a1= 0.0 , a2= 1.0
 dct( 0.99 )= 1.1570384264341842 ,  dct( 1.01 )= -1.157038426434181
 dct( 0.98 )= 1.3306063440310922 ,  dct( 1.02 )= -1.3306063440310942
-dct( 0.97 )= 0.37317284600578526 ,  dct( 1.03 )= -0.37317284600579054
-dct( 0.96 )= -0.901453651284579 ,  dct( 1.04 )= 0.9014536512845746
+dct( 0.97 )= 0.37317284600578515 ,  dct( 1.03 )= -0.3731728460057906
+dct( 0.96 )= -0.901453651284579 ,  dct( 1.04 )= 0.9014536512845748
 </pre></div>
 </div>
 </div>
@@ -2071,7 +2071,7 @@ f(t),&amp;\textrm{其他}
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.0000000000188851
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>1.000000000018885
 </pre></div>
 </div>
 </div>
@@ -2099,8 +2099,8 @@ U^*(r,\alpha_1,\epsilon_1)U^*(r,\alpha_2,\epsilon_2)I_{[\alpha_1,\alpha_2]}(t)f(
 U^*(r,a,\epsilon)U^*(r,b,\epsilon)I_{[a,b]}(t)e_\nu(t)=r\left(\frac{t-a}{\epsilon}\right)r\left(\frac{b-t}{\epsilon}\right)e_\nu(t)
 \]</div>
 <p>我们不就可以不用折叠和逆折叠算子，直接用bell函数就行了。以下的恒等式回答了这个问题，也是问题的关键所在：我们求一个函数<span class="math notranslate nohighlight">\(f(t)\)</span>在<span class="math notranslate nohighlight">\(e_\nu(t)\)</span>上的表达，就是求其内积<span class="math notranslate nohighlight">\(&lt;f,\ e_\nu&gt;\)</span>，那么对于光滑延伸后的基，<span class="math notranslate nohighlight">\(U^*(r,a,\epsilon)U^*(r,b,\epsilon)I_{[a,b]}(t)e_\nu(t)\)</span>，我们需要求<span class="math notranslate nohighlight">\(&lt;f,\ U^*(r,a,\epsilon)U^*(r,b,\epsilon)I_{[a,b]}(t)e_\nu(t)&gt;\)</span>，不难验证</p>
-<div class="amsmath math notranslate nohighlight" id="equation-88209c92-4498-490d-9b7b-afb5b8e8d1ab">
-<span class="eqno">(10)<a class="headerlink" href="#equation-88209c92-4498-490d-9b7b-afb5b8e8d1ab" title="公式的永久链接">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-cc47b3b5-58a8-4b83-ac5e-7802dab7ef51">
+<span class="eqno">(10)<a class="headerlink" href="#equation-cc47b3b5-58a8-4b83-ac5e-7802dab7ef51" title="公式的永久链接">#</a></span>\[\begin{equation}
 &lt;f(\cdot),\ U^*(r,a,\epsilon)U^*(r,b,\epsilon)I_{[a,b]}(\cdot)e_\nu(\cdot)&gt;=&lt;U(r,b,\epsilon)U(r,a,\epsilon)f(\cdot),\ I_{[a,b]}(\cdot)e_\nu(\cdot)&gt;
 \end{equation}\]</div>
 <p>这个公式意义重大，与其对基函数<span class="math notranslate nohighlight">\(I_{[a,b]}e_\nu(t)\)</span>进行光滑延伸，我们对被分析函数<span class="math notranslate nohighlight">\(f(t)\)</span>进行折叠，由于被分析函数并不满足奇函数和偶函数的假定，这就需要我们采纳折叠算子。折叠后的函数对<span class="math notranslate nohighlight">\(I_{[a,b]}(t)e_\nu(t)\)</span>进行内积，这就是说对折叠后的函数在区间上进行余弦函数变换，因此余弦函数变换程式不用改变，直接用于区间<span class="math notranslate nohighlight">\([a,b]\)</span>即可。</p>

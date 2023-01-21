@@ -248,7 +248,7 @@ title="Toggle navigation"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="https://mybinder.org/v2/gh/blackgolfer/super-qi/szhq20022?urlpath=tree/ms/sp/impl/fft.ipynb"
+        <a href="https://mybinder.org/v2/gh/blackgolfer/super-qi/szhq20022?urlpath=tree/ms/sp/impl/fold.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -266,7 +266,7 @@ title="Launch on Binder"
       </li>
       
       <li>
-        <a href="https://colab.research.google.com/github/blackgolfer/super-qi/blob/szhq20022/ms/sp/impl/fft.ipynb"
+        <a href="https://colab.research.google.com/github/blackgolfer/super-qi/blob/szhq20022/ms/sp/impl/fold.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -326,7 +326,7 @@ title="Source repository"
       </li>
       
       <li>
-        <a href="https://github.com/blackgolfer/super-qi/issues/new?title=Issue%20on%20page%20%2Fimpl/fft.html&body=Your%20issue%20content%20here."
+        <a href="https://github.com/blackgolfer/super-qi/issues/new?title=Issue%20on%20page%20%2Fimpl/fold.html&body=Your%20issue%20content%20here."
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -343,7 +343,7 @@ title="Open an issue"
       </li>
       
       <li>
-        <a href="https://github.com/blackgolfer/super-qi/edit/szhq20022/ms/sp/impl/fft.ipynb"
+        <a href="https://github.com/blackgolfer/super-qi/edit/szhq20022/ms/sp/impl/fold.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -371,7 +371,7 @@ title="Edit this page"
   <div class="menu-dropdown__content">
     <ul>
       <li>
-        <a href="../_sources/impl/fft.ipynb"
+        <a href="../_sources/impl/fold.ipynb"
    class="headerbtn"
    data-toggle="tooltip"
 data-placement="left"
@@ -667,12 +667,14 @@ title="Print to PDF"
     <span class="k">def</span> <span class="nf">param</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">pass</span>
 
-    <span class="c1"># rcf sampled at grid point</span>
-    <span class="c1"># declare rcfgrid as private method</span>
-    <span class="c1"># the array is arranged as:</span>
-    <span class="c1">#   _grid[1]..._grid[E] for rcf at t=1/E,2/E,...,1</span>
-    <span class="c1">#   _grid[:-1]..._grid[:-E] for rcf at t=-1/E,-2/E,...,-1</span>
+ 
     <span class="k">def</span> <span class="nf">__rcfgrid</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        rcf sampled at grid point</span>
+<span class="sd">        the array is arranged as:</span>
+<span class="sd">            _grid[1]..._grid[E] for rcf at t=1/E,2/E,...,1</span>
+<span class="sd">            _grid[:-1]..._grid[:-E] for rcf at t=-1/E,-2/E,...,-1</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">t</span><span class="o">=</span><span class="mf">0.0</span>
         <span class="n">dt</span><span class="o">=</span><span class="mf">1.0</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">_E</span> <span class="c1"># 1/(final+1)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">0.5</span><span class="p">)</span>
@@ -681,12 +683,14 @@ title="Print to PDF"
             <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rcf_fct</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_data</span><span class="p">[</span><span class="o">-</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rcf_fct</span><span class="p">(</span><span class="o">-</span><span class="n">t</span><span class="p">)</span>
 
-    <span class="c1"># rcf sampled at mid point</span>
-    <span class="c1"># declare rcfmid as private method</span>
-    <span class="c1"># the array is arranged as:</span>
-    <span class="c1"># _grid[1]..._grid[E]: for rcf at (0+1/2)/E,(1+1/2)/E,...,1-1/(2E)</span>
-    <span class="c1"># _grid[-1]..._grid[:-E+1]: for rcf at -(0+1/2)/E,-(1+1/2)/E,...,-1+1/(2E)</span>
     <span class="k">def</span> <span class="nf">__rcfmid</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        rcf sampled at mid point</span>
+
+<span class="sd">        the array is arranged as:</span>
+<span class="sd">            _grid[1]..._grid[E]: for rcf at (0+1/2)/E,(1+1/2)/E,...,1-1/(2E)</span>
+<span class="sd">            _grid[-1]..._grid[:-E+1]: for rcf at -(0+1/2)/E,-(1+1/2)/E,...,-1+1/(2E)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">t</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">_E</span>
         <span class="n">dt</span> <span class="o">=</span> <span class="mf">1.0</span><span class="o">/</span><span class="bp">self</span><span class="o">.</span><span class="n">_E</span>
         <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">_E</span><span class="p">):</span>
@@ -804,7 +808,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/fft_7_0.png" src="../_images/fft_7_0.png" />
+<img alt="../_images/fold_7_0.png" src="../_images/fold_7_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -816,7 +820,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/fft_8_0.png" src="../_images/fft_8_0.png" />
+<img alt="../_images/fold_8_0.png" src="../_images/fold_8_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -836,7 +840,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/fft_10_0.png" src="../_images/fft_10_0.png" />
+<img alt="../_images/fold_10_0.png" src="../_images/fold_10_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -929,7 +933,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/fft_15_0.png" src="../_images/fft_15_0.png" />
+<img alt="../_images/fold_15_0.png" src="../_images/fold_15_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -943,7 +947,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/fft_16_0.png" src="../_images/fft_16_0.png" />
+<img alt="../_images/fold_16_0.png" src="../_images/fold_16_0.png" />
 </div>
 </div>
 <section id="u-u-uu">
@@ -959,7 +963,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/fft_18_0.png" src="../_images/fft_18_0.png" />
+<img alt="../_images/fold_18_0.png" src="../_images/fold_18_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -973,7 +977,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/fft_19_0.png" src="../_images/fft_19_0.png" />
+<img alt="../_images/fold_19_0.png" src="../_images/fold_19_0.png" />
 </div>
 </div>
 </section>
@@ -991,7 +995,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/fft_22_0.png" src="../_images/fft_22_0.png" />
+<img alt="../_images/fold_22_0.png" src="../_images/fold_22_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1018,7 +1022,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/fft_27_0.png" src="../_images/fft_27_0.png" />
+<img alt="../_images/fold_27_0.png" src="../_images/fold_27_0.png" />
 </div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">signal</span></code>这个类就是方便这种数据的预处理：数组是按算法的要求将原来的顺序变成<span class="math notranslate nohighlight">\([x(t_0),x(t_1)\cdots,x(t_E),x(t_{-E}),x(t_{-E+1}),\cdots,x(t_{-1})]\)</span>来存储，但是类中的<code class="docutils literal notranslate"><span class="pre">plot</span></code>函数是按原来的顺序显示。</p>
@@ -1031,7 +1035,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/fft_29_0.png" src="../_images/fft_29_0.png" />
+<img alt="../_images/fold_29_0.png" src="../_images/fold_29_0.png" />
 </div>
 </div>
 </section>
@@ -1046,7 +1050,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/fft_31_0.png" src="../_images/fft_31_0.png" />
+<img alt="../_images/fold_31_0.png" src="../_images/fold_31_0.png" />
 </div>
 </div>
 </section>
@@ -1062,7 +1066,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/fft_33_0.png" src="../_images/fft_33_0.png" />
+<img alt="../_images/fold_33_0.png" src="../_images/fold_33_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -1074,7 +1078,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/fft_34_0.png" src="../_images/fft_34_0.png" />
+<img alt="../_images/fold_34_0.png" src="../_images/fold_34_0.png" />
 </div>
 </div>
 </section>
@@ -1113,7 +1117,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/fft_39_0.png" src="../_images/fft_39_0.png" />
+<img alt="../_images/fold_39_0.png" src="../_images/fold_39_0.png" />
 </div>
 </div>
 </section>

@@ -186,7 +186,7 @@ const thebe_selector_output = ".output, .cell_output"
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="fft.html">
+  <a class="reference internal" href="fold.html">
    整数域上的折叠实现
   </a>
  </li>
@@ -555,6 +555,28 @@ title="Print to PDF"
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#id6">
+   环境管理器
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id7">
+     基本概念
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id8">
+     类方式实现
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id9">
+     生成器与环境管理器
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id10">
    函数式
   </a>
   <ul class="nav section-nav flex-column">
@@ -566,7 +588,7 @@ title="Print to PDF"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id7">
+  <a class="reference internal nav-link" href="#id11">
    常用的数据结构
   </a>
  </li>
@@ -713,6 +735,28 @@ title="Print to PDF"
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#id6">
+   环境管理器
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id7">
+     基本概念
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id8">
+     类方式实现
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id9">
+     生成器与环境管理器
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id10">
    函数式
   </a>
   <ul class="nav section-nav flex-column">
@@ -724,7 +768,7 @@ title="Print to PDF"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id7">
+  <a class="reference internal nav-link" href="#id11">
    常用的数据结构
   </a>
  </li>
@@ -743,7 +787,7 @@ title="Print to PDF"
 <p>这一部分是关于信号处理技术的工程实现。</p>
 <p>工程实现依赖于有效的单元操作。单元操作分两大类：其一是算法的单元操作；其二是编程技巧的单元操作。</p>
 <p>算法的单元操作也分两类，第一类是基本常见的单元操作，比如<code class="docutils literal notranslate"><span class="pre">shift</span></code>，<code class="docutils literal notranslate"><span class="pre">decimatioin</span></code>；另外一类是算法本身的单元操作，比如<code class="docutils literal notranslate"><span class="pre">lct</span></code>中的折叠算子。从某种意义上说，一个算法就是一个单元操作的集合与串通这些单元操作的逻辑。所以，算法上对单元操作的思考和掌控一般都比较严密，也因此比较到位。</p>
-<p>编程技巧上对单元操作的梳理也是比较丰富的，遗憾的是由于只要动手，一般都会比较快地得到结果，因此在单元操作的设计比较容易被忽视，这是我们在工作中需要重视的。</p>
+<p>编程技巧上对单元操作的梳理也是比较丰富的，遗憾的是由于只要动手，一般都会比较快地得到结果，因此在单元操作上的设计比较容易被忽视，这是我们在工作中需要重视的。</p>
 <p>在大的框架上，编程技巧有以下几类：</p>
 <ol class="simple">
 <li><p>Python data model</p></li>
@@ -759,7 +803,7 @@ title="Print to PDF"
 <p>更底层的技巧依赖于数据结构的经验，常用的有二叉树等。</p>
 <section id="python-collections-data-model">
 <h2>Python collections 与 data model<a class="headerlink" href="#python-collections-data-model" title="永久链接至标题">#</a></h2>
-<p>这段资料取自于<span id="id2">[<a class="reference internal" href="#id14" title="L. Ramalho. Fluent Python: Clear, Concise, and Effective Programming. O'Reilly Media, 2015. ISBN 9781491946251. URL: https://books.google.co.in/books?id=bIZHCgAAQBAJ.">Ramalho, 2015</a>]</span>的第一章。这里简单介绍<code class="docutils literal notranslate"><span class="pre">collections</span></code>和data model，是我们常用的工具。</p>
+<p>这段资料取自于<span id="id2">[<a class="reference internal" href="#id18" title="L. Ramalho. Fluent Python: Clear, Concise, and Effective Programming. O'Reilly Media, 2015. ISBN 9781491946251. URL: https://books.google.co.in/books?id=bIZHCgAAQBAJ.">Ramalho, 2015</a>]</span>的第一章。这里简单介绍<code class="docutils literal notranslate"><span class="pre">collections</span></code>和data model，是我们常用的工具。</p>
 <section id="collections">
 <h3>collections<a class="headerlink" href="#collections" title="永久链接至标题">#</a></h3>
 <div class="cell docutils container">
@@ -872,7 +916,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Card(rank=&#39;10&#39;, suit=&#39;clubs&#39;)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Card(rank=&#39;7&#39;, suit=&#39;spades&#39;)
 </pre></div>
 </div>
 </div>
@@ -1183,7 +1227,7 @@ button text: 0xff00
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4617309312 4617309312
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>140442147940800 140442147940800
 </pre></div>
 </div>
 </div>
@@ -1291,8 +1335,8 @@ s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 3 µs, sys: 1 µs, total: 4 µs
-Wall time: 6.2 µs
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 2 µs, sys: 1 µs, total: 3 µs
+Wall time: 4.77 µs
 (0, 1, 2, 3, 4, 5)
 (6, 7, 8, 9, 10, 11)
 (12, 13, 14, 15, 16, 17)
@@ -1382,8 +1426,8 @@ Wall time: 6.2 µs
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4617207872
-4617207872
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>140442147838736
+140442147838736
 </pre></div>
 </div>
 </div>
@@ -1398,8 +1442,8 @@ Wall time: 6.2 µs
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>4617218528
-4617219776
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>140442147843776
+140442147841520
 </pre></div>
 </div>
 </div>
@@ -1466,8 +1510,8 @@ Wall time: 6.2 µs
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 2 µs, sys: 1e+03 ns, total: 3 µs
-Wall time: 6.2 µs
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 1 µs, sys: 0 ns, total: 1 µs
+Wall time: 4.53 µs
 (0, 1, 2, 3, 4, 5)
 (6, 7, 8, 9, 10, 11)
 (12, 13, 14, 15, 16, 17)
@@ -1492,7 +1536,7 @@ Wall time: 6.2 µs
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 2 µs, sys: 0 ns, total: 2 µs
-Wall time: 6.91 µs
+Wall time: 4.29 µs
 (0, 1, 2, 3, 4, 5)
 (6, 7, 8, 9, 10, 11)
 (12, 13, 14, 15, 16, 17)
@@ -1612,10 +1656,140 @@ closure(7) = 13
 </div>
 </section>
 <section id="id6">
-<h2>函数式<a class="headerlink" href="#id6" title="永久链接至标题">#</a></h2>
+<h2>环境管理器<a class="headerlink" href="#id6" title="永久链接至标题">#</a></h2>
+<section id="id7">
+<h3>基本概念<a class="headerlink" href="#id7" title="永久链接至标题">#</a></h3>
+<p>这里的材料来自于<a class="reference external" href="https://www.geeksforgeeks.org/context-manager-using-contextmanager-decorator/?ref=lbp">Context Manager Using &#64;contextmanager Decorator</a>。</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Python program creating a</span>
+<span class="c1"># context manager</span>
+
+<span class="k">class</span> <span class="nc">ContextManager</span><span class="p">():</span>
+	<span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;init method called&#39;</span><span class="p">)</span>
+		
+	<span class="k">def</span> <span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;enter method called&#39;</span><span class="p">)</span>
+		<span class="k">return</span> <span class="bp">self</span>
+	
+	<span class="k">def</span> <span class="fm">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exc_type</span><span class="p">,</span> <span class="n">exc_value</span><span class="p">,</span> <span class="n">exc_traceback</span><span class="p">):</span>
+		<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;exit method called&#39;</span><span class="p">)</span>
+
+<span class="c1"># Driver code</span>
+<span class="k">with</span> <span class="n">ContextManager</span><span class="p">()</span> <span class="k">as</span> <span class="n">manager</span><span class="p">:</span>
+	<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;with statement block&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>init method called
+enter method called
+with statement block
+exit method called
+</pre></div>
+</div>
+</div>
+</div>
+<p>In the above code, <strong>enter</strong> will be executed when control enters with and <strong>exit</strong>, when control leaves with clause. We can simply make any function as a context manager with the help of contextlib.contextmanager decorator without having to write a separate class or <strong>enter</strong> and <strong>exit</strong> functions.</p>
+<p>Using &#64;contextmanager
+We have to use contextlib.contextmanager to decorate a generator function which yields <strong>exactly once</strong>. Everything before yield is considered to be <strong>enter</strong> section and everything after, to be <strong>exit</strong> section. The generator function should yield the resource.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Python program for creating a</span>
+<span class="c1"># context manager using @contextmanager</span>
+<span class="c1"># decorator</span>
+
+<span class="kn">from</span> <span class="nn">contextlib</span> <span class="kn">import</span> <span class="n">contextmanager</span>
+
+<span class="nd">@contextmanager</span>
+<span class="k">def</span> <span class="nf">ContextManager</span><span class="p">():</span>
+	
+	<span class="c1"># Before yield as the enter method</span>
+	<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Enter method called&quot;</span><span class="p">)</span>
+	<span class="k">yield</span>
+	
+	<span class="c1"># After yield as the exit method</span>
+	<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Exit method called&quot;</span><span class="p">)</span>
+
+<span class="k">with</span> <span class="n">ContextManager</span><span class="p">()</span> <span class="k">as</span> <span class="n">manager</span><span class="p">:</span>
+	<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;with statement block&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Enter method called
+with statement block
+Exit method called
+</pre></div>
+</div>
+</div>
+</div>
+<p>我们来看看一个简单的案例，对文件写入信息。这里的材料来自于<a class="reference external" href="https://www.geeksforgeeks.org/with-statement-in-python/">with statement in Python</a>。</p>
+</section>
+<section id="id8">
+<h3>类方式实现<a class="headerlink" href="#id8" title="永久链接至标题">#</a></h3>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># a simple file writer object</span>
+ 
+<span class="k">class</span> <span class="nc">MessageWriter</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">file_name</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">file_name</span> <span class="o">=</span> <span class="n">file_name</span>
+     
+    <span class="k">def</span> <span class="fm">__enter__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">file_name</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">file</span>
+ 
+    <span class="k">def</span> <span class="fm">__exit__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+ 
+<span class="c1"># using with statement with MessageWriter</span>
+ 
+<span class="k">with</span> <span class="n">MessageWriter</span><span class="p">(</span><span class="s1">&#39;my_file.txt&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">xfile</span><span class="p">:</span>
+    <span class="n">xfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;hello world&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="id9">
+<h3>生成器与环境管理器<a class="headerlink" href="#id9" title="永久链接至标题">#</a></h3>
+<p>A class based context manager as shown above is not the only way to support the with statement in user defined objects. The contextlib module provides a few more abstractions built upon the basic context manager interface. Here is how we can rewrite the context manager for the MessageWriter object using the contextlib module.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">contextlib</span> <span class="kn">import</span> <span class="n">contextmanager</span>
+
+
+<span class="k">class</span> <span class="nc">MessageWriter</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+	<span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">filename</span><span class="p">):</span>
+		<span class="bp">self</span><span class="o">.</span><span class="n">file_name</span> <span class="o">=</span> <span class="n">filename</span>
+
+	<span class="nd">@contextmanager</span>
+	<span class="k">def</span> <span class="nf">open_file</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+		<span class="k">try</span><span class="p">:</span>
+			<span class="n">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">file_name</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
+			<span class="k">yield</span> <span class="n">file</span>
+		<span class="k">finally</span><span class="p">:</span>
+			<span class="n">file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+
+<span class="c1"># usage</span>
+<span class="n">message_writer</span> <span class="o">=</span> <span class="n">MessageWriter</span><span class="p">(</span><span class="s1">&#39;hello.txt&#39;</span><span class="p">)</span>
+<span class="k">with</span> <span class="n">message_writer</span><span class="o">.</span><span class="n">open_file</span><span class="p">()</span> <span class="k">as</span> <span class="n">my_file</span><span class="p">:</span>
+	<span class="n">my_file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;hello world&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>In this code example, because of the <a class="reference external" href="https://www.geeksforgeeks.org/use-yield-keyword-instead-return-keyword-python/">yield</a> statement in its definition, the function open_file() is a <a class="reference external" href="https://www.geeksforgeeks.org/generators-in-python/">generator function</a>. When this open_file() function is called, it creates a resource descriptor named file. This resource descriptor is then passed to the caller and is represented here by the variable my_file. After the code inside the with block is executed the program control returns back to the open_file() function. The open_file() function resumes its execution and executes the code following the yield statement. This part of code which appears after the yield statement releases the acquired resources. The &#64;contextmanager here is a <a class="reference external" href="https://www.geeksforgeeks.org/decorators-in-python/">decorator</a>. The previous class-based implementation and this generator-based implementation of context managers is internally the same. While the later seems more readable, it requires the knowledge of generators, decorators and yield.</p>
+</section>
+</section>
+<section id="id10">
+<h2>函数式<a class="headerlink" href="#id10" title="永久链接至标题">#</a></h2>
 <ol class="simple">
 <li><p>容器（container）：对特定对象的一个封装。用信号的作为例子，信号是关于数组中的元素的一个容器。</p></li>
-<li><p>functor：一种特殊的容器，其中定义了<code class="docutils literal notranslate"><span class="pre">fmap</span></code>函数，其作用是应用外部定义的函数<code class="docutils literal notranslate"><span class="pre">f</span></code>（也就是<code class="docutils literal notranslate"><span class="pre">fmap</span></code>的输入参数）作用于被封装的类，并且将作用的结果用同样的容器封装起来作为<code class="docutils literal notranslate"><span class="pre">fmap</span></code>的输出。假设被封装的对象是类型<code class="docutils literal notranslate"><span class="pre">A</span></code>，<code class="docutils literal notranslate"><span class="pre">f</span></code>作用于对象的结果类型是<code class="docutils literal notranslate"><span class="pre">B</span></code>，即，<code class="docutils literal notranslate"><span class="pre">f:</span> <span class="pre">A-&gt;B</span></code>，那么<code class="docutils literal notranslate"><span class="pre">fmap:</span> <span class="pre">f-&gt;F[B]</span></code>，<code class="docutils literal notranslate"><span class="pre">F</span></code>为functor类型，<code class="docutils literal notranslate"><span class="pre">F[B]</span></code>指的是含有类型<code class="docutils literal notranslate"><span class="pre">B</span></code>的<code class="docutils literal notranslate"><span class="pre">F</span></code>functor。</p></li>
+<li><p>functor：一种特殊的容器，其中定义了<code class="docutils literal notranslate"><span class="pre">fmap</span></code>函数，其作用是应用外部定义的函数<code class="docutils literal notranslate"><span class="pre">f</span></code>（也就是<code class="docutils literal notranslate"><span class="pre">fmap</span></code>的输入参数）作用于被封装的类，并且将作用的结果用同样的容器封装起来作为<code class="docutils literal notranslate"><span class="pre">fmap</span></code>的输出。假设被封装的对象是类型<code class="docutils literal notranslate"><span class="pre">A</span></code>，<code class="docutils literal notranslate"><span class="pre">f</span></code>作用于对象的结果类型是<code class="docutils literal notranslate"><span class="pre">B</span></code>，即，<code class="docutils literal notranslate"><span class="pre">f:</span> <span class="pre">A-&gt;B</span></code>，那么<code class="docutils literal notranslate"><span class="pre">fmap:</span> <span class="pre">f-&gt;F[B]</span></code>，<code class="docutils literal notranslate"><span class="pre">F</span></code>是原来functor的类型，<code class="docutils literal notranslate"><span class="pre">F[B]</span></code>指的是含有类型<code class="docutils literal notranslate"><span class="pre">B</span></code>的functor，类型与原来的<code class="docutils literal notranslate"><span class="pre">F</span></code>一样，只是所含的元素是<code class="docutils literal notranslate"><span class="pre">B</span></code>类型（原来是<code class="docutils literal notranslate"><span class="pre">A</span></code>类型）。</p></li>
 <li><p>monad：在functor的基础上加上<code class="docutils literal notranslate"><span class="pre">bind</span></code>函数。用<code class="docutils literal notranslate"><span class="pre">M</span></code>代表一个monad的类型，跟<code class="docutils literal notranslate"><span class="pre">fmap</span></code>不同在于，<code class="docutils literal notranslate"><span class="pre">bind</span></code>要求输入参数<code class="docutils literal notranslate"><span class="pre">f</span></code>为<code class="docutils literal notranslate"><span class="pre">A-&gt;M[B]</span></code>的函数，<code class="docutils literal notranslate"><span class="pre">bind</span></code>的返回值为<code class="docutils literal notranslate"><span class="pre">M[B]</span></code>类型，而且是直接返回<code class="docutils literal notranslate"><span class="pre">f</span></code>的返回值。</p></li>
 </ol>
 <section id="monad">
@@ -1705,21 +1879,6 @@ closure(7) = 13
 </div>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Just</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>\
-    <span class="o">.</span><span class="n">fmap</span><span class="p">(</span><span class="k">lambda</span> <span class="n">_</span><span class="p">:</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Insert number a: &quot;</span><span class="p">)))</span> \
-    <span class="o">.</span><span class="n">fmap</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">/</span> <span class="nb">int</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Insert number b: &quot;</span><span class="p">)))</span> \
-    <span class="o">.</span><span class="n">fmap</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Nothing....
-</pre></div>
-</div>
-</div>
-</div>
-<div class="cell docutils container">
-<div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">decrease</span><span class="p">(</span><span class="n">num</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Maybe</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
    <span class="k">if</span> <span class="n">num</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
        <span class="k">return</span> <span class="n">Just</span><span class="p">(</span><span class="n">num</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
@@ -1753,13 +1912,25 @@ closure(7) = 13
 </div>
 </div>
 </div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">Just</span><span class="p">(</span><span class="s2">&quot;-10&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">fmap</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span><span class="o">.</span><span class="n">fmap</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span><span class="o">.</span><span class="n">fmap</span><span class="p">(</span><span class="nb">abs</span><span class="p">)</span><span class="o">.</span><span class="n">fmap</span><span class="p">(</span><span class="nb">str</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>10.0
+</pre></div>
+</div>
+</div>
+</div>
 </section>
 </section>
-<section id="id7">
-<h2>常用的数据结构<a class="headerlink" href="#id7" title="永久链接至标题">#</a></h2>
-<div class="docutils container" id="id8">
+<section id="id11">
+<h2>常用的数据结构<a class="headerlink" href="#id11" title="永久链接至标题">#</a></h2>
+<div class="docutils container" id="id12">
 <dl class="citation">
-<dt class="label" id="id14"><span class="brackets"><a class="fn-backref" href="#id2">Ram15</a></span></dt>
+<dt class="label" id="id18"><span class="brackets"><a class="fn-backref" href="#id2">Ram15</a></span></dt>
 <dd><p>L. Ramalho. <em>Fluent Python: Clear, Concise, and Effective Programming</em>. O'Reilly Media, 2015. ISBN 9781491946251. URL: <a class="reference external" href="https://books.google.co.in/books?id=bIZHCgAAQBAJ">https://books.google.co.in/books?id=bIZHCgAAQBAJ</a>.</p>
 </dd>
 </dl>
