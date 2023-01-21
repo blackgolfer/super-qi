@@ -89,3 +89,7 @@ class blocks(functor.Tuple):
 
 def decimation(sig):
     return sig[::2]
+
+def odecimation(e):
+    l,sig,r=e
+    return (decimation(sig),decimation(l),decimation(r))
