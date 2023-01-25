@@ -87,6 +87,10 @@ class blocks(functor.Tuple):
             raise TypeError("sig must be tuple, B must be int")
         functor.Tuple.__init__(self,tuple(tuple(i) for i in chunked(sig,B)))
 
+    def __len__(self):
+        return len(self.signal)
+
+    
 def decimation(sig):
     return sig[::2]
 

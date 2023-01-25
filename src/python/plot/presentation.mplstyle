@@ -1,0 +1,7 @@
+axes.titlesize : 8
+axes.titlecolor  : "#888888"
+axes.labelsize   : 6
+lines.linewidth  : 0.5
+lines.markersize : 2
+xtick.labelsize  : 6
+ytick.labelsize  : 6

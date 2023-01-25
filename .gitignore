@@ -142,3 +142,4 @@ devop/docker/.depends.mk
 .vscode
 src/go/pkg
 src/go/src
+ms/pl/haskell/learn-you-a-haskell
