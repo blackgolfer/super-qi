@@ -1,49 +1,71 @@
 h1 {
-    font-size: 20px;
+    font-size: 19px;
     font-weight: bold;
 }
-  
+
 h2 {
     font-size: 18px;
     font-weight: bold;
 }
-  
+
 h3 {
-    font-size: 16px;
+    font-size: 17px;
     font-weight: bold;
 }
 
 h4 {
-    font-size: 14px;
+    font-size: 16px;
     font-weight: bold;
 }
 
 h5 {
-  font-size: 13px;
-  font-weight: bold;
+    font-size: 15px;
+    font-weight: bold;
 }
 
 h6 {
-  font-size: 13px;
-  font-style: italic;
+    font-size: 15px;
+    font-style: italic;
 }
 
 p {
-    font-size: 12px;
+    font-size: 15px;
 }
 
 .cell_output.docutils.container {
-    font-size: 12px;
-}
-
-.cell_input.docutils.container {
-    font-size: 12px;
+    font-size: 15px;
 }
 
 .math.notranslate.nohighlight {
-    font-size: 11px;
+    font-size: 13px;
 }
 
 .highlight {
-    font-size: 12px;
+    font-size: 14px;
 }
+
+#bd-toc-nav > ul {
+    font-size: 14px;
+}
+
+blockquote {
+    background: #f9f9f9;
+    border-left: 10px solid #ccc;
+    margin: 1.5em 10px;
+    padding: 0.5em 10px;
+    quotes: "\201C" "\201D" "\2018" "\2019";
+}
+
+blockquote:before {
+    color: #ccc;
+    /*content: open-quote;*/
+    font-size: 4em;
+    line-height: 0.1em;
+    margin-right: 0.25em;
+    vertical-align: -0.4em;
+}
+
+blockquote.epigraph div p.attribution {
+    font-size: 15px;
+}
+

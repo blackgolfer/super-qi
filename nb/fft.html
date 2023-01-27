@@ -1541,15 +1541,15 @@ U^*(r,\alpha,\epsilon)=\tau_\alpha\sigma_\epsilon U^*(r)\sigma^*_\epsilon\tau^*_
 <h2>Bell函数<a class="headerlink" href="#bell" title="永久链接至标题">#</a></h2>
 <p>上面的磨光技术是对区间<span class="math notranslate nohighlight">\([\alpha_1,\alpha_2]\)</span>在端点<span class="math notranslate nohighlight">\(\alpha_1\)</span>和<span class="math notranslate nohighlight">\(\alpha_2\)</span>分别用算子<span class="math notranslate nohighlight">\(U^*\)</span>（左端点）和<span class="math notranslate nohighlight">\(U\)</span>（右端点）对给定的函数进行磨光。其中的假设是函数在这个区间外值为零，而其中的原理是在左端以<span class="math notranslate nohighlight">\(\alpha_1\)</span>为中心向左做偶函数的延伸，利用函数在<span class="math notranslate nohighlight">\(\alpha_1\)</span>右边的值来决定<span class="math notranslate nohighlight">\(\alpha_1\)</span>左边的值，具体的做法就是乘上相应点上rising cutoff函数的值。类似的，右端点则是对函数在<span class="math notranslate nohighlight">\(\alpha_2\)</span>右边进行奇延伸（以<span class="math notranslate nohighlight">\(\alpha_2\)</span>为原点）。所以，在区间外函数值为零的条件下，算子<span class="math notranslate nohighlight">\(U^*\)</span>是对左端点的向左的偶延伸，算子<span class="math notranslate nohighlight">\(U\)</span>则是对右端点向右的奇延伸。</p>
 <p>可以验证，在这种情况下，</p>
-<div class="amsmath math notranslate nohighlight" id="equation-babc5653-cc0d-4298-bf3d-a2eae972027d">
-<span class="eqno">(8)<a class="headerlink" href="#equation-babc5653-cc0d-4298-bf3d-a2eae972027d" title="公式的永久链接">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-f93f662e-8b02-4b86-9094-d53c951b5980">
+<span class="eqno">(8)<a class="headerlink" href="#equation-f93f662e-8b02-4b86-9094-d53c951b5980" title="公式的永久链接">#</a></span>\[\begin{equation}
 U^*(r,\alpha_1,\epsilon_1)U(r,\alpha_2,\epsilon_2)f(t)=r\left(\frac{t-\alpha_1}{\epsilon_1}\right)
 r\left(\frac{\alpha_2-t}{\epsilon_2}\right)f(t)
 \end{equation}\]</div>
 <p>令<span class="math notranslate nohighlight">\(B_\epsilon(\alpha)=[\alpha-\epsilon,\alpha+\epsilon]\)</span>，即<span class="math notranslate nohighlight">\(B_\epsilon(\alpha)\)</span>代表以<span class="math notranslate nohighlight">\(\alpha\)</span>为中心，半径为<span class="math notranslate nohighlight">\(\epsilon\)</span>的区间。我们要求<span class="math notranslate nohighlight">\(B_{\epsilon_1}(\alpha_1)\cap B_{\epsilon_2}(\alpha_2)=\emptyset\)</span>，也就是说，<span class="math notranslate nohighlight">\(B_{\epsilon_1}(\alpha_1)\)</span>与<span class="math notranslate nohighlight">\(B_{\epsilon_2}(\alpha_2)\)</span>不相交。</p>
 <p>我们定义区间<span class="math notranslate nohighlight">\(I_k=[\alpha_k,\alpha_{k+1}]\)</span>上的bell函数为：</p>
-<div class="amsmath math notranslate nohighlight" id="equation-72eaf2fd-4c70-4245-af43-6a54ba84e4ea">
-<span class="eqno">(9)<a class="headerlink" href="#equation-72eaf2fd-4c70-4245-af43-6a54ba84e4ea" title="公式的永久链接">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-677a6f82-e5e8-4bc8-9dea-6e5f2855ccbc">
+<span class="eqno">(9)<a class="headerlink" href="#equation-677a6f82-e5e8-4bc8-9dea-6e5f2855ccbc" title="公式的永久链接">#</a></span>\[\begin{equation}
 b_k(t)=r\left(\frac{t-\alpha_k}{\epsilon_k}\right)
 r\left(\frac{\alpha_{k+1}-t}{\epsilon_{k+1}}\right)
 \end{equation}\]</div>
@@ -2099,8 +2099,8 @@ U^*(r,\alpha_1,\epsilon_1)U^*(r,\alpha_2,\epsilon_2)I_{[\alpha_1,\alpha_2]}(t)f(
 U^*(r,a,\epsilon)U^*(r,b,\epsilon)I_{[a,b]}(t)e_\nu(t)=r\left(\frac{t-a}{\epsilon}\right)r\left(\frac{b-t}{\epsilon}\right)e_\nu(t)
 \]</div>
 <p>我们不就可以不用折叠和逆折叠算子，直接用bell函数就行了。以下的恒等式回答了这个问题，也是问题的关键所在：我们求一个函数<span class="math notranslate nohighlight">\(f(t)\)</span>在<span class="math notranslate nohighlight">\(e_\nu(t)\)</span>上的表达，就是求其内积<span class="math notranslate nohighlight">\(&lt;f,\ e_\nu&gt;\)</span>，那么对于光滑延伸后的基，<span class="math notranslate nohighlight">\(U^*(r,a,\epsilon)U^*(r,b,\epsilon)I_{[a,b]}(t)e_\nu(t)\)</span>，我们需要求<span class="math notranslate nohighlight">\(&lt;f,\ U^*(r,a,\epsilon)U^*(r,b,\epsilon)I_{[a,b]}(t)e_\nu(t)&gt;\)</span>，不难验证</p>
-<div class="amsmath math notranslate nohighlight" id="equation-cc47b3b5-58a8-4b83-ac5e-7802dab7ef51">
-<span class="eqno">(10)<a class="headerlink" href="#equation-cc47b3b5-58a8-4b83-ac5e-7802dab7ef51" title="公式的永久链接">#</a></span>\[\begin{equation}
+<div class="amsmath math notranslate nohighlight" id="equation-af456162-1f22-4c3f-bd94-5f4f0c309c1a">
+<span class="eqno">(10)<a class="headerlink" href="#equation-af456162-1f22-4c3f-bd94-5f4f0c309c1a" title="公式的永久链接">#</a></span>\[\begin{equation}
 &lt;f(\cdot),\ U^*(r,a,\epsilon)U^*(r,b,\epsilon)I_{[a,b]}(\cdot)e_\nu(\cdot)&gt;=&lt;U(r,b,\epsilon)U(r,a,\epsilon)f(\cdot),\ I_{[a,b]}(\cdot)e_\nu(\cdot)&gt;
 \end{equation}\]</div>
 <p>这个公式意义重大，与其对基函数<span class="math notranslate nohighlight">\(I_{[a,b]}e_\nu(t)\)</span>进行光滑延伸，我们对被分析函数<span class="math notranslate nohighlight">\(f(t)\)</span>进行折叠，由于被分析函数并不满足奇函数和偶函数的假定，这就需要我们采纳折叠算子。折叠后的函数对<span class="math notranslate nohighlight">\(I_{[a,b]}(t)e_\nu(t)\)</span>进行内积，这就是说对折叠后的函数在区间上进行余弦函数变换，因此余弦函数变换程式不用改变，直接用于区间<span class="math notranslate nohighlight">\([a,b]\)</span>即可。</p>

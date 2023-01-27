@@ -576,6 +576,26 @@ title="Print to PDF"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tail-recursive">
+   tail recursive
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pattern-matching">
+   pattern matching
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#partial-functions">
+   partial functions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#typing">
+   typing
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#id10">
    函数式
   </a>
@@ -756,6 +776,26 @@ title="Print to PDF"
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tail-recursive">
+   tail recursive
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pattern-matching">
+   pattern matching
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#partial-functions">
+   partial functions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#typing">
+   typing
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#id10">
    函数式
   </a>
@@ -784,6 +824,10 @@ title="Print to PDF"
                 
   <section class="tex2jax_ignore mathjax_ignore" id="id1">
 <h1>导言<a class="headerlink" href="#id1" title="永久链接至标题">#</a></h1>
+<blockquote class="epigraph">
+<div><p>when I approach a programming problem, I first think about the types and abstractions that will be useful; I think about statically enforcing behaviour; and I don’t worry about the cost of intermediary data structures, because that price is almost never paid in full.</p>
+<p class="attribution">—Michael Walker</p>
+</div></blockquote>
 <p>这一部分是关于信号处理技术的工程实现。</p>
 <p>工程实现依赖于有效的单元操作。单元操作分两大类：其一是算法的单元操作；其二是编程技巧的单元操作。</p>
 <p>算法的单元操作也分两类，第一类是基本常见的单元操作，比如<code class="docutils literal notranslate"><span class="pre">shift</span></code>，<code class="docutils literal notranslate"><span class="pre">decimatioin</span></code>；另外一类是算法本身的单元操作，比如<code class="docutils literal notranslate"><span class="pre">lct</span></code>中的折叠算子。从某种意义上说，一个算法就是一个单元操作的集合与串通这些单元操作的逻辑。所以，算法上对单元操作的思考和掌控一般都比较严密，也因此比较到位。</p>
@@ -916,7 +960,7 @@ title="Print to PDF"
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Card(rank=&#39;7&#39;, suit=&#39;spades&#39;)
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Card(rank=&#39;5&#39;, suit=&#39;clubs&#39;)
 </pre></div>
 </div>
 </div>
@@ -1227,7 +1271,7 @@ button text: 0xff00
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>140442147940800 140442147940800
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>140378492901824 140378492901824
 </pre></div>
 </div>
 </div>
@@ -1335,8 +1379,8 @@ s
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 2 µs, sys: 1 µs, total: 3 µs
-Wall time: 4.77 µs
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 1e+03 ns, sys: 1e+03 ns, total: 2 µs
+Wall time: 4.29 µs
 (0, 1, 2, 3, 4, 5)
 (6, 7, 8, 9, 10, 11)
 (12, 13, 14, 15, 16, 17)
@@ -1426,8 +1470,8 @@ Wall time: 4.77 µs
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>140442147838736
-140442147838736
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>140378492737312
+140378492737312
 </pre></div>
 </div>
 </div>
@@ -1442,8 +1486,8 @@ Wall time: 4.77 µs
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>140442147843776
-140442147841520
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>140378492744080
+140378492731456
 </pre></div>
 </div>
 </div>
@@ -1511,7 +1555,7 @@ Wall time: 4.77 µs
 </div>
 <div class="cell_output docutils container">
 <div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 1 µs, sys: 0 ns, total: 1 µs
-Wall time: 4.53 µs
+Wall time: 4.05 µs
 (0, 1, 2, 3, 4, 5)
 (6, 7, 8, 9, 10, 11)
 (12, 13, 14, 15, 16, 17)
@@ -1535,7 +1579,7 @@ Wall time: 4.53 µs
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 2 µs, sys: 0 ns, total: 2 µs
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>CPU times: user 1e+03 ns, sys: 0 ns, total: 1e+03 ns
 Wall time: 4.29 µs
 (0, 1, 2, 3, 4, 5)
 (6, 7, 8, 9, 10, 11)
@@ -1785,6 +1829,18 @@ Exit method called
 <p>In this code example, because of the <a class="reference external" href="https://www.geeksforgeeks.org/use-yield-keyword-instead-return-keyword-python/">yield</a> statement in its definition, the function open_file() is a <a class="reference external" href="https://www.geeksforgeeks.org/generators-in-python/">generator function</a>. When this open_file() function is called, it creates a resource descriptor named file. This resource descriptor is then passed to the caller and is represented here by the variable my_file. After the code inside the with block is executed the program control returns back to the open_file() function. The open_file() function resumes its execution and executes the code following the yield statement. This part of code which appears after the yield statement releases the acquired resources. The &#64;contextmanager here is a <a class="reference external" href="https://www.geeksforgeeks.org/decorators-in-python/">decorator</a>. The previous class-based implementation and this generator-based implementation of context managers is internally the same. While the later seems more readable, it requires the knowledge of generators, decorators and yield.</p>
 </section>
 </section>
+<section id="tail-recursive">
+<h2>tail recursive<a class="headerlink" href="#tail-recursive" title="永久链接至标题">#</a></h2>
+</section>
+<section id="pattern-matching">
+<h2>pattern matching<a class="headerlink" href="#pattern-matching" title="永久链接至标题">#</a></h2>
+</section>
+<section id="partial-functions">
+<h2>partial functions<a class="headerlink" href="#partial-functions" title="永久链接至标题">#</a></h2>
+</section>
+<section id="typing">
+<h2>typing<a class="headerlink" href="#typing" title="永久链接至标题">#</a></h2>
+</section>
 <section id="id10">
 <h2>函数式<a class="headerlink" href="#id10" title="永久链接至标题">#</a></h2>
 <ol class="simple">
@@ -1797,7 +1853,7 @@ Exit method called
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Generic</span><span class="p">,</span> <span class="n">TypeVar</span><span class="p">,</span> <span class="n">Callable</span>
-<span class="c1">#from immutable import Immutable</span>
+<span class="kn">from</span> <span class="nn">immutable</span> <span class="kn">import</span> <span class="n">Immutable</span>
 
 <span class="n">A</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;A&quot;</span><span class="p">)</span>
 <span class="n">B</span> <span class="o">=</span> <span class="n">TypeVar</span><span class="p">(</span><span class="s2">&quot;B&quot;</span><span class="p">)</span>
