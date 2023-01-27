@@ -142,3 +142,4 @@ sphinx:
     - sphinxext.rediraffe
     - sphinx_proof
     - sphinx_examples
+    - sphinxcontrib.tikz

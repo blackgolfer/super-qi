@@ -1,5 +1,5 @@
 h1 {
-    font-size: 20px;
+    font-size: 19px;
     font-weight: bold;
 }
 
@@ -9,47 +9,43 @@ h2 {
 }
 
 h3 {
-    font-size: 16px;
+    font-size: 17px;
     font-weight: bold;
 }
 
 h4 {
-    font-size: 14px;
+    font-size: 16px;
     font-weight: bold;
 }
 
 h5 {
-    font-size: 13px;
+    font-size: 15px;
     font-weight: bold;
 }
 
 h6 {
-    font-size: 13px;
+    font-size: 15px;
     font-style: italic;
 }
 
 p {
-    font-size: 12px;
+    font-size: 15px;
 }
 
 .cell_output.docutils.container {
-    font-size: 12px;
-}
-
-.cell_input.docutils.container {
-    font-size: 12px;
+    font-size: 15px;
 }
 
 .math.notranslate.nohighlight {
-    font-size: 11px;
+    font-size: 13px;
 }
 
 .highlight {
-    font-size: 12px;
+    font-size: 14px;
 }
 
 #bd-toc-nav > ul {
-    font-size: 12px;
+    font-size: 14px;
 }
 
 blockquote {
@@ -70,6 +66,6 @@ blockquote:before {
 }
 
 blockquote.epigraph div p.attribution {
-    font-size: 12px;
+    font-size: 15px;
 }
 
