@@ -143,3 +143,4 @@ devop/docker/.depends.mk
 src/go/pkg
 src/go/src
 **/learn-you-a-haskell
+.jupyter
