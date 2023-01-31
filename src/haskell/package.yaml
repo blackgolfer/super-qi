@@ -1,0 +1,6 @@
+name:  super-qi
+
+dependencies:
+- text
+- filepath
+- containers
