@@ -25,3 +25,4 @@ parts:
   - file: impl/intro
   - file: impl/signal
   - file: impl/fold
+  - file: impl/tikzexample
