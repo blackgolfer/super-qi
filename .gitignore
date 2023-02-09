@@ -148,3 +148,4 @@ src/go/src
 *.dyn_hi
 *.dyn_o
 *.hi
+**/dist-newstyle

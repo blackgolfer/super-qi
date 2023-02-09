@@ -1,8 +1,9 @@
-from typing import TypeVar, Generic, Callable
-from collections.abc import Iterable
+from typing import TypeVar, TypeVarTuple, Generic, Callable
 
-A=TypeVar("A")
-B=TypeVar("B")
+A=TypeVar('A')
+As=TypeVarTuple('As')
+B=TypeVar('B')
+Bs=TypeVarTuple('Bs')
 
 class Functor(Generic[A]):
     pass
