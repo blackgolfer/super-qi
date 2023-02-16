@@ -1,1 +1,0 @@
-docker images "super_qi/*" -a -q | xargs docker rmi -f
