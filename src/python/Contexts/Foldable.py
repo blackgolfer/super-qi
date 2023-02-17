@@ -1,3 +1,4 @@
+from __future__ import annotations
 from typing import TypeVar, Generic, Callable, Generator, Iterable, Iterator
 from Basic.Monoid import *
 from itertools import accumulate
@@ -10,11 +11,10 @@ class Foldable(Generic[A]):
     pass
 
 class ListFoldable(list[A],Foldable[A]):
-    def foldl(self,f:Callable[[B,A],B],x0:B)->B:
-        return foldl(f,x0,self)
-    
-    def foldr(self,f:Callable[[A,B],B],x0:B)->B:
-        return foldr(f,self,x0)
+    def foldl(self,f:Callable[[B,A],B],x0:B)->B: return foldl(f,x0,self)
+    def foldr(self,f:Callable[[A,B],B],x0:B)->B: return foldr(f,self,x0)
+    def scanl(self,f:Callable[[B,A],B],x0:B)->ListFoldable[B]: return ListFoldable(scanl(f,x0,self))
+    def scanr(self,f:Callable[[A,B],B],x0:B)->ListFoldable[B]: return ListFoldable(scanr(f,self,x0))
 
 def foldl_r(f:Callable[[B,A],B],x0:B,v:Iterable[A])->Generator[B,None,None]:
     match v:

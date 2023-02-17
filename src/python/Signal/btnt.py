@@ -1,3 +1,4 @@
+from __future__ import annotations
 from typing import TypeVar, Callable
 
 C = TypeVar("C")
@@ -18,7 +19,7 @@ class btn:
     tag: tag of current node, Any
     """
 
-    def __init__(self, content: C, left: 'btn', right: 'btn', tag: T = None):
+    def __init__(self, content:C,left:btn,right:btn,tag:T=None):
         self.content = content
         self.left = left
         self.right = right
@@ -27,7 +28,7 @@ class btn:
 # 产生`level`层的二叉树
 
 
-def makebtnt(level: int, content: C, lp: Callable[[C], C], rp: Callable[[C], C]) -> btn:
+def makebtnt(level:int,content:C,lp:Callable[[C],C],rp:Callable[[C],C]) -> btn:
     """
     Generate btn tree
 

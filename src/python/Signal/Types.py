@@ -1,5 +1,7 @@
+import numpy.typing as npt
+
 signum=int|float|complex|str|None|tuple[()]
-sig_0=list[signum]
+sig_0=list[signum]|npt.NDArray
 sig_1=list[sig_0]
 sig_3=list[tuple[sig_0,sig_0,sig_0]]
 
