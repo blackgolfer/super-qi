@@ -11,10 +11,11 @@ class Functor(Generic[A],metaclass=abc.ABCMeta):
     @abc.abstractmethod
     def fmap(self,f:Callable[[A],B])->Functor[B]:
         ...
+    @staticmethod
     def const(a,_): return a
-    def lconst(self,a): return (lambda _: a)
+    #def lconst(self,a): return (lambda _: a)
     #def mrb(self,a): return self.fmap(partial(Functor.const,a))
-    def mrb(self,a): return self.fmap(self.lconst(a))
+    def mrb(self,a): return self.fmap(lambda _:a)
 
 class ListFunctor(list[A],Functor[A],metaclass=abc.ABCMeta):
     def fmap(self,f:Callable[[A],B])->Functor[B]: return ListFunctor(map(f,self))
@@ -30,3 +31,12 @@ def _(a): return ListFunctor(chain.from_iterable(a))
 
 class TupleFunctor(tuple[A,...],Functor[A]):
     def fmap(self,f:Callable[[A],B])->Functor[B]: return TupleFunctor(map(f,self))
+
+@mempty.register(TupleFunctor)
+def _(a): return TupleFunctor(())
+
+@mappend.register(TupleFunctor)
+def _(a,b): return TupleFunctor(a + b)
+
+@mconcat.register(TupleFunctor)
+def _(a): return TupleFunctor(chain.from_iterable(a))
