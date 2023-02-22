@@ -1,5 +1,5 @@
 from __future__ import annotations
-from typing import TypeVar, Generic, Callable, Generator, Iterable, Iterator
+from typing import TypeVar, Generic, Callable, Generator, Iterable, Sequence
 from Basic.Monoid import *
 from itertools import accumulate
 from functools import reduce
@@ -29,14 +29,14 @@ def foldr_r(f:Callable[[A,B],B],v:Iterable[A],x0:B)->Generator[B,None,None]:
 def foldl(f:Callable[[B,A],B],x0:B,v:Iterable[A])->B:
     return reduce(f,v,x0)
 
-def foldr(f:Callable[[A,B],B],v:Iterable[A],x0:B)->B:
-    return foldl((lambda x,y:f(y,x)),x0,reversed(v))
+def foldr(f:Callable[[A,B],B],v:Sequence[A],x0:B)->B:
+    return foldl(lambda x,y:f(y,x),x0,reversed(v))
 
 def scanl(f:Callable[[B,A],B],x0:B,v:Iterable[A])->list[B]:
     return list(accumulate(v,f,initial=x0))[1:]
 
-def scanr(f:Callable[[A,B],B],v:Iterable[A],x0:B)->list[B]:
-    return scanl((lambda x,y:f(y,x)),x0,reversed(v))
+def scanr(f:Callable[[A,B],B],v:Sequence[A],x0:B)->list[B]:
+    return scanl(lambda x,y:f(y,x),x0,reversed(v))
 
 def scanl_r(f:Callable[[B,A],B],x0:B,v:Iterable[A])->Generator[B,None,None]:
     match v:
