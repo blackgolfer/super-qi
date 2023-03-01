@@ -42,3 +42,8 @@ State diagrams
 .. tikz:: Finite state is always empty
    :include: fsm.tikz
    :libs: arrows,automata
+
+Dynkin diagrams
+---------------
+
+\dynkin B{}
