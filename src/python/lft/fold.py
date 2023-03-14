@@ -1,5 +1,5 @@
 import numpy as np
-import rcf
+from lft.rcf import rcf
 
 # $U$ operator
 # r must be mid sampled

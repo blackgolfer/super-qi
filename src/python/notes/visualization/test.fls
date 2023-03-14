@@ -1,0 +1,6 @@
+PWD /home/zzhang/dev/qi/super-qi/src/python/notes/visualization
+INPUT /opt/texlive/2022/texmf-dist/metapost/base/mpost.mp
+OUTPUT test.log
+INPUT /opt/texlive/2022/texmf-dist/metapost/base/plain.mp
+INPUT ./test.md
+OUTPUT test.1
