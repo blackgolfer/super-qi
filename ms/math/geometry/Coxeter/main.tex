@@ -1,0 +1,145 @@
+\documentclass[DIV         = 14,
+               fontsize    = 10,
+               index       = totoc,
+               twoside,
+               cadre,
+               headings    = small
+               ]{tkz-doc}
+\gdef\tkznameofpack{Mathematics}
+\gdef\tkzversionofpack{1.0a}
+\gdef\tkzdateofpack{\today}
+\gdef\tkznameofdoc{doc-mathematics}
+\gdef\tkzversionofdoc{1.0a} 
+\gdef\tkzdateofdoc{\today}
+\gdef\tkzauthorofpack{Zhifeng Zhang}
+\gdef\tkzadressofauthor{}
+\gdef\tkznamecollection{Coxeter Group}
+\gdef\tkzurlauthor{https://blackgolfer.github.io/geometry}
+\gdef\tkzengine{lualatex}
+\gdef\tkzurlauthorcom{https://blackgolfer.github.io/geometry}
+\nameoffile{\tkznameofpack}
+% -- Packages ---------------------------------------------------          
+\usepackage[dvipsnames,svgnames]{xcolor}
+\usepackage{calc}
+\usepackage{tkz-base} 
+\usepackage[lua]{tkz-euclide} 
+\usepackage{pgfornament} 
+\usetikzlibrary{backgrounds}
+\usepackage[colorlinks,pdfencoding=auto, psdextra]{hyperref}
+\hypersetup{
+      linkcolor=Gray,
+      citecolor=Green,
+      filecolor=Mulberry,
+      urlcolor=NavyBlue,
+      menucolor=Gray,
+      runcolor=Mulberry,
+      linkbordercolor=Gray,
+      citebordercolor=Green,
+      filebordercolor=Mulberry,
+      urlbordercolor=NavyBlue,
+      menubordercolor=Gray,
+      runbordercolor=Mulberry,
+      pdfsubject={Euclidean Geometry},
+      pdfauthor={\tkzauthorofpack},
+      pdftitle={\tkznameofpack},
+      pdfcreator={\tkzengine}
+}
+\usepackage{tkzexample}
+\usepackage{fontspec}
+\usepackage{xfrac,unicode-math}
+\usepackage{mathpazo}
+\linespread{1.05}      % Pagella needs more space between lines
+\let\rmfamily\ttfamily
+\usepackage{multicol,lscape}
+\usepackage[english]{babel}
+\usepackage[normalem]{ulem}
+\usepackage{byrne}
+\usepackage{listings}
+\usepackage{multirow,multido,booktabs,cellspace}
+\usepackage{shortvrb,fancyvrb,bookmark} 
+\usepackage{makeidx}
+\makeindex 
+
+%<---------------------------------------------------------------------------> 
+% tikz
+\usetikzlibrary{shapes.geometric}
+
+%<---------------------------------------------------------------------------> 
+% settings styles
+\tkzSetUpColors[background=white,text=black]  
+\tkzSetUpCompass[color=orange, line width=.2pt,delta=10]
+\tkzSetUpArc[color=gray,line width=.2pt]
+\tkzSetUpPoint[size=2,color=teal]
+\tkzSetUpLine[line width=.2pt,color=teal]
+\tkzSetUpStyle[color=orange,line width=.2pt]{new}
+\tikzset{every picture/.style={line width=.2pt}}
+\tikzset{label angle style/.append style={color=teal,font=\footnotesize}} 
+\tikzset{label style/.append style={below,color=teal,font=\scriptsize}}
+\tikzset{new/.style={color=orange,line width=.2pt}} 
+
+\pgfdeclarelayer{background layer}
+\pgfsetlayers{background layer,main}
+\tikzset{old paper/.style={%
+execute at end picture={%
+\begin{pgfonlayer}{background layer} 
+\clip (current bounding box.south west) rectangle (current bounding box.north east);
+\node[inner sep=0pt] (p) at (current bounding box.center)
+     {\includegraphics{old_paper.png}};
+\end{pgfonlayer}%
+}}}
+
+%<--------------------------------------------------------------------------->
+% setting metapost
+\lstset{
+language=MetaPost,
+alsolanguage=TeX,
+numbers=none,
+basicstyle=\ttfamily\scriptsize
+}
+\def\mpPre{textLabels := true;}
+
+%<--------------------------------------------------------------------------->
+% new commands
+\usepackage{colortbl}
+\usepackage{nccmath}
+\newcommand{\defbox}[2][]%
+{
+
+\begin{tikzpicture}
+  \node [mybox,title={#1}] (box){%
+      \begin{minipage}{0.90\textwidth}
+        {\emph{
+          #2
+        }} 
+      \end{minipage}
+  };
+\end{tikzpicture}% 
+}
+\newtheorem{definition}{Definition}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\newtheorem{proposition}{Proposition}
+\newtheorem{lemma}{Lemma}
+
+\AtBeginDocument{\MakeShortVerb{\|}} % link to shortvrb
+\begin{document}
+
+\parindent=0pt
+\tkzTitleFrame{Reflection and Coxeter Group}
+\clearpage
+
+\clearpage
+\tableofcontents
+
+\clearpage
+\newpage
+
+\part{Reflection Group}
+\input{permutation.tex}
+\input{reflections.tex}
+
+\part{Drawing}
+
+\clearpage\newpage
+\small\printindex
+\end{document}

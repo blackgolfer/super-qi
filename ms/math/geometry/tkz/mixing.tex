@@ -1,0 +1,85 @@
+\section{Primitives}
+
+\subsection{Metapost}
+
+\defineNewPicture{ % MetaPost code to describe the main diagram is placed inside
+textLabels := true; % This turns text labels on
+pair A, B, C;
+A := (0, 0);
+B := (0, 2cm);
+C := (3cm, 0);
+byAngleDefine(C, B, A, byyellow , 0); % This defines a yellow angle CBA
+byAngleDefine(B, A, C, byblue , 0);
+byAngleDefine(A, C, B, byred , 0);
+draw byNamedAngleResized (); % Draws angles.
+byLineDefine(A, B, byred , 0, 0); % This defines a red line AB.
+byLineDefine(B, C, byblue , 0, 0);
+byLineDefine(C, A, byyellow , 0, 0);
+draw byNamedLineSeq (1)(AB,BC,CA); % Draws joint lines in sequence
+draw byLabelsOnPolygon(A, B, C)(0, 0); % Draws text labels
+}
+\drawCurrentPicture % Draws the diagram
+In
+\drawFromCurrentPicture[middle][triangleABC]{
+startAutoLabeling;
+draw byNamedLineSeq (0)(AB,BC,CA);
+stopAutoLabeling;
+}
+the angle \drawAngle{A} 
+is a right angle, therefore \triangleABC\
+is a right-angled triangle. 
+In it $\drawUnitLine{CB} > \drawUnitLine{AB}$ 
+and $\drawUnitLine{BC} > \drawUnitLine{AC}$.
+
+\subsection{tkz-euclide}
+
+\begin{tikzpicture}
+    \node [mybox,title={Book I, proposition I  \_Euclide\_}] (box){%
+        \begin{minipage}{0.90\textwidth}
+    {\emph{To construct an equilateral triangle on a given finite straight line.}
+    } 
+        \end{minipage}
+    };
+\end{tikzpicture}% 
+
+\colorlet{input}{red!80!black}
+\colorlet{output}{red!70!black}
+\colorlet{triangle}{orange!40}
+
+
+
+\def\A{\textcolor{input}{$A$}}
+\def\C{\textcolor{output}{$C$}}
+\def\E{$E$}
+\colorlet{triangle}{orange!80}
+\colorlet{input}{red!80!black}
+\def\B{\textcolor{input}{$B$}}
+\def\D{$D$}
+
+%\begin{tkzexample}[vbox,small]
+  \begin{tikzpicture}[thick,help lines/.style={thin,draw=black!50},old paper]
+  \tkzDefPoint(0,0){A}
+  \tkzDefPoint(1.25+rand(),0.25+rand()){B}
+  \tkzInterCC(A,B)(B,A) \tkzGetPoints{C}{X}
+
+  \tkzFillPolygon[triangle](A,B,C)
+  \tkzDrawSegment[input](A,B)
+  \tkzDrawSegments[red](A,C B,C)
+  \tkzDrawCircles[help lines](A,B B,A)
+
+  \tkzLabelPoints(A,B)
+  \tkzLabelCircle[below=12pt](A,B)(180){$\mathcal{D}$}
+  \tkzLabelCircle[above=12pt](B,A)(180){$\mathcal{E}$}
+  \tkzLabelPoint[above,red](C){$C$}
+  \tkzDrawPoints[fill=gray,opacity=.5](A,B,C)
+
+  \tkzText[text width=8cm,align=justify](0,-4){%
+     \small\textbf{Proposition I}\\
+     \emph{To construct an \textcolor{triangle}{equilateral triangle}
+     on a given \textcolor{input}{finite straight line}.}
+     \\
+       \vskip1em
+     Let \A\B\ be the given \textcolor{input}{finite straight line}. \dots
+  }
+  \end{tikzpicture}
+%\end{tkzexample}

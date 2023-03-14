@@ -92,15 +92,16 @@ sphinx:
         - null
     language: zh
     latex_elements:
-        preamble: |
-          \newcommand\N{\mathbb{N}}
-          \newcommand\L{\mathbb{L}}
-          \newcommand\C{\mathbb{C}}
-          \newcommand\Z{\mathbb{Z}}
-          \newcommand\ZnZ{\mathbb{Z}/n\mathbb{Z}}
-          \newcommand\floor[1]{\lfloor#1\rfloor}
-          \newcommand{\bmat}{\left[\begin{array}}
-          \newcommand{\emat}{\end{array}\right]}
+      'extrapackages': r'\usepackage{dynkin-diagrams}'
+      preamble: |
+        \newcommand\N{\mathbb{N}}
+        \newcommand\L{\mathbb{L}}
+        \newcommand\C{\mathbb{C}}
+        \newcommand\Z{\mathbb{Z}}
+        \newcommand\ZnZ{\mathbb{Z}/n\mathbb{Z}}
+        \newcommand\floor[1]{\lfloor#1\rfloor}
+        \newcommand{\bmat}{\left[\begin{array}}
+        \newcommand{\emat}{\end{array}\right]}
     # TODO: #917 this path will be the default in sphinx v4
     # mathjax_path: https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
     # However, it is incompatible with the mathjax config below for macros

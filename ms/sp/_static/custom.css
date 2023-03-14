@@ -30,6 +30,9 @@ h6 {
 
 p {
     font-size: 15px;
+    line-height: 1.25;
+    margin-top: .25em;
+    margin-bottom: .25em;
 }
 
 .cell_output.docutils.container {
@@ -44,7 +47,7 @@ p {
     font-size: 14px;
 }
 
-#bd-toc-nav > ul {
+#bd-toc-nav>ul {
     font-size: 14px;
 }
 
@@ -69,3 +72,7 @@ blockquote.epigraph div p.attribution {
     font-size: 15px;
 }
 
+ul {
+    display: grid;
+    gap: 5px;
+}

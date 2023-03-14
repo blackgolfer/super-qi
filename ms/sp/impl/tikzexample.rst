@@ -46,4 +46,4 @@ State diagrams
 Dynkin diagrams
 ---------------
 
-\dynkin B{}
+:tikz: `\dynkin B{}`

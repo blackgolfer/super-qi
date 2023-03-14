@@ -1,0 +1,140 @@
+\documentclass[DIV         = 14,
+               fontsize    = 10,
+               index       = totoc,
+               twoside,
+               cadre,
+               headings    = small
+               ]{tkz-doc}
+\gdef\tkznameofpack{tkz-euclide}
+\gdef\tkzversionofpack{5.02c}
+\gdef\tkzdateofpack{\today}
+\gdef\tkznameofdoc{doc-tkz-euclide}
+\gdef\tkzversionofdoc{5.02c} 
+\gdef\tkzdateofdoc{\today}
+\gdef\tkzauthorofpack{Alain Matthes}
+\gdef\tkzadressofauthor{}
+\gdef\tkznamecollection{AlterMundus}
+\gdef\tkzurlauthor{http://altermundus.fr}
+\gdef\tkzengine{lualatex}
+\gdef\tkzurlauthorcom{http://altermundus.fr}
+\nameoffile{\tkznameofpack}
+% -- Packages ---------------------------------------------------          
+\usepackage[dvipsnames,svgnames]{xcolor}
+\usepackage{calc}
+\usepackage{tkz-base} 
+\usepackage[lua]{tkz-euclide} 
+\usepackage{pgfornament} 
+\usetikzlibrary{backgrounds}
+\usepackage[colorlinks,pdfencoding=auto, psdextra]{hyperref}
+\hypersetup{
+      linkcolor=Gray,
+      citecolor=Green,
+      filecolor=Mulberry,
+      urlcolor=NavyBlue,
+      menucolor=Gray,
+      runcolor=Mulberry,
+      linkbordercolor=Gray,
+      citebordercolor=Green,
+      filebordercolor=Mulberry,
+      urlbordercolor=NavyBlue,
+      menubordercolor=Gray,
+      runbordercolor=Mulberry,
+      pdfsubject={Euclidean Geometry},
+      pdfauthor={\tkzauthorofpack},
+      pdftitle={\tkznameofpack},
+      pdfcreator={\tkzengine}
+}
+\usepackage{tkzexample}
+\usepackage{fontspec}
+\setmainfont{texgyrepagella}[
+  Extension = .otf,
+  UprightFont = *-regular ,
+  ItalicFont  = *-italic  ,
+  BoldFont    = *-bold    ,
+  BoldItalicFont = *-bolditalic
+]
+\setsansfont{texgyreheros}[
+  Extension = .otf,
+  UprightFont = *-regular ,
+  ItalicFont  = *-italic  ,
+  BoldFont    = *-bold    ,
+  BoldItalicFont = *-bolditalic ,
+]
+
+\setmonofont{lmmono10-regular.otf}[
+  Numbers={Lining,SlashedZero},
+  ItalicFont=lmmonoslant10-regular.otf,
+  BoldFont=lmmonolt10-bold.otf,
+  BoldItalicFont=lmmonolt10-boldoblique.otf,
+]
+\newfontfamily\ttcondensed{lmmonoltcond10-regular.otf}
+%% (La)TeX font-related declarations:
+\linespread{1.05}      % Pagella needs more space between lines
+\usepackage[math-style=literal,bold-style=literal]{unicode-math}
+\usepackage{fourier-otf}
+\let\rmfamily\ttfamily
+\usepackage{multicol,lscape}
+\usepackage[english]{babel}
+\usepackage[normalem]{ulem}
+\usepackage{byrne}
+\usepackage{listings}
+\usepackage{multirow,multido,booktabs,cellspace}
+\usepackage{shortvrb,fancyvrb,bookmark} 
+\usepackage{makeidx}
+\makeindex 
+
+%<---------------------------------------------------------------------------> 
+% settings styles
+\tkzSetUpColors[background=white,text=black]  
+\tkzSetUpCompass[color=orange, line width=.2pt,delta=10]
+\tkzSetUpArc[color=gray,line width=.2pt]
+\tkzSetUpPoint[size=2,color=teal]
+\tkzSetUpLine[line width=.2pt,color=teal]
+\tkzSetUpStyle[color=orange,line width=.2pt]{new}
+\tikzset{every picture/.style={line width=.2pt}}
+\tikzset{label angle style/.append style={color=teal,font=\footnotesize}} 
+\tikzset{label style/.append style={below,color=teal,font=\scriptsize}}
+\tikzset{new/.style={color=orange,line width=.2pt}} 
+
+\pgfdeclarelayer{background layer}
+\pgfsetlayers{background layer,main}
+\tikzset{old paper/.style={%
+execute at end picture={%
+\begin{pgfonlayer}{background layer} 
+\clip (current bounding box.south west) rectangle (current bounding box.north east);
+\node[inner sep=0pt] (p) at (current bounding box.center)
+     {\includegraphics{old_paper.png}};
+\end{pgfonlayer}%
+}}}
+
+%<--------------------------------------------------------------------------->
+% setting metapost
+\lstset{
+language=MetaPost,
+alsolanguage=TeX,
+numbers=none,
+basicstyle=\ttfamily\scriptsize
+}
+\def\mpPre{textLabels := true;}
+
+\AtBeginDocument{\MakeShortVerb{\|}} % link to shortvrb
+\begin{document} 
+  
+\parindent=0pt
+\tkzTitleFrame{Introduction to TKZ-Euclide}
+\clearpage
+
+\clearpage
+\tableofcontents
+
+\clearpage
+\newpage
+
+\part{Primitive Geometrical Shapes and Transformation}
+\input{primitives.tex}
+
+\part{Drawing}
+
+\clearpage\newpage
+\small\printindex
+\end{document}

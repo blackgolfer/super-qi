@@ -1,0 +1,22 @@
+\babel@toc {english}{}\relax 
+\babel@toc {english}{}\relax 
+\contentsline {part}{\numberline {I}Reflection Group}{3}{part.1}%
+\contentsline {section}{\numberline {1}Permutation Group}{4}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Symmetric group}{4}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Permutation}{4}{subsection.1.2}%
+\contentsline {subsubsection}{\numberline {1.2.1}Notations}{4}{subsubsection.1.2.1}%
+\contentsline {subsubsection}{\numberline {1.2.2}Composition of permutations - the group product}{4}{subsubsection.1.2.2}%
+\contentsline {subsubsection}{\numberline {1.2.3}Transposition}{5}{subsubsection.1.2.3}%
+\contentsline {subsubsection}{\numberline {1.2.4}Neutral element and inverses}{6}{subsubsection.1.2.4}%
+\contentsline {subsubsection}{\numberline {1.2.5}Examples}{7}{subsubsection.1.2.5}%
+\contentsline {subsection}{\numberline {1.3}Group actions}{7}{subsection.1.3}%
+\contentsline {subsubsection}{\numberline {1.3.1}Transitive actions}{8}{subsubsection.1.3.1}%
+\contentsline {subsubsection}{\numberline {1.3.2}Primitive actions}{8}{subsubsection.1.3.2}%
+\contentsline {subsection}{\numberline {1.4}Cayley's theorem}{8}{subsection.1.4}%
+\contentsline {subsection}{\numberline {1.5}Permutation Matrices}{8}{subsection.1.5}%
+\contentsline {subsection}{\numberline {1.6}Circle Diagrams}{8}{subsection.1.6}%
+\contentsline {subsubsection}{\numberline {1.6.1}Empty circle diagram}{8}{subsubsection.1.6.1}%
+\contentsline {subsubsection}{\numberline {1.6.2}Circle diagram with permutation paths}{9}{subsubsection.1.6.2}%
+\contentsline {section}{\numberline {2}Roots and Reflections}{9}{section.2}%
+\contentsline {part}{\numberline {II}Drawing}{10}{part.2}%
+\providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

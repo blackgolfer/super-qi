@@ -1,0 +1,24 @@
+\indexentry{tkzDefPoint_1@\texttt  {\textbackslash tkzDefPoint}|hyperpage}{4}
+\indexentry{tkzDefPoints_1@\texttt  {\textbackslash tkzDefPoints}|hyperpage}{4}
+\indexentry{tkzDefPoint{\ttfamily  [}{\color  {myblue}\meta  {local options}}{\ttfamily  ]}{\ttfamily  (}{\color  {myblue}\meta  {$x,y$}}{\ttfamily  )}{\ttfamily  \char `\{}{\color  {myblue}\meta  {ref}}{\ttfamily  \char `\}} or {\ttfamily  (}{\color  {myblue}\meta  {$\mitalpha $:$d$}}{\ttfamily  )}{\ttfamily  \char `\{}{\color  {myblue}\meta  {ref}}{\ttfamily  \char `\}}_1@\texttt  {\textbackslash tkzDefPoint{\ttfamily  [}{\color  {myblue}\meta  {local options}}{\ttfamily  ]}{\ttfamily  (}{\color  {myblue}\meta  {$x,y$}}{\ttfamily  )}{\ttfamily  \char `\{}{\color  {myblue}\meta  {ref}}{\ttfamily  \char `\}} or {\ttfamily  (}{\color  {myblue}\meta  {$\mitalpha $:$d$}}{\ttfamily  )}{\ttfamily  \char `\{}{\color  {myblue}\meta  {ref}}{\ttfamily  \char `\}}}|hyperpage}{4}
+\indexentry{tkzDefPoint_1@\texttt  {\textbackslash tkzDefPoint}|hyperpage}{4}
+\indexentry{tkzDefPoint_2@\texttt  {\textbackslash tkzDefPoint: arguments}!\texttt  {($x,y$)}|hyperpage}{4}
+\indexentry{tkzDefPoint_2@\texttt  {\textbackslash tkzDefPoint: arguments}!\texttt  {($\mitalpha $:$d$)}|hyperpage}{4}
+\indexentry{tkzDefPoint_2@\texttt  {\textbackslash tkzDefPoint: arguments}!\texttt  {\{ref\}}|hyperpage}{4}
+\indexentry{tkzDefPoint_3@\texttt  {\textbackslash tkzDefPoint: options}!\texttt  {label}|hyperpage}{5}
+\indexentry{tkzDefPoint_3@\texttt  {\textbackslash tkzDefPoint: options}!\texttt  {shift}|hyperpage}{5}
+\indexentry{Package !xfp@\texttt  {xfp}|hyperpage}{5}
+\indexentry{tkzDefShiftPoint_1@\texttt  {\textbackslash tkzDefShiftPoint}|hyperpage}{5}
+\indexentry{tkzDefShiftPoint{\ttfamily  [}{\color  {myblue}\meta  {Point}}{\ttfamily  ]}{\ttfamily  (}{\color  {myblue}\meta  {$x,y$}}{\ttfamily  )}{\ttfamily  \char `\{}{\color  {myblue}\meta  {ref}}{\ttfamily  \char `\}} or {\ttfamily  (}{\color  {myblue}\meta  {$\mitalpha $:$d$}}{\ttfamily  )}{\ttfamily  \char `\{}{\color  {myblue}\meta  {ref}}{\ttfamily  \char `\}}_1@\texttt  {\textbackslash tkzDefShiftPoint{\ttfamily  [}{\color  {myblue}\meta  {Point}}{\ttfamily  ]}{\ttfamily  (}{\color  {myblue}\meta  {$x,y$}}{\ttfamily  )}{\ttfamily  \char `\{}{\color  {myblue}\meta  {ref}}{\ttfamily  \char `\}} or {\ttfamily  (}{\color  {myblue}\meta  {$\mitalpha $:$d$}}{\ttfamily  )}{\ttfamily  \char `\{}{\color  {myblue}\meta  {ref}}{\ttfamily  \char `\}}}|hyperpage}{5}
+\indexentry{tkzDefShiftPoint_1@\texttt  {\textbackslash tkzDefShiftPoint}|hyperpage}{5}
+\indexentry{tkzDefShiftPoint_2@\texttt  {\textbackslash tkzDefShiftPoint: arguments}!\texttt  {($x,y$)}|hyperpage}{5}
+\indexentry{tkzDefShiftPoint_2@\texttt  {\textbackslash tkzDefShiftPoint: arguments}!\texttt  {($\mitalpha $:$d$)}|hyperpage}{5}
+\indexentry{tkzDefShiftPoint_2@\texttt  {\textbackslash tkzDefShiftPoint: arguments}!\texttt  {\{ref\}}|hyperpage}{5}
+\indexentry{tkzDefShiftPoint_3@\texttt  {\textbackslash tkzDefShiftPoint: options}!\texttt  {[pt]}|hyperpage}{5}
+\indexentry{tkzDefShiftPoint_1@\texttt  {\textbackslash tkzDefShiftPoint}|hyperpage}{5}
+\indexentry{tkzDefPoints_1@\texttt  {\textbackslash tkzDefPoints}|hyperpage}{5}
+\indexentry{tkzDefPoints{\ttfamily  [}{\color  {myblue}\meta  {local options}}{\ttfamily  ]}{\ttfamily  \char `\{}{\color  {myblue}\meta  {$x_1/y_1/n_1,x_2/y_2/r_2$, ...}}{\ttfamily  \char `\}}_1@\texttt  {\textbackslash tkzDefPoints{\ttfamily  [}{\color  {myblue}\meta  {local options}}{\ttfamily  ]}{\ttfamily  \char `\{}{\color  {myblue}\meta  {$x_1/y_1/n_1,x_2/y_2/r_2$, ...}}{\ttfamily  \char `\}}}|hyperpage}{5}
+\indexentry{tkzDefPoints_1@\texttt  {\textbackslash tkzDefPoints}|hyperpage}{5}
+\indexentry{tkzDefPoints_2@\texttt  {\textbackslash tkzDefPoints: arguments}!\texttt  {$x_i/y_i/r_i$}|hyperpage}{5}
+\indexentry{tkzDefPoints\{0/0/O,2/2/A\}_1@\texttt  {\textbackslash tkzDefPoints\{0/0/O,2/2/A\}}|hyperpage}{5}
+\indexentry{tkzDefPoints_3@\texttt  {\textbackslash tkzDefPoints: options}!\texttt  {shift}|hyperpage}{5}

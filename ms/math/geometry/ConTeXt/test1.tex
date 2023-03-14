@@ -1,0 +1,46 @@
+\setupcolors[state=start]
+\definecolor[darkgreen][g=.5]
+\usemodule[tikz]         
+
+\starttext
+
+\starttikzpicture[      scale=3,line cap=round
+                        axes/.style=,         
+                        important line/.style={very thick},
+                        information text/.style={rounded corners,fill=red!10,inner sep=1ex} ]
+
+        \draw[help lines,step=0.5cm] (-1.4,-1.4) grid (1.4,1.4);
+        \draw (0,0) circle (1cm);                               
+                \draw[->] (-1.5,0) -- (1.5,0) node[right] {$x$} coordinate(x axis);
+                \draw[->] (0,-1.5) -- (0,1.5) node[above] {$y$} coordinate(y axis);
+                \foreach \x/\xtext in {-1, -.5/-\frac{1}{2}, 1}                    
+                        \draw[xshift=\x cm] (0pt,1pt) -- (0pt,-1pt)                
+                                node[below,fill=white] {$\xtext$};
+                \foreach \y/\ytext in {-1, -.5/-\frac{1}{2}, .5/\frac{1}{2}, 1}
+                        \draw[yshift=\y cm] (1pt,0pt) -- (-1pt,0pt)
+                                node[left,fill=white] {$\ytext$};
+        \filldraw[fill=green!20,draw=green!50!black] (0,0) -- (3mm,0pt) arc(0:30:3mm);
+        \draw (15:2mm) node[green!50!black] {$\alpha$};
+        \draw[important line,red]
+                (30:1cm) -- node[left=1pt,fill=white] {$\sin \alpha$} (30:1cm |- x axis);
+        \draw[important line,blue]
+                (30:1cm |- x axis) -- node[below=2pt,fill=white] {$\cos \alpha$} (0,0);
+        \draw[important line,orange!80!black] (1,0) -- node[right=1pt,fill=white] {
+                $\displaystyle \tan \alpha \black =
+                \frac{{\red \sin \alpha}}{\blue \cos \alpha}$}
+                (intersection of 0,0--30:1cm and 1,0--1,1) coordinate (t);
+        \draw (0,0) -- (t);
+        \draw[xshift=2cm]
+                node[right,text width=6cm,information text]
+                {
+                        The {\darkgreen angle $\alpha$} is $30^\circ$ in the
+                        example ($\pi/6$ in radians). The {\red sine of
+                        $\alpha$}, which is the height of the red line, is
+                        \startformula
+                        {\red \sin \alpha} = 1/2.
+                        \stopformula
+                        By the Theorem of Pythagoras ...
+                };
+\stoptikzpicture
+
+\stoptext

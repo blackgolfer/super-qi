@@ -1,0 +1,49 @@
+\usemodule[tkz-euclide]
+\usemodule[tikz]
+\usetikzlibrary[cd]
+
+\starttext
+
+\starttikzcd
+ A \arrow{rd} \arrow{r}{𝜑} \NC B \NR
+                                \NC C
+\stoptikzcd
+
+\starttikzcd
+ A \arrow[r, "\phi"] \arrow[d, red]
+   \NC B \arrow[d, "\psi" red] \NR
+ C \arrow[r, red, "\eta" blue]
+ \NC D
+\stoptikzcd
+
+\starttikzcd
+ A \arrow[r, "\phi" near start, "\psi" below, "\eta" near end] \NC B
+\stoptikzcd
+
+\starttikzcd
+ T
+ \arrow[drr, bend left, "x"]
+ \arrow[ddr, bend right, "y"]
+ \arrow[dr, dotted, "{(x,y)}" description] \NC \NC \NR
+   \NC X \times_Z Y \arrow[r, "p"] \arrow[d, "q"]
+   \NC X \arrow[d, "f"] \NR
+ \NC Y \arrow[r, "g"] \NC Z
+\stoptikzcd
+
+\starttikzcd[column sep=tiny]
+ \NC \pi_1(U_1) \ar[dr] \ar[drr, "j_1", bend left=20]
+   \NC
+     \NC[1.5em] \NR
+ \pi_1(U_1\cap U_2) \ar[ur, "i_1"] \ar[dr, "i_2" below]
+   \NC
+     \NC \pi_1(U_1) \ast_{ \pi_1(U_1\cap U_2)} \pi_1(U_2) \ar[r, dashed, "\simeq"]
+       \NC \pi_1(X) \NR
+ \NC \pi_1(U_2) \ar[ur]\ar[urr, "j_2" below, bend right=20]
+   \NC
+     \NC
+\stoptikzcd
+
+\starttikzpicture
+%\tkzDefPoint(0,0){A}
+\stoptikzpicture
+\stoptext

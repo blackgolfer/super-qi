@@ -1,0 +1,123 @@
+\section{Primitives}
+
+\subsection{Point}
+There are two macros for points:  \tkzcname{tkzDefPoint} and \tkzcname{tkzDefPoints}. A point in \tkzname{\tkznameofpack} is a particular "node" for \TIKZ.
+
+A point is defined if it has a name linked to a unique pair of decimal numbers. Let $(x,y)$ or $(a:d)$
+i.e. ($x$ abscissa, $y$ ordinate) or  ($a$ angle: $d$ distance).This is possible because the plan has been provided with an orthonormed Cartesian coordinate system.
+The working axes are  (ortho)normed with unity equal to $1$~cm.
+
+\subsubsection{Cartesian coordinates}
+The Cartesian coordinate $(a,b)$ refers to the point $a$ centimeters in the $x$-direction and $b$ centimeters
+in the $y$-direction.
+
+\begin{tkzexample}[latex=5cm,small]
+    \begin{tikzpicture}
+        \tkzInit[xmax=5,ymax=5] % limits the size of the axes
+        \tkzDrawX[>=latex]
+        \tkzDrawY[>=latex]
+        \tkzDefPoint(0,0){A}
+        \tkzDefPoint(4,0){B}
+        \tkzDefPoint(0,3){C}
+        \tkzDrawPolygon(A,B,C)
+        \tkzDrawPoints(A,B,C)
+    \end{tikzpicture}
+\end{tkzexample}
+
+\subsubsection{Polar coordinates}
+A point in polar coordinates requires an angle $\alpha$, in degrees, and a distance  $d$ from the origin with
+a dimensional unit by default it's the \texttt{cm}.
+
+\begin{tkzexample}[latex=7cm,small]
+    \begin{tikzpicture}
+        \foreach \an [count=\i] in {0,60,...,300}
+            { \tkzDefPoint(\an:3){A_\i}}
+        \tkzDrawPolygon(A_1,A_...,A_6)
+        \tkzDrawPoints(A_1,A_...,A_6)
+    \end{tikzpicture}
+\end{tkzexample}
+
+\subsubsection{Named point}
+\begin{NewMacroBox}{tkzDefPoint}{\oarg{local options}\parg{$x,y$}\marg{ref} or \parg{$\alpha$:$d$}\marg{ref}}%
+    \begin{tabular}{lll}%
+        arguments & default & definition \\
+        \midrule
+        \TAline{($x,y$)}{no default}{$x$ and $y$ are two dimensions, by default in cm.}
+        \TAline{($\alpha$:$d$)}{no default}{$\alpha$ is an angle in degrees, $d$ is a dimension}
+        \TAline{\{ref\}}{no default}{Reference assigned to the point: $A$, $T\_a$ ,$P1$ or $P_1$}
+        \bottomrule
+    \end{tabular}
+
+    \medskip
+    \emph{The obligatory arguments of this macro are two dimensions expressed with decimals,
+        in the first case they are two measures of length, in the second case they are a measure of
+        length and the measure of an angle in degrees. Do not confuse the reference with the name of a point.
+        The reference is used by calculations, but frequently, the name is identical to the reference.}
+
+    \medskip
+    \begin{tabular}{lll}%
+        \toprule
+        options & default & definition \\
+        \midrule
+        \TOline{label} {no default} {allows you to place a label at a predefined distance}
+        \TOline{shift} {no default} {adds $(x,y)$ or $(\alpha:d)$ to all coordinates}
+    \end{tabular}
+\end{NewMacroBox}
+
+Calculations with \tkzNamePack{xfp}:
+\begin{tkzexample}[latex=7cm,small]
+    \begin{tikzpicture}[scale=1]
+        \tkzInit[xmax=4,ymax=4]
+        \tkzDrawX\tkzDrawY
+        \tkzDefPoint(-1+2,sqrt(4)){O}
+        \tkzDefPoint({3*ln(exp(1))},{exp(1)}){A}
+        \tkzDefPoint({4*sin(pi/6)},{4*cos(pi/6)}){B}
+        \tkzDrawPoints(O,B,A)
+    \end{tikzpicture}
+\end{tkzexample}
+
+\subsubsection{Relative point: \tkzcname{tkzDefShiftPoint}}
+\begin{NewMacroBox}{tkzDefShiftPoint}{\oarg{Point}\parg{$x,y$}\marg{ref} or \parg{$\alpha$:$d$}\marg{ref}}%
+    \begin{tabular}{lll}%
+        arguments & default & definition \\
+        \midrule
+        \TAline{($x,y$)}{no default}{$x$ and $y$ are two dimensions, by default in cm.}
+        \TAline{($\alpha$:$d$)}{no default}{$\alpha$ is an angle in degrees, $d$ is a dimension}
+        \TAline{\{ref\}}{no default}{Reference assigned to the point: $A$, $T\_a$ ,$P1$ or $P_1$}
+
+        \midrule
+        options   & default & definition \\
+
+        \midrule
+        \TOline{[pt]} {no default} {\tkzcname{tkzDefShiftPoint}[A](0:4)\{B\}}
+    \end{tabular}
+\end{NewMacroBox}
+
+\subsubsection{Definition of multiple points: \tkzcname{tkzDefPoints}}
+
+\begin{NewMacroBox}{tkzDefPoints}{\oarg{local options}\marg{$x_1/y_1/n_1,x_2/y_2/r_2$, ...}}%
+    $x_i$ and $y_i$ are the coordinates of a referenced point $r_i$
+
+    \begin{tabular}{lll}%
+        \toprule
+        arguments & default & example \\
+        \midrule
+        \TAline{$x_i/y_i/r_i$}{}{\tkzcname{tkzDefPoints\{0/0/O,2/2/A\}}}
+    \end{tabular}
+
+    \medskip
+    \begin{tabular}{lll}%
+        options & default & definition \\
+        \midrule
+        \TOline{shift} {no default} {Adds $(x,y)$ or $(\alpha:d)$ to all coordinates}
+    \end{tabular}
+\end{NewMacroBox}
+
+Create a triangle:
+\begin{tkzexample}[latex=6cm,small]
+    \begin{tikzpicture}[scale=.75]
+        \tkzDefPoints{0/0/A,4/0/B,4/3/C}
+        \tkzDrawPolygon(A,B,C)
+        \tkzDrawPoints(A,B,C)
+    \end{tikzpicture}
+\end{tkzexample}
