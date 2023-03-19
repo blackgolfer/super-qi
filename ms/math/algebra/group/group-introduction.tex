@@ -1,0 +1,196 @@
+% language=us runpath=texruns:algebra/group
+
+\startcomponent group-introduction
+
+\environment group-environment
+
+\startchapter[title={Introduction}]
+
+\startsection[title={Algebraic laws}]
+\regularLettrine{A}{large part} of algebra is conncerned with systems of elements which, like numbers, may be
+combined by addition or multiplication or both. We are given a system whose elements are designated by letters
+$a,b,c,\cdots$. We write $S=S(a,b,c,\cdots)$ for this system. The properties of these systems depend upon which
+of the following basic laws hold:
+{\setuptables[bodyfont=8pt,distance=small]
+\placetable[here][tab:laws]{\small Algebraic laws.}
+\starttable[|l|l|l|]
+\HL
+\NC \bf Laws \NC \bf Addition \NC \bf Multiplication \NC\SR
+\HL
+\NC Closure laws \NC $A_0$: Addition is well defined \NC $M_0$: Multiplication is well defined \NC\FR
+\NC Associative laws \NC $A_1$: $(a+b)+c=a+(b+c)$ \NC $M_1$: $(ab)c=a(bc)$ \NC\MR
+\NC Commutative laws \NC $A_2$: $a+b=b+a$ \NC $M_2$: $ba=ab$ \NC\MR
+\NC Zero and unit\NC $A_3$: $\exists 0,\ni 0+a=a+0=a,\forall a$\NC $M_3$:$\exists 1,\ni 1a=a1=a,\forall a$\NC\MR
+\NC Negatives and Inverses\NC $A_4$: $\forall a,\exists -a,\ni (-a)+a=a+(-a)=0$\NC $M_4$:
+$\forall a\neq 0,\exists a^{-1},\ni (a^{-1})a=a(a^{-1})=1$\NC\MR
+\NC \LOW{Distributive laws} \NC \TWO $D_1$: $a(b+c)=ab+ac$ \NC\LR
+\NC \NC \TWO $D_2$: $(b+c)a=ba+ca$ \NC\LR
+\HL
+\stoptable}
+
+Note: $A_0$ means that, for every ordered pair of elements $a,b\in S$, $a+b=c$ exists and is a unique element of
+$S$,. Also, $M_0$ means that, $ab=d$ exists and is a unique element of $S$.
+\stopsection
+
+\startdefinition[dfn:fieldnring]{Field and Ring}
+A system satisfying all these laws is called a field. A system satisfying $A_0$, $A_1$, $A_2$, $A_3$,
+$A_4$, $M_0$, $M_1$ and $D_1$, $D_2$ is called a ring.
+\stopdefinition
+
+The parallelism between addition $A_0-A_4$ and multiplication $M_0-M_4$ is exploited in the use of logarithms,
+where the basic correspondence between them is given by the law:
+$$\log(xy)=\log(x)+\log(y).$$
+
+In general an $n$-ary operation in a set $S$ is a function $f=f(a_1,\dots,a_n)$ of $n$ arguments
+$(a_1,\dots,a_n)$ which are the elements of $S$ and whose values $f(a_1,\dots,a_n)=b$ is a unique element of
+$S$ when $f$ is defined for these arguments. If, for every choice of $a_1,\dots,a_n$ in $S$, $f(a_1,\dots,a_n)$
+is defined, we say that the operation $f$ is {\sl well defined} or that the set $S$ is {\sl closed}
+with respect to the operation $f$.
+
+In a field $F$, the addition and multiplication are well-defined binary operations, while the inversion
+operation $f(a)=a^{-1}$ is a unary operation defined for every element except zero.
+
+\startsection[sec:mappings]{Mappings}
+\regularLettrine{A}{ very fundamental concept} of modern mathematics in that of a {\sl mapping} of a set $S$ 
+into a set $T$.
+\vskip 5ex
+\startdefinition[dfn:mapping]{Mapping}
+A {\sl mapping} $\alpha$ of a set $S$ into a set $T$ is a rule which assigns to each $x$ of the set $S$ a unique
+$y$ of the set $T$.
+\stopdefinition
+Symbolically we wrtie this either of the notations:
+$$ \alpha: x\longrightarrow y\quad\rm{or}\quad y=(x)\alpha.$$
+The element $y$ is called the {\sl image} of $x$ under $\alpha$. If every $y$ of the set $T$ is the image of
+at least one $x$ in $S$, we say that $\alpha$ is a mapping of $S$ onto $T$.
+
+The mapping of a set into (or onto) itself are of particular importance. For example a rotation in a plane
+may be regarded as a mapping of the set of points in the plance onto itself. Two mappings $\alpha$ and $\beta$
+of a set $S$ into iteself may be combined to yield a third mapping of $S$ into itself, according to the
+following definition.
+
+\startdefinition[dfn:mapping_composition]{Product of Mappings}
+Given two mappings $\alpha$, $\beta$, of a set $S$ into itself, we define a third mapping $\gamma$ of $S$
+into itself by the rule: If $y=(x)\alpha$ and $z=(y)\beta$, then $z=(x)\gamma$. The mapping $\gamma$ is called
+the product of $\alpha$ and $\beta$, and we write $\gamma=\alpha\beta$.
+\stopdefinition
+
+Here, since $y=(x)\alpha$ is unique and $z=(y)\beta$ is unique, $z=[(x)\alpha]\beta=(x)\gamma$ is defined for
+every $x$ of $S$ and is a unique element of $S$.
+
+\starttheorem[thm:product_mappings]{}
+The mappings of a set $S$ into itself stisfy $M_0$, $M_1$, and $M_3$ if multiplication is interpreted to be
+the product of mappings.
+\stoptheorem
+{\sl Proof:} It has already been noted that $M_0$ is satisfied. Let us consider $M_1$. Let $\alpha$,$\beta$,
+$\gamma$ be three given mappings. Take any element $x$ of $S$ and let $y=(x)\alpha$, $z=(y)\beta$ and
+$w=(x)\gamma$. Then $(x)[(\alpha\beta)\gamma]=z(\gamma)=w$, and $(x)[\alpha(\beta\gamma)]=y(\beta\gamma)=w$.
+Since both mappings, $(\alpha\beta)\gamma$ and $\alpha(\beta\gamma)$, give the same image for every $x$ in $S$,
+it follows that $(\alpha\beta)\gamma=\alpha(\beta\gamma)$.
+
+As for $M_3$, let $1$ be the mapping such that $(x)1=x$ for every $x$ in $S$. Then $1$ is a unit in the sense
+that for every mapping $\alpha$, $\alpha 1=1\alpha=\alpha$.
+
+In general, neither $M_2$ nor $M_4$ holds for mappings. But $M_4$ holds for an important class of mappings,
+namely, the one-to-one mappings of $S$ onto itself.
+
+\startdefinition[dfn:one_to_one_mappings]{One-to-one Mappings}
+A mapping $\alpha$ of a set $S$ onto $T$ is said to be one-to-one (which we will frequently write $1-1$)
+if every element of $T$ is the image of exactly one element of $S$. We indicate such a mapping by the
+notation: $\alpha: x\leftrightarrows y$, where $x$ is an element of $S$ and $y$ is an element of $T$.
+We say that $S$ and $T$ have the same cardinal number of elments.
+\stopdefinition
+
+\starttheorem[thm:one_to_one_mappings]{}
+The one-to-one mappings of a set $S$ onto itself satisfy $M_0$, $M_1$, $M_3$ and $M_4$.
+\stoptheorem
+{\sl Proof:} Since \in{theorem}[thm:product_mappings] covers $M_0$, $M_1$ and $M_3$, we need only veryfy
+$M_4$. If $alpha: x\leftrightarrows y$ is a one-to-one mapping of $S$ onto itself, then by definition,
+for every $y$ of $S$ there is exactly one $x$ of $S$ such that $y=(x)\alpha$. This assignment of a unique $x$
+to each $y$ determines a one-to-one mapping $\tau: y\leftrightarrows x$ of $S$ onto itself. From the definition
+of $\tau$ we see that $(x)(\alpha\tau)=x$ for every $x$ in $S$ and $y(\tau\alpha)=y$ for every $y$ in $S$.
+Hence, $\alpha\tau=\tau\alpha=1$, and $\tau$ is a mapping satisfying the requirements for $\alpha^{-1}$ in
+$M_4$.
+
+We call a one-to-one mapping of a set onto itself a {\sl permutation}. When the given set is finite,
+a permutation may be written by putting the elements of the set in a row and their images below them. Thus
+$\alpha=\left(
+    \startmathmatrix[n=3,align={left,left,left}]
+    \NC 1 \NC 2 \NC 3 \NR
+    \NC 2 \NC 3 \NC 1 \NR
+    \stopmathmatrix
+    \right)
+$
+and
+$\beta=\left(
+    \startmathmatrix[n=3,align={left,left,left}]
+    \NC 1 \NC 2 \NC 3 \NR
+    \NC 1 \NC 3 \NC 2 \NR
+    \stopmathmatrix
+    \right)
+$
+are two permutations of the set $S(1,2,3)$. Their product is defined to be the permutation
+$\alpha\beta=\left(
+    \startmathmatrix[n=3,align={left,left,left}]
+    \NC 1 \NC 2 \NC 3 \NR
+    \NC 3 \NC 2 \NC 1 \NR
+    \stopmathmatrix
+    \right)$.
+Note that the product rule for permutations given here is obtained by multiplying from left to right.
+Some authors define the product so that multiplication is from right to left.
+
+\stopsection
+
+\startsection[title={Definitions for groups and some related systems}]
+\regularLettrine{W}{e} see that, as single operations, the laws governing addition and multiplication are the
+same. Of these, all but the commutative law are satisfied by the product rule for the one-to-one mappings of
+a set onto itself. The law obeyed by these one-to-one mappings are those which we shall use to define a group.
+
+\startdefinition[dfn:group1]{First Definition of a Group}
+A group $G$ is a set of elements $G(a,b,c,\dots)$ and a binary operation call ``product'' such that:
+%\definesymbol[head][$G_{\currentitemnumber}$]
+%\startitemize[head]
+\startitemize
+\txt{$G_0$. Closure Law.}\ For every ordered pair $a$, $b$ of elements of $G$, the product $ab=c$ exists and is
+    a unique element of $G$.
+\txt{$G_1$. Associative Law.}\ $(ab)c=a(bc)$.
+\txt{$G_2$. Existence of Unit.}\ An element $1$ exists such that $1a=a1=a$ for every $a$ of $G$.
+\txt{$G_3$. Existence of Inverse.}\ For every $a$ of $G$ there exists an element $a^{-1}$ of $G$ such that
+    $a^{-1}a=aa^{-1}=1$.
+\stopitemize
+\stopdefinition
+These laws are redundant. We may omit one-half of $G_2$ and $G_3$, and replace them by:
+\startitemize
+\txt{$G_2^*$.}\ {\sl An element $1$ exists such that $1a=a$ for every $a$ of $G$.}
+\txt{$G_3^*$.}\ {\sl For every $a$ of $G$ there exists an element $x$ of $G$ such that $xa=1$.}
+\stopitemize
+We can show that these in turn imply $G_2$ and $G_3$. For a given $a$ let
+$$xa=1\quad\rm{and}\quad yx=1$$
+by $G_3^*$. Then we have
+$$ax=1(ax)=(yx)(ax)=y[x(ax)]=y[1x]=yx=1,$$
+so that $G_3$ is satisfied. Also,
+$$a=1a=(ax)a=a(xa)=a1,$$
+so that $G_2$ is satisfied.
+
+The uniqueness of the unit $1$ and of an inverse $a^{-1}$ are readily established (see Ex. 13). We could,
+of course, also replace $G_2$ and $G_3$ by the assumption of the existence of $1$ and $x$ such that:
+$a1=a$ and $ax=1$. But if we assume that they satisfy $a1=a$ and $xa=1$, the situation is slightly different.
+
+There are a number of ways of bracketing an ordered sequency $a_1a_2\cdots a_n$ to give it a value by
+calculating a succession of binary products. For $n=3$ there are just two ways of bracketing, namely,
+$(a_1a_2)a_3$ and $a_1(a_2a_3)$, and the associative law asserts the equality of these two products.
+An important consequence of the associative law is the {\sl gneralized associative law}.
+
+{\sl All ways of bracketing an ordered sequence $a_1a_2\cdots a_n$ to give it a value by calculating
+a succession of binary products yield the same value}.
+
+It is a simple matter, using induction on $n$, to prove that the generalized associative law is a consequence
+of the associative law (see Ex. 1).
+
+Another definition may be given which does not explicitly postulate the existence of the unit.
+
+
+\stopsection
+
+\stopchapter
+
+\stopcomponent

@@ -1,0 +1,35 @@
+% language=us runpath=texruns:algebra/group
+
+\doifmode{book}{\endinput}
+
+\startcomponent group-titlepage-paper
+
+\environment group-environment
+
+%\setuppapersize[A6]
+
+\startMPpage
+
+StartPage ;
+
+numeric w ; w := bbwidth(Page) ;
+numeric h ; h := bbheight(Page) ;
+
+fill (unitsquare xyscaled (w,.8h)) withcolor \MPcolor{Bottom} ;
+fill (unitsquare xyscaled (w,.2h) yshifted .8h) withcolor \MPcolor{Top} ;
+draw (0,.8h) -- (w,.8h) withpen pensquare scaled 2pt withcolor white ;
+
+draw textext.rt("\definedfont[Serif at 10pt]Marshall Hall, Jr.") shifted (.1w,.95h) ;
+draw textext.rt("\titlefont{Serif at 20pt} The Theory of Group") shifted (.1w,.85h) withcolor \MPcolor{TitleColor} ;
+draw textext.rt("\titlefont{SerifBold at 10pt} Algebra") shifted (.1w,.75h) withcolor \MPcolor{TitleColor} ;
+draw textext.rt("\titlefont{SerifBold at 10pt} Topics in Mathematics") shifted (.1w,.70h) ;
+
+
+%    picture p; p := externalfigure "matterhorn.png" ;
+%    draw p scaled (w/bbwidth p) ;
+
+StopPage ;
+
+\stopMPpage
+
+\stopcomponent

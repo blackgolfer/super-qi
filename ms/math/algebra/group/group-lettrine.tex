@@ -1,0 +1,240 @@
+\def\plateName{plate}
+
+\define[2]\bookTitle{\begingroup\lefttoright\vbox{\vskip -\topspace\hskip0pt\hfill\hbox{\hskip-1pt\putLettrine{\plateName}\hskip-1pt}\hfill\hskip0pt\vskip 5\baselineskip~\hfill\hbox{\tfd #2}\hfill~}\endgroup}
+
+\newdimen\LettrineSize
+\newcount\LettrineScale
+\newdimen\LettrinePadding
+\newdimen\PlateWidth
+\newdimen\PlateHeight
+\newdimen\pictureIndent
+\newdimen\PcH
+\LettrineSize=1.5cm
+\LettrineScale=300
+\LettrinePadding=2mm
+\PlateHeight=1.5cm
+\PlateWidth=7.6cm
+\def\LettrineTotalWidth{\dimexpr \LettrineSize + \LettrinePadding \relax}
+\def\LettrineTotalHeight{\dimexpr \LettrineSize + \LettrinePadding \relax}
+\def\LettrineTotalHeightMinusLine{\dimexpr \LettrineTotalHeight -0.8\baselineskip}
+\def\defaultLettrineLines{4}
+\pictureIndent=0.5\textwidth
+\newdimen\oddpict
+\oddpict=\backspace
+\advance \oddpict by \textwidth
+\advance \oddpict by -\pictureIndent
+
+\newdimen\evenpict
+\evenpict=\cutspace
+\advance \evenpict by \pictureIndent
+
+\define\drawCurrentPictureWide{
+    \setbox1\vbox{\drawCurrentPicture}
+    \newdimen\pictVOffset
+    \pictVOffset=\topmargin
+    \advance\pictVOffset by \pagetotal
+    \pictureIndent=\wd1
+    \PcH=\ht1
+    \advance\PcH by \pagetotal
+    \advance \pictureIndent by 1cm
+    \advance \pictureIndent by -\cutspace
+    \doifoddpageelse{
+        \oddpict=\backspace
+        \advance \oddpict by \makeupwidth
+        \advance \oddpict by -\pictureIndent
+        \definelayer[curpic]
+        [x=\oddpict,y=\pictVOffset,width=\textwidth,height=\textheight]
+    }{
+        \evenpict=\cutspace
+        \advance \evenpict by \pictureIndent
+        \definelayer[curpic]
+        [x=0cm,y=\pictVOffset,width=\evenpict,height=\textheight]
+    }
+    \setlayer[curpic][voffset=0.5cm]{\hskip 0.5cm\box1\hskip 0.5cm}
+    \setupbackgrounds[page][background=curpic]
+}
+
+% Often it's convenient to skip come lines and continue below main figure, 
+% leaving all the indentation stuff above
+\newdimen\dTB
+\def\skipToPictureBottom{
+    \dTB=\PcH
+    \advance\dTB by -\pagetotal
+    \vskip \dTB
+    \resetInitialIndentation
+}
+
+\newdimen\pictureWithLettrineLineLength
+\newdimen\pictureWithLettrineIndent
+\newdimen\pictureOnlyLineLength
+\newdimen\pictureWithLettrineLineLength
+\newcount\Y
+\newcount\Yy
+\newcount\X
+\X=0
+\newcount\numOfIndLines
+
+\newif\ifinsideII
+\insideIIfalse
+
+\def\resetInitialIndentation{\parshape=0\global\numOfIndLines=0\global\def\par{\endgraf}\everypar=\expandafter{\the\toks0}\global\insideIIfalse}
+
+\newcount\linesofar
+
+\toks0=\expandafter{\the\everypar}
+
+\def\initialIndentation{\dosingleempty\initialindentation}
+\def\initialindentation[#1]#2{
+\global\toks0=\expandafter{\the\everypar}
+\iffirstargument
+    \def\lettrineLines{#1}
+\else%
+    \def\lettrineLines{\defaultLettrineLines}
+\fi
+\ifinsideII\resetInitialIndentation\fi
+\global\insideIItrue
+\ \vskip 0pt
+%https://books.google.com/books?id=iDb2BwAAQBAJ&pg=PA107&lpg=PA107&dq=tex+parshape+paragraphs&source=bl&ots=GmFvQnIUr7&sig=oJ-mtVEwOttepWpGi2BABemAMWw&hl=en&sa=X&ved=0ahUKEwjxrbPk-uXKAhVClB4KHSxUBqwQ6AEIQTAF#v=onepage&q=tex%20parshape%20paragraphs&f=false
+\linesofar=0
+\global\numOfIndLines=#2
+\def\par{{\endgraf\global\linesofar=\prevgraf}}
+\everypar={\ifnum\linesofar<\numOfIndLines\prevgraf=\linesofar\else\resetInitialIndentation\fi} %
+\pictureOnlyLineLength=\textwidth
+\pictureWithLettrineLineLength=\textwidth
+\advance \pictureOnlyLineLength by -\pictureIndent
+\doifoddpageelse{
+    \pictureWithLettrineLineLength=\pictureOnlyLineLength
+    \advance \pictureWithLettrineLineLength by -\LettrineTotalWidth
+    \def\partindent{0cm \pictureOnlyLineLength}
+    \ifnum\textdirection=0
+        \def\doubleindent{\LettrineTotalWidth \pictureWithLettrineLineLength}
+    \fi
+    \ifnum\textdirection=1
+        \def\doubleindent{0cm \pictureWithLettrineLineLength}
+    \fi
+}{
+    \pictureWithLettrineIndent=\pictureIndent
+    \advance \pictureWithLettrineIndent by \LettrineTotalWidth
+    \pictureWithLettrineLineLength=\pictureOnlyLineLength
+    \advance \pictureWithLettrineLineLength by -\LettrineTotalWidth
+    \def\partindent{\pictureIndent \pictureOnlyLineLength}
+    \ifnum\textdirection=0
+        \def\doubleindent{\pictureWithLettrineIndent \pictureWithLettrineLineLength}
+    \fi
+    \ifnum\textdirection=1
+        \def\doubleindent{0cm \pictureWithLettrineLineLength}
+    \fi
+}
+\def\preinitindent{}
+\Yy=\lettrineLines
+\advance \Yy by 1
+\Y=\lettrineLines
+\loop
+\expandafter\def\expandafter\preinitindent\expandafter{\preinitindent\doubleindent}
+\advance \Y by -1
+\ifnum \Y>0
+\repeat
+\def\initindent{\preinitindent}
+\global\X=#2
+\ifnum \X>\Yy
+\advance \X by -\lettrineLines
+\loop
+\expandafter\def\expandafter\initindent\expandafter{\initindent\partindent}
+\advance \X by -1
+\ifnum \X>1
+    \repeat
+\fi
+\parshape=#2
+\initindent
+0cm \textwidth
+}
+
+\newwrite \lettrineslist
+\openout \lettrineslist = lettrines/lettrineslist.txt\relax
+
+\def\putzero{0}
+
+\def\putLettrine#1{%
+    \write \lettrineslist{#1}%
+    \expandafter\ifx\csname ltrn#1\endcsname\relax
+        \global\expandafter\newcount\csname ltrn#1\endcsname\relax
+        \global\csname ltrn#1\endcsname 0
+    \else
+        \global\expandafter\advance\csname ltrn#1\endcsname by 1
+    \fi
+    \doifelsefile{lettrines/#1\putzero.mps}
+    {\textdirection 0 \doifelsefile{lettrines/#1\the\csname ltrn#1\endcsname.mps}
+        {\ifx#1\plateName%
+                \externalfigure[lettrines/#1\the\csname ltrn#1\endcsname.mps][width=\PlateWidth]%
+            \else%
+                \externalfigure[lettrines/#1\the\csname ltrn#1\endcsname.mps][height=\LettrineSize]%
+            \fi}
+        {\ifx#1\plateName%
+                \externalfigure[lettrines/#1\putzero.mps][width=\PlateWidth]%
+            \else%
+                \externalfigure[lettrines/#1\putzero.mps][height=\LettrineSize]%
+            \fi}}
+    {\doifelsefile{lettrines/#1.svg}
+        {\externalfigure[lettrines/#1.svg][height=\LettrineSize]%
+        }
+        {\doifelsefile{lettrines/#1.pdf}
+            {\externalfigure[lettrines/#1.pdf][width=\LettrineSize,height=\LettrineSize]}
+            {\ifx#1\plateName%
+                    \startMPcode
+                    input byrne.mp;
+                    path plateBG, plateFrame;
+                    plateBG := (reverse(fullsquare) xscaled (\the\PlateWidth)) yscaled (\the\PlateHeight);
+                    plateFrame := (reverse(fullsquare) xscaled (\the\PlateWidth - 2pt)) yscaled (\the\PlateHeight -2pt);
+                    fill plateBG withcolor orange;
+                    draw plateFrame withcolor white;
+                    string pictureContents;
+                    pictureContents := "path givenOutline[];";
+                    pictureContents := pictureContents & "givenOutline0 := " & pathToString(plateBG) & "; ";
+                    pictureContents := pictureContents & "givenOutline1 := " & pathToString(plateFrame) & "; ";
+                    pictureContents := pictureContents & "givenOutline2 := " & pathToString((0,0)) & "; ";
+                    pictureContents := pictureContents & "numeric totalLines; totalLines := 2;";
+                    write pictureContents to "lettrines/lettrine_#1.mp";
+                    write EOF to "lettrines/lettrine_#1.mp";
+                    \stopMPcode%
+                \else%
+                    \startMPcode
+                    input byrne.mp;
+                    picture lettrineOutline, lettrinePicture;
+                    path lettrineFrame, lettrineBG;
+                    lettrineBG := reverse(fullsquare) scaled (\the\LettrineSize);
+                    lettrineFrame := reverse(fullsquare) scaled (\the\LettrineSize - 2pt);
+                    fill lettrineBG withcolor orange;
+                    draw lettrineFrame withcolor white;
+                    lettrineOutline := outlinetext("#1") scaled \the\LettrineScale/100;
+                    lettrineOutline := lettrineOutline shifted -1/2[ulcorner(lettrineOutline), lrcorner(lettrineOutline)];
+                    lettrinePicture := textext("#1") scaled \the\LettrineScale/100;
+                    lettrinePicture := lettrinePicture shifted -1/2[ulcorner(lettrinePicture), lrcorner(lettrinePicture)];
+                    draw lettrinePicture withcolor white;
+                    string pictureContents;
+                    pictureContents := "path givenOutline[];";
+                    pictureContents := pictureContents & "givenOutline0 := " & pathToString(lettrineBG) & "; ";
+                    pictureContents := pictureContents & "givenOutline1 := " & pathToString(lettrineFrame) & "; ";
+                    j := 1;
+                    for i within lettrineOutline:
+                    j := j + 1;
+                    pictureContents := pictureContents & "givenOutline" & decimal(j) & " := " & pathToString(pathpart i) & "; ";
+                    endfor;
+                    pictureContents := pictureContents & "numeric totalLines; totalLines := " & decimal(j) & ";";
+                    write pictureContents to "lettrines/lettrine_#1.mp";
+                    write EOF to "lettrines/lettrine_#1.mp";
+                    \stopMPcode%
+                \fi}}}}
+
+% This thing removes space between an initial and the letter after it, if no space is needed
+\startluacode
+formatting = formatting or {}
+function formatting.dedent (str)
+if string.sub(str, 0, 1) ==  " " then
+tex.print(str)
+else
+tex.print("\\,\\hskip -\\LettrinePadding " .. str)
+end
+end
+\stopluacode
+
+\def\regularLettrine#1#2{\placefigure[left,none]{}{\vskip -5pt\hbox{\putLettrine{#1}\hskip-4pt}\vskip -10pt}\noindent{\sc\ctxlua{formatting.dedent([==[#2]==])}}}

@@ -1,0 +1,57 @@
+\enableexperiments[fonts.compact]
+
+% \enablemode[optional]
+
+% \enablemode[screen]
+\enablemode[print]
+% \enablemode[book]
+
+% todo: check startintro .. stopintro each chapter
+
+% \showframe
+
+\startproduct group
+
+\environment group-environment
+
+\startnotmode[screen]
+    \component   group-titlepage-paper
+    %\component   group-colofon-paper
+\stopnotmode
+
+\startmode[screen]
+    \environment group-environment-screen
+    \component   group-titlepage-screen
+\stopmode
+
+\startfrontmatter
+    \component   group-preface
+    \component   group-contents
+    %\component   group-conventions
+\stopfrontmatter
+
+\startbodymatter
+    \component   group-introduction
+\stopbodymatter
+
+\startappendices
+  % \component   group-programs
+  % \component   group-syntax
+  % \component   group-document
+  % \component   group-reference
+  % \component   group-literature
+\stopappendices
+
+\startbackmatter
+    \component   group-index
+\stopbackmatter
+
+\startmode[screen]
+    \component   group-colofon-screen
+\stopmode
+
+\startnotmode[screen]
+    \component   group-backpage
+\stopnotmode
+
+\stopproduct
