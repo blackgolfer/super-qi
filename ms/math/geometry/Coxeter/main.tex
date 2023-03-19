@@ -5,7 +5,11 @@
                cadre,
                headings    = small
                ]{tkz-doc}
-\gdef\tkznameofpack{Mathematics}
+%\setmainlanguage{english}
+%\usepackage[match]{luatexja-fontspec}
+%\usepackage{polyglossia}
+%\newfontfamily\chinesefont{FandolSong}
+\gdef\tkznameofpack{Geometry}
 \gdef\tkzversionofpack{1.0a}
 \gdef\tkzdateofpack{\today}
 \gdef\tkznameofdoc{doc-mathematics}
@@ -13,7 +17,7 @@
 \gdef\tkzdateofdoc{\today}
 \gdef\tkzauthorofpack{Zhifeng Zhang}
 \gdef\tkzadressofauthor{}
-\gdef\tkznamecollection{Coxeter Group}
+\gdef\tkznamecollection{Algebra}
 \gdef\tkzurlauthor{https://blackgolfer.github.io/geometry}
 \gdef\tkzengine{lualatex}
 \gdef\tkzurlauthorcom{https://blackgolfer.github.io/geometry}
@@ -39,15 +43,12 @@
       urlbordercolor=NavyBlue,
       menubordercolor=Gray,
       runbordercolor=Mulberry,
-      pdfsubject={Euclidean Geometry},
+      pdfsubject={Geometry},
       pdfauthor={\tkzauthorofpack},
       pdftitle={\tkznameofpack},
       pdfcreator={\tkzengine}
 }
 \usepackage{tkzexample}
-\usepackage{fontspec}
-\usepackage{xfrac,unicode-math}
-\usepackage{mathpazo}
 \linespread{1.05}      % Pagella needs more space between lines
 \let\rmfamily\ttfamily
 \usepackage{multicol,lscape}
@@ -122,6 +123,7 @@ basicstyle=\ttfamily\scriptsize
 \newtheorem{lemma}{Lemma}
 
 \AtBeginDocument{\MakeShortVerb{\|}} % link to shortvrb
+
 \begin{document}
 
 \parindent=0pt
@@ -138,7 +140,7 @@ basicstyle=\ttfamily\scriptsize
 \input{permutation.tex}
 \input{reflections.tex}
 
-\part{Drawing}
+\part{Coxeter Group}
 
 \clearpage\newpage
 \small\printindex

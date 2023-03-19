@@ -1,0 +1,137 @@
+\starttext
+\startchapter[title={Embeded Graphics}]
+In this chapter
+we will introduce the interface between {\sl\CONTEXT}\ and {\sl \METAPOST}\ and demonstrate how the definitions of
+the graphics can be embedded in the document source.
+
+\startsection[title={External graphics}]
+
+\stopsection
+
+\startsection[title={Integrated graphics}]
+\startsubsection[title={Primitive method}]
+An integrated graphic is defined in the document source or in a style definition file. The most
+primitive way of doing this is just inserting the code:
+
+\starttyping
+\startMPcode
+fill fullcircle scaled 200pt withcolor .625white ;
+\stopMPcode
+\stoptyping
+
+This will produce the following picture:
+
+\startMPcode
+fill fullcircle scaled 200pt withcolor .625white ;
+\stopMPcode
+
+Such a graphic is used once at the spot where it is defined.
+\stopsubsection
+
+\startsubsection[title={Usable graphics}]
+A {\sl usable} graphic is calculated anew each time it is used. An example of defining a usable graphic:
+\starttyping
+\startuseMPgraphic{name}
+fill fullcircle scaled 200pt withcolor .625yellow ;
+\stopuseMPgraphic
+\stoptyping
+To use it, we place the the command
+\starttyping
+\useMPgraphic{name}
+\stoptyping
+at the spot to display the defined graphic.
+
+\startuseMPgraphic{name}
+fill fullcircle scaled 200pt withcolor .625yellow ;
+\stopuseMPgraphic
+\useMPgraphic{name}
+
+Note that this graphic is calculated each time it is placed, which can be time consuming.
+
+\stopsubsection
+\startsubsection[title={Reusable graphics}]
+For graphics that don't change, {\sl\CONTEXT}\ provides {\sl reusable} graphics:
+\starttyping
+\startreusableMPgraphic{name}
+fill fullcircle scaled 200pt withcolor .625yellow;
+\stopreusableMPgraphic
+\stoptyping
+This definition is accompanied by:
+\starttyping
+\reuseMPgraphic{name}
+\stoptyping
+
+\startreusableMPgraphic{name}
+fill fullcircle scaled 200pt withcolor .625yellow;
+\stopreusableMPgraphic
+\reuseMPgraphic{name}
+
+
+Imagine what happens when we add some buttons to an interactive document without
+taking care of this side effect. All the frames would look different. Consider
+the following example.
+
+\startbuffer[a]
+\startuniqueMPgraphic{right or wrong}
+  pickup pencircle scaled .075 ;
+  fill unitsquare withcolor .8white ;
+  draw unitsquare withcolor .625red ;
+  currentpicture := currentpicture
+    xscaled OverlayWidth yscaled OverlayHeight ;
+\stopuniqueMPgraphic
+\stopbuffer
+
+\typebuffer[a]
+
+Let's define this graphic as a background to some buttons.
+
+\startbuffer[b]
+\defineoverlay[button][\uniqueMPgraphic{right or wrong}]
+\setupbuttons[background=button,frame=off]
+\stopbuffer
+
+\startbuffer[c]
+\hbox
+  {\button {previous}          [previouspage]\quad
+   \button {next}              [nextpage]\quad
+   \button {index}             [index]\quad
+   \button {table of contents} [content]}
+\stopbuffer
+
+\typebuffer[b,c]
+
+The buttons will look like:
+
+\startlinecorrection[blank]
+\setupinteraction[state=start,color=,contrastcolor=]
+\getbuffer[a,b,c]
+\stoplinecorrection
+
+Compare these with:
+
+\startbuffer[a]
+\startuniqueMPgraphic{wrong or right}
+  pickup pencircle scaled 3pt ;
+  path p ; p := unitsquare
+    xscaled OverlayWidth yscaled OverlayHeight ;
+  fill p withcolor .8white ;
+  draw p withcolor .625red ;
+\stopuniqueMPgraphic
+\stopbuffer
+
+\startlinecorrection[blank]
+\getbuffer[a,b]
+\defineoverlay[button][\uniqueMPgraphic{wrong or right}]
+\setupinteraction[state=start,color=,contrastcolor=]
+\getbuffer[c]
+\stoplinecorrection
+
+Here the graphic was defined as:
+
+\typebuffer[a]
+
+\stopsubsection
+\stopsection
+\stopchapter
+
+\stoptext

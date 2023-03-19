@@ -1,5 +1,0 @@
-# Jupyter-Book
-
-
-```{tableofcontents}
-```

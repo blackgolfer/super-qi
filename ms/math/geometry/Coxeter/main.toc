@@ -18,5 +18,5 @@
 \contentsline {subsubsection}{\numberline {1.6.1}Empty circle diagram}{8}{subsubsection.1.6.1}%
 \contentsline {subsubsection}{\numberline {1.6.2}Circle diagram with permutation paths}{9}{subsubsection.1.6.2}%
 \contentsline {section}{\numberline {2}Roots and Reflections}{9}{section.2}%
-\contentsline {part}{\numberline {II}Drawing}{10}{part.2}%
+\contentsline {part}{\numberline {II}Coxeter Group}{10}{part.2}%
 \providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 
