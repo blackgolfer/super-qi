@@ -1,0 +1,105 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.2 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nyt/apasortcite//global/global}
+    \entry{siemens2011penetrating}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=cfdf8964f401ce9decf9684053aba17e}{%
+           family={Siemens},
+           familyi={S\bibinitperiod},
+           given={George},
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=2b74a1229e1b17808c509eb11b2ddd1e}{%
+           family={Long},
+           familyi={L\bibinitperiod},
+           given={Phil},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {ERIC}%
+      }
+      \strng{namehash}{1579e81fe17a7a4d484150111c75e6ca}
+      \strng{fullhash}{1579e81fe17a7a4d484150111c75e6ca}
+      \strng{bibnamehash}{1579e81fe17a7a4d484150111c75e6ca}
+      \strng{authorbibnamehash}{1579e81fe17a7a4d484150111c75e6ca}
+      \strng{authornamehash}{1579e81fe17a7a4d484150111c75e6ca}
+      \strng{authorfullhash}{1579e81fe17a7a4d484150111c75e6ca}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{EDUCAUSE Review}
+      \field{number}{5}
+      \field{title}{Penetrating the fog: Analytics in learning and education.}
+      \field{volume}{46}
+      \field{year}{2011}
+      \field{pages}{30}
+      \range{pages}{1}
+    \endentry
+  \enddatalist
+  \datalist[entry]{nyt/global//global/global}
+    \entry{siemens2011penetrating}{article}{}
+      \name{author}{2}{}{%
+        {{un=0,uniquepart=base,hash=cfdf8964f401ce9decf9684053aba17e}{%
+           family={Siemens},
+           familyi={S\bibinitperiod},
+           given={George},
+           giveni={G\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=2b74a1229e1b17808c509eb11b2ddd1e}{%
+           family={Long},
+           familyi={L\bibinitperiod},
+           given={Phil},
+           giveni={P\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{publisher}{1}{%
+        {ERIC}%
+      }
+      \strng{namehash}{1579e81fe17a7a4d484150111c75e6ca}
+      \strng{fullhash}{1579e81fe17a7a4d484150111c75e6ca}
+      \strng{bibnamehash}{1579e81fe17a7a4d484150111c75e6ca}
+      \strng{authorbibnamehash}{1579e81fe17a7a4d484150111c75e6ca}
+      \strng{authornamehash}{1579e81fe17a7a4d484150111c75e6ca}
+      \strng{authorfullhash}{1579e81fe17a7a4d484150111c75e6ca}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{year}
+      \true{uniqueprimaryauthor}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{EDUCAUSE Review}
+      \field{number}{5}
+      \field{title}{Penetrating the fog: Analytics in learning and education.}
+      \field{volume}{46}
+      \field{year}{2011}
+      \field{pages}{30}
+      \range{pages}{1}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

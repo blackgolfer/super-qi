@@ -1,0 +1,19 @@
+[0] Config.pm:306> INFO - This is Biber 2.18
+[0] Config.pm:309> INFO - Logfile is 'test.blg'
+[50] biber:340> INFO - === 三 3月 22, 2023, 12:17:32
+[58] Biber.pm:418> INFO - Reading 'test.bcf'
+[106] Biber.pm:978> INFO - Found 1 citekeys in bib section 0
+[119] Biber.pm:4401> INFO - Processing section 0
+[125] Biber.pm:4592> INFO - Looking for bibtex file 'references.bib' for section 0
+[126] bibtex.pm:1713> INFO - LaTeX decoding ...
+[127] bibtex.pm:1518> INFO - Found BibTeX data source 'references.bib'
+[148] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[148] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[148] Biber.pm:4221> INFO - Sorting list 'nyt/apasortcite//global/global' of type 'entry' with template 'nyt' and locale 'en-US'
+[148] Biber.pm:4227> INFO - No sort tailoring available for locale 'en-US'
+[155] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[155] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[155] Biber.pm:4221> INFO - Sorting list 'nyt/global//global/global' of type 'entry' with template 'nyt' and locale 'en-US'
+[155] Biber.pm:4227> INFO - No sort tailoring available for locale 'en-US'
+[156] bbl.pm:654> INFO - Writing 'test.bbl' with encoding 'UTF-8'
+[157] bbl.pm:757> INFO - Output to test.bbl

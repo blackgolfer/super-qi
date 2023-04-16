@@ -1,0 +1,27 @@
+\documentclass[10pt]{article}
+
+\begin{filecontents}[overwrite]{references.bib}
+@article{siemens2011penetrating,
+  title  ={Penetrating the fog: Analytics in learning and education.},
+  author ={Siemens, George and Long, Phil},
+  journal={EDUCAUSE Review},
+  volume ={46},
+  number ={5},
+  pages  ={30},
+  year   ={2011},
+  publisher={ERIC}
+}
+\end{filecontents}
+
+\usepackage[a4paper, total={6in, 8in}, margin=1in]{geometry}
+\usepackage[backend=biber,style=apa,natbib=true,sorting=nyt,
+            url=false,isbn=false,doi=false]{biblatex}
+\addbibresource{references.bib}
+
+\usepackage{fontspec}
+%\setmainfont{Arial} % Aerial??
+
+\begin{document} 
+\citep{siemens2011penetrating}
+\printbibliography
+\end{document}

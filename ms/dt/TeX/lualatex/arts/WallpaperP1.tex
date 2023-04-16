@@ -1,0 +1,27 @@
+%https://www.integral-domain.org/lwilliams/Resources/TikzImg/WallpaperP1.tex
+\documentclass[tikz]{standalone}
+
+% Very light pastel palette
+\definecolor{cp1}{RGB}{229,248,213}  %grey
+\definecolor{cp2}{RGB}{213,232,213}   % yellow
+\definecolor{cp3}{RGB}{197,216,213}  % light teal
+\definecolor{cp4}{RGB}{181,200,213}  % red
+\definecolor{cp5}{RGB}{165,184,213}  % red
+
+\begin{document}
+\begin{tikzpicture}[scale=1]
+
+\begin{scope} % p1
+    \clip (0,0)--(10,0)--(10,10)--(0,10)--(0,0);
+    \draw[fill=cp1] (0,0)--(10,0)--(10,10)--(0,10)--(0,0);
+    \foreach \y in {0,1,...,11}
+        \foreach \x in {0,1,...,10}{
+            \begin{scope}[xshift=\x*1.1cm, yshift=10cm-\y*1cm]
+                \foreach \r in {1,2,3,4,5}{
+                    \draw[fill=cp\r] (0,0) circle (1.2cm-\r*0.2cm);
+                }
+            \end{scope}
+        }
+\end{scope} 
+\end{tikzpicture}
+ \end{document}

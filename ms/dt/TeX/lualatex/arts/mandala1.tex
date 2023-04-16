@@ -1,0 +1,115 @@
+%https://www.integral-domain.org/lwilliams/Resources/TikzImg/mandala1.tex
+\documentclass[tikz]{standalone}
+
+\begin{document}
+
+\usetikzlibrary{decorations.shapes}
+
+\begin{tikzpicture}
+
+\foreach \i in {0,60,...,300} {
+  \draw[fill=black] (\i:2.3cm) circle (1.6 cm);
+}
+
+
+\foreach \i in {30,90,...,330} {
+  \draw[fill=black,thick, rotate=\i] (0,0)--(330:3.1cm) .. controls (345:4.3cm) and (355:3.8cm) .. (0:4.2cm) .. controls (5:3.8cm) and (15:4.3cm) .. (30:3.1cm)--cycle;
+
+  \draw[fill=white,thick, rotate=\i] (0,0)--(330:2.9cm) .. controls (345:4.1cm) and (355:3.6cm) .. (0:4cm) .. controls (5:3.6cm) and (15:4.1cm) .. (30:2.9cm)--cycle;
+
+  \draw[decorate, decoration={shape backgrounds,shape=circle,shape size=0.5mm,shape sep=1mm}, fill=black, rotate=\i] (330:2.7cm) .. controls (345:3.9cm) and (355:3.4cm) .. (0:3.8cm) .. controls (5:3.4cm) and (15:3.9cm) .. (30:2.7cm);
+}
+
+\foreach \i in {0,60,...,300} {
+  \draw[fill=white] (\i:2.3cm) circle (1.45 cm);
+  \foreach \j in {0,3,6,...,357} {
+    \draw[] (\i:2.3cm) -- +(\j:1.45cm);
+  }
+  \draw[ultra thick, fill=white] (\i:2.3cm) circle (1.25 cm);
+}
+
+\foreach \i in {0,60,...,300} {
+  \foreach \j in {10,50,...,350}{
+    \draw[fill=white,rotate around={\j:(\i:2.5)}] (\i:2.5) ellipse (0.9cm and 0.1cm);
+  }
+  \foreach \j in {0,40,...,320}{
+    \draw[fill=white,rotate around={\j:(\i:2.5)}] (\i:2.5) ellipse (0.9cm and 0.1cm);
+  }
+   \draw[fill=black] (\i-30:2.8cm) circle (0.2 cm);
+}
+
+\foreach \i in {0,60,...,300} {
+  \draw[fill=black] (\i:2.05cm) circle (0.9cm);
+  \foreach \j in {0.8,0.7,...,0.1} {
+    \draw[fill=white] (\i:2.05cm) circle (\j cm);
+  }
+}
+
+\foreach \i in {30,90,...,330} {
+  \draw[fill=white,rotate=\i] (0:2.05cm) circle (0.8cm);
+  \begin{scope}[rotate=\i]
+    \clip (0:2.05cm) circle (0.7cm);
+    \begin{scope}[rotate around={45:(0:2.15cm)}]
+    \foreach \c in {0,1,2,3,4,5,6,7,8} {
+      \foreach \r in {-4,-3,-2,-1,0,1,2,3,4} {
+        \draw[thick, white, fill=black](2.75-0.2*\c,0.2*\r) circle (0.13cm);
+      }
+    }
+    \end{scope}
+  \end{scope}
+}
+
+\foreach \i in {30,90,...,330} {
+  \draw[fill=white] (0,0)--(\i:1.7cm) .. controls (10+\i:2.2cm) and (30+\i:2.2cm) .. (30+\i:2.4cm) .. controls (30+\i:2.2cm) and (50+\i:2.2cm) .. (60+\i:1.7cm);
+
+  \draw[fill=black] (0,0)--(\i:1.55cm) .. controls (10+\i:2.1cm) and (30+\i:2.1cm) .. (30+\i:2.25cm) .. controls (30+\i:2.1cm) and (50+\i:2.1cm) .. (60+\i:1.55cm);
+
+  \draw[fill=white] (0,0)--(\i:1.4cm) .. controls (10+\i:2.0cm) and (30+\i:2.0cm) .. (30+\i:2.1cm) .. controls (30+\i:2.0cm) and (50+\i:2.0cm) .. (60+\i:1.4cm);
+}
+
+\foreach \i in {0,60,...,300} {
+  \draw[fill=white] (0,0)--(\i:1.7cm) .. controls (10+\i:2.2cm) and (30+\i:2.2cm) .. (30+\i:2.4cm) .. controls (30+\i:2.2cm) and (50+\i:2.2cm) .. (60+\i:1.7cm);
+
+  \draw[fill=black] (0,0)--(\i:1.55cm) .. controls (10+\i:2.1cm) and (30+\i:2.1cm) .. (30+\i:2.25cm) .. controls (30+\i:2.1cm) and (50+\i:2.1cm) .. (60+\i:1.55cm);
+
+  \draw[fill=white] (0,0)--(\i:1.4cm) .. controls (10+\i:2.0cm) and (30+\i:2.0cm) .. (30+\i:2.1cm) .. controls (30+\i:2.0cm) and (50+\i:2.0cm) .. (60+\i:1.4cm);
+
+  \draw[decorate, decoration={shape backgrounds,shape=circle,shape size=0.4mm,shape sep=0.9mm}, fill=black] (30+\i:1.2cm) circle (0.57cm);
+}
+
+\foreach \i in {0,60,...,300} {
+  \draw[fill=white] (30+\i:1.2cm) circle (0.5cm);
+  \foreach \j in {0,12,...,348} {
+    \draw[thin] (30+\i:1.2cm) --+(\j:0.5cm);
+  }
+}
+\foreach \i in {0,60,...,300} {
+  \draw[fill=white] (\i:1.2cm) circle (0.5cm);
+  \foreach \j in {0,12,...,348} {
+    \draw[thin] (\i:1.2cm) --+(\j:0.5cm);
+  }
+}
+
+\foreach \i in {0,20,...,340} {
+  \draw[fill=white] (\i:1.2cm) circle (0.21cm);
+  \draw[fill=black] (\i:1.2cm) circle (0.13cm);
+}
+
+\draw[fill=white] (0,0) circle (1.2cm);
+\draw[ultra thick] (0,0) circle (0.35cm);
+\draw[thick] (0,0) circle (0.75cm);
+\draw[thick] (0,0) circle (1cm);
+
+\draw[decorate, decoration={shape backgrounds,shape=circle,shape size=0.5mm,shape sep=0.83mm}, fill=black] (0,0) circle (0.87cm);
+
+\foreach \i in {0,10,...,350} {
+  \draw[rotate=\i] (0.35,0)--(0.75,0);
+}
+\foreach \i in {0,20,...,340} {
+  \draw[rotate=\i] (1,0)--(1.2,0);
+}
+
+
+\end{tikzpicture}
+
+\end{document}

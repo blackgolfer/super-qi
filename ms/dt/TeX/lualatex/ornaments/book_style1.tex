@@ -1,0 +1,80 @@
+\documentclass[11pt]{book}
+\usepackage[left=1.75cm,right=1.75cm,top=2.5cm,bottom=2.5cm,paper=a4paper]{geometry}
+%\usepackage{ebgaramond}
+\usepackage[base]{babel}
+\usepackage{lipsum}
+\usepackage{fontspec}
+\usepackage[ornament]{froufrou}
+
+%\usepackage{lettrine}
+%\setlength{\parindent}{0.8em}
+
+\usepackage{pgfornament}
+\usepackage{eso-pic}
+\AddToShipoutPictureBG{\AtPageUpperLeft{\eachpageornament}}
+
+\newcommand{\eachpageornament}{%
+    \begin{tikzpicture}[remember picture, overlay,color=lightgray,every node/.style={inner sep=5mm}]
+        \node[anchor=north west] at (current page.north west){\pgfornament[width=10mm]{63}};
+        \node[anchor=north east] at (current page.north east){\pgfornament[width=10mm,symmetry=v]{63}};
+        \node[anchor=south west] at (current page.south west){\pgfornament[width=10mm,symmetry=h]{63}};
+        \node[anchor=south east] at (current page.south east){\pgfornament[width=10mm,symmetry=c]{63}};
+        \node[anchor=north] at (current page.north){\pgfornament[height=1cm,symmetry=h]{46}};
+        %\node[anchor=north] at (current page.north){\pgfornament[width=8cm,height=1cm,symmetry=h]{71}};
+        \node[anchor=south] at (current page.south){\pgfornament[width=4cm,height=0.75cm]{46}};
+        \node[anchor=north,rotate=90] at (current page.west){\pgfornament[height=0.75cm,symmetry=h]{46}};
+        \node[anchor=north,rotate=-90] at (current page.east){\pgfornament[height=0.75cm,symmetry=h]{46}};      
+    \end{tikzpicture}
+}
+
+\usepackage[sc,compact,explicit]{titlesec} % Titlesec for configuring the header
+
+%\usepackage{auto-pst-pdf} % Vectorian Ornaments XeTeX auxiliary (from: https://tex.stackexchange.com/questions/253477/how-to-use-psvectorian-with-pdflatex)
+\usepackage{psvectorian} % Vectorian Ornaments
+
+\let\clipbox\relax % PSTricks (used by PSVectorian) already defines a \clipbox, so we need this workaround
+\usepackage{adjustbox} % Adjustbox to rescale the ornaments (scalebox breaks titlesec for some reason...)
+
+\newcommand{\otherfancydraw}{% Defining a command to shorten things
+\begin{adjustbox}{max height=0.5\baselineskip}% Rescaling to have height of 0.5\baselineskip
+  \raisebox{-0.25\baselineskip}{
+  \rotatebox[origin=c]{45}{% And rotating 90 degrees
+    \psvectorian{7}% Ornament n° 26 (http://melusine.eu.org/syracuse/pstricks/vectorian/psvectorian.pdf)
+  }}%
+\end{adjustbox}%
+}
+
+% A command to create a rule centered vertically on the text (from: https://tex.stackexchange.com/questions/15119/draw-horizontal-line-left-and-right-of-some-text-a-single-line/15122#15122)
+\newcommand*\ruleline[1]{\par\noindent\raisebox{.8ex}{\makebox[\linewidth]{\hrulefill\hspace{1ex}\raisebox{-.8ex}{#1}\hspace{1ex}\hrulefill}}}
+
+\titleformat% Formatting the header
+  {\chapter} % command
+  [block] % shape - Only managed to get it working with block
+  {\normalfont\bfseries\sc\huge} % format - Change here as needed
+  {\centering Chapter \thechapter\\} % The Chapter N° label
+  {0pt} % sep
+  {\centering \ruleline{\otherfancydraw}\\ % The horizontal rule
+  \centering #1} % And the actual title
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+
+\begin{document}
+\chapter{Lipsum}
+\section{2-5}
+\lipsum[2]
+\froufrou[fleuron]
+\bigskip
+\lipsum[3]
+\froufrou[fleuron]
+\bigskip
+\lipsum[4]
+\bigskip
+\froufrou[fleuron]
+\lipsum[5]
+\froufrou[fleuron]
+\section{6}
+\lipsum[6]
+\froufrou[fleuron]
+
+\end{document}

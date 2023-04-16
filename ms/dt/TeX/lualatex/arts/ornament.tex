@@ -1,0 +1,63 @@
+\documentclass{minimal}
+%\usepackage[left=1.75cm,right=1.75cm,top=2.5cm,bottom=2.5cm,paper=a4paper]{geometry}
+\usepackage{tikz}
+\usetikzlibrary{lindenmayersystems,shadings,positioning,shadows.blur}
+\usepackage{calc}
+\usepackage{pgfornament}
+%\usepackage{fancyhdr}
+% \pgfdeclarelayer{background}
+% \pgfdeclarelayer{foreground}
+% \pgfsetlayers{background,main,foreground}
+
+\newcommand{\wb}[2]{\fontsize{#1}{#2}\usefont{U}{webo}{xl}{n}}
+\newcommand{\wbc}[3]{\vspace*{#1}\begin{center}
+    \wb{#2}{#2}#3\end{center}\vspace*{#1}}
+\newlength{\wsp}\setlength{\wsp}{1ex}
+\pgfdeclarelindenmayersystem{Hilbert curve}{
+  \symbol{X}{\pgflsystemdrawforward}
+  \symbol{+}{\pgflsystemturnright} % Explicitly define + and - symbols.
+  \symbol{-}{\pgflsystemturnleft}
+  \rule{A -> +BX-AXA-XB+}
+  \rule{B -> -AX+BXB+XA-}
+}
+\newcommand{\ornamentshape}[3]{
+    \node[shade,inner color=#1,outer color=#2, draw=#3,shading angle=45,rotate=45,
+        blur shadow={shadow blur steps=5,shadow blur extra rounding=1.3pt}] at (O)
+    %{\wbc{1ex}{8}{pq}}
+    {\pgfornament[width=.6cm]{7}}
+}
+\newcommand{\hcshape}[3]{
+    \shadedraw[inner color=#1,outer color=#2, draw=#3,
+        blur shadow={shadow blur steps=5,shadow blur extra rounding=1.3pt},
+        l-system={Hilbert curve, axiom=A, order=3, angle=90},
+        rotate=45] l-system
+}
+\def\thisshape{\hcshape}
+\begin{document}
+\pagestyle{empty}
+\begin{tikzpicture}[scale=1]
+    \begin{scope} %Scope environment is used to limit the clip command
+        \clip [rounded corners] (.5,.5) rectangle (7.5,7.5);
+        %The base shape is repeatedly drawn using loop comands.
+        \foreach \y in {0,.9,..., 9} % {0, 4.5*\shortd, ..., n*4.5*\shortd}
+            {
+                \foreach \x in {0,1.55884,..., 7.79423}
+                    %{0, sqrt(3)*4.5*\shortd,..., upper limit}
+                    {
+                        %\coordinate (O) at (\x,\y);
+                        [xshift=\x,yshift=\y]\hcshape{white}{black}{black};
+                    }
+            }
+        \foreach \y in {-0.45,.45,..., 8.6}
+            %{0-4.5*\shortd/2, 4.5*\shortd/2,..., n*4.5*\shortd}
+            {
+                \foreach \x in {0.779422,2.338267,..., 10}
+                    %{0.5*sqrt(3)*4.5*\shortd, 1.5*sqrt(3)*4.5*\shortd/2,...,upper lim}
+                    {
+                        %\coordinate (O) at (\x,\y);
+                        [xshift=\x,yshif=\y] \hcshape{white}{black}{black};
+                    }
+            }
+    \end{scope}
+\end{tikzpicture}
+\end{document}

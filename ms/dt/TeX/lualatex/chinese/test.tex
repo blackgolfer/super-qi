@@ -1,0 +1,33 @@
+\documentclass{article}
+\usepackage[pinyin,australian]{babel}
+
+\babelprovide[main,import,language=Default]{australian}
+\babelprovide[import,language=Chinese Simplified]{chinese-simplified}
+\babelprovide[import,language=Chinese Traditional]{chinese-traditional}
+
+\babelfont{rm}{Noto Serif}
+\babelfont{sf}{Noto Sans}
+\babelfont[chinese-simplified]{rm}{Noto Serif CJK SC}
+\babelfont[chinese-simplified]{sf}{Noto Sans CJK SC}
+\babelfont[chinese-traditional]{rm}{Noto Serif CJK TC}
+\babelfont[chinese-traditional]{sf}{Noto Sans CJK TC}
+
+\begin{document}
+
+\section{Roman Family}
+
+Australian English.    
+
+\foreignlanguage{chinese-simplified}{汉语。}
+\foreignlanguage{pinyin}{Pīnyīn.}
+\renewcommand*{\familydefault}{\sfdefault}
+\sffamily
+
+\section{Sans Serif Family}
+
+Australian English.
+
+\foreignlanguage{chinese-simplified}{汉语。}
+\foreignlanguage{pinyin}{Pīnyīn.}
+
+\end{document}

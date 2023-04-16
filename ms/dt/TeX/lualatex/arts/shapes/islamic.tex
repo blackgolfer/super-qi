@@ -1,0 +1,37 @@
+\documentclass[tikz]{standalone}
+\usepackage{tikz}
+\usetikzlibrary{shadings,positioning,shadows.blur,backgrounds,calc,scopes}
+\usepackage{xcolor}
+
+\newlength\longd
+\newlength\shortd
+\setlength{\longd}{0.5cm}
+\setlength{\shortd}{0.2cm}
+\newcommand{\arrowshape}{
+   \draw
+   (O)[rounded corners=4pt] --
+   ++(90:\longd)[sharp corners] --
+   ++(210:\shortd)[rounded corners=4pt] --
+   ++(150:\shortd) --
+   ++(30:\longd) --
+   ++(330:\longd)[sharp corners] --
+   ++(210:\shortd)[rounded corners=4pt] --
+   ++(150:\shortd) --
+   ++(-90:\longd) --
+   cycle;
+}
+
+\begin{document}
+\pagecolor{white}
+\begin{tikzpicture}[scale=10,transparency group=knockout]
+    \coordinate (O) at (0,0);
+    \arrowshape;
+    % \begin{scope}[rotate=-120]
+    %     \arrowshape;
+    % \end{scope}
+    % \begin{scope}[rotate=-240]
+    %     \arrowshape;
+    % \end{scope}
+\end{tikzpicture}
+
+\end{document}

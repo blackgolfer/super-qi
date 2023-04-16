@@ -1,0 +1,35 @@
+%https://topanswers.xyz/tex?q=1375
+% A non-hacky way to get rid of options= is to use pgfopts.
+% A downside is that it does not allow spaces in the keys.
+\documentclass{beamer}
+% you will not need this in every document
+% this is just to keep the example self-contained
+% copy the file `beamerthemeJeT.sty` somewhere where LaTeX finds it
+\begin{filecontents}[overwrite]{beamerpreambleJeT.sty}
+\RequirePackage{pgfopts}
+\pgfkeys{/JeT/.cd,beamer/.cd,
+	theme/.code={\usetheme{#1}},
+	colortheme/.code={\usecolortheme{#1}},
+	font/.is choice,
+	font/fourier/.code={\usepackage{fourier}
+		\usepackage[scaled=0.875]{helvet} 
+		\renewcommand{\ttdefault}{lmtt}},
+	font/Latin-Modern/.code={\usepackage{lmodern}
+	\usepackage[T1]{fontenc}},
+	standard/.style={theme={CambridgeUS},colortheme=crane,font=fourier}	 
+	}
+\ProcessPgfOptions{/JeT/beamer}
+\end{filecontents}
+% end of "one time only" preamble
+% usage example
+% \usepackage[theme={CambridgeUS},colortheme=crane,font=fourier]{beamerpreambleJeT}
+% example using a style for a collection of keys
+\usepackage[standard]{beamerpreambleJeT}
+% or combine styles with single keys
+% \usepackage[standard,font=Latin-Modern]{beamerpreambleJeT}
+\begin{document}
+\begin{frame}[t]
+\frametitle{Pft}
+This is a test.
+\end{frame}
+\end{document}

@@ -1,0 +1,116 @@
+% !TeX TS-program = lualatex
+% !TeX encoding = UTF-8
+\documentclass[11pt]{book}
+\usepackage[left=1.75cm,right=1.75cm,top=2.5cm,bottom=2.5cm,paper=a4paper]{geometry}
+%\usepackage{ebgaramond}
+\usepackage[base]{babel}
+\usepackage{lipsum}
+\usepackage{pgfornament}
+\usepackage{eso-pic}
+\usepackage{froufrou}
+\usepackage{fancyhdr}
+\usepackage[explicit]{titlesec}
+\usepackage{wallpaper}
+\usepackage{tikzrput}
+\usepackage{tikz}
+\usetikzlibrary{chains,scopes}
+
+\newcommand\AtPageUpperRight[1]{\AtPageUpperLeft{%
+ \put(\LenToUnit{\paperwidth},\LenToUnit{0\paperheight}){#1}%
+ }}%
+\newcommand\AtPageLowerRight[1]{\AtPageLowerLeft{%
+ \put(\LenToUnit{\paperwidth},\LenToUnit{0\paperheight}){#1}%
+ }}%
+
+ \definecolor[named]{lightgray}{rgb}{0.75,0.75,0.75}
+ \definecolor[named]{gray}{rgb}{0.5,0.5,0.5}
+ 
+%\definecolor[maincolor][.75(orange)]
+%\definecolor[titlecolor][0.75(orange)]
+\definecolor{decocolor}{named}{lightgray}
+\definecolor{titlecolor}{named}{gray}
+
+% \newcommand{\pagedeco}{%
+% \AddToShipoutPictureBG{%
+%     \AtPageUpperLeft{\put(0,-15){\pgfornament[color=decocolor,width=1cm]{61}}}
+%     \AtPageUpperRight{\put(-30,-15){\pgfornament[color=decocolor,width=1cm,symmetry=v]{61}}}
+%     \AtPageLowerLeft{\put(0,15){\pgfornament[color=decocolor,width=1cm,symmetry=h]{61}}}
+%     \AtPageLowerRight{\put(-30,15){\pgfornament[color=decocolor,width=1cm,symmetry=c]{61}}}
+%    }
+%    }
+
+ %\newcommand{\simplify}{%
+ %\cleardoublepage\ClearShipoutPictureBG
+ %}
+
+\newfontfamily{\sectionFont}[Extension=.ttf,ExternalLocation=fonts/]{Germanica}
+
+\titleformat{\chapter}{\filcenter}{}{0ex}{
+  \begin{tikzpicture}
+    \node[minimum size=4pt,inner sep=0] (A) at (0,0) {\color{titlecolor}\fontsize{29}{23}\sectionFont#1};
+    %\coordinate (B) at (8,0);
+    {
+      [node distance=2pt,inner sep=0,color=decocolor]
+        \node[below=1ex of A] (B) {\pgfornament[width=1.25cm]{70}};
+        \node[right=of B]  {\pgfornament[width=1.25cm]{70}};
+        \node [left=of B] {\pgfornament[width=1.25cm]{70}};
+        %\node [on chain] {\pgfornament[width=1cm]{70}};
+    }
+  \end{tikzpicture}
+}
+\titleformat{\section}[block]
+            {\Large}
+            %{\color{titlecolor}\MakeUppercase{\roman{section}\hskip 1ex}}
+            {}
+            {0pt}
+            {\color{titlecolor}\sectionFont#1}
+
+\newcommand{\chapterend}{
+    {\color{decocolor}\froufrou[fleuron]}
+}
+\newcommand{\introend}{
+    {
+        \color{decocolor}\froufrou[
+                \pgfornament[height=0.1cm]{87}
+                \pgfornament[height=0.1cm]{87}
+                \pgfornament[height=0.1cm]{87}
+                ]
+    }
+}
+
+\makeatletter
+\AddToShipoutPicture{%
+  \begingroup
+    \def\@mydima{2}%
+    \def\@mydimb{17}%
+    \def\@mydimc{30}%
+    \AtPageUpperLeft{\put(\@mydima,-\@mydimb){\pgfornament[color=decocolor,width=1cm]{63}}}
+    \AtPageUpperRight{\put(-\@mydimc,-\@mydimb){\pgfornament[color=decocolor,width=1cm,symmetry=v]{63}}}
+    \AtPageLowerLeft{\put(\@mydima,\@mydimb){\pgfornament[color=decocolor,width=1cm,symmetry=h]{63}}}
+    \AtPageLowerRight{\put(-\@mydimc,\@mydimb){\pgfornament[color=decocolor,width=1cm,symmetry=c]{63}}}
+  \endgroup
+}
+\makeatother
+\def\Drop {\DroppedCaps
+{} {Sans} {3\baselineskip}
+{2pt} {1\baselineskip} {2}}
+\def\chap#1/#2/{\Drop #1{\sc#2}}
+
+\begin{document}
+\title{A VOYAGE TO ARCTURUS.}
+\author{David Lindsay}
+\maketitle
+\frontmatter
+\TileWallPaper{1cm}{1cm}{N-00.png}% https://tex.stackexchange.com/questions/41159/does-anybody-know-a-good-source-of-free-ornaments-decorations-frames-backgr
+\tableofcontents
+\mainmatter
+%\pagedeco
+\pagestyle{fancy}
+
+\chapter{The S\'eance}
+\lipsum[1-3]
+\introend
+\section{New section}
+\lipsum[4-12]
+\chapterend
+\end{document}

@@ -1,0 +1,206 @@
+\documentclass[11pt
+              ,a4paper
+              ,deepblue={hexagon(fg=primaryc,bg=primary,img=c3)}
+              ]{SuperQIBook}
+\usepackage[base]{babel}
+\usepackage{lipsum}
+\input{teal_shade_tetradic.tex}
+%\clearpairofpagestyles
+\titlehead{Topics in Mathematics }
+\subject{Signal Processing }
+\title{Adapted Wavelet Analysis from\\ Theory to Software }
+\subtitle{}
+\author{Mladen Victor Wickerhauser }
+\date{1993 }
+\publishers{A K Peters }
+%theorem
+\newcommand*{\sqbname}[1]{\textbf{\textcolor{complement}{#1}}}
+\def\savelastnode{\pgfextra\edef\tmpA{\tikzlastnode}\endpgfextra}
+\def\restorelastnode{\pgfextra\edef\tikzlastnode{\tmpA}\endpgfextra}
+\tikzstyle{sqbbox}=[draw=secondary
+                  ,rectangle
+                  ,rounded corners
+                  ,inner sep=10pt
+                  ,inner ysep=10pt
+                  %,text=secondaryc
+                  ,text opacity=1
+                  ,fill=tertiary
+                  ,fill opacity=0.1
+                  ]
+\tikzstyle{fancytitle} =[fill=secondary
+                        ,text=secondaryc
+                        ,rounded corners
+                        ,minimum width=.25\textwidth
+                        ,inner ysep=4pt
+                        ,inner xsep=4pt
+                        ]
+\tikzstyle{title}=[append after command={\savelastnode%
+                   node[fancytitle,right=0pt,anchor=north west] at
+                   (\tikzlastnode.north west) {#1}\restorelastnode}%
+                  ]%
+\usepackage{environ}
+\usepackage{xparse}
+\makeatletter
+\newcounter{thm@Theorem}[chapter]
+\newcounter{thm@Proposition}[chapter]
+\newcounter{thm@Lemma}[chapter]
+\newcounter{thm@Definition}[chapter]
+\newcounter{thm@Corollary}[thm@Theorem]
+\NewEnviron{qitheorem}[2][Theorem]{
+\addtocounter{thm@#1}{1}
+\begin{tikzpicture}
+\IfNoValueTF{#2}{\def\theoremtitle{#1\ {\normalfont\thesection.\csname thethm@#1\endcsname.}}}
+{\def\theoremtitle{#1\ {\normalfont\thesection.\csname thethm@#1\endcsname}: #2}}
+\node [sqbbox,title=\theoremtitle] (box){%
+\begin{minipage}{0.95\linewidth }
+   \vfill
+   \vskip 1.75em
+   \emph{\BODY}
+   \vfill
+\end{minipage}
+};
+\end{tikzpicture}
+}
+\makeatother
+%geoemtry
+\usepackage{tkz-euclide}
+%heperlink
+\makeatletter
+\usepackage[luatex
+           ,unicode
+           ,plainpages=false
+           ,colorlinks=true
+           ,pdfpagelabels
+           ,urlcolor=tertiary
+           ,filecolor=tertiary!75!black
+           ,linkcolor=tertiary!75!black
+           ,breaklinks
+           ,hyperfootnotes=false
+           ,bookmarks=true
+           ,bookmarksopen=true
+           ,linktocpage=true
+           ,pdfsubject={\@subject}
+           ,pdfauthor={\@author}
+           ,pdftitle={\@title}
+           %,pdfkeywords={tikz,pgf,pdf,graphique,euclide,geometry,points,line,circle,angle,arbelos,gold,ratio}
+           %,pdfcreator={\sqbengine}
+           ]{hyperref}
+\makeatother
+\usepackage{float}
+
+%\tkzSetUpColors[background=black,text=white]
+\def\pictureprimary{teal}
+\def\picturesecondary{cyan}
+\def\picturetertiary{purple}
+\def\picturecomplement{orange}
+\tkzSetUpPoint[size=2,color=\pictureprimary]
+\tkzSetUpLine[ultra thin,color=\pictureprimary]
+\tkzSetUpCompass[color=\picturecomplement,ultra thin,/tkzcompass/delta=10] 
+\tikzset{label style/.append style={below,color=\pictureprimary,font=\scriptsize}}
+\tikzset{new/.style={color=\picturecomplement,ultra thin}} 
+\tikzset{step 1/.style={color=\picturesecondary,ultra thin}} 
+\tikzset{step 2/.style={color=\picturetertiary,ultra thin}} 
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+
+\newcommand{\newboxnote}{1}{
+        \NewEnviron{#1}{1}{
+                ##1
+                \BODY
+        }
+}
+\begin{document}
+\sqbtitlepage
+\frontmatter
+\tableofcontents
+\mainmatter
+\pagestyle{scrheadings}
+%\pagecolor{primaryc}
+%\automark[chapter]{chapter}
+%\automark*[section]{}
+\chapter{Document Elements}
+\section{Foot note}
+\lipsum{1}\footnote{test}
+
+\section{Theorems}
+Theorems can easily be defined:
+
+\begin{theorem}
+        Let \(f\) be a function whose derivative exists in every point, then \(f\) is
+        a continuous function.
+\end{theorem}
+
+\begin{theorem}[Pythagorean theorem]
+        \label{pythagorean}
+        This is a theorem about right triangles and can be summarised in the next
+        equation
+        \[ x^2 + y^2 = z^2 \]
+\end{theorem}
+
+And a consequence of theorem \ref{pythagorean} is the statement in the next
+corollary.
+
+\begin{corollary}
+        There's no right rectangle whose sides measure 3cm, 4cm, and 6cm.
+\end{corollary}
+
+You can reference theorems such as \ref{pythagorean} when a label is assigned.
+
+\begin{lemma}
+        Given two line segments whose lengths are \(a\) and \(b\) respectively there is a
+        real number \(r\) such that \(b=ra\).
+\end{lemma}
+
+\section{QI Theorems}
+
+\begin{qitheorem}{Golden Ratio}
+        In mathematics, expressed algebraically, for quantities $a$ and $b$ with $a>b>0$,
+        \begin{equation*}
+                \frac{a+b}{a} = \frac{a}{b} = \varphi
+        \end{equation*}
+        where the Greek letter $\varphi$  represents the \sqbname{golden ratio} or \sqbname{devine proportion}.
+        In other words, two quantities are in the golden ratio if their ratio is the same as the ratio of their
+        sum to the larger of the two quantities. [wikipedia]
+\end{qitheorem}
+
+\section{Figures}
+\begin{figure}[H]
+        \centering
+        \centering
+        \begin{tikzpicture}[scale=1]
+                \tkzDefPoints{0/0/A,10/0/B}
+                \tkzDefGoldenRatio(A,B)                  \tkzGetPoint{C}
+                \tkzDefMidPoint(A,B)                     \tkzGetPoint{O_0}
+                \tkzDefMidPoint(A,C)                     \tkzGetPoint{O_1}
+                \tkzDefMidPoint(C,B)                     \tkzGetPoint{O_2}
+                \begin{scope}[local bounding box = graph]
+                        \tkzDrawSemiCircles[color=black](O_0,B)
+                        \tkzDrawSegment(A,B)
+                        \tkzDrawPoints(A,B,C,O_1,O_0,O_2)
+                        \tkzLabelPoints[font=\footnotesize](A,B,C,O_1,O_0,O_2)
+                \end{scope}
+                \useasboundingbox (graph.south west) rectangle (graph.north east);
+                \tkzLabelCircle[below=6pt,font=\scriptsize](O_1,C)(90){$\beta$}
+                \tkzLabelCircle[below=6pt,font=\scriptsize](O_2,B)(90){$\gamma$}
+                \tkzClipCircle[out](O_1,C)\tkzClipCircle[out](O_2,B)
+                \tkzDrawSemiCircles[draw=none,fill=\pictureprimary!15!white](O_0,B)
+                \tkzDrawSemiCircles[color=black](O_1,C O_2,B)
+                \tkzLabelCircle[below=6pt,font=\scriptsize](O_0,B)(90){$\alpha$}
+        \end{tikzpicture}
+        \caption{Arbelos}
+\end{figure}
+\begin{qitheorem}[Lemma]{Arbelos Definition by Archimedes' Book of Lemmas}
+        If\: $[AB]$ be the diameter of a semicircle and C any point on $[AB]$, and if semicircles
+        be described within the first semicircle and having $[AC]$, $[CB]$  as diameters respectively,
+        the figure included between the circumferences of the three semicircles is called \sqbname{arbelos}.
+        Let $\beta, \gamma, \alpha$ be the semicircles of respectives diameters $[AC]$, $[CB]$ and $[AB]$,
+        then the arbelos bounded by the three semicircles is denoted $(\beta,\gamma,\alpha)$ or $(A,C,B)$.
+\end{qitheorem}
+\chapter{Font Test}
+\section{Another lipsum}
+\lipsum{11-20}
+\lipsum{21-25}
+\lipsum{26-30}
+\end{document}

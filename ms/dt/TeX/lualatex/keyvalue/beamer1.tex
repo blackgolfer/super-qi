@@ -1,0 +1,51 @@
+%https://topanswers.xyz/tex?q=1375
+% The following is a prototype. It writes your theme file via filecontents but obviously you can just create
+% a separate file. In particular, you won’t need the preamble in every document, just copy the
+% beamerthemeJeT.sty somewhere where LaTeX finds it. You can then say
+%
+% \usetheme[options={theme={CambridgeUS},color theme=crane,font=fourier}]{JeT}
+%
+% (One could presumably get rid of the options= at the expense of a hack.) This example illustrates
+% the /.code key for the theme and color, and the /.is choice key for the fonts. There are more keys for
+% other purposes. I also added (but commented) an example for the usage of styles as collection of keys,
+%
+% \usetheme[options=standard]{JeT}
+%
+% and
+%
+% \usetheme[options={standard,font=Latin Modern}]{JeT}
+%
+% which yield the same output (except for the font in the last example). You can add more keys to
+% beamerthemeJeT.sty over the time, i.e. grow your theme over the time without losing backwards compatibility.
+\documentclass{beamer}
+% you will not need this in every document
+% this is just to keep the example self-contained
+% copy the file `beamerthemeJeT.sty` somewhere where LaTeX finds it
+\begin{filecontents}[overwrite]{beamerthemeJeT.sty}
+\DeclareOptionBeamer{options}{\pgfkeys{/JeT/beamer/.cd,#1}}
+\pgfkeys{/JeT/.cd,beamer/.cd,
+	theme/.code={\usetheme{#1}},
+	color theme/.code={\usecolortheme{#1}},
+	font/.is choice,
+	font/fourier/.code={\usepackage{fourier}
+		\usepackage[scaled=0.875]{helvet} 
+		\renewcommand{\ttdefault}{lmtt}},
+	font/Latin Modern/.code={\usepackage{lmodern}
+	\usepackage[T1]{fontenc}},
+	standard/.style={theme={CambridgeUS},color theme=crane,font=fourier}	 
+	}
+\ProcessOptionsBeamer
+\end{filecontents}
+% end of "one time only" preamble
+% usage example
+\usetheme[options={theme={CambridgeUS},color theme=crane,font=fourier}]{JeT}
+% example using a style for a collection of keys
+% \usetheme[options=standard]{JeT}
+% or combine styles with single keys
+% \usetheme[options={standard,font=Latin Modern}]{JeT}
+\begin{document}
+\begin{frame}[t]
+\frametitle{Pft}
+This is a test.
+\end{frame}
+\end{document}

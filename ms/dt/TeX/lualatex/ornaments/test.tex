@@ -1,0 +1,19 @@
+\documentclass[12pt]{book}
+\usepackage{pstricks,psvectorian}
+\usepackage{color}
+
+% Compiles with XELATEX
+\begin{document}
+\thispagestyle{empty}
+
+\begin{pspicture}(-5,-5)(4,4)%
+\psframe[fillcolor=black,fillstyle=solid](-5,-5)(5,12) 
+\psframe[linecolor=black](-5,-5)(5,12)
+
+\rput[b](0,2){\psvectorian[width=8.1cm,color=brown!45!yellow]{69}} 
+\rput[b](0.35pt,2){\psvectorian[width=8.1cm,color=white]{69}}
+
+\rput[b](0,-3){\psvectorian[width=8.1cm,color=brown!45!yellow]{69}} 
+\rput[b](0,\dimexpr-3cm-0.35pt){\psvectorian[width=8.1cm,color=white]{69}}
+\end{pspicture}%
+\end{document} 

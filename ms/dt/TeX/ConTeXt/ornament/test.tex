@@ -1,0 +1,23 @@
+\usecolors[svg] %nice colors
+\usemodule[tikz]
+\usetikzlibrary[chains]
+\usemodule[pgfornament][object=vectorian]
+\startTEXpage 
+
+\newpgfornamentfamily{pgfhan}
+\pgfornament[width = 2cm, color = darkgreen]{59}
+\newpgfornamentfamily{vectorian}
+\pgfornament[width = 2cm, color = darkgreen]{59}
+
+\startnewfamily[pgfhan]
+    \starttikzpicture
+    \node{ \pgfornament[color=gold,width=2cm]{1}};
+    \stoptikzpicture
+\stopnewfamily
+
+\starttikzpicture[start chain=circle placed {at=(\tikzchaincount*30:2)}]
+\foreach \i in {1,...,12} \node [on chain]%
+{\pgfornament[width=1cm]{4}};
+\stoptikzpicture
+
+\stopTEXpage

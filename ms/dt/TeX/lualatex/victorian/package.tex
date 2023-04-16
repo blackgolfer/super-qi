@@ -1,0 +1,76 @@
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern} %{lmodern}	% Usa a fonte Latin Modern			
+\usepackage[T1]{fontenc}% Selecao de codigos de fonte.
+\usepackage[utf8]{inputenc}% Codificacao do documento (conversão automática dos acentos)
+\usepackage{indentfirst}	% Indenta o primeiro parágrafo de cada seção.
+\usepackage{color}		% Controle das cores
+\usepackage{microtype} 	% para melhorias de justificação
+\usepackage{amsmath}
+\usepackage{lipsum}
+\usepackage[headheight=1.3cm, headsep=0.5cm, textheight=24cm, textwidth=17cm, footskip=1.5cm, lmargin=2cm, rmargin=2cm, top=1cm, bottom=2cm, centering, includefoot, includehead]{geometry}
+
+\usepackage{graphicx}
+
+\usepackage[export]{adjustbox}%
+\usepackage{fancyhdr} %define o estilo do documento
+%
+\linespread{1.0} % Line spacing - Palatino needs more space between lines
+%
+\usepackage[main=english]{babel} % Language hyphenation and typographical rules
+%
+\usepackage[hang, small,labelfont=bf,up,textfont=it,up]{caption} % Custom captions under/above floats in tables or figures
+\usepackage{booktabs} % Horizontal rules in tables
+\usepackage{blindtext}%
+\usepackage{pgfornament}%
+\usepackage{pagecolor}%
+%\usepackage{ebgaramond}
+\usepackage{lettrine} % The lettrine is the first enlarged letter at the beginning of the text
+%
+\usepackage{enumitem} % Customized lists
+\setlist[itemize]{noitemsep} % Make itemize lists more compact
+\usepackage{array} %permite o uso de tabelas
+\usepackage{longtable} %permite o uso de tabelas personalizadas
+\usepackage{rotating} %permite rotacionar imagens
+\usepackage{tikz} %permite o desenho de formas geométricas simples dadas suas características
+\usepackage{ragged2e}%
+\usepackage{csquotes}%
+%
+\usepackage{microtype}
+\usepackage{float}%
+\usepackage{trimspaces}
+
+\input GoudyIn.fd
+
+\usepackage{titlesec} % Allows customization of titles
+\renewcommand\thesection{\Roman{section}}% Roman numerals for the sections
+\renewcommand\thesubsection{\roman{subsection}}% roman numerals for subsections
+\titleformat{\section}[block]{\large\bfseries\scshape\centering}{\thesection.}{1em}{}% Change the look of the section titles
+\titleformat{\subsection}[block]{\large}{\thesubsection.}{1em}{} % Change the look of the section titles
+%
+\usepackage{setspace}%
+\usepackage[colorlinks=true,linkcolor=black,anchorcolor=black,citecolor=black,filecolor=black,menucolor=black,runcolor=black,urlcolor=black]{hyperref}%
+% ---
+% Pacotes de citações
+\usepackage[backend=biber,style=apa,natbib=true,sorting=nyt,
+            url=false,isbn=false,doi=false]{biblatex}
+%\usepackage[style=apa]{biblatex} %coloque backref=true se quiser que fale em qual pagina foi citado
+\addbibresource{references.bib} % Seus arquivos de bib
+%
+\usepackage{lipsum}
+%----------------------------------------------------------
+%\usepackage{eso-pic}
+%
+%\newcommand\AtPageUpperRight[1]{\AtPageUpperLeft{%
+% \put(\LenToUnit{\paperwidth},\LenToUnit{0\paperheight})%{#1}%
+ %}}%
+%\newcommand\AtPageLowerRight[1]{\AtPageLowerLeft{%
+% \put(\LenToUnit{\paperwidth},\LenToUnit{0\paperheight})%{#1}%
+% }}%
+%
+%\AddToShipoutPictureBG{%
+%   \AtPageUpperLeft{\put(0,-25){\pgfornament[width=1.75cm]{61}}}
+%   \AtPageUpperRight{\put(-50,-25)%{\pgfornament[width=1.75cm,symmetry=v]{61}}}
+%   \AtPageLowerLeft{\put(0,25)%{\pgfornament[width=1.75cm,symmetry=h]{61}}}
+%   \AtPageLowerRight{\put(-50,25)%{\pgfornament[width=1.75cm,symmetry=c]{61}}}
+%  }%
